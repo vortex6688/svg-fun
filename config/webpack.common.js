@@ -258,11 +258,11 @@ module.exports = function (options) {
       new HtmlWebpackPlugin({
         chunks: ['polyfills', 'vendor', 'editorial'],
         template: 'src/editorial/index.html',
-        filename: 'index_editorial.html',
+        filename: 'editorial/index.html',
         get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
         metadata: {
-          title: 'This is the editor half!!!',
+          title: 'This is the editorial half!!!',
           baseUrl: '/editor',
           isDevServer: helpers.isWebpackDevServer()
         },
@@ -271,7 +271,7 @@ module.exports = function (options) {
       new HtmlWebpackPlugin({
         chunks: ['polyfills', 'vendor', 'admin'],
         template: 'src/admin/index.html',
-        filename: 'index_admin.html',
+        filename: 'admin/index.html',
         get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
         metadata: {
