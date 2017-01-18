@@ -14,7 +14,7 @@
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && webpack --config config/webpack.prod.js  --progress --profile --bail",
     "build:aot": "npm run build:aot:prod",
-    "build:dev": "npm-run-all --parallel clean:dist clean:dll && webpack --config config/webpack.dev.js --progress --profile",
+    "build:dev": "npm run clean:build && webpack --config config/webpack.dev.js --progress --profile",
     "build:docker": "npm run build:prod && docker build -t angular2-webpack-start:latest .",
     "build:prod": "npm run clean:dist && webpack --config config/webpack.prod.js  --progress --profile --bail",
     "build": "npm run build:dev",
@@ -24,6 +24,7 @@
     "ci:testall": "npm run lint && npm run test && npm run build:prod && npm run e2e && npm run build:aot && npm run e2e",
     "ci:travis": "npm run lint && npm run test && npm run build:dev && npm run e2e:travis && npm run build:prod && npm run e2e:travis && npm run build:aot && npm run e2e:travis",
     "ci": "npm run ci:testall",
+    "clean:build": "npm-run-all --parallel clean:dist clean:dll clean:aot",
     "clean:dll": "npm run rimraf -- dll",
     "clean:aot": "npm run rimraf -- compiled",
     "clean:dist": "npm run rimraf -- dist",

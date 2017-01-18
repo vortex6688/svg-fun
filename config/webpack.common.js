@@ -28,12 +28,6 @@ const ngcWebpack = require('ngc-webpack');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
-const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
-  baseUrl: '/',
-  isDevServer: helpers.isWebpackDevServer()
-};
-
 /*
  * Webpack configuration
  *
@@ -220,7 +214,7 @@ module.exports = function (options) {
       }),
       // Specify the correct order the scripts will be injected in
       new CommonsChunkPlugin({
-        name: ['polyfills', 'vendor']
+        name: ['polyfills', 'vendor'].reverse()
       }),
 
       /**
@@ -262,21 +256,29 @@ module.exports = function (options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new HtmlWebpackPlugin({
-        chunks: ['editorial'],
+        chunks: ['polyfills', 'vendor', 'editorial'],
         template: 'src/editorial/index.html',
         filename: 'index_editorial.html',
-        title: METADATA.title,
+        get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
-        metadata: METADATA,
+        metadata: {
+          title: 'This is the editor half!!!',
+          baseUrl: '/editor',
+          isDevServer: helpers.isWebpackDevServer()
+        },
         inject: 'head'
       }),
       new HtmlWebpackPlugin({
-        chunks: ['admin'],
+        chunks: ['polyfills', 'vendor', 'admin'],
         template: 'src/admin/index.html',
         filename: 'index_admin.html',
-        title: METADATA.title,
+        get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
-        metadata: METADATA,
+        metadata: {
+          title: 'This is the admin half!!!',
+          baseUrl: '/admin',
+          isDevServer: helpers.isWebpackDevServer()
+        },
         inject: 'head'
       }),
 
