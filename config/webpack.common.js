@@ -88,7 +88,11 @@ module.exports = function (options) {
       // allows for fancy typescript module resolution
       // https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
       plugins: [
-        new TsConfigPathsPlugin()
+        new TsConfigPathsPlugin({
+          tsconfig: AOT ? 
+                      helpers.root('tsconfig.webpack.json') : 
+                      helpers.root('tsconfig.json')
+        })
       ]
     },
 
@@ -368,7 +372,6 @@ module.exports = function (options) {
         tsConfig: helpers.root('tsconfig.webpack.json'),
         resourceOverride: helpers.root('config/resource-override.js')
       })
-
     ],
 
     /*
