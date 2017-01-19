@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { AppState } from '../app.service';
+import { AppState } from '../admin.service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
 
@@ -12,7 +12,7 @@ import { XLargeDirective } from './x-large';
   // for `document.querySelectorAll(selector)` in our index.html
   // where, in this case, selector is the string 'home'
   selector: 'home',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
+  // We need to tell Angular's Dependency Injection which providers are in our admin.
   providers: [
     Title
   ],

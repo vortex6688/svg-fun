@@ -14,7 +14,7 @@ import {
 import { MockBackend } from '@angular/http/testing';
 
 // Load the implementations that should be tested
-import { AppState } from '../app.service';
+import { AppState } from '../admin.service';
 import { HomeComponent } from './home.component';
 import { Title } from './title';
 

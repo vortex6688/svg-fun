@@ -7,8 +7,8 @@ import {
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { AppComponent } from './app.component';
-import { AppState } from './app.service';
+import { AppComponent } from './admin.component';
+import { AppState } from './admin.service';
 
 describe(`Admin`, () => {
   let comp: AppComponent;
