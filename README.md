@@ -17,3 +17,10 @@ Install [nvm](https://github.com/creationix/nvm) on Unix systems or [nvm-windows
 ## Issue Tracking
 
 All issue tracking is done on the primary [typenetwork.com repository](https://github.com/TypeNetwork/typenetwork.com). PR's should mention issues in this repository as well.
+
+## IDE Integration
+
+This project has been found to work with the following IDEs:
+
+- [Sublime Text 3](https://www.sublimetext.com/3) with [TypeScript Plugin](https://github.com/Microsoft/TypeScript-Sublime-Plugin) via [Package Control](https://packagecontrol.io/installation)
+- [Visual Studio Code](https://code.visualstudio.com) (out of the box support)
