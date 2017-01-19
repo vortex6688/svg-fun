@@ -2,12 +2,12 @@
  * Angular bootstraping
  */
 import { platformBrowser } from '@angular/platform-browser';
-import { decorateModuleRef } from './editorial/environment';
+import { decorateModuleRef } from './tn-admin/environment';
 /*
  * App Module
  * our top level module that holds all of our components
  */
-import { AppModuleNgFactory } from '../compiled/src/editorial/app.module.ngfactory';
+import { AppModuleNgFactory } from '../compiled/src/tn-admin/app.module.ngfactory';
 
 /*
  * Bootstrap our Angular app with a top level NgModule

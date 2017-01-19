@@ -2,13 +2,13 @@
  * Angular bootstraping
  */
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { decorateModuleRef } from './admin/environment';
+import { decorateModuleRef } from './tn-admin/environment';
 import { bootloader } from '@angularclass/hmr';
 /*
  * App Module
  * our top level module that holds all of our components
  */
-import { AppModule } from './admin';
+import { AppModule } from './tn-admin';
 
 /*
  * Bootstrap our Angular app with a top level NgModule

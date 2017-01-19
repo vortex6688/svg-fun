@@ -19,11 +19,11 @@ import {
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './admin.routes';
+import { ROUTES } from './tn-admin.routes';
 // App is our top level component
-import { AppComponent } from './admin.component';
-import { APP_RESOLVER_PROVIDERS } from './admin.resolver';
-import { AppState, InternalStateType } from './admin.service';
+import { AppComponent } from './tn-admin.component';
+import { APP_RESOLVER_PROVIDERS } from './tn-admin.resolver';
+import { AppState, InternalStateType } from './tn-admin.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { ExampleComponent } from 'tn-common/example'

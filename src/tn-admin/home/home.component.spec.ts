@@ -14,11 +14,11 @@ import {
 import { MockBackend } from '@angular/http/testing';
 
 // Load the implementations that should be tested
-import { AppState } from '../editorial.service';
+import { AppState } from '../tn-admin.service';
 import { HomeComponent } from './home.component';
 import { Title } from './title';
 
-describe(`Editorial:Home`, () => {
+describe(`Admin:Home`, () => {
   let comp: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 

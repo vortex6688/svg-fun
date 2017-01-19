@@ -6,17 +6,17 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import { AppState } from './editorial.service';
+import { AppState } from './tn-admin.service';
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-  selector: 'tn-editorial',
+  selector: 'tn-admin',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './editorial.component.css'
+    './tn-admin.component.css'
   ],
   template: `
     <nav>

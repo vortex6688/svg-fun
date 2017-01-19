@@ -7,10 +7,10 @@ import {
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { AppComponent } from './editorial.component';
-import { AppState } from './editorial.service';
+import { AppComponent } from './tn-admin.component';
+import { AppState } from './tn-admin.service';
 
-describe(`Editorial`, () => {
+describe(`Admin`, () => {
   let comp: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 

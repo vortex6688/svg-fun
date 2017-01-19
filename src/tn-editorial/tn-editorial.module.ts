@@ -19,11 +19,11 @@ import {
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './editorial.routes';
+import { ROUTES } from './tn-editorial.routes';
 // App is our top level component
-import { AppComponent } from './editorial.component';
-import { APP_RESOLVER_PROVIDERS } from './editorial.resolver';
-import { AppState, InternalStateType } from './editorial.service';
+import { AppComponent } from './tn-editorial.component';
+import { APP_RESOLVER_PROVIDERS } from './tn-editorial.resolver';
+import { AppState, InternalStateType } from './tn-editorial.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';

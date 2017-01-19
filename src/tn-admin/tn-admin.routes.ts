@@ -3,7 +3,7 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
-import { DataResolver } from './editorial.resolver';
+import { DataResolver } from './tn-admin.resolver';
 
 export const ROUTES: Routes = [
   { path: '',      component: HomeComponent },

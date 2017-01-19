@@ -58,10 +58,10 @@ module.exports = function (options) {
     entry: {
 
       'polyfills': './src/polyfills.browser.ts',
-      'editorial': AOT ? './src/editorial.main.browser.aot.ts' :
-                   './src/editorial.main.browser.ts',
-      'admin':     AOT ? './src/admin.main.browser.aot.ts' :
-                   './src/admin.main.browser.ts',
+      'editorial': AOT ? './src/tn-editorial.main.browser.aot.ts' :
+                   './src/tn-editorial.main.browser.ts',
+      'admin':     AOT ? './src/tn-admin.main.browser.aot.ts' :
+                   './src/tn-admin.main.browser.ts',
 
     },
 
@@ -168,8 +168,8 @@ module.exports = function (options) {
           use: 'raw-loader',
           exclude: [
             helpers.root('src/index.html'),
-            helpers.root('src/admin/index.html'),
-            helpers.root('src/editorial/index.html'),
+            helpers.root('src/tn-admin/index.html'),
+            helpers.root('src/tn-editorial/index.html'),
           ]
         },
 
@@ -223,7 +223,7 @@ module.exports = function (options) {
       }),
       // This enables tree shaking of the common modules
       new CommonsChunkPlugin({
-        name: 'tn-common',
+        name: 'common',
         chunks: ['admin', 'editorial'],
         minChunks: module => COMMON_MATCHER.test(module.resource)
       }),
@@ -271,8 +271,8 @@ module.exports = function (options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new HtmlWebpackPlugin({
-        chunks: ['polyfills', 'vendor', 'tn-common', 'editorial'],
-        template: 'src/editorial/index.html',
+        chunks: ['polyfills', 'vendor', 'common', 'editorial'],
+        template: 'src/tn-editorial/index.html',
         filename: 'editorial/index.html',
         get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
@@ -284,8 +284,8 @@ module.exports = function (options) {
         inject: 'head'
       }),
       new HtmlWebpackPlugin({
-        chunks: ['polyfills', 'vendor', 'tn-common', 'admin'],
-        template: 'src/admin/index.html',
+        chunks: ['polyfills', 'vendor', 'common', 'admin'],
+        template: 'src/tn-admin/index.html',
         filename: 'admin/index.html',
         get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
