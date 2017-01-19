@@ -17,6 +17,7 @@ const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
@@ -28,6 +29,8 @@ const ngcWebpack = require('ngc-webpack');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
+const NODE_MATCHER = /node_modules\//;
+const COMMON_MATCHER = /src\/tn-common\//;
 /*
  * Webpack configuration
  *
@@ -81,6 +84,12 @@ module.exports = function (options) {
         helpers.root('src'), 
         helpers.root('node_modules')
       ],
+
+      // allows for fancy typescript module resolution
+      // https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
+      plugins: [
+        new TsConfigPathsPlugin()
+      ]
     },
 
     /*
@@ -210,11 +219,17 @@ module.exports = function (options) {
       new CommonsChunkPlugin({
         name: 'vendor',
         chunks: ['admin', 'editorial'],
-        minChunks: module => /node_modules\//.test(module.resource)
+        minChunks: module => NODE_MATCHER.test(module.resource)
+      }),
+      // This enables tree shaking of the common modules
+      new CommonsChunkPlugin({
+        name: 'tn-common',
+        chunks: ['admin', 'editorial'],
+        minChunks: module => COMMON_MATCHER.test(module.resource)
       }),
       // Specify the correct order the scripts will be injected in
       new CommonsChunkPlugin({
-        name: ['polyfills', 'vendor'].reverse()
+        name: ['polyfills', 'vendor', 'tn-common'].reverse()
       }),
 
       /**
@@ -256,7 +271,7 @@ module.exports = function (options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new HtmlWebpackPlugin({
-        chunks: ['polyfills', 'vendor', 'editorial'],
+        chunks: ['polyfills', 'vendor', 'tn-common', 'editorial'],
         template: 'src/editorial/index.html',
         filename: 'editorial/index.html',
         get title() { return this.metadata.title; },
@@ -269,7 +284,7 @@ module.exports = function (options) {
         inject: 'head'
       }),
       new HtmlWebpackPlugin({
-        chunks: ['polyfills', 'vendor', 'admin'],
+        chunks: ['polyfills', 'vendor', 'tn-common', 'admin'],
         template: 'src/admin/index.html',
         filename: 'admin/index.html',
         get title() { return this.metadata.title; },

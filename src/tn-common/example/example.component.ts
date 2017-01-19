@@ -1,0 +1,15 @@
+import { Component } from '@angular/core';
+@Component({
+  selector: 'tn-common-example',
+  styleUrls: [ './example.component.scss' ],
+  templateUrl: './example.component.html',
+})
+export class ExampleComponent {
+  title = 'Some Great Games';
+  games = [
+      `Fallout 4`,
+      `Kira☆Kira (キラ☆キラ)`,
+      'Undertale',
+      'XCOM: Enemy Unknown',
+  ].sort()
+}

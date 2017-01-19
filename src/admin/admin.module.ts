@@ -26,6 +26,7 @@ import { APP_RESOLVER_PROVIDERS } from './admin.resolver';
 import { AppState, InternalStateType } from './admin.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
+import { ExampleComponent } from 'tn-common/example'
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 
@@ -53,6 +54,7 @@ type StoreType = {
     AppComponent,
     AboutComponent,
     HomeComponent,
+    ExampleComponent,
     NoContentComponent,
     XLargeDirective
   ],
