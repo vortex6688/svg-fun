@@ -14,6 +14,20 @@ Install [nvm](https://github.com/creationix/nvm) on Unix systems or [nvm-windows
 1. `nvm install 6`
 1. `nvm use 6`
 
+## Using `tn-common` namespace
+
+Code that is shared between the admin and editorial components lives in `src/tn-common`. Modules and components from this space do not need relative paths, and can be imported as:
+
+```typescript
+import { ExampleComponent } from 'tn-common/example'
+```
+
+So too if there are cross-dependencies between admin and editorial. An admin component can be imported from editorial as:
+
+```typescript
+import { SomeComponent } from 'admin/some'
+```
+
 ## Issue Tracking
 
 All issue tracking is done on the primary [typenetwork.com repository](https://github.com/TypeNetwork/typenetwork.com). PR's should mention issues in this repository as well.
