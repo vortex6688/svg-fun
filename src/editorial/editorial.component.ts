@@ -13,7 +13,7 @@ import { AppState } from './editorial.service';
  * Top Level Component
  */
 @Component({
-  selector: 'app',
+  selector: 'tn-editorial',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     './editorial.component.css'

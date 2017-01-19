@@ -13,7 +13,7 @@ import { AppState } from './admin.service';
  * Top Level Component
  */
 @Component({
-  selector: 'app',
+  selector: 'tn-admin',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     './admin.component.css'
