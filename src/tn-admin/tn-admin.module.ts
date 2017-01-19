@@ -26,7 +26,7 @@ import { APP_RESOLVER_PROVIDERS } from './tn-admin.resolver';
 import { AppState, InternalStateType } from './tn-admin.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
-import { ExampleComponent } from 'tn-common/example'
+import { ExampleComponent } from 'tn-common/example';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 
