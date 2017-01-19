@@ -263,7 +263,7 @@ module.exports = function (options) {
         chunksSortMode: 'dependency',
         metadata: {
           title: 'This is the editorial half!!!',
-          baseUrl: '/editor',
+          baseUrl: '/editorial',
           isDevServer: helpers.isWebpackDevServer()
         },
         inject: 'head'
