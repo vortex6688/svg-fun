@@ -11,7 +11,7 @@ import {
 import { MockBackend } from '@angular/http/testing';
 import { Title } from './title.service';
 
-describe('Title', () => {
+describe('Admin:Title', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       BaseRequestOptions,

@@ -10,7 +10,7 @@ import {
 import { AppComponent } from './app.component';
 import { AppState } from './app.service';
 
-describe(`App`, () => {
+describe(`Admin`, () => {
   let comp: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 

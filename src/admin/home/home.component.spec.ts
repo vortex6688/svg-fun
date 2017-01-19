@@ -18,7 +18,7 @@ import { AppState } from '../app.service';
 import { HomeComponent } from './home.component';
 import { Title } from './title';
 
-describe(`Home`, () => {
+describe(`Admin:Home`, () => {
   let comp: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 

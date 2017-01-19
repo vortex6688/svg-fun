@@ -5,7 +5,7 @@ import { inject, TestBed } from '@angular/core/testing';
 // Load the implementations that should be tested
 import { AboutComponent } from './about.component';
 
-describe('About', () => {
+describe('Editorial:About', () => {
   // provide our implementations or mocks to the dependency injector
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
