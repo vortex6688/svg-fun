@@ -7,7 +7,7 @@ import { decorateModuleRef } from './tn-editorial/environment';
  * App Module
  * our top level module that holds all of our components
  */
-import { AppModuleNgFactory } from '../compiled/src/tn-editorial/app.module.ngfactory';
+import { AppModuleNgFactory } from '../compiled/src/tn-editorial/tn-editorial.module.ngfactory';
 
 /*
  * Bootstrap our Angular app with a top level NgModule
