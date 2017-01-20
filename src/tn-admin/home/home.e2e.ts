@@ -4,7 +4,7 @@ describe('Admin:Home', () => {
 
   beforeEach(() => {
     // change hash depending on router LocationStrategy
-    browser.get('admin/#/home');
+    browser.get('admin#/home');
   });
 
   it('should have a title', () => {

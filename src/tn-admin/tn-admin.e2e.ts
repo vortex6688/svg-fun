@@ -19,7 +19,7 @@ describe('Admin', () => {
   });
 
   it('should have <home>', () => {
-    let subject = element(by.css('app home')).isPresent();
+    let subject = element(by.css('tn-admin home')).isPresent();
     let result  = true;
     expect(subject).toEqual(result);
   });
