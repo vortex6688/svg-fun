@@ -26,9 +26,9 @@ import { APP_RESOLVER_PROVIDERS } from './tn-admin.resolver';
 import { AppState, InternalStateType } from './tn-admin.service';
 import { HomeComponent } from './home';
 import { AboutComponent } from './about';
-import { ExampleComponent } from 'tn-common/example';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
+import { TnCommonModule } from '../tn-common';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -54,7 +54,6 @@ type StoreType = {
     AppComponent,
     AboutComponent,
     HomeComponent,
-    ExampleComponent,
     NoContentComponent,
     XLargeDirective
   ],
@@ -62,6 +61,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    TnCommonModule, // hey this one is ours!
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
@@ -70,7 +70,6 @@ type StoreType = {
   ]
 })
 export class AppModule {
-
   constructor(
     public appRef: ApplicationRef,
     public appState: AppState
