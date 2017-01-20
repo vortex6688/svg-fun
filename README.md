@@ -14,18 +14,31 @@ Install [nvm](https://github.com/creationix/nvm) on Unix systems or [nvm-windows
 1. `nvm install 6`
 1. `nvm use 6`
 
+## Running Tests
+
+The best way to lint and run tests is by running: `npm run ci`. This will lint and test the project, ensuring it's up to snuff.
+
 ## Using `tn-common` namespace
 
-Code that is shared between the admin and editorial components lives in `src/tn-common`. Modules and components from this space do not need relative paths, and can be imported as:
+The TN-Common module should be imported from your module as:
 
-```typescript
-import { ExampleComponent } from 'tn-common/example'
+```TypeScript
+import { TnCommonModule } from '../tn-common';
 ```
 
-So too if there are cross-dependencies between admin and editorial. An admin component can be imported from editorial as:
+And applied in the `imports` section of your `NgModule`:
 
 ```typescript
-import { SomeComponent } from 'admin/some'
+@NgModule({
+  bootstrap: [ /* ... */ ],
+  declarations: [ /* ... */ ],
+  imports: [
+    /// ... 
+    TnCommonModule, // hey this one is ours!
+    /// ... 
+  ],
+  providers: [ /* ... */ ]
+})
 ```
 
 ## Issue Tracking
@@ -36,5 +49,5 @@ All issue tracking is done on the primary [typenetwork.com repository](https://g
 
 This project has been found to work with the following IDEs:
 
-- [Sublime Text 3](https://www.sublimetext.com/3) with [TypeScript Plugin](https://github.com/Microsoft/TypeScript-Sublime-Plugin) via [Package Control](https://packagecontrol.io/installation)
-- [Visual Studio Code](https://code.visualstudio.com) (out of the box support)
+- [Sublime Text 3](https://www.sublimetext.com/3) with [TypeScript Plugin](https://github.com/Microsoft/TypeScript-Sublime-Plugin) and [SublimeLinter-contrib-tslint](https://github.com/lavrton/SublimeLinter-contrib-tslint), both installed via [Package Control](https://packagecontrol.io/installation)
+- [Visual Studio Code](https://code.visualstudio.com) with [vscode-tslint](https://github.com/Microsoft/vscode-tslint) (installed via extensions installer)
