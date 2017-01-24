@@ -14,6 +14,9 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
+import {
+  NgbModule
+} from '@ng-bootstrap/ng-bootstrap';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -62,7 +65,8 @@ type StoreType = {
     FormsModule,
     HttpModule,
     TnCommonModule, // hey this one is ours!
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    NgbModule.forRoot(),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
