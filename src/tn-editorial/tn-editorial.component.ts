@@ -16,7 +16,7 @@ import { AppState } from './tn-editorial.service';
   selector: 'tn-editorial',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './tn-editorial.component.css'
+    './tn-editorial.component.scss'
   ],
   template: `
     <nav>
