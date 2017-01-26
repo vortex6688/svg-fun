@@ -16,7 +16,7 @@ import { AppState } from './tn-admin.service';
   selector: 'tn-admin',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './tn-admin.component.css'
+    './tn-admin.component.scss'
   ],
   template: `
     <nav>

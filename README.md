@@ -41,6 +41,16 @@ And applied in the `imports` section of your `NgModule`:
 })
 ```
 
+## Bootstrap
+
+Bootstrap is installed via npm, and SCSS imports can be done via the webpack resolver's `~`, which will target `node_modules`. Example:
+
+`@import "~bootstrap/scss/bootstrap";`
+
+Will import all of bootstrap. 
+
+ng2 integration is provided by `@ng-bootstrap/ng-bootstrap`. Additional information on adding module imports can be found [here](https://ng-bootstrap.github.io/#/getting-started).
+
 ## Issue Tracking
 
 All issue tracking is done on the primary [typenetwork.com repository](https://github.com/TypeNetwork/typenetwork.com). PR's should mention issues in this repository as well.
