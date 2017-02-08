@@ -7,6 +7,12 @@
 1. `npm run start:hmr`
 1. Open `localhost:3000/admin` and `localhost:3000/editorial`
 
+## Styleguide
+
+We are using HTML, sass and bootstrap v4.0.0-alpha.6 to build styleguide template.
+
+To build style.css for the styleguide (/src/styleguide) navigate to a project root folder(/) and symply type `npm run styleguide` 
+
 ## Running multiple node versions per system 
 
 Install [nvm](https://github.com/creationix/nvm) on Unix systems or [nvm-windows](https://github.com/coreybutler/nvm-windows) on Windows. For Mac, using the [homebrew](http://brew.sh/) version of nvm is recommended.
