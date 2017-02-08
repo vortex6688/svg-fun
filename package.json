@@ -51,6 +51,7 @@
     "server": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "start": "npm run server:dev",
+    "styleguide": "node-sass src/styles/main.scss src/styleguide/style.css",
     "test": "npm run lint && karma start",
     "tslint": "tslint",
     "typedoc": "typedoc",
