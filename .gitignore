@@ -72,3 +72,6 @@ dll/
 *.css.shim.ts
 *.ngsummary.json
 *.shim.ngstyle.ts
+
+# Styleguide Css #
+/src/styleguide/style.css
