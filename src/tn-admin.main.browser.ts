@@ -2,7 +2,6 @@
  * Angular bootstraping
  */
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { decorateModuleRef } from './tn-admin/environment';
 import { bootloader } from '@angularclass/hmr';
 /*
  * App Module
@@ -16,7 +15,6 @@ import { TnAdminModule } from './tn-admin';
 export function main(): Promise<any> {
   return platformBrowserDynamic()
     .bootstrapModule(TnAdminModule)
-    .then(decorateModuleRef)
     .catch((err) => console.error(err));
 }
 

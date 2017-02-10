@@ -8,13 +8,7 @@ describe('Admin', () => {
 
   it('should have a title', () => {
     let subject = browser.getTitle();
-    let result  = 'This is the admin half!!!';
-    expect(subject).toEqual(result);
-  });
-
-  it('should have header', () => {
-    let subject = element(by.css('h1')).isPresent();
-    let result  = true;
+    let result  = 'Admin · Type Network';
     expect(subject).toEqual(result);
   });
 
@@ -29,5 +23,4 @@ describe('Admin', () => {
     let result  = 'Submit Value';
     expect(subject).toEqual(result);
   });
-
 });
