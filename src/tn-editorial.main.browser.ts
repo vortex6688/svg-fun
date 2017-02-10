@@ -7,7 +7,7 @@ import { bootloader } from '@angularclass/hmr';
  * App Module
  * our top level module that holds all of our components
  */
-import { TnEditorialModule } from './tn-editorial';
+import { TnEditorialModule } from './app/tn-editorial';
 
 /*
  * Bootstrap our Angular app with a top level NgModule

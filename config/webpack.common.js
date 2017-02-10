@@ -174,8 +174,8 @@ module.exports = function (options) {
           use: 'raw-loader',
           exclude: [
             helpers.root('src/index.html'),
-            helpers.root('src/tn-admin/index.html'),
-            helpers.root('src/tn-editorial/index.html'),
+            helpers.root('src/app/tn-admin/index.html'),
+            helpers.root('src/app/tn-editorial/index.html'),
           ]
         },
 
@@ -278,7 +278,7 @@ module.exports = function (options) {
        */
       new HtmlWebpackPlugin({
         chunks: ['polyfills', 'vendor', 'common', 'editorial'],
-        template: 'src/tn-editorial/index.html',
+        template: 'src/app/tn-editorial/index.html',
         filename: 'editorial/index.html',
         get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
@@ -291,7 +291,7 @@ module.exports = function (options) {
       }),
       new HtmlWebpackPlugin({
         chunks: ['polyfills', 'vendor', 'common', 'admin'],
-        template: 'src/tn-admin/index.html',
+        template: 'src/app/tn-admin/index.html',
         filename: 'admin/index.html',
         get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
