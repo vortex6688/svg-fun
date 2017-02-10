@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: [ './home.component.scss' ],
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class EditorialHomeComponent implements OnInit {
   public localState = { value: '' };
 
   public ngOnInit() {

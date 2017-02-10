@@ -4,12 +4,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'home',
+  selector: 'admin-home',
   providers: [],
   styleUrls: [ './home.component.scss' ],
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class AdminHomeComponent implements OnInit {
   // Set our default values
   public localState = { value: '' };
 

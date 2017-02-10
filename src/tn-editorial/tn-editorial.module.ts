@@ -7,18 +7,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TnCommonModule } from '../tn-common';
 import { TnEditorialComponent } from './tn-editorial.component';
-import { HomeComponent } from './home';
+import { EditorialHomeComponent } from './home';
 
 export const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
-  { path: 'home',  component: HomeComponent },
+  { path: '',      component: EditorialHomeComponent },
+  { path: 'home',  component: EditorialHomeComponent },
 ];
 
 @NgModule({
   bootstrap: [ TnEditorialComponent ],
   declarations: [
     TnEditorialComponent,
-    HomeComponent,
+    EditorialHomeComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,

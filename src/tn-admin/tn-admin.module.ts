@@ -9,18 +9,18 @@ import { TnCommonModule } from '../tn-common';
 import { TnStyleguideModule } from '../tn-styleguide';
 
 import { TnAdminComponent } from './tn-admin.component';
-import { HomeComponent } from './home';
+import { AdminHomeComponent } from './home';
 
 export const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
-  { path: 'home',  component: HomeComponent },
+  { path: '',      component: AdminHomeComponent },
+  { path: 'home',  component: AdminHomeComponent },
 ];
 
 @NgModule({
   bootstrap: [ TnAdminComponent ],
   declarations: [
     TnAdminComponent,
-    HomeComponent,
+    AdminHomeComponent,
   ],
   imports: [
     BrowserModule,
