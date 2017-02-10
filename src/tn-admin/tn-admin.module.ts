@@ -18,6 +18,8 @@ import {
   NgbModule
 } from '@ng-bootstrap/ng-bootstrap';
 
+import { TnStyleguideModule } from '../tn-styleguide';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -67,6 +69,7 @@ type StoreType = {
     TnCommonModule, // hey this one is ours!
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     NgbModule.forRoot(),
+    TnStyleguideModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
