@@ -3,12 +3,12 @@ import { browser, by, element } from 'protractor';
 describe('Editorial', () => {
 
   beforeEach(() => {
-    browser.get('/editorial/');
+    browser.get('/');
   });
 
   it('should have a title', () => {
     let subject = browser.getTitle();
-    let result  = 'Home · Type Network';
+    let result  = 'Type Network';
     expect(subject).toEqual(result);
   });
 
@@ -19,7 +19,7 @@ describe('Editorial', () => {
   });
 
   it('should have <home>', () => {
-    let subject = element(by.css('tn-editorial home')).isPresent();
+    let subject = element(by.css('home')).isPresent();
     let result  = true;
     expect(subject).toEqual(result);
   });

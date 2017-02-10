@@ -6,14 +6,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnCommonModule } from '../tn-common';
-import { TnStyleguideModule } from '../tn-styleguide';
 
 import { TnAdminComponent } from './tn-admin.component';
 import { AdminHomeComponent } from './home';
 
 export const ROUTES: Routes = [
-  { path: '',      component: AdminHomeComponent },
-  { path: 'home',  component: AdminHomeComponent },
+  { path: 'admin',      component: AdminHomeComponent },
+  { path: 'admin/home',  component: AdminHomeComponent },
 ];
 
 @NgModule({
@@ -26,10 +25,9 @@ export const ROUTES: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forChild(ROUTES),
     NgbModule.forRoot(),
     TnCommonModule,
-    TnStyleguideModule
   ],
   providers: []
 })

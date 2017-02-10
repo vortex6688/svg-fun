@@ -7,14 +7,14 @@ import { bootloader } from '@angularclass/hmr';
  * App Module
  * our top level module that holds all of our components
  */
-import { TnAdminModule } from './app/tn-admin';
+import { AppModule } from './app';
 
 /*
  * Bootstrap our Angular app with a top level NgModule
  */
 export function main(): Promise<any> {
   return platformBrowserDynamic()
-    .bootstrapModule(TnAdminModule)
+    .bootstrapModule(AppModule)
     .catch((err) => console.error(err));
 }
 
