@@ -26,7 +26,7 @@ import { TnStyleguideModule } from '../tn-styleguide';
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './tn-admin.routes';
 // App is our top level component
-import { AppComponent } from './tn-admin.component';
+import { TnAdminComponent } from './tn-admin.component';
 import { APP_RESOLVER_PROVIDERS } from './tn-admin.resolver';
 import { AppState, InternalStateType } from './tn-admin.service';
 import { HomeComponent } from './home';
@@ -54,9 +54,9 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [ TnAdminComponent ],
   declarations: [
-    AppComponent,
+    TnAdminComponent,
     AboutComponent,
     HomeComponent,
     NoContentComponent,
@@ -76,7 +76,7 @@ type StoreType = {
     APP_PROVIDERS
   ]
 })
-export class AppModule {
+export class TnAdminModule {
   constructor(
     public appRef: ApplicationRef,
     public appState: AppState

@@ -7,17 +7,17 @@ import {
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { AppComponent } from './tn-admin.component';
+import { TnAdminComponent } from './tn-admin.component';
 import { AppState } from './tn-admin.service';
 
 describe(`Admin`, () => {
-  let comp: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+  let comp: TnAdminComponent;
+  let fixture: ComponentFixture<TnAdminComponent>;
 
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [ TnAdminComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [AppState]
     })
@@ -26,7 +26,7 @@ describe(`Admin`, () => {
 
   // synchronous beforeEach
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(TnAdminComponent);
     comp    = fixture.componentInstance;
 
     fixture.detectChanges(); // trigger initial data binding

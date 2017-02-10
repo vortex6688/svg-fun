@@ -24,7 +24,7 @@ import {
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './tn-editorial.routes';
 // App is our top level component
-import { AppComponent } from './tn-editorial.component';
+import { TnEditorialComponent } from './tn-editorial.component';
 import { APP_RESOLVER_PROVIDERS } from './tn-editorial.resolver';
 import { AppState, InternalStateType } from './tn-editorial.service';
 import { HomeComponent } from './home';
@@ -52,9 +52,9 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [ TnEditorialComponent ],
   declarations: [
-    AppComponent,
+    TnEditorialComponent,
     AboutComponent,
     HomeComponent,
     NoContentComponent,
@@ -73,7 +73,7 @@ type StoreType = {
     APP_PROVIDERS
   ],
 })
-export class AppModule {
+export class TnEditorialModule {
 
   constructor(
     public appRef: ApplicationRef,

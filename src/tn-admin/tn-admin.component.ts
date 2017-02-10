@@ -29,7 +29,7 @@ import { AppState } from './tn-admin.service';
     </main>
   `
 })
-export class AppComponent implements OnInit {
+export class TnAdminComponent implements OnInit {
   public angularclassLogo = 'assets/img/angularclass-avatar.png';
   public name = 'Angular 2 Webpack Starter';
   public url = 'https://twitter.com/AngularClass';

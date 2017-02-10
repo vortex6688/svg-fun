@@ -7,17 +7,17 @@ import {
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { AppComponent } from './tn-editorial.component';
+import { TnEditorialComponent } from './tn-editorial.component';
 import { AppState } from './tn-editorial.service';
 
 describe(`Editorial`, () => {
-  let comp: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+  let comp: TnEditorialComponent;
+  let fixture: ComponentFixture<TnEditorialComponent>;
 
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [ TnEditorialComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [AppState]
     })
@@ -26,7 +26,7 @@ describe(`Editorial`, () => {
 
   // synchronous beforeEach
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(TnEditorialComponent);
     comp    = fixture.componentInstance;
 
     fixture.detectChanges(); // trigger initial data binding
