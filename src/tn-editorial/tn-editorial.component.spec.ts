@@ -7,26 +7,25 @@ import {
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { AppComponent } from './tn-editorial.component';
-import { AppState } from './tn-editorial.service';
+import { TnEditorialComponent } from './tn-editorial.component';
 
 describe(`Editorial`, () => {
-  let comp: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+  let comp: TnEditorialComponent;
+  let fixture: ComponentFixture<TnEditorialComponent>;
 
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [ TnEditorialComponent ],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [AppState]
+      providers: []
     })
     .compileComponents(); // compile template and css
   }));
 
   // synchronous beforeEach
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(TnEditorialComponent);
     comp    = fixture.componentInstance;
 
     fixture.detectChanges(); // trigger initial data binding
@@ -35,12 +34,6 @@ describe(`Editorial`, () => {
   it(`should be readly initialized`, () => {
     expect(fixture).toBeDefined();
     expect(comp).toBeDefined();
-  });
-
-  it(`should be @AngularClass`, () => {
-    expect(comp.url).toEqual('https://twitter.com/AngularClass');
-    expect(comp.angularclassLogo).toEqual('assets/img/angularclass-avatar.png');
-    expect(comp.name).toEqual('Angular 2 Webpack Starter');
   });
 
   it('should log ngOnInit', () => {

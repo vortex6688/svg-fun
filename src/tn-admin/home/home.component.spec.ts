@@ -14,18 +14,16 @@ import {
 import { MockBackend } from '@angular/http/testing';
 
 // Load the implementations that should be tested
-import { AppState } from '../tn-admin.service';
-import { HomeComponent } from './home.component';
-import { Title } from './title';
+import { AdminHomeComponent } from './home.component';
 
 describe(`Admin:Home`, () => {
-  let comp: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+  let comp: AdminHomeComponent;
+  let fixture: ComponentFixture<AdminHomeComponent>;
 
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
+      declarations: [AdminHomeComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         BaseRequestOptions,
@@ -36,9 +34,7 @@ describe(`Admin:Home`, () => {
             return new Http(backend, defaultOptions);
           },
           deps: [MockBackend, BaseRequestOptions]
-        },
-        AppState,
-        Title,
+        }
       ]
     })
     .compileComponents(); // compile template and css
@@ -46,7 +42,7 @@ describe(`Admin:Home`, () => {
 
   // synchronous beforeEach
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(AdminHomeComponent);
     comp = fixture.componentInstance;
 
     fixture.detectChanges(); // trigger initial data binding
@@ -54,10 +50,6 @@ describe(`Admin:Home`, () => {
 
   it('should have default data', () => {
     expect(comp.localState).toEqual({ value: '' });
-  });
-
-  it('should have a title', () => {
-    expect(!!comp.title).toEqual(true);
   });
 
   it('should log ngOnInit', () => {

@@ -8,7 +8,7 @@ describe('Editorial', () => {
 
   it('should have a title', () => {
     let subject = browser.getTitle();
-    let result  = 'This is the editorial half!!!';
+    let result  = 'Home · Type Network';
     expect(subject).toEqual(result);
   });
 

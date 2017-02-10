@@ -14,18 +14,16 @@ import {
 import { MockBackend } from '@angular/http/testing';
 
 // Load the implementations that should be tested
-import { AppState } from '../tn-editorial.service';
-import { HomeComponent } from './home.component';
-import { Title } from './title';
+import { EditorialHomeComponent } from './home.component';
 
 describe(`Editorial:Home`, () => {
-  let comp: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+  let comp: EditorialHomeComponent;
+  let fixture: ComponentFixture<EditorialHomeComponent>;
 
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
+      declarations: [EditorialHomeComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         BaseRequestOptions,
@@ -37,8 +35,6 @@ describe(`Editorial:Home`, () => {
           },
           deps: [MockBackend, BaseRequestOptions]
         },
-        AppState,
-        Title,
       ]
     })
     .compileComponents(); // compile template and css
@@ -46,7 +42,7 @@ describe(`Editorial:Home`, () => {
 
   // synchronous beforeEach
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(EditorialHomeComponent);
     comp = fixture.componentInstance;
 
     fixture.detectChanges(); // trigger initial data binding
@@ -54,10 +50,6 @@ describe(`Editorial:Home`, () => {
 
   it('should have default data', () => {
     expect(comp.localState).toEqual({ value: '' });
-  });
-
-  it('should have a title', () => {
-    expect(!!comp.title).toEqual(true);
   });
 
   it('should log ngOnInit', () => {
