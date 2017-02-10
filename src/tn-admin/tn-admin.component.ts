@@ -20,9 +20,8 @@ import { AppState } from './tn-admin.service';
   ],
   template: `
     <nav>
-      <a [routerLink]=" ['./'] " routerLinkActive="active">
-        Index
-      </a>
+      <a [routerLink]=" ['./'] " routerLinkActive="active">Index</a>
+      <a [routerLink]=" ['./styleguide'] " routerLinkActive="active">styleguide</a>
     </nav>
 
     <main>
