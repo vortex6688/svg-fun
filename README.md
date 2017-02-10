@@ -64,6 +64,11 @@ npm run ci
 We use [Bootstrap 4](https://v4-alpha.getbootstrap.com/getting-started/introduction/) and [SMACSS](https://smacss.com/) as a guide for our CSS. Styles
 are found in src/app/tn-styleguide. We include Bootstap as SASS.
 
+## Angular CLI
+
+You can use [Angular CLI's](https://cli.angular.io/) generate feature to create new components, directives, routes, pipes, and services. All of the other angular CLI features are currently
+unsupported.
+
 ## IDE Integration
 
 This project has been found to work with the following IDEs:
