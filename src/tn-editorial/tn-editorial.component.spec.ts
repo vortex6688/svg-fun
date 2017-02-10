@@ -8,7 +8,6 @@ import {
 
 // Load the implementations that should be tested
 import { TnEditorialComponent } from './tn-editorial.component';
-import { AppState } from './tn-editorial.service';
 
 describe(`Editorial`, () => {
   let comp: TnEditorialComponent;
@@ -19,7 +18,7 @@ describe(`Editorial`, () => {
     TestBed.configureTestingModule({
       declarations: [ TnEditorialComponent ],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [AppState]
+      providers: []
     })
     .compileComponents(); // compile template and css
   }));
@@ -35,12 +34,6 @@ describe(`Editorial`, () => {
   it(`should be readly initialized`, () => {
     expect(fixture).toBeDefined();
     expect(comp).toBeDefined();
-  });
-
-  it(`should be @AngularClass`, () => {
-    expect(comp.url).toEqual('https://twitter.com/AngularClass');
-    expect(comp.angularclassLogo).toEqual('assets/img/angularclass-avatar.png');
-    expect(comp.name).toEqual('Angular 2 Webpack Starter');
   });
 
   it('should log ngOnInit', () => {
