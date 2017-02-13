@@ -4,12 +4,12 @@ describe('Editorial:Home', () => {
 
   beforeEach(() => {
     // change hash depending on router LocationStrategy
-    browser.get('editorial/#/home');
+    browser.get('/home');
   });
 
   it('should have a title', () => {
     let subject = browser.getTitle();
-    let result  = 'Home · Type Network';
+    let result  = 'Type Network';
     expect(subject).toEqual(result);
   });
 });

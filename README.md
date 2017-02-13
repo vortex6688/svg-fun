@@ -1,65 +1,68 @@
-# TN Admin/Editorial Project
+# TN NG2 Project
+
+This project contains the angular 2 components that make up the Editorial and Admin interfaces for TypeNetwork.
+
+## Prerequisites
+
+* NodeJS  >=6.9.x
 
 ## Quickstart (Requires Node 6 or better)
 
-1. `cd` to tn-admin-editorial
 1. `npm install`
 1. `npm run start:hmr`
-1. Open `localhost:3000/admin` and `localhost:3000/editorial`
-
-## Styleguide
-
-We are using HTML, sass and bootstrap v4.0.0-alpha.6 to build styleguide template.
-
-To build style.css for the styleguide (/src/styleguide) navigate to a project root folder(/) and symply type `npm run styleguide` 
-
-## Running multiple node versions per system 
-
-Install [nvm](https://github.com/creationix/nvm) on Unix systems or [nvm-windows](https://github.com/coreybutler/nvm-windows) on Windows. For Mac, using the [homebrew](http://brew.sh/) version of nvm is recommended.
-
-1. `nvm install 6`
-1. `nvm use 6`
-
-## Running Tests
-
-The best way to lint and run tests is by running: `npm run ci`. This will lint and test the project, ensuring it's up to snuff.
-
-## Using `tn-common` namespace
-
-The TN-Common module should be imported from your module as:
-
-```TypeScript
-import { TnCommonModule } from '../tn-common';
-```
-
-And applied in the `imports` section of your `NgModule`:
-
-```typescript
-@NgModule({
-  bootstrap: [ /* ... */ ],
-  declarations: [ /* ... */ ],
-  imports: [
-    /// ... 
-    TnCommonModule, // hey this one is ours!
-    /// ... 
-  ],
-  providers: [ /* ... */ ]
-})
-```
-
-## Bootstrap
-
-Bootstrap is installed via npm, and SCSS imports can be done via the webpack resolver's `~`, which will target `node_modules`. Example:
-
-`@import "~bootstrap/scss/bootstrap";`
-
-Will import all of bootstrap. 
-
-ng2 integration is provided by `@ng-bootstrap/ng-bootstrap`. Additional information on adding module imports can be found [here](https://ng-bootstrap.github.io/#/getting-started).
+1. Open `localhost:3000/`,  `localhost:3000/admin`, `localhost:3000/styleguide`
 
 ## Issue Tracking
 
-All issue tracking is done on the primary [typenetwork.com repository](https://github.com/TypeNetwork/typenetwork.com). PR's should mention issues in this repository as well.
+Issue tracking is done in the [TypeNetwork/typenetwork.com](https://github.com/TypeNetwork/typenetwork.com) repository.
+
+PR's should be made against [TypeNetwork/tn-admin-editorial]((https://github.com/TypeNetwork/tn-admin-editorial)
+PR's should explicitly mention issues as ```TypeNetwork/typenetwork.com#{issueNumber}``` so cross repo linking will work properly
+
+## Running Tests
+
+**Unit Tests**
+```
+npm run test
+```
+
+**E2E Tests**
+
+*terminal 1*
+```
+# serve a build for the end 2 end tests.
+npm run server:dev:hmr
+```
+
+*terminal 2*
+```
+# with a server running, run the e2e tests.
+npm run e2e
+```
+
+**Preflight**
+
+Before merging a PR or making a release we should run the full suite of Unit and E2E tests against a production build.
+
+*terminal 1*
+```
+# server to host app for e2e tests
+
+npm run server:prod:ci
+```
+
+*terminal 2*
+```
+# with a server running, will run full suite of builds and tests.
+# TODO: http-server doesn't support fall back for HTML5 mode so test fail, we need to swap out
+# with a server app that does properly support fallback.
+npm run ci
+```
+
+## Styling
+
+We use [Bootstrap 4](https://v4-alpha.getbootstrap.com/getting-started/introduction/) and [SMACSS](https://smacss.com/) as a guide for our CSS. Styles
+are found in src/app/tn-styleguide. We include Bootstap as SASS.
 
 ## IDE Integration
 
@@ -67,3 +70,5 @@ This project has been found to work with the following IDEs:
 
 - [Sublime Text 3](https://www.sublimetext.com/3) with [TypeScript Plugin](https://github.com/Microsoft/TypeScript-Sublime-Plugin) and [SublimeLinter-contrib-tslint](https://github.com/lavrton/SublimeLinter-contrib-tslint), both installed via [Package Control](https://packagecontrol.io/installation)
 - [Visual Studio Code](https://code.visualstudio.com) with [vscode-tslint](https://github.com/Microsoft/vscode-tslint) (installed via extensions installer)
+
+@TODO: include .vscode and .sublime-project files to assist developers working on the project.

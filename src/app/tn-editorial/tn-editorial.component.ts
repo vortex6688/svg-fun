@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'tn-editorial',
   styleUrls: ['./tn-editorial.component.scss'],
   template: `
+    <h2>tn-editorial component</h2>
     <nav>
       <a [routerLink]=" ['./'] " routerLinkActive="active">Index</a>
     </nav>

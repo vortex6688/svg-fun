@@ -56,13 +56,8 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-
       'polyfills': './src/polyfills.browser.ts',
-      'editorial': AOT ? './src/tn-editorial.main.browser.aot.ts' :
-                   './src/tn-editorial.main.browser.ts',
-      'admin':     AOT ? './src/tn-admin.main.browser.aot.ts' :
-                   './src/tn-admin.main.browser.ts',
-
+      'main': AOT ? './src/main.browser.aot.ts' : './src/main.browser.ts',
     },
 
     /*
@@ -174,8 +169,6 @@ module.exports = function (options) {
           use: 'raw-loader',
           exclude: [
             helpers.root('src/index.html'),
-            helpers.root('src/app/tn-admin/index.html'),
-            helpers.root('src/app/tn-editorial/index.html'),
           ]
         },
 
@@ -224,13 +217,13 @@ module.exports = function (options) {
       // This enables tree shaking of the vendor modules
       new CommonsChunkPlugin({
         name: 'vendor',
-        chunks: ['admin', 'editorial'],
+        chunks: ['main'],
         minChunks: module => NODE_MATCHER.test(module.resource)
       }),
       // This enables tree shaking of the common modules
       new CommonsChunkPlugin({
         name: 'common',
-        chunks: ['admin', 'editorial'],
+        chunks: ['main'],
         minChunks: module => COMMON_MATCHER.test(module.resource)
       }),
       // Specify the correct order the scripts will be injected in
@@ -277,27 +270,14 @@ module.exports = function (options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new HtmlWebpackPlugin({
-        chunks: ['polyfills', 'vendor', 'common', 'editorial'],
-        template: 'src/app/tn-editorial/index.html',
-        filename: 'editorial/index.html',
+        chunks: ['polyfills', 'vendor', 'common', 'main'],
+        template: 'src/index.html',
+        filename: 'index.html',
         get title() { return this.metadata.title; },
         chunksSortMode: 'dependency',
         metadata: {
-          title: 'This is the editorial half!!!',
-          baseUrl: '/editorial',
-          isDevServer: helpers.isWebpackDevServer()
-        },
-        inject: 'head'
-      }),
-      new HtmlWebpackPlugin({
-        chunks: ['polyfills', 'vendor', 'common', 'admin'],
-        template: 'src/app/tn-admin/index.html',
-        filename: 'admin/index.html',
-        get title() { return this.metadata.title; },
-        chunksSortMode: 'dependency',
-        metadata: {
-          title: 'This is the admin half!!!',
-          baseUrl: '/admin',
+          title: 'TypeNetwork',
+          baseUrl: '/',
           isDevServer: helpers.isWebpackDevServer()
         },
         inject: 'head'

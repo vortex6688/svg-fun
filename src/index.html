@@ -5,7 +5,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Admin · Type Network</title>
+  <title>Type Network</title>
 
   <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
 
@@ -22,15 +22,7 @@
 
 <body>
 
-  <tn-admin>
-    Loading...
-  </tn-admin>
-
-  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
-
+  <app-root>Loading...</app-root>
 
 </body>
 </html>
