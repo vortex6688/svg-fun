@@ -9,6 +9,12 @@ import { TnCommonModule } from '../tn-common';
 
 import { TnAdminComponent } from './tn-admin.component';
 import { AdminHomeComponent } from './home';
+import { TnContentComponent } from './tn-content/tn-content.component';
+import { TnOrderComponent } from './tn-order/tn-order.component';
+import { TnProductComponent } from './tn-product/tn-product.component';
+import { TnFoundryComponent } from './tn-foundry/tn-foundry.component';
+import { TnReportComponent } from './tn-report/tn-report.component';
+import { TnUserComponent } from './tn-user/tn-user.component';
 
 export const ROUTES: Routes = [
   { path: 'admin',      component: AdminHomeComponent },
@@ -20,6 +26,12 @@ export const ROUTES: Routes = [
   declarations: [
     TnAdminComponent,
     AdminHomeComponent,
+    TnContentComponent,
+    TnOrderComponent,
+    TnProductComponent,
+    TnFoundryComponent,
+    TnReportComponent,
+    TnUserComponent,
   ],
   imports: [
     BrowserModule,
