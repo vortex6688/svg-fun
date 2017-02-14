@@ -1,4 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-const routes: Routes = [];
+import { TnOrderComponent } from './tn-order.component';
+
+const routes: Routes = [
+  { path: 'admin/orders', component: TnOrderComponent },
+];
 
 export const TnOrderRoutingModule = RouterModule.forRoot(routes);

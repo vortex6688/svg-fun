@@ -1,4 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-const routes: Routes = [];
+import { TnProductComponent } from './tn-product.component';
 
-export const TnProductRoutingModule = RouterModule.forRoot(routes);
+const routes: Routes = [
+  { path: 'admin/products', component: TnProductComponent },
+];
+
+export const TnProductRoutingModule = RouterModule.forChild(routes);

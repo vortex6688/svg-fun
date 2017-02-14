@@ -1,4 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-const routes: Routes = [];
+import { TnFoundryComponent } from './tn-foundry.component';
 
-export const TnFoundryRoutingModule = RouterModule.forRoot(routes);
+const routes: Routes = [
+  { path: 'admin/foundries', component: TnFoundryComponent },
+];
+
+export const TnFoundryRoutingModule = RouterModule.forChild(routes);
