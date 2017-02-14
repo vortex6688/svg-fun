@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgModule,  ApplicationRef } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnCommonModule } from '../tn-common';
 
 import { TnAdminComponent } from './tn-admin.component';
+import { TnAdminRoutingModule } from './tn-admin-routing.module';
 import { AdminHomeComponent } from './home';
 import { TnContentModule } from './tn-content/tn-content.module';
 import { TnOrderModule } from './tn-order/tn-order.module';
@@ -15,11 +15,6 @@ import { TnProductModule } from './tn-product/tn-product.module';
 import { TnFoundryModule } from './tn-foundry/tn-foundry.module';
 import { TnReportModule } from './tn-report/tn-report.module';
 import { TnUserModule } from './tn-user/tn-user.module';
-
-export const ROUTES: Routes = [
-  { path: 'admin',      component: AdminHomeComponent },
-  { path: 'admin/home',  component: AdminHomeComponent },
-];
 
 @NgModule({
   bootstrap: [ TnAdminComponent ],
@@ -31,7 +26,7 @@ export const ROUTES: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forChild(ROUTES),
+    TnAdminRoutingModule,
     NgbModule.forRoot(),
     TnCommonModule,
     TnContentModule,
