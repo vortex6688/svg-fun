@@ -28,6 +28,7 @@ const ROUTES: Routes = [];
     TnAdminModule,
     TnEditorialModule,
     TnStyleguideModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

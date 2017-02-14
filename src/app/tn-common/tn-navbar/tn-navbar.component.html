@@ -1,0 +1,31 @@
+
+<nav class="fixed-top navbar navbar-inverse bg-inverse  navbar-toggleable-md">
+  <button class="navbar-toggler navbar-toggler-right hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand"><img src="../../assets/img/type-network.svg" width="200"/></a>
+  <div [ngbCollapse]="isNavbarCollapsed"  class="collapse navbar-collapse">
+    <ul class="navbar-nav justify-content-center navbar-inverse">
+      <li class="nav-item" ngbDropdown>
+        <a class="nav-link" id="LayoutPrimaryMenuItem" ngbDropdownToggle>Layout</a>
+        <div class="dropdown-menu" aria-labelledby="LayoutPrimaryMenuItem">
+          <a class="nav-link" routerLink="layout/overview">Overview</a>
+          <a class="nav-link" routerLink="layout/grid">Layout Grid</a>
+          <a class="nav-link" routerLink="layout/media-object">Layout Media Object</a>
+          <a class="nav-link" routerLink="layout/responsive-utilities">Layout Responsive Utilities</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Content</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Components</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link">Utilities</a>
+      </li>
+    </ul>
+ </div>
+</nav>
+
+
