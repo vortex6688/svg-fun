@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-tn-foundry',
   templateUrl: './tn-foundry.component.html',
-  styleUrls: ['./tn-foundry.component.css']
+  styleUrls: ['./tn-foundry.component.scss']
 })
 export class TnFoundryComponent implements OnInit {
 

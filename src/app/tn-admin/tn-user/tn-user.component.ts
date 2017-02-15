@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-tn-user',
   templateUrl: './tn-user.component.html',
-  styleUrls: ['./tn-user.component.css']
+  styleUrls: ['./tn-user.component.scss']
 })
 export class TnUserComponent implements OnInit {
 

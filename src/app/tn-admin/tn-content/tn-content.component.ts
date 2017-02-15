@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-tn-content',
   templateUrl: './tn-content.component.html',
-  styleUrls: ['./tn-content.component.css']
+  styleUrls: ['./tn-content.component.scss']
 })
 export class TnContentComponent implements OnInit {
 
