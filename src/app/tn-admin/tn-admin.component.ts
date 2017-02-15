@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * TN Component that will contain all submodules related
+ * to Admin application
+ */
 @Component({
   selector: 'tn-admin',
   styleUrls: [ './tn-admin.component.scss' ],

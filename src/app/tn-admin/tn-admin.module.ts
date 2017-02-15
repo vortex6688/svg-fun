@@ -16,6 +16,10 @@ import { TnFoundryModule } from './tn-foundry/tn-foundry.module';
 import { TnReportModule } from './tn-report/tn-report.module';
 import { TnUserModule } from './tn-user/tn-user.module';
 
+/**
+ * TN Module that will contain all submodules related
+ * to Admin application
+ */
 @NgModule({
   bootstrap: [ TnAdminComponent ],
   declarations: [
