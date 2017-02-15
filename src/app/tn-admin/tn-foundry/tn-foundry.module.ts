@@ -6,7 +6,9 @@ import { TnFoundryComponent } from './tn-foundry.component';
   imports: [
     CommonModule,
   ],
-  declarations: [],
+  declarations: [
+    TnFoundryComponent
+  ],
   providers: [],
   bootstrap: []
 })

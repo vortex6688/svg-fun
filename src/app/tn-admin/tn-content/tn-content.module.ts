@@ -6,7 +6,9 @@ import { TnContentComponent } from './tn-content.component';
   imports: [
     CommonModule,
   ],
-  declarations: [],
+  declarations: [
+    TnContentComponent
+  ],
   providers: [],
   bootstrap: []
 })

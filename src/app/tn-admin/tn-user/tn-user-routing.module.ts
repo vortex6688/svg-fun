@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 import { TnUserComponent } from './tn-user.component';
 
-export const adminUserRoutes: Route = {
-	path: 'users', component: TnUserComponent,
-	children: []
+export const tnAdminUserRoutes: Route = {
+  path: 'users', component: TnUserComponent, children: []
 };
