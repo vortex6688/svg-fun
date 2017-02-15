@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TnReportRoutingModule } from './tn-report-routing.module';
+import { TnReportComponent } from './tn-report.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    TnReportRoutingModule
   ],
-  declarations: [],
+  declarations: [
+    TnReportComponent
+  ],
   providers: [],
   bootstrap: []
 })

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TnFoundryRoutingModule } from './tn-foundry-routing.module';
+import { TnFoundryComponent } from './tn-foundry.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    TnFoundryRoutingModule
   ],
-  declarations: [],
+  declarations: [
+    TnFoundryComponent
+  ],
   providers: [],
   bootstrap: []
 })

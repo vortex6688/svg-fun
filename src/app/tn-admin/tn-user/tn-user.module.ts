@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TnUserRoutingModule } from './tn-user-routing.module';
+import { TnUserComponent } from './tn-user.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    TnUserRoutingModule
+    CommonModule
   ],
-  declarations: [],
+  declarations: [
+    TnUserComponent,
+  ],
   providers: [],
   bootstrap: []
 })

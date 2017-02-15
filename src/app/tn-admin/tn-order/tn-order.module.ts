@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TnOrderRoutingModule } from './tn-order-routing.module';
+import { TnOrderComponent } from './tn-order.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    TnOrderRoutingModule
   ],
-  declarations: [],
+  declarations: [
+    TnOrderComponent
+  ],
   providers: [],
   bootstrap: []
 })

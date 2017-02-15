@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TnProductRoutingModule } from './tn-product-routing.module';
+import { TnProductComponent } from './tn-product.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    TnProductRoutingModule
   ],
-  declarations: [],
+  declarations: [
+    TnProductComponent
+  ],
   providers: [],
   bootstrap: []
 })
