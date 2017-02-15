@@ -17,10 +17,4 @@ describe('Admin', () => {
     let result  = true;
     expect(subject).toEqual(result);
   });
-
-  it('should have buttons', () => {
-    let subject = element(by.css('button')).getText();
-    let result  = 'Submit Value';
-    expect(subject).toEqual(result);
-  });
 });
