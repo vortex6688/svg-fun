@@ -64,7 +64,7 @@ $purple: #613d7c;
 
 // Create grayscale
 $gray-dark:                 #292b2c;
-$gray:                      #464a4c;
+$gray:                      #595a5c;
 $gray-light:                #636c72;
 $gray-lighter:              #eceeef;
 $gray-lightest:             #f7f7f9;
@@ -75,7 +75,7 @@ $brand-success:             $green;
 $brand-info:                $teal;
 $brand-warning:             $orange;
 $brand-danger:              $red;
-$brand-inverse:             $gray-dark;
+$brand-inverse:             $black;
 
 
 // Options
@@ -200,14 +200,16 @@ $grid-gutter-widths: (
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$font-family-sans-serif: "MomentumSansText", "AdobeBlank";
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-base:       $font-family-sans-serif;
 
-$font-size-base: 1rem; // Assumes the browser default, typically `16px`
-$font-size-lg:   1.25rem;
-$font-size-sm:   .875rem;
-$font-size-xs:   .75rem;
+$font-size-base:    1rem; // Assumes the browser default, typically `16px`
+$font-size-base-lg: 1.125rem;
+$font-size-lg:      1.25rem;
+$font-size-sm:      .875rem;
+$font-size-xs:      .75rem;
 
 $font-weight-normal: normal;
 $font-weight-bold: bold;
@@ -549,18 +551,18 @@ $zindex-tooltip:            1070;
 
 // Navbar
 
-$navbar-padding-x:                  $spacer;
-$navbar-padding-y:                  ($spacer / 2);
+$navbar-padding-x:                  $spacer * 1.25;
+$navbar-padding-y:                  ($spacer / 2) * 0;
 
 $navbar-toggler-padding-x:           .75rem;
 $navbar-toggler-padding-y:           .25rem;
 $navbar-toggler-font-size:           $font-size-lg;
 $navbar-toggler-border-radius:       $btn-border-radius;
 
-$navbar-inverse-color:                 rgba($white,.5);
-$navbar-inverse-hover-color:           rgba($white,.75);
+$navbar-inverse-color:                 rgba($white,1);
+$navbar-inverse-hover-color:           rgba($white,1);
 $navbar-inverse-active-color:          rgba($white,1);
-$navbar-inverse-disabled-color:        rgba($white,.25);
+$navbar-inverse-disabled-color:        rgba($white,1);
 $navbar-inverse-toggler-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-inverse-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23");
 $navbar-inverse-toggler-border:        rgba($white,.1);
 
