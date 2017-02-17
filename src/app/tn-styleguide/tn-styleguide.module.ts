@@ -15,7 +15,8 @@ import { LayoutOverviewComponent,
 import { ContentRebootComponent,
          ContentTypographyComponent,
          ContentCodeComponent,
-         ContentImagesComponent } from './content/index.ts';
+         ContentImagesComponent,
+         ContentTablesComponent } from './content/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -31,7 +32,8 @@ const ROUTES: Routes = [
       {  path: 'content/reboot', component: ContentRebootComponent },
       {  path: 'content/typography', component: ContentTypographyComponent },
       {  path: 'content/code', component: ContentCodeComponent },
-      {  path: 'content/images', component: ContentImagesComponent }
+      {  path: 'content/images', component: ContentImagesComponent },
+      {  path: 'content/tables', component: ContentTablesComponent }
     ]
   }
 ];
@@ -47,7 +49,8 @@ const ROUTES: Routes = [
     ContentRebootComponent,
     ContentTypographyComponent,
     ContentCodeComponent,
-    ContentImagesComponent
+    ContentImagesComponent,
+    ContentTablesComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
