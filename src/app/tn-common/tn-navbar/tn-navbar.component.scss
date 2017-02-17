@@ -1,0 +1,64 @@
+@import '../../../styles/variables';
+@import '~bootstrap/scss/mixins';
+
+:host {
+
+  margin-bottom: 3rem;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 7rem;
+  }
+
+  display: block;
+  font-size: 1.125rem;
+
+  .dropdown {
+    position: initial;
+  }
+
+  .dropdown-menu {
+    padding: 0.25rem 0;
+  }
+
+
+// adding arrow to a primary nav active link
+  .nav-link {
+    position: relative;
+
+    &:after {
+      content: none;
+    }
+
+    &.active:after {
+      bottom: -0.5rem;
+      margin-left: -50%;
+      border-top: 0.5rem solid $brand-inverse;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      z-index: 1100;
+      position: absolute;
+      content: "";
+    }
+  }
+
+  .bg-faded {
+    background-color: $gray;
+  }
+
+// adding arrow to a secondary nav active link
+  .bg-faded {
+    .nav-link {
+      &.active:after {
+        bottom: -0.75rem;
+        border-top: 0.5rem solid $gray;
+      }
+    }
+  }
+
+  .show > .dropdown-menu {
+    display: flex;
+    margin: 0;
+    border: none;
+
+    @media (max-width: 992px) { display: block; }
+  }
+}

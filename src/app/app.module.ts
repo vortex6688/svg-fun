@@ -12,6 +12,8 @@ import { TnStyleguideModule } from './tn-styleguide';
 
 import { AppComponent } from './app.component';
 
+import '../styles/main.scss';
+
 const ROUTES: Routes = [];
 
 @NgModule({
@@ -26,6 +28,7 @@ const ROUTES: Routes = [];
     TnAdminModule,
     TnEditorialModule,
     TnStyleguideModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
