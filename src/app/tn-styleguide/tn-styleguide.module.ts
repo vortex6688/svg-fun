@@ -13,7 +13,8 @@ import { LayoutOverviewComponent,
          LayoutMediaObjectComponent,
          LayoutResponsiveUtilitiesComponent } from './layout/index.ts';
 import { ContentRebootComponent,
-         ContentTypographyComponent } from './content/index.ts';
+         ContentTypographyComponent,
+         ContentCodeComponent } from './content/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -27,7 +28,8 @@ const ROUTES: Routes = [
       {  path: 'layout/responsive-utilities', component: LayoutResponsiveUtilitiesComponent },
       {  path: 'content', redirectTo: 'content/reboot', pathMatch: 'full' },
       {  path: 'content/reboot', component: ContentRebootComponent },
-      {  path: 'content/typography', component: ContentTypographyComponent }
+      {  path: 'content/typography', component: ContentTypographyComponent },
+      {  path: 'content/code', component: ContentCodeComponent }
     ]
   }
 ];
@@ -41,7 +43,8 @@ const ROUTES: Routes = [
     LayoutMediaObjectComponent,
     LayoutResponsiveUtilitiesComponent,
     ContentRebootComponent,
-    ContentTypographyComponent
+    ContentTypographyComponent,
+    ContentCodeComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
