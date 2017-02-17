@@ -12,6 +12,7 @@ import { LayoutOverviewComponent,
          LayoutGridComponent,
          LayoutMediaObjectComponent,
          LayoutResponsiveUtilitiesComponent } from './layout/index.ts';
+import { ContentRebootComponent } from './content/content-reboot/content-reboot.component';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -22,7 +23,9 @@ const ROUTES: Routes = [
       {  path: 'layout/overview', component: LayoutOverviewComponent },
       {  path: 'layout/grid', component: LayoutGridComponent },
       {  path: 'layout/media-object', component: LayoutMediaObjectComponent },
-      {  path: 'layout/responsive-utilities', component: LayoutResponsiveUtilitiesComponent }
+      {  path: 'layout/responsive-utilities', component: LayoutResponsiveUtilitiesComponent },
+      {  path: 'content', redirectTo: 'content/reboot', pathMatch: 'full' },
+      {  path: 'content/reboot', component: ContentRebootComponent }
     ]
   }
 ];
@@ -35,6 +38,7 @@ const ROUTES: Routes = [
     LayoutGridComponent,
     LayoutMediaObjectComponent,
     LayoutResponsiveUtilitiesComponent,
+    ContentRebootComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
