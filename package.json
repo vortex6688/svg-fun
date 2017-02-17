@@ -86,7 +86,7 @@
     "@ngrx/router-store": "^1.2.5",
     "@ngrx/store": "^2.2.1",
     "@ngrx/store-devtools": "^3.2.2",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "git+https://github.com/twbs/bootstrap.git#371bf955754229184d336ee58239b3f4859ce28c",
     "core-js": "^2.4.1",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
