@@ -1,51 +1,51 @@
-<div class="container-fluid">   
-        
+<div class="container-fluid">
+
   <h1 class="bd-title" id="content">Grid system</h1>
   <p>Bootstrap includes a powerful mobile-first flexbox grid system for building layouts of all shapes and sizes. It’s based on a 12 column layout and has multiple tiers, one for each <a href="/layout/overview/#responsive-breakpoints">media query range</a>. You can use it with Sass mixins or our predefined classes.</p>
 
   <h2 id="contents">Contents</h2>
 
   <ul id="markdown-toc">
-    <li><a href="#contents" id="markdown-toc-contents">Contents</a></li>
-    <li><a href="#how-it-works" id="markdown-toc-how-it-works">How it works</a></li>
-    <li><a href="#grid-options" id="markdown-toc-grid-options">Grid options</a></li>
-    <li><a href="#auto-layout-columns" id="markdown-toc-auto-layout-columns">Auto-layout columns</a>    <ul>
-        <li><a href="#equal-width" id="markdown-toc-equal-width">Equal-width</a></li>
-        <li><a href="#setting-one-column-width" id="markdown-toc-setting-one-column-width">Setting one column width</a></li>
-        <li><a href="#variable-width-content" id="markdown-toc-variable-width-content">Variable width content</a></li>
-        <li><a href="#equal-width-multi-row" id="markdown-toc-equal-width-multi-row">Equal-width multi-row</a></li>
+    <li><a [routerLink]="[]" fragment="contents" id="markdown-toc-contents">Contents</a></li>
+    <li><a [routerLink]="[]" fragment="how-it-works" id="markdown-toc-how-it-works">How it works</a></li>
+    <li><a [routerLink]="[]" fragment="grid-options" id="markdown-toc-grid-options">Grid options</a></li>
+    <li><a [routerLink]="[]" fragment="auto-layout-columns" id="markdown-toc-auto-layout-columns">Auto-layout columns</a>    <ul>
+        <li><a [routerLink]="[]" fragment="equal-width" id="markdown-toc-equal-width">Equal-width</a></li>
+        <li><a [routerLink]="[]" fragment="setting-one-column-width" id="markdown-toc-setting-one-column-width">Setting one column width</a></li>
+        <li><a [routerLink]="[]" fragment="variable-width-content" id="markdown-toc-variable-width-content">Variable width content</a></li>
+        <li><a [routerLink]="[]" fragment="equal-width-multi-row" id="markdown-toc-equal-width-multi-row">Equal-width multi-row</a></li>
       </ul>
     </li>
-    <li><a href="#responsive-classes" id="markdown-toc-responsive-classes">Responsive classes</a>    <ul>
-        <li><a href="#all-breakpoints" id="markdown-toc-all-breakpoints">All breakpoints</a></li>
-        <li><a href="#stacked-to-horizontal" id="markdown-toc-stacked-to-horizontal">Stacked to horizontal</a></li>
-        <li><a href="#mix-and-match" id="markdown-toc-mix-and-match">Mix and match</a></li>
+    <li><a [routerLink]="[]" fragment="responsive-classes" id="markdown-toc-responsive-classes">Responsive classes</a>    <ul>
+        <li><a [routerLink]="[]" fragment="all-breakpoints" id="markdown-toc-all-breakpoints">All breakpoints</a></li>
+        <li><a [routerLink]="[]" fragment="stacked-to-horizontal" id="markdown-toc-stacked-to-horizontal">Stacked to horizontal</a></li>
+        <li><a [routerLink]="[]" fragment="mix-and-match" id="markdown-toc-mix-and-match">Mix and match</a></li>
       </ul>
     </li>
-    <li><a href="#alignment" id="markdown-toc-alignment">Alignment</a>    <ul>
-        <li><a href="#vertical-alignment" id="markdown-toc-vertical-alignment">Vertical alignment</a></li>
-        <li><a href="#horizontal-alignment" id="markdown-toc-horizontal-alignment">Horizontal alignment</a></li>
-        <li><a href="#no-gutters" id="markdown-toc-no-gutters">No gutters</a></li>
-        <li><a href="#column-wrapping" id="markdown-toc-column-wrapping">Column wrapping</a></li>
-        <li><a href="#column-resets" id="markdown-toc-column-resets">Column resets</a></li>
+    <li><a [routerLink]="[]" fragment="alignment" id="markdown-toc-alignment">Alignment</a>    <ul>
+        <li><a [routerLink]="[]" fragment="vertical-alignment" id="markdown-toc-vertical-alignment">Vertical alignment</a></li>
+        <li><a [routerLink]="[]" fragment="horizontal-alignment" id="markdown-toc-horizontal-alignment">Horizontal alignment</a></li>
+        <li><a [routerLink]="[]" fragment="no-gutters" id="markdown-toc-no-gutters">No gutters</a></li>
+        <li><a [routerLink]="[]" fragment="column-wrapping" id="markdown-toc-column-wrapping">Column wrapping</a></li>
+        <li><a [routerLink]="[]" fragment="column-resets" id="markdown-toc-column-resets">Column resets</a></li>
       </ul>
     </li>
-    <li><a href="#reordering" id="markdown-toc-reordering">Reordering</a>    <ul>
-        <li><a href="#flex-order" id="markdown-toc-flex-order">Flex order</a></li>
-        <li><a href="#offsetting-columns" id="markdown-toc-offsetting-columns">Offsetting columns</a></li>
-        <li><a href="#push-and-pull" id="markdown-toc-push-and-pull">Push and pull</a></li>
+    <li><a [routerLink]="[]" fragment="reordering" id="markdown-toc-reordering">Reordering</a>    <ul>
+        <li><a [routerLink]="[]" fragment="flex-order" id="markdown-toc-flex-order">Flex order</a></li>
+        <li><a [routerLink]="[]" fragment="offsetting-columns" id="markdown-toc-offsetting-columns">Offsetting columns</a></li>
+        <li><a [routerLink]="[]" fragment="push-and-pull" id="markdown-toc-push-and-pull">Push and pull</a></li>
       </ul>
     </li>
-    <li><a href="#nesting" id="markdown-toc-nesting">Nesting</a></li>
-    <li><a href="#sass-mixins" id="markdown-toc-sass-mixins">Sass mixins</a>    <ul>
-        <li><a href="#variables" id="markdown-toc-variables">Variables</a></li>
-        <li><a href="#mixins" id="markdown-toc-mixins">Mixins</a></li>
-        <li><a href="#example-usage" id="markdown-toc-example-usage">Example usage</a></li>
+    <li><a [routerLink]="[]" fragment="nesting" id="markdown-toc-nesting">Nesting</a></li>
+    <li><a [routerLink]="[]" fragment="sass-mixins" id="markdown-toc-sass-mixins">Sass mixins</a>    <ul>
+        <li><a [routerLink]="[]" fragment="variables" id="markdown-toc-variables">Variables</a></li>
+        <li><a [routerLink]="[]" fragment="mixins" id="markdown-toc-mixins">Mixins</a></li>
+        <li><a [routerLink]="[]" fragment="example-usage" id="markdown-toc-example-usage">Example usage</a></li>
       </ul>
     </li>
-    <li><a href="#customizing-the-grid" id="markdown-toc-customizing-the-grid">Customizing the grid</a>    <ul>
-        <li><a href="#columns-and-gutters" id="markdown-toc-columns-and-gutters">Columns and gutters</a></li>
-        <li><a href="#grid-tiers" id="markdown-toc-grid-tiers">Grid tiers</a></li>
+    <li><a [routerLink]="[]" fragment="customizing-the-grid" id="markdown-toc-customizing-the-grid">Customizing the grid</a>    <ul>
+        <li><a [routerLink]="[]" fragment="columns-and-gutters" id="markdown-toc-columns-and-gutters">Columns and gutters</a></li>
+        <li><a [routerLink]="[]" fragment="grid-tiers" id="markdown-toc-grid-tiers">Grid tiers</a></li>
       </ul>
     </li>
   </ul>
@@ -289,7 +289,7 @@
 
   <h3 id="variable-width-content">Variable width content</h3>
 
-  <p>Using the <code class="highlighter-rouge">col-breakpoint-auto</code> classes, columns can size itself based on the natural width of its content. This is super handy with single line content like inputs, numbers, etc. This, in conjunction with <a href="#horizontal-alignment">horizontal alignment</a> classes, is very useful for centering layouts with uneven column sizes as viewport width changes.</p>
+  <p>Using the <code class="highlighter-rouge">col-breakpoint-auto</code> classes, columns can size itself based on the natural width of its content. This is super handy with single line content like inputs, numbers, etc. This, in conjunction with <a [routerLink]="[]" fragment="horizontal-alignment">horizontal alignment</a> classes, is very useful for centering layouts with uneven column sizes as viewport width changes.</p>
 
   <div class="bd-example-row">
 
@@ -922,7 +922,7 @@
 
   <h2 id="sass-mixins">Sass mixins</h2>
 
-  <p>When using Bootstrap’s source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Our <a href="#predefined-classes">predefined grid classes</a> use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts.</p>
+  <p>When using Bootstrap’s source Sass files, you have the option of using Sass variables and mixins to create custom, semantic, and responsive page layouts. Our <a [routerLink]="[]" fragment="predefined-classes">predefined grid classes</a> use these same variables and mixins to provide a whole suite of ready-to-use classes for fast responsive layouts.</p>
 
   <h3 id="variables">Variables</h3>
 
