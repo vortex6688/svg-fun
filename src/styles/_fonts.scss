@@ -13,89 +13,78 @@ $ui-font-path: "/assets/css/fonts/";
 }
 
 @font-face {
-    font-family: 'MomentumSansText';
+    font-family: 'MomentumSansDeck';
     src:
-        url(#{$ui-font-path}MomentumSansText-Seventy?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-Seventy.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-Seventy.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-Seventy.svg#web) format('svg');
+        url(#{$ui-font-path}MomentumSansDeck-Seventy?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansDeck-Seventy.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansDeck-Seventy.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansDeck-Seventy.svg#web) format('svg');
     font-style: normal;
     font-weight: 100;
 }
 
 @font-face {
-    font-family: 'MomentumSansText';
+    font-family: 'MomentumSansDeck';
     src:
-        url(#{$ui-font-path}MomentumSansText-Eighty?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-Eighty.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-Eighty.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-Eighty.svg#web) format('svg');
+        url(#{$ui-font-path}MomentumSansDeck-Eighty?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansDeck-Eighty.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansDeck-Eighty.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansDeck-Eighty.svg#web) format('svg');
     font-style: normal;
     font-weight: 200;
 }
 
 @font-face {
-    font-family: 'MomentumSansText';
+    font-family: 'MomentumSansDeck';
     src:
-        url(#{$ui-font-path}MomentumSansText-Ninety?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-Ninety.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-Ninety.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-Ninety.svg#web) format('svg');
+        url(#{$ui-font-path}MomentumSansDeck-Ninety?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansDeck-Ninety.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansDeck-Ninety.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansDeck-Ninety.svg#web) format('svg');
     font-style: normal;
     font-weight: 300;
 }
 
 @font-face {
-    font-family: 'MomentumSansText';
+    font-family: 'MomentumSansDeck';
     src:
-        url(#{$ui-font-path}MomentumSansText-Hundred?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-Hundred.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-Hundred.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-Hundred.svg#web) format('svg');
+        url(#{$ui-font-path}MomentumSansDeck-Hundred?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansDeck-Hundred.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansDeck-Hundred.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansDeck-Hundred.svg#web) format('svg');
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'MomentumSansText';
+    font-family: 'MomentumSansDeck';
     src:
-        url(#{$ui-font-path}MomentumSansText-HundredTen?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-HundredTen.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-HundredTen.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-HundredTen.svg#web) format('svg');
+        url(#{$ui-font-path}MomentumSansDeck-HundredTen?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredTen.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredTen.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredTen.svg#web) format('svg');
     font-style: normal;
     font-weight: 500;
 }
 
 @font-face {
-    font-family: 'MomentumSansText';
+    font-family: 'MomentumSansDeck';
     src:
-        url(#{$ui-font-path}MomentumSansText-HundredThirty?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-HundredThirty.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-HundredThirty.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-HundredThirty.svg#web) format('svg');
+        url(#{$ui-font-path}MomentumSansDeck-HundredThirty?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredThirty.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredThirty.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredThirty.svg#web) format('svg');
     font-style: normal;
     font-weight: 600;
 }
 
 @font-face {
-    font-family: 'MomentumSansText';
+    font-family: 'MomentumSansDeck';
     src:
-        url(#{$ui-font-path}MomentumSansText-HundredFifty?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-HundredFifty.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-HundredFifty.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-HundredFifty.svg#web) format('svg');
+        url(#{$ui-font-path}MomentumSansDeck-HundredFifty?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredFifty.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredFifty.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansDeck-HundredFifty.svg#web) format('svg');
     font-style: normal;
     font-weight: 700;
-}
-
-@font-face {
-    font-family: 'MomentumSansText';
-    src:
-        url(#{$ui-font-path}MomentumSansText-HundredSeventy?iefix) format('embedded-opentype'),
-        url(#{$ui-font-path}MomentumSansText-HundredSeventy.woff) format('woff'),
-        url(#{$ui-font-path}MomentumSansText-HundredSeventy.ttf) format('truetype'),
-        url(#{$ui-font-path}MomentumSansText-HundredSeventy.svg#web) format('svg');
-    font-style: normal;
-    font-weight: 800;
 }

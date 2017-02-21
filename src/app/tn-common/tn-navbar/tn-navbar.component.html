@@ -4,10 +4,10 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand">
-    <img src="./assets/img/type-network.svg" style="height: 25px; margin-top: -5px; margin-left: 2px;"/>
+    <img src="./assets/img/type-network.svg" style="height: 25px;"/>
   </a>
   <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse justify-content-center ">
-    <ul class="navbar-nav navbar-inverse">
+    <ul class="navbar-nav navbar-inverse primary-nav">
       <li class="nav-item dropdown" [ngClass]="{ show: currentUrl.indexOf('layout')  !== -1 }">
         <a class="nav-link dropdown-toggle" routerLink="layout" id="LayoutPrimaryMenuItem" routerLinkActive="active">Layout</a>
         <div class="dropdown-menu bg-faded col justify-content-center" aria-labelledby="LayoutPrimaryMenuItem">
