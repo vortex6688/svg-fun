@@ -13,7 +13,7 @@ describe('Editorial', () => {
   });
 
   it('should have header', () => {
-    let subject = element(by.css('h1')).isPresent();
+    let subject = element(by.css('h3')).isPresent();
     let result  = true;
     expect(subject).toEqual(result);
   });
