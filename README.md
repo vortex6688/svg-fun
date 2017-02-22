@@ -37,7 +37,7 @@ npm run server:dev:hmr
 *terminal 2*
 ```
 # with a server running, run the e2e tests.
-npm run e2e
+npm run protractor
 ```
 
 **Preflight**
