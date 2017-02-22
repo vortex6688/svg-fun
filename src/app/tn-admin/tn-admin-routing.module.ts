@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { AdminHomeComponent } from './home';
+import { TnAdminComponent } from './tn-admin.component';
 
 // Import routes from submodules
 import { tnAdminContentRoutes } from './tn-content/tn-content-routing.module';
@@ -10,7 +10,7 @@ import { tnAdminReportRoutes } from './tn-report/tn-report-routing.module';
 import { tnAdminUserRoutes } from './tn-user/tn-user-routing.module';
 
 const routes: Routes = [
-  { path: 'admin', component: AdminHomeComponent, children: [
+  { path: 'admin', component: TnAdminComponent, children: [
     tnAdminContentRoutes,
     tnAdminFoundryRoutes,
     tnAdminOrderRoutes,
