@@ -20,6 +20,8 @@
     height: 44px;
     font-weight: 500;
     line-height: 19.2px;
+    // since we set $enable-rounded to "true", we have to specify borer radius for the dropdown menu to prevent it getting rounded corners
+    border-radius: 0;
   }
 
   .primary-nav {

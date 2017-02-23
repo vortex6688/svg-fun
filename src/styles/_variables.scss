@@ -53,14 +53,17 @@
 // Start with assigning color names to specific hex values.
 $white:  #fff;
 $black:  #000;
-$red:    #d9534f;
+$red:    #e92225;
 $orange: #f0ad4e;
-$yellow: #ffd500;
-$green:  #5cb85c;
+$yellow: #ffcf06;
+$green:  #0cc945;
 $blue:   #0275d8;
 $teal:   #5bc0de;
 $pink:   #ff5b77;
 $purple: #613d7c;
+
+//  $red: #e92225, $green: #0cc945, $gray-light: #b7b4b0, $yellow: #ffcf06
+// green - success, red - danger, yellow - warning, grey - info
 
 // Create grayscale
 // $gray-dark:                 #292b2c;
@@ -79,7 +82,7 @@ $gray-lightest:             #b7b4b0;
 // Reassign color vars to semantic color scheme
 $brand-primary:             $blue;
 $brand-success:             $green;
-$brand-info:                $teal;
+$brand-info:                $gray-lighter;
 $brand-warning:             $orange;
 $brand-danger:              $red;
 $brand-inverse:             $black;
@@ -89,7 +92,7 @@ $brand-inverse:             $black;
 //
 // Quickly modify global styling by enabling or disabling optional features.
 
-$enable-rounded:            false;
+$enable-rounded:            true;
 $enable-shadows:            false;
 $enable-gradients:          false;
 $enable-transitions:        true;

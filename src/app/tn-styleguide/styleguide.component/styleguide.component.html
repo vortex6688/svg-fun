@@ -28,6 +28,15 @@
                 </div>
             </div>
 
+            <div class="card" *ngIf="currentUrl.indexOf('components')  !== -1">
+                <div class="card-block">
+                    <h5 class="card-title"><u>Components</u></h5>
+                    <nav class="nav flex-column">
+                        <a routerLink="components/alerts" routerLinkActive="active"><small>Alerts</small></a>
+                    </nav>
+                </div>
+            </div>
+            
             <div class="card" *ngIf="currentUrl.indexOf('utilities')  !== -1">
                 <div class="card-block">
                     <h5 class="card-title"><u>Utilities</u></h5>
@@ -37,6 +46,7 @@
                     </nav>
                 </div>
             </div>
+
         </div>
         <div class="col-lg-10 col-sm-9">
             <router-outlet></router-outlet>
