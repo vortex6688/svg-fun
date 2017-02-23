@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ContentTablesComponent } from './content-tables.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContentTablesComponent', () => {
   let component: ContentTablesComponent;
@@ -11,6 +12,7 @@ describe('ContentTablesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ ContentTablesComponent ]
     })
     .compileComponents();

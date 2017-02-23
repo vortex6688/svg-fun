@@ -5,12 +5,15 @@ import { DebugElement } from '@angular/core';
 
 import { ContentCodeComponent } from './content-code.component';
 
+import { RouterTestingModule } from '@angular/router/testing';
+
 describe('ContentCodeComponent', () => {
   let component: ContentCodeComponent;
   let fixture: ComponentFixture<ContentCodeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ ContentCodeComponent ]
     })
     .compileComponents();

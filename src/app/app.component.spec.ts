@@ -14,6 +14,8 @@ import {
 } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 
+import { RouterTestingModule } from '@angular/router/testing';
+
 // Load the implementations that should be tested
 import { AppComponent } from './app.component';
 
@@ -24,6 +26,7 @@ describe(`AppComponent`, () => {
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [

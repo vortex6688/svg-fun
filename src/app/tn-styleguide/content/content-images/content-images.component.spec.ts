@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ContentImagesComponent } from './content-images.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContentImagesComponent', () => {
   let component: ContentImagesComponent;
@@ -11,6 +12,7 @@ describe('ContentImagesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ ContentImagesComponent ]
     })
     .compileComponents();

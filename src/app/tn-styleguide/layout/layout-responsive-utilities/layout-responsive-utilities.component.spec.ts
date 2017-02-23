@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { LayoutResponsiveUtilitiesComponent } from './layout-responsive-utilities.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LayoutResponsiveUtilitiesComponent', () => {
   let component: LayoutResponsiveUtilitiesComponent;
@@ -11,6 +12,7 @@ describe('LayoutResponsiveUtilitiesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ LayoutResponsiveUtilitiesComponent ]
     })
     .compileComponents();

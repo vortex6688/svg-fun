@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ContentTypographyComponent } from './content-typography.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContentTypographyComponent', () => {
   let component: ContentTypographyComponent;
@@ -11,6 +12,7 @@ describe('ContentTypographyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ ContentTypographyComponent ]
     })
     .compileComponents();
