@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-tn-foundry',
+  selector: 'tn-admin-foundry',
   templateUrl: './tn-foundry.component.html',
   styleUrls: ['./tn-foundry.component.scss']
 })

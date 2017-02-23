@@ -1,4 +1,6 @@
-import { Routes, RouterModule } from '@angular/router';
-const routes: Routes = [];
+import { Route } from '@angular/router';
+import { TnOrderComponent } from './tn-order.component';
 
-export const TnOrderRoutingModule = RouterModule.forRoot(routes);
+export const tnAdminOrderRoutes: Route = {
+  path: 'orders', component: TnOrderComponent, children: []
+};
