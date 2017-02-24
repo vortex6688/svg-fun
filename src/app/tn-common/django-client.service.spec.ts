@@ -72,6 +72,8 @@ describe('DjangoClientService', () => {
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
+      expect(connection.request.headers.get('Authorization').substring(0, 3))
+            .toBe('JWT', 'Content of Authorization does not start with JWT');
       connection.mockRespond(new Response(new ResponseOptions({
         body: JSON.stringify(mockResponse)
       })));
@@ -92,6 +94,8 @@ describe('DjangoClientService', () => {
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
+      expect(connection.request.headers.get('Authorization').substring(0, 3))
+            .toBe('JWT', 'Content of Authorization does not start with JWT');
       connection.mockRespond(new Response(new ResponseOptions({
         body: JSON.stringify(mockResponse)
       })));
@@ -112,6 +116,8 @@ describe('DjangoClientService', () => {
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
+      expect(connection.request.headers.get('Authorization').substring(0, 3))
+            .toBe('JWT', 'Content of Authorization does not start with JWT');
       connection.mockRespond(new Response(new ResponseOptions({
         body: 200
       })));
@@ -132,6 +138,8 @@ describe('DjangoClientService', () => {
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
+      expect(connection.request.headers.get('Authorization').substring(0, 3))
+            .toBe('JWT', 'Content of Authorization does not start with JWT');
       connection.mockRespond(new Response(new ResponseOptions({
         body: 200
       })));

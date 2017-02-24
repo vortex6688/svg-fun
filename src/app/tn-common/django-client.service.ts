@@ -44,9 +44,9 @@ export class DjangoClientService {
     if (this.user.token) {
       let headers = options.headers;
       if (headers) {
-        headers['Authorization'] = 'Token ' + this.user.token;
+        headers['Authorization'] = 'JWT ' + this.user.token;
       } else {
-        headers = new Headers({ Authorization: 'Token ' + this.user.token });
+        headers = new Headers({ Authorization: 'JWT ' + this.user.token });
       }
       options.headers = headers;
     }
