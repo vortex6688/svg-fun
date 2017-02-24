@@ -5,6 +5,4 @@ machine:
 
 test:
   override:
-    - npm run server:dev:hmr:
-          background: true
     - npm run ci
