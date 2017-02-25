@@ -1,0 +1,16 @@
+{
+  "// HTML5 Mode Support": "",
+  "rewrites": [
+    { "source": "**", "destination":"index.html"}
+  ],
+  "// Allow CORS": "",
+  "headers": [
+    {
+      "source" : "**",
+      "headers" : [{
+        "key" : "Access-Control-Allow-Origin",
+        "value" : "*"
+      }]
+    }
+  ]
+}

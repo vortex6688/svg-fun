@@ -46,16 +46,6 @@ Before merging a PR or making a release we should run the full suite of Unit and
 
 *terminal 1*
 ```
-# server to host app for e2e tests
-
-npm run server:prod:ci
-```
-
-*terminal 2*
-```
-# with a server running, will run full suite of builds and tests.
-# TODO: http-server doesn't support fall back for HTML5 mode so test fail, we need to swap out
-# with a server app that does properly support fallback.
 npm run ci
 ```
 
