@@ -25,8 +25,8 @@ export const ROUTES: Routes = [
     FormsModule,
     HttpModule,
     TnCommonModule,
-    RouterModule.forRoot(ROUTES),
-    NgbModule.forRoot(),
+    RouterModule.forChild(ROUTES),
+    NgbModule,
   ],
   providers: [ ],
 })
