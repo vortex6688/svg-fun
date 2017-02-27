@@ -34,8 +34,6 @@ describe('DjangoClientService', () => {
     job_title: 'A job title.'
   };
 
-  const url = 'http://localhost:8000/api/1/people/';
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
@@ -63,90 +61,127 @@ describe('DjangoClientService', () => {
     expect(djangoClientService).toBeTruthy();
   });
 
-  it('should fetch a single element by a given key', () => {
+  it('should fetch a list of elements', () => {
+    let url = '/api/1/people/';
+    let fullUrl = djangoClientService.baseUrl + url;
+    let mockListResponse = {
+      count: 1,
+      next: null,
+      previous : null,
+      results: [ mockResponse ]
+    };
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Get, 'Not using GET method');
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(fullUrl, 'Incorrect URL used');
       expect(connection.request.headers).toBeTruthy('No Headers');
       expect(connection.request.headers.get('Authorization'))
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
-      expect(connection.request.headers.get('Authorization').substring(0, 3))
-            .toBe('JWT', 'Content of Authorization does not start with JWT');
+      expect(connection.request.headers.get('Authorization').substring(0, 5))
+            .toBe('Token', 'Content of Authorization does not start with Token');
+      connection.mockRespond(new Response(new ResponseOptions({
+        body: JSON.stringify(mockListResponse)
+      })));
+    });
+
+    djangoClientService.get(url).subscribe((result) => {
+      expect(result).toEqual(mockListResponse, 'Response does not match');
+    });
+  });
+
+  it('should fetch a single element by a given key', () => {
+    let url = '/api/1/people/1';
+    let fullUrl = djangoClientService.baseUrl + url;
+    mockBackend.connections.subscribe((connection) => {
+      expect(connection.request.method).toBe(RequestMethod.Get, 'Not using GET method');
+      expect(connection.request.url).toBe(fullUrl, 'Incorrect URL used');
+      expect(connection.request.headers).toBeTruthy('No Headers');
+      expect(connection.request.headers.get('Authorization'))
+            .toBeTruthy('No Authorization field in Headers exist');
+      expect(connection.request.headers.get('Authorization').length)
+            .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
+      expect(connection.request.headers.get('Authorization').substring(0, 5))
+            .toBe('Token', 'Content of Authorization does not start with Token');
       connection.mockRespond(new Response(new ResponseOptions({
         body: JSON.stringify(mockResponse)
       })));
     });
 
-    djangoClientService.get(url, {}).subscribe((result) => {
+    djangoClientService.get(url).subscribe((result) => {
       expect(result).toEqual(mockResponse, 'Response does not match');
     });
   });
 
   it('should create an element with the given data', () => {
+    let url = '/api/1/people/';
+    let fullUrl = djangoClientService.baseUrl + url;
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Post, 'Not using POST method');
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(fullUrl, 'Incorrect URL used');
       expect(connection.request._body).toBe(data, 'Incorrect data sent');
       expect(connection.request.headers).toBeTruthy('No Headers');
       expect(connection.request.headers.get('Authorization'))
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
-      expect(connection.request.headers.get('Authorization').substring(0, 3))
-            .toBe('JWT', 'Content of Authorization does not start with JWT');
+      expect(connection.request.headers.get('Authorization').substring(0, 5))
+            .toBe('Token', 'Content of Authorization does not start with Token');
       connection.mockRespond(new Response(new ResponseOptions({
         body: JSON.stringify(mockResponse)
       })));
     });
 
-    djangoClientService.post(url, data, {}).subscribe((result) => {
+    djangoClientService.post(url, data).subscribe((result) => {
       expect(result).toEqual(mockResponse, 'Response does not match');
     });
   });
 
   it('should send data to update an element to the proper url using the PUT method', () => {
+    let url = '/api/1/people/1';
+    let fullUrl = djangoClientService.baseUrl + url;
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Put, 'Not using PUT method');
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(fullUrl, 'Incorrect URL used');
       expect(connection.request._body).toBe(data, 'Incorrect data sent');
       expect(connection.request.headers).toBeTruthy('No Headers');
       expect(connection.request.headers.get('Authorization'))
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
-      expect(connection.request.headers.get('Authorization').substring(0, 3))
-            .toBe('JWT', 'Content of Authorization does not start with JWT');
+      expect(connection.request.headers.get('Authorization').substring(0, 5))
+            .toBe('Token', 'Content of Authorization does not start with Token');
       connection.mockRespond(new Response(new ResponseOptions({
         body: 200
       })));
     });
 
-    djangoClientService.put(url, data, {}).subscribe((result, status) => {
+    djangoClientService.put(url, data).subscribe((result) => {
       expect(result).toEqual(200, 'Status is not 200');
     });
   });
 
   it('should send data to delete an element to the proper url using the DELETE method', () => {
+    let url = '/api/1/people/1';
+    let fullUrl = djangoClientService.baseUrl + url;
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Delete,
                                              'Not using DELETE method');
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(fullUrl, 'Incorrect URL used');
       expect(connection.request.headers).toBeTruthy('No Headers');
       expect(connection.request.headers.get('Authorization'))
             .toBeTruthy('No Authorization field in Headers exist');
       expect(connection.request.headers.get('Authorization').length)
             .toBeGreaterThan(7, 'Content of Authorization is smaller than 7 characters');
-      expect(connection.request.headers.get('Authorization').substring(0, 3))
-            .toBe('JWT', 'Content of Authorization does not start with JWT');
+      expect(connection.request.headers.get('Authorization').substring(0, 5))
+            .toBe('Token', 'Content of Authorization does not start with Token');
       connection.mockRespond(new Response(new ResponseOptions({
-        body: 200
+        body: {}
       })));
     });
 
-    djangoClientService.delete(url, {}).subscribe((result) => {
-      expect(result).toEqual(200, 'Status is not 200');
+    djangoClientService.delete(url).subscribe((result) => {
+      expect(result).toEqual({}, 'Response is not empty');
     });
   });
 
