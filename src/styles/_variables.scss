@@ -63,11 +63,18 @@ $pink:   #ff5b77;
 $purple: #613d7c;
 
 // Create grayscale
+// $gray-dark:                 #292b2c;
+// $gray:                      #595a5c;
+// $gray-light:                #636c72;
+// $gray-lighter:              #eceeef;
+// $gray-lightest:             #f7f7f9;
+
+// TN grayscale
 $gray-dark:                 #292b2c;
 $gray:                      #595a5c;
-$gray-light:                #636c72;
-$gray-lighter:              #eceeef;
-$gray-lightest:             #f7f7f9;
+$gray-light:                #807e7c;
+$gray-lighter:              #b7b4b0;
+$gray-lightest:             #b7b4b0;
 
 // Reassign color vars to semantic color scheme
 $brand-primary:             $blue;
@@ -201,15 +208,14 @@ $grid-gutter-widths: (
 // Font, line-height, and color for body text, headings, and more.
 
 
-$font-family-sans-serif: "MomentumSansText", "AdobeBlank";
+$font-family-sans-serif: "MomentumSansDeck", "AdobeBlank";
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-base:       $font-family-sans-serif;
 
 $font-size-base:    1rem; // Assumes the browser default, typically `16px`
-$font-size-base-lg: 1.125rem;
 $font-size-lg:      1.25rem;
-$font-size-sm:      .875rem;
-$font-size-xs:      .75rem;
+$font-size-sm:      .8125rem;
+$font-size-xs:      .625rem;
 
 $font-weight-normal: normal;
 $font-weight-bold: bold;
@@ -303,11 +309,15 @@ $table-bg-accent:               rgba($black,.05);
 $table-bg-hover:                rgba($black,.075);
 $table-bg-active:               $table-bg-hover;
 
-$table-head-bg:                 $gray-lighter;
-$table-head-color:              $gray;
+$table-head-bg:                 $white;
+$table-head-color:              $gray-lighter;
 
 $table-border-width:            $border-width;
 $table-border-color:            $gray-lighter;
+
+//////////////////////////// TN CUSTOM ///////////////////////////////////////
+
+$table-head-font-size: 0.8em;
 
 
 // Buttons

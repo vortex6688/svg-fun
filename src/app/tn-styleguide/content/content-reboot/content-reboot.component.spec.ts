@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ContentRebootComponent } from './content-reboot.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ContentRebootComponent', () => {
   let component: ContentRebootComponent;
@@ -11,6 +12,7 @@ describe('ContentRebootComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ ContentRebootComponent ]
     })
     .compileComponents();

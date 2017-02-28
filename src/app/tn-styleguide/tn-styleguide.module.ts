@@ -12,7 +12,12 @@ import { LayoutOverviewComponent,
          LayoutGridComponent,
          LayoutMediaObjectComponent,
          LayoutResponsiveUtilitiesComponent } from './layout/index.ts';
-import { ContentRebootComponent } from './content/content-reboot/content-reboot.component';
+import { ContentRebootComponent,
+         ContentTypographyComponent,
+         ContentCodeComponent,
+         ContentImagesComponent,
+         ContentTablesComponent,
+         ContentFiguresComponent } from './content/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -25,7 +30,12 @@ const ROUTES: Routes = [
       {  path: 'layout/media-object', component: LayoutMediaObjectComponent },
       {  path: 'layout/responsive-utilities', component: LayoutResponsiveUtilitiesComponent },
       {  path: 'content', redirectTo: 'content/reboot', pathMatch: 'full' },
-      {  path: 'content/reboot', component: ContentRebootComponent }
+      {  path: 'content/reboot', component: ContentRebootComponent },
+      {  path: 'content/typography', component: ContentTypographyComponent },
+      {  path: 'content/code', component: ContentCodeComponent },
+      {  path: 'content/images', component: ContentImagesComponent },
+      {  path: 'content/tables', component: ContentTablesComponent },
+      {  path: 'content/figures', component: ContentFiguresComponent }
     ]
   }
 ];
@@ -38,7 +48,12 @@ const ROUTES: Routes = [
     LayoutGridComponent,
     LayoutMediaObjectComponent,
     LayoutResponsiveUtilitiesComponent,
-    ContentRebootComponent
+    ContentRebootComponent,
+    ContentTypographyComponent,
+    ContentCodeComponent,
+    ContentImagesComponent,
+    ContentTablesComponent,
+    ContentFiguresComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

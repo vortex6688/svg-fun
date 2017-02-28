@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { LayoutOverviewComponent } from './layout-overview.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LayoutOverviewComponent', () => {
   let component: LayoutOverviewComponent;
@@ -11,6 +12,7 @@ describe('LayoutOverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ LayoutOverviewComponent ]
     })
     .compileComponents();

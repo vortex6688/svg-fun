@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { LayoutMediaObjectComponent } from './layout-media-object.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LayoutMediaObjectComponent', () => {
   let component: LayoutMediaObjectComponent;
@@ -11,6 +12,7 @@ describe('LayoutMediaObjectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ LayoutMediaObjectComponent ]
     })
     .compileComponents();
