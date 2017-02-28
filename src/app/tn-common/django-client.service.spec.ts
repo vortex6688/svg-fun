@@ -2,9 +2,11 @@
 import {
   BaseRequestOptions,
   ConnectionBackend,
+  Headers,
   Http,
   HttpModule,
   RequestMethod,
+  RequestOptions,
   Response,
   ResponseOptions
 } from '@angular/http';
@@ -25,6 +27,10 @@ describe('DjangoClientService', () => {
     death_date: '2017-02-16',
     foundry: [2],
     title: []
+  };
+
+  const mockResponseError = {
+    name: 'This field may not be blank.'
   };
 
   const data = {
@@ -108,7 +114,10 @@ describe('DjangoClientService', () => {
       })));
     });
 
-    djangoClientService.get(url).subscribe((result) => {
+    // Test branch when headers are already present
+    let h = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({headers: h});
+    djangoClientService.get(url, options).subscribe((result) => {
       expect(result).toEqual(mockResponse, 'Response does not match');
     });
   });
@@ -160,6 +169,28 @@ describe('DjangoClientService', () => {
       expect(result).toEqual(200, 'Status is not 200');
     });
   });
+
+  it('unauthorized user try to update an element using the PUT method', async(() => {
+    let url = '/api/1/people/1';
+    let fullUrl = djangoClientService.baseUrl + url;
+    mockBackend.connections.subscribe((connection) => {
+      expect(connection.request.method).toBe(RequestMethod.Put, 'Not using PUT method');
+      expect(connection.request.url).toBe(fullUrl, 'Incorrect URL used');
+      connection.mockError(new Response(new ResponseOptions({
+        body: JSON.stringify(mockResponseError),
+        status: 401,
+        statusText: 'Unauthorized'
+      })));
+    });
+
+    djangoClientService.put(url, data).subscribe(
+      () => {
+        fail('Expected error');
+      },
+      (error) => {
+        expect(error).toBe('Server error');
+      });
+  }));
 
   it('should send data to delete an element to the proper url using the DELETE method', () => {
     let url = '/api/1/people/1';

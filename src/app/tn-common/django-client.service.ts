@@ -49,7 +49,7 @@ export class DjangoClientService {
     if (this.user.token) {
       let headers = options.headers;
       if (headers) {
-        headers['Authorization'] = 'Token ' + this.user.token;
+        headers.set('Authorization', 'Token ' + this.user.token);
       } else {
         headers = new Headers({ Authorization: 'Token ' + this.user.token });
       }
@@ -59,8 +59,7 @@ export class DjangoClientService {
   }
 
   private handleError(error: any) {
-    let errMsg = (error.message) ? error.message :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    let errMsg = 'Server error';
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
