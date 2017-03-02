@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/reboot";
+
+
+// override with linear gradient text image background method.
+u {
+    text-decoration: none;
+    background-image: linear-gradient(to right, $gray 50%, $gray 50%);
+    background-position: 0 1.04em;
+    background-repeat: repeat-x;
+    background-size: 1px 1px;
+    text-shadow: 1px 1px white, 1px -1px white, -1px 1px white, -1px -1px white;
+}

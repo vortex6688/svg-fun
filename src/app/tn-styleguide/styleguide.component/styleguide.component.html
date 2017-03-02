@@ -1,10 +1,34 @@
 <tn-navbar></tn-navbar>
 <div class="container-fluid">
     <div class="row">
-        <!--<div class="col-2">
-            sidebar
-        </div>-->
-        <div class="col">
+        <div class="col-lg-2 col-sm-3 border-right-gradient-inset">
+            <div class="card" *ngIf="currentUrl.indexOf('layout')  !== -1">
+                <div class="card-block">
+                    <h5 class="card-title"><u>Layout</u></h5>
+                    <nav class="nav flex-column">
+                        <a routerLink="layout/overview" routerLinkActive="active"><small>Overview</small></a>
+                        <a routerLink="layout/grid" routerLinkActive="active"><small>Grid</small></a>
+                        <a routerLink="layout/media-object" routerLinkActive="active"><small>Media Object</small></a>
+                        <a routerLink="layout/responsive-utilities" routerLinkActive="active"><small>Responsive Utilities</small></a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="card" *ngIf="currentUrl.indexOf('content')  !== -1">
+                <div class="card-block">
+                    <h5 class="card-title"><u>Content</u></h5>
+                    <nav class="nav flex-column">
+                        <a routerLink="content/reboot" routerLinkActive="active"><small>Reboot</small></a>
+                        <a routerLink="content/typography" routerLinkActive="active"><small>Typography</small></a>
+                        <a routerLink="content/code" routerLinkActive="active"><small>Code</small></a>
+                        <a routerLink="content/images" routerLinkActive="active"><small>Images</small></a>
+                        <a routerLink="content/tables" routerLinkActive="active"><small>Tables</small></a>
+                        <a routerLink="content/figures" routerLinkActive="active"><small>Figures</small></a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-sm-9">
             <router-outlet></router-outlet>
         </div>
     </div>
