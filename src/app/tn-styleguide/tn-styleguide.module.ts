@@ -23,6 +23,7 @@ import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
          UtilitiesFlexboxComponent,
+         UtilitiesColorsComponent,
          UtilitiesDisplayPropertyComponent,
          UtilitiesInvisibleContentComponent,
          UtilitiesImageReplacementComponent } from './utilities/index.ts';
@@ -51,6 +52,7 @@ const ROUTES: Routes = [
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent },
       {  path: 'utilities/close-icon', component: UtilitiesCloseIconComponent },
       {  path: 'utilities/flexbox', component: UtilitiesFlexboxComponent },
+      {  path: 'utilities/colors', component: UtilitiesColorsComponent },
       {  path: 'utilities/display-property', component: UtilitiesDisplayPropertyComponent },
       {  path: 'utilities/invisible-content', component: UtilitiesInvisibleContentComponent },
       {  path: 'utilities/image-replacement', component: UtilitiesImageReplacementComponent }
@@ -77,6 +79,7 @@ const ROUTES: Routes = [
     UtilitiesClearfixComponent,
     UtilitiesCloseIconComponent,
     UtilitiesFlexboxComponent,
+    UtilitiesColorsComponent,
     UtilitiesDisplayPropertyComponent,
     UtilitiesInvisibleContentComponent,
     UtilitiesImageReplacementComponent
