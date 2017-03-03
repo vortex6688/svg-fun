@@ -22,7 +22,8 @@ import { ComponentsAlertsComponent } from './components/index.ts';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
-         UtilitiesFlexboxComponent } from './utilities/index.ts';
+         UtilitiesFlexboxComponent,
+         UtilitiesDisplayPropertyComponent } from './utilities/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -47,7 +48,8 @@ const ROUTES: Routes = [
       {  path: 'utilities/borders', component: UtilitiesBordersComponent },
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent },
       {  path: 'utilities/close-icon', component: UtilitiesCloseIconComponent },
-      {  path: 'utilities/flexbox', component: UtilitiesFlexboxComponent }
+      {  path: 'utilities/flexbox', component: UtilitiesFlexboxComponent },
+      {  path: 'utilities/display-property', component: UtilitiesDisplayPropertyComponent }
     ]
   }
 ];
@@ -70,7 +72,8 @@ const ROUTES: Routes = [
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent,
     UtilitiesCloseIconComponent,
-    UtilitiesFlexboxComponent
+    UtilitiesFlexboxComponent,
+    UtilitiesDisplayPropertyComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
