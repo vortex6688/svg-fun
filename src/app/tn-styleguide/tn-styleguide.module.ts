@@ -21,7 +21,8 @@ import { ContentRebootComponent,
 import { ComponentsAlertsComponent } from './components/index.ts';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
-         UtilitiesCloseIconComponent } from './utilities/index.ts';
+         UtilitiesCloseIconComponent,
+         UtilitiesFlexboxComponent } from './utilities/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -45,7 +46,8 @@ const ROUTES: Routes = [
       {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
       {  path: 'utilities/borders', component: UtilitiesBordersComponent },
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent },
-      {  path: 'utilities/close-icon', component: UtilitiesCloseIconComponent }
+      {  path: 'utilities/close-icon', component: UtilitiesCloseIconComponent },
+      {  path: 'utilities/flexbox', component: UtilitiesFlexboxComponent }
     ]
   }
 ];
@@ -67,7 +69,8 @@ const ROUTES: Routes = [
     ComponentsAlertsComponent,
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent,
-    UtilitiesCloseIconComponent
+    UtilitiesCloseIconComponent,
+    UtilitiesFlexboxComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
