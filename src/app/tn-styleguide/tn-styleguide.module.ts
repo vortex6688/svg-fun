@@ -18,6 +18,7 @@ import { ContentRebootComponent,
          ContentImagesComponent,
          ContentTablesComponent,
          ContentFiguresComponent } from './content/index.ts';
+import { UtilitiesBordersComponent } from './utilities/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -35,7 +36,9 @@ const ROUTES: Routes = [
       {  path: 'content/code', component: ContentCodeComponent },
       {  path: 'content/images', component: ContentImagesComponent },
       {  path: 'content/tables', component: ContentTablesComponent },
-      {  path: 'content/figures', component: ContentFiguresComponent }
+      {  path: 'content/figures', component: ContentFiguresComponent },
+      {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
+      {  path: 'utilities/borders', component: UtilitiesBordersComponent }
     ]
   }
 ];
@@ -53,7 +56,8 @@ const ROUTES: Routes = [
     ContentCodeComponent,
     ContentImagesComponent,
     ContentTablesComponent,
-    ContentFiguresComponent
+    ContentFiguresComponent,
+    UtilitiesBordersComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

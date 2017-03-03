@@ -33,8 +33,12 @@
       <li class="nav-item">
         <a class="nav-link">Components</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link">Utilities</a>
+      <li class="nav-item dropdown" [ngClass]="{ show: currentUrl.indexOf('utilities') !== -1 }">
+        <a class="nav-link dropdown-toggle" routerLink="utilities" id="ContentPrimaryMenuItem" routerLinkActive="active">Utilities</a>
+        <div class="dropdown-menu bg-faded col justify-content-center" aria-labelledby="ContentPrimaryMenuItem">
+          <div style="width: 130px"></div>
+          <a class="nav-link" routerLink="utilities/borders" routerLinkActive="active">Borders</a>   
+        </div>
       </li>
     </ul>
  </div>
