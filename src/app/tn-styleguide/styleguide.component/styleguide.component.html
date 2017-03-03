@@ -31,8 +31,12 @@
             <div class="card" *ngIf="currentUrl.indexOf('utilities')  !== -1">
                 <div class="card-block">
                     <h5 class="card-title"><u>Utilities</u></h5>
+                    <nav class="nav flex-column">
+                        <a routerLink="utilities/borders" routerLinkActive="active"><small>Borders</small></a>
+                        <a routerLink="utilities/clearfix" routerLinkActive="active"><small>Clearfix</small></a>
+                    </nav>
                 </div>
-            </div>           
+            </div>
         </div>
         <div class="col-lg-10 col-sm-9">
             <router-outlet></router-outlet>
