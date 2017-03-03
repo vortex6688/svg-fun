@@ -8,12 +8,8 @@ import { TnCommonModule } from '../tn-common';
 
 import { TnAdminComponent } from './tn-admin.component';
 import { TnAdminRoutingModule } from './tn-admin-routing.module';
-import { TnContentModule } from './tn-content/tn-content.module';
-import { TnOrderModule } from './tn-order/tn-order.module';
-import { TnProductModule } from './tn-product/tn-product.module';
-import { TnFoundryModule } from './tn-foundry/tn-foundry.module';
-import { TnReportModule } from './tn-report/tn-report.module';
-import { TnUserModule } from './tn-user/tn-user.module';
+import { AdminNavbarComponent } from './admin-navbar';
+import { AdminOrdersListComponent } from './admin-orders-list';
 
 /**
  * TN Module that will contain all submodules related
@@ -23,6 +19,8 @@ import { TnUserModule } from './tn-user/tn-user.module';
   bootstrap: [ TnAdminComponent ],
   declarations: [
     TnAdminComponent,
+    AdminNavbarComponent,
+    AdminOrdersListComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,12 +29,6 @@ import { TnUserModule } from './tn-user/tn-user.module';
     TnAdminRoutingModule,
     NgbModule.forRoot(),
     TnCommonModule,
-    TnContentModule,
-    TnFoundryModule,
-    TnOrderModule,
-    TnProductModule,
-    TnReportModule,
-    TnUserModule,
   ],
   providers: []
 })

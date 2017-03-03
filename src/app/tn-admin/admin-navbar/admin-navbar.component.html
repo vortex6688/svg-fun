@@ -1,0 +1,20 @@
+
+<nav class="fixed-top navbar navbar-inverse bg-inverse navbar-toggleable-md">
+  <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand">
+    <span style="color: #fff">Type</span><span style="color: #999">Network |</span> <span style="color:#fff">Admin</span>
+  </a>
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse justify-content-center ">
+    <ul class="navbar-nav navbar-inverse primary-nav">
+      <li class="nav-item dropdown" [ngClass]="{ show: currentUrl.indexOf('orders')  !== -1 }">
+        <a class="nav-link dropdown-toggle" routerLink="orders" id="LayoutPrimaryMenuItem" routerLinkActive="active">Orders</a>
+        <div class="dropdown-menu bg-faded col justify-content-center" aria-labelledby="LayoutPrimaryMenuItem">
+          <div style="width: 130px"></div>
+          <a class="nav-link" routerLink="orders/list" routerLinkActive="active">Orders</a>
+        </div>
+      </li>
+    </ul>
+ </div>
+</nav>
