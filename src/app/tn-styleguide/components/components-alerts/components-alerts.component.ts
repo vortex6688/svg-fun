@@ -5,4 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './components-alerts.component.html',
   styleUrls: ['./components-alerts.component.scss']
 })
-export class ComponentsAlertsComponent {}
+export class ComponentsAlertsComponent {
+  public staticAlertClosed: Boolean = false;
+}
