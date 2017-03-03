@@ -30,8 +30,12 @@
           <a class="nav-link" routerLink="content/figures" routerLinkActive="active">Figures</a>    
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link">Components</a>
+      <li class="nav-item dropdown" [ngClass]="{ show: currentUrl.indexOf('components') !== -1 }">
+        <a class="nav-link dropdown-toggle" routerLink="components" id="ComponentsPrimaryMenuItem" routerLinkActive="active">Components</a>
+        <div class="dropdown-menu bg-faded col justify-content-center" aria-labelledby="ComponentsPrimaryMenuItem">
+          <div style="width: 130px"></div>
+          <a class="nav-link" routerLink="components/alerts" routerLinkActive="active">Alerts</a>
+        </div>
       </li>
       <li class="nav-item dropdown" [ngClass]="{ show: currentUrl.indexOf('utilities') !== -1 }">
         <a class="nav-link dropdown-toggle" routerLink="utilities" id="ContentPrimaryMenuItem" routerLinkActive="active">Utilities</a>

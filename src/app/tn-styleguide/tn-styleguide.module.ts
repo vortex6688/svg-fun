@@ -18,6 +18,7 @@ import { ContentRebootComponent,
          ContentImagesComponent,
          ContentTablesComponent,
          ContentFiguresComponent } from './content/index.ts';
+import { ComponentsAlertsComponent } from './components/index.ts';
 import { UtilitiesBordersComponent,
         UtilitiesClearfixComponent } from './utilities/index.ts';
 
@@ -38,6 +39,8 @@ const ROUTES: Routes = [
       {  path: 'content/images', component: ContentImagesComponent },
       {  path: 'content/tables', component: ContentTablesComponent },
       {  path: 'content/figures', component: ContentFiguresComponent },
+      {  path: 'components', redirectTo: 'components/alerts', pathMatch: 'full' },
+      {  path: 'components/alerts', component: ComponentsAlertsComponent },
       {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
       {  path: 'utilities/borders', component: UtilitiesBordersComponent },
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent }
@@ -59,6 +62,7 @@ const ROUTES: Routes = [
     ContentImagesComponent,
     ContentTablesComponent,
     ContentFiguresComponent,
+    ComponentsAlertsComponent,
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent
   ],
