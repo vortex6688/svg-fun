@@ -24,7 +24,8 @@ import { UtilitiesBordersComponent,
          UtilitiesCloseIconComponent,
          UtilitiesFlexboxComponent,
          UtilitiesDisplayPropertyComponent,
-         UtilitiesInvisibleContentComponent } from './utilities/index.ts';
+         UtilitiesInvisibleContentComponent,
+         UtilitiesImageReplacementComponent } from './utilities/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -51,7 +52,8 @@ const ROUTES: Routes = [
       {  path: 'utilities/close-icon', component: UtilitiesCloseIconComponent },
       {  path: 'utilities/flexbox', component: UtilitiesFlexboxComponent },
       {  path: 'utilities/display-property', component: UtilitiesDisplayPropertyComponent },
-      {  path: 'utilities/invisible-content', component: UtilitiesInvisibleContentComponent }
+      {  path: 'utilities/invisible-content', component: UtilitiesInvisibleContentComponent },
+      {  path: 'utilities/image-replacement', component: UtilitiesImageReplacementComponent }
     ]
   }
 ];
@@ -76,7 +78,8 @@ const ROUTES: Routes = [
     UtilitiesCloseIconComponent,
     UtilitiesFlexboxComponent,
     UtilitiesDisplayPropertyComponent,
-    UtilitiesInvisibleContentComponent
+    UtilitiesInvisibleContentComponent,
+    UtilitiesImageReplacementComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
