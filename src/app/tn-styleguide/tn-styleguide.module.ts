@@ -23,7 +23,8 @@ import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
          UtilitiesFlexboxComponent,
-         UtilitiesDisplayPropertyComponent } from './utilities/index.ts';
+         UtilitiesDisplayPropertyComponent,
+         UtilitiesInvisibleContentComponent } from './utilities/index.ts';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -49,7 +50,8 @@ const ROUTES: Routes = [
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent },
       {  path: 'utilities/close-icon', component: UtilitiesCloseIconComponent },
       {  path: 'utilities/flexbox', component: UtilitiesFlexboxComponent },
-      {  path: 'utilities/display-property', component: UtilitiesDisplayPropertyComponent }
+      {  path: 'utilities/display-property', component: UtilitiesDisplayPropertyComponent },
+      {  path: 'utilities/invisible-content', component: UtilitiesInvisibleContentComponent }
     ]
   }
 ];
@@ -73,7 +75,8 @@ const ROUTES: Routes = [
     UtilitiesClearfixComponent,
     UtilitiesCloseIconComponent,
     UtilitiesFlexboxComponent,
-    UtilitiesDisplayPropertyComponent
+    UtilitiesDisplayPropertyComponent,
+    UtilitiesInvisibleContentComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
