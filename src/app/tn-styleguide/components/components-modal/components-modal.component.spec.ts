@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsModalComponent } from './components-modal.component';
 
 describe('ComponentsModalComponent', () => {
@@ -8,6 +10,7 @@ describe('ComponentsModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ NgbModule.forRoot(), RouterTestingModule.withRoutes([]) ],
       declarations: [ ComponentsModalComponent ]
     })
     .compileComponents();

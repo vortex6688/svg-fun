@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-components-modal',
@@ -8,19 +8,11 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./components-modal.component.scss']
 })
 export class ComponentsModalComponent {
-  closeResult: string;
+  public closeResult: string;
 
   constructor(private modalService: NgbModal) {}
 
-  open(content) {
+  public open(content) {
     this.modalService.open(content);
-  }
-
-  open(contentScroll) {
-    this.modalService.open(contentScroll);
-  }
-
-  open(contentGrid) {
-    this.modalService.open(contentGrid);
   }
 }
