@@ -1,23 +1,14 @@
 import { Routes, RouterModule } from '@angular/router';
 import { TnAdminComponent } from './tn-admin.component';
-
-// Import routes from submodules
-import { tnAdminContentRoutes } from './tn-content/tn-content-routing.module';
-import { tnAdminFoundryRoutes } from './tn-foundry/tn-foundry-routing.module';
-import { tnAdminOrderRoutes } from './tn-order/tn-order-routing.module';
-import { tnAdminProductRoutes } from './tn-product/tn-product-routing.module';
-import { tnAdminReportRoutes } from './tn-report/tn-report-routing.module';
-import { tnAdminUserRoutes } from './tn-user/tn-user-routing.module';
+import { AdminOrdersListComponent } from './admin-orders-list';
 
 const routes: Routes = [
   { path: 'admin', component: TnAdminComponent, children: [
-    tnAdminContentRoutes,
-    tnAdminFoundryRoutes,
-    tnAdminOrderRoutes,
-    tnAdminProductRoutes,
-    tnAdminReportRoutes,
-    tnAdminUserRoutes,
-  ]}
+      { path: '', redirectTo: 'orders/list', pathMatch: 'full' },
+      { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
+      { path: 'orders/list', component: AdminOrdersListComponent}
+    ]
+  }
 ];
 
 export const TnAdminRoutingModule = RouterModule.forChild(routes);
