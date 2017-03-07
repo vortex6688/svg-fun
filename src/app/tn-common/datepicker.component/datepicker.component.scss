@@ -1,0 +1,133 @@
+@import '../../../styles/variables';
+
+$datepicker-blue: rgb(56, 103, 255) !default; // #3867ff
+$datepicker-gray: rgb(183, 179, 175) !default; // #b7b3af
+$border-color: rgb(212, 209, 207) !default; // #d4d1cf
+$date-color: rgb(129, 127, 125) !default; // #817f7d
+$font-weight-bold: 600 !default;
+$datepicker-triangle-border-width: 0.6875rem !default;
+$one-pixel: 0.0625rem !default;
+
+:host /deep/ ngb-datepicker {
+  font-family: $font-family-sans-serif;
+  top: 1.938rem !important;
+}
+
+:host /deep/ ngb-datepicker.dropdown-menu {
+  padding: 0 !important;
+  min-width: 0;
+  width: 100%;
+  border-radius: 0;
+}
+
+/* this CSS forms the triangles */
+:host /deep/ ngb-datepicker.dropdown-menu:after,
+:host /deep/ ngb-datepicker.dropdown-menu:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 86%;
+    top: 0%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+/* this border color controlls the color of the triangle (what looks like the fill of the triangle) */
+:host /deep/ ngb-datepicker.dropdown-menu:after {
+    top: -$one-pixel;
+    border-color: #fff transparent  transparent  transparent;
+    border-width: $datepicker-triangle-border-width;
+}
+/* this border color controlls the outside, thin border */
+:host /deep/ ngb-datepicker.dropdown-menu:before {
+    border-color: rgba(0, 0, 0, 0.3) transparent transparent transparent;
+    border-width: $datepicker-triangle-border-width;
+}
+
+:host /deep/ ngb-datepicker ngb-datepicker-month-view div.ngb-dp-day div.text-muted.outside.btn-secondary:hover {
+  background-color: $white;
+}
+
+/* Month/Year title */
+:host /deep/ ngb-datepicker div.ngb-dp-months div.ngb-dp-month-name {
+  color: $black;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-xs;
+  padding: 0.3125rem;
+  border-bottom: $one-pixel solid rgb(233, 232, 231);
+  background-color: $white;
+}
+
+/* Arrows. Previous and next month button */
+:host /deep/ ngb-datepicker ngb-datepicker-navigation > button span.ngb-dp-navigation-chevron {
+  border: none;
+  color: $date-color;
+}
+
+/* Days of the week */
+:host /deep/ ngb-datepicker ngb-datepicker-month-view div.ngb-dp-weekday {
+  color: $datepicker-gray !important;
+  font-weight: $font-weight-bold !important;
+  font-size: $font-size-xs;
+  border: 0;
+  background-color: $white;
+}
+
+/* Calendar numbers */
+:host /deep/ ngb-datepicker ngb-datepicker-month-view div.ngb-dp-day {
+    padding: $one-pixel;
+}
+
+/* Black numbers */
+:host /deep/ ngb-datepicker ngb-datepicker-month-view div.ngb-dp-day div.btn-secondary {
+  color: $black;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-xs;
+}
+
+/* Grey numbers */
+:host /deep/ ngb-datepicker ngb-datepicker-month-view div.ngb-dp-day div.text-muted.outside.btn-secondary {
+  color: $datepicker-gray !important;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-xs;
+}
+
+/* Blue "selected" box. Selected day */
+:host /deep/ ngb-datepicker ngb-datepicker-month-view div.ngb-dp-day div.bg-primary.text-white.btn-secondary {
+  background-color: $datepicker-blue !important;
+  border-radius: 0;
+}
+
+/* Date in field */
+input.date {
+  color: $date-color;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-sm;
+  border-right-style: hidden;
+}
+input.date:focus {
+  border: $one-pixel solid rgba(0, 0, 0, 0.15);
+  border-right-style: hidden;
+}
+
+#date-range {
+    color: #888888;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+/* SVGs */
+/* Calendar Icon */
+.input-group-addon {
+    background-color: $white;
+    border-left-style: hidden;
+    border-radius: 0;
+}
+g[calendar-icon].input-img {
+  fill: rgb(183, 179, 175); // #b7b3af
+}
+
+div[caret-left-icon], div[caret-right-icon] {
+    fill: $date-color;
+}
