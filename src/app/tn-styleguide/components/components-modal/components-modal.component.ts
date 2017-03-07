@@ -15,4 +15,12 @@ export class ComponentsModalComponent {
   public open(content) {
     this.modalService.open(content);
   }
+
+  public openModalLarge(modalLarge) {
+    this.modalService.open(modalLarge, { windowClass: 'modal-lg modal-dialog' });
+  }
+
+  public openModalSmall(modalSmall) {
+    this.modalService.open(modalSmall, { windowClass: 'modal-sm modal-dialog' });
+  }
 }
