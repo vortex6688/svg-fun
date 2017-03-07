@@ -9,18 +9,14 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnCommonModule } from '../tn-common';
 
-import { TnAdminComponent } from './tn-admin.component';
 // Local Components & Services
+import { AdminComponent } from './admin';
 import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
 
-/**
- * TN Module that will contain all submodules related
- * to Admin application
- */
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
-  { path: 'admin', component: TnAdminComponent, children: [
+  { path: 'admin', component: AdminComponent, children: [
       { path: '', redirectTo: 'orders/list', pathMatch: 'full' },
       { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
       { path: 'orders/list', component: AdminOrdersListComponent}
@@ -29,9 +25,9 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  bootstrap: [ TnAdminComponent ],
+  bootstrap: [ AdminComponent ],
   declarations: [
-    TnAdminComponent,
+    AdminComponent,
     AdminNavbarComponent,
     AdminOrdersListComponent,
   ],

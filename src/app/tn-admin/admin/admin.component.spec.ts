@@ -7,16 +7,16 @@ import {
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
-import { TnAdminComponent } from './tn-admin.component';
+import { AdminComponent } from './';
 
 describe(`Admin`, () => {
-  let comp: TnAdminComponent;
-  let fixture: ComponentFixture<TnAdminComponent>;
+  let comp: AdminComponent;
+  let fixture: ComponentFixture<AdminComponent>;
 
   // async beforeEach
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TnAdminComponent ],
+      declarations: [ AdminComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: []
     })
@@ -25,9 +25,8 @@ describe(`Admin`, () => {
 
   // synchronous beforeEach
   beforeEach(() => {
-    fixture = TestBed.createComponent(TnAdminComponent);
+    fixture = TestBed.createComponent(AdminComponent);
     comp    = fixture.componentInstance;
-
     fixture.detectChanges(); // trigger initial data binding
   });
 
@@ -35,13 +34,4 @@ describe(`Admin`, () => {
     expect(fixture).toBeDefined();
     expect(comp).toBeDefined();
   });
-
-  it('should log ngOnInit', () => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
-
-    comp.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
-  });
-
 });

@@ -12,8 +12,8 @@ describe('Admin', () => {
     expect(subject).toEqual(result);
   });
 
-  it('should have <tn-admin>', () => {
-    let subject = element(by.css('tn-admin')).isPresent();
+  it('should have <admin>', () => {
+    let subject = element(by.css('admin')).isPresent();
     let result  = true;
     expect(subject).toEqual(result);
   });
