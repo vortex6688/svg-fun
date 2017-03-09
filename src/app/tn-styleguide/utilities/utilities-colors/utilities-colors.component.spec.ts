@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { UtilitiesColorsComponent } from './utilities-colors.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UtilitiesColorsComponent', () => {
   let component: UtilitiesColorsComponent;
@@ -11,6 +12,7 @@ describe('UtilitiesColorsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule.withRoutes([])],
       declarations: [ UtilitiesColorsComponent ]
     })
     .compileComponents();
