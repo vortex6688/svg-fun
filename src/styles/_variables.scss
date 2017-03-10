@@ -57,7 +57,7 @@ $red:    #e92225;
 $orange: #f0ad4e;
 $yellow: #ffcf06;
 $green:  #0cc945;
-$blue:   #0275d8;
+$blue:   #3867ff;
 $teal:   #5bc0de;
 $pink:   #ff5b77;
 $purple: #613d7c;
@@ -73,11 +73,11 @@ $purple: #613d7c;
 // $gray-lightest:             #f7f7f9;
 
 // TN grayscale
-$gray-dark:                 #292b2c;
-$gray:                      #595a5c;
-$gray-light:                #807e7c;
-$gray-lighter:              #b7b4b0;
-$gray-lightest:             #b7b4b0;
+$gray-dark:                #121212;
+$gray:                     #292b2c;
+$gray-light:               #595a5c;
+$gray-lighter:             #807e7c;
+$gray-lightest:            #b7b4b0;
 
 // Reassign color vars to semantic color scheme
 $brand-primary:             $blue;
@@ -255,7 +255,7 @@ $lead-font-weight: 300;
 
 $small-font-size: 80%;
 
-$text-muted: $gray-light;
+$text-muted: $gray-dark;
 
 $blockquote-small-color:  $gray-light;
 $blockquote-font-size:    ($font-size-base * 1.25);
@@ -642,20 +642,20 @@ $jumbotron-bg:                   $gray-lighter;
 //
 // Define colors for form feedback states and, by default, alerts.
 
-$state-success-text:             #3c763d;
+$state-success-text:             #0cc945;
 $state-success-bg:               #dff0d8;
 $state-success-border:           darken($state-success-bg, 5%);
 
-$state-info-text:                #31708f;
+$state-info-text:                #b7b4b0;
 $state-info-bg:                  #d9edf7;
 $state-info-border:              darken($state-info-bg, 7%);
 
-$state-warning-text:             #8a6d3b;
+$state-warning-text:             #ffcf06;
 $state-warning-bg:               #fcf8e3;
 $mark-bg:                        $state-warning-bg;
 $state-warning-border:           darken($state-warning-bg, 5%);
 
-$state-danger-text:              #a94442;
+$state-danger-text:              #e92225;
 $state-danger-bg:                #f2dede;
 $state-danger-border:            darken($state-danger-bg, 5%);
 
