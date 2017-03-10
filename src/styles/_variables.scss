@@ -73,11 +73,11 @@ $purple: #613d7c;
 // $gray-lightest:             #f7f7f9;
 
 // TN grayscale
-$gray-dark:                 #292b2c;
-$gray:                      #595a5c;
-$gray-light:                #807e7c;
-$gray-lighter:              #b7b4b0;
-$gray-lightest:             #b7b4b0;
+$gray-dark:                #121212;
+$gray:                     #292b2c;
+$gray-light:               #595a5c;
+$gray-lighter:             #807e7c;
+$gray-lightest:            #b7b4b0;
 
 // Reassign color vars to semantic color scheme
 $brand-primary:             $blue;
@@ -255,7 +255,7 @@ $lead-font-weight: 300;
 
 $small-font-size: 80%;
 
-$text-muted: #121212;
+$text-muted: $gray-dark;
 
 $blockquote-small-color:  $gray-light;
 $blockquote-font-size:    ($font-size-base * 1.25);
