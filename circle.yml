@@ -6,3 +6,9 @@ machine:
 test:
   override:
     - npm run ci:aot
+
+deployment:
+  development:
+    branch: master
+    commands:
+      - tar -cvz dist > $CIRCLE_ARTIFACTS/dist.tgz
