@@ -62,6 +62,14 @@ module.exports = function (config) {
       html: './coverage/html'
     },
 
+    // the default configuration
+    junitReporter: {
+          outputDir: './dist/tests/junit' // results will be saved as $outputDir/$browserName.xml
+        , outputFile: 'unit-tests.xml' // results saved as $outputDir/$browserName/$outputFile
+        , suite: '' // suite will become the package name attribute in xml testsuite element
+        , useBrowserName: true // add browser name to report and classes names
+    },
+
     // Webpack please don't spam the console when running in karma!
     webpackMiddleware: {
       // webpack-dev-middleware configuration
@@ -80,7 +88,7 @@ module.exports = function (config) {
      * possible values: 'dots', 'progress'
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-    reporters: ['mocha', 'coverage', 'remap-coverage'],
+    reporters: ['mocha', 'coverage', 'remap-coverage', 'junit'],
 
     // web server port
     port: 9876,

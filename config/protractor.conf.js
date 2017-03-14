@@ -7,6 +7,7 @@
 require('ts-node/register');
 var helpers = require('./helpers');
 var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+var JUnitXmlReporter = require('jasmine-reporters').JUnitXmlReporter;
 
 exports.config = {
   baseUrl: 'http://localhost:3000/',
@@ -46,6 +47,21 @@ exports.config = {
         displayStacktrace: true
       }
     }));
+
+
+
+    // returning the promise makes protractor wait for the reporter config before executing tests
+    return browser.getProcessedConfig().then(function(config) {
+        // you could use other properties here if you want, such as platform and version
+        var browserName = config.capabilities.browserName;
+        var junitReporter = new JUnitXmlReporter({
+            consolidateAll: true,
+            savePath: './dist/tests/junit/' + browserName,
+            // this will produce distinct xml files for each capability
+            filePrefix: 'e2e',
+        });
+        jasmine.getEnv().addReporter(junitReporter);
+    });
   },
 
   /**
