@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <header>
+        <h2>Sign in to your account</h2>
+        <p class="instructions">Or, <a href="#">create a new account</a>.</p>
+      </header>
+      <div class="typeahead">
+        <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit(login)">
+          <div class="form_field">
+            <label class="field_label" for="loginUsername">Email</label>
+            <input type="email" name="username" required [(ngModel)]="login.username">
+            <p class="error">
+              <small>
+                Your email is required.
+              </small>
+              <small>
+                Email is invalid.
+              </small>
+            </p>
+            <label class="field_label note" for="loginPassword">Password</label>
+            <input type="password" name="password" required minlength="8" [(ngModel)]="login.password">
+            <p class="error">
+              <small>
+                Password is required.
+              </small>
+              <small>
+                Password must be at least 8 characters.
+              </small>
+            </p>
+          </div>
+          <div class="popover_button_group">
+            <button class="btn btn-success" [disabled]="!loginForm.valid">
+              Sign in<span class="icon-angle-right"></span>
+          </button>
+      </div>
+        </form>
+      </div>
+
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

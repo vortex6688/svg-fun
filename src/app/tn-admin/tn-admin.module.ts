@@ -13,9 +13,11 @@ import { TnCommonModule } from '../tn-common';
 import { AdminComponent } from './admin';
 import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
+import { LoginComponent } from './login/login.component';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
+  { path: 'login', component: LoginComponent},
   { path: 'admin', component: AdminComponent, children: [
       { path: '', redirectTo: 'orders/list', pathMatch: 'full' },
       { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
@@ -30,6 +32,7 @@ export const routes: Routes = [
     AdminComponent,
     AdminNavbarComponent,
     AdminOrdersListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
