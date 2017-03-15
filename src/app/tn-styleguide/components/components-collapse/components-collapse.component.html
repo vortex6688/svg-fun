@@ -22,31 +22,31 @@
           You can collapse this card by clicking Toggle
       </div>
     </div>
+  </div>
     
-    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt"><span class="nt"><span class="nt">&lt;</span>p</span><span class="nt">&gt;</span></span>
-  <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="token na">type</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>button<span class="nt">"</span></span> <span class="token na">class</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>btn btn-outline-primary<span class="nt">"</span></span> <span class="token na">(click)</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>isCollapsed <span class="nt">=</span> !isCollapsed<span class="nt">"</span></span>
-          <span class="token na">[attr.aria-expanded]</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>!isCollapsed<span class="nt">"</span></span> <span class="token na">aria-controls</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>collapseExample<span class="nt">"</span></span><span class="nt">&gt;</span></span>
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt"><span class="nt"><span class="nt">&lt;</span>p</span><span class="nt">&gt;</span></span>
+  <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">type</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>button<span class="nt">"</span></span> <span class="na">class</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>btn btn-outline-primary<span class="nt">"</span></span> <span class="na">(click)</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>isCollapsed <span class="nt">=</span> !isCollapsed<span class="nt">"</span></span>
+          <span class="na">[attr.aria-expanded]</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>!isCollapsed<span class="nt">"</span></span> <span class="na">aria-controls</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>collapseExample<span class="nt">"</span></span><span class="nt">&gt;</span></span>
     Toggle
   <span class="nt"><span class="nt"><span class="nt">&lt;/</span>button</span><span class="nt">&gt;</span></span>
 <span class="nt"><span class="nt"><span class="nt">&lt;/</span>p</span><span class="nt">&gt;</span></span>
-<span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="token na">id</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>collapseExample<span class="nt">"</span></span> <span class="token na">[ngbCollapse]</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>isCollapsed<span class="nt">"</span></span><span class="nt">&gt;</span></span>
-  <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>card<span class="nt">"</span></span><span class="nt">&gt;</span></span>
-    <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>card-block<span class="nt">"</span></span><span class="nt">&gt;</span></span>
+<span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">id</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>collapseExample<span class="nt">"</span></span> <span class="na">[ngbCollapse]</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>isCollapsed<span class="nt">"</span></span><span class="nt">&gt;</span></span>
+  <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>card<span class="nt">"</span></span><span class="nt">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>card-block<span class="nt">"</span></span><span class="nt">&gt;</span></span>
       You can collapse this card by clicking Toggle
     <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
   <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
 <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
 </code></pre></div>
-</div>
 
 <br />
 
   <h3 id="collapse-example">Accorion Example</h3>
   <p>Extend the default collapse behavior to create an accordion.</p>
 
- <div class="bd-example">
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-      <ngb-panel title="Simple">
+  <div class="bd-example">
+    <ngb-accordion [closeOthers]="true" activeIds="1">
+      <ngb-panel id="1" title="Simple">
         <template ngbPanelContent>
           Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
           aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
@@ -56,7 +56,7 @@
           labore sustainable VHS.
         </template>
       </ngb-panel>
-      <ngb-panel>
+      <ngb-panel id="2">
         <template ngbPanelTitle>
           <span>&#9733; <b>Fancy</b> title &#9733;</span>
         </template>
@@ -69,7 +69,7 @@
           labore sustainable VHS.
         </template>
       </ngb-panel>
-      <ngb-panel title="Disabled" [disabled]="true">
+      <ngb-panel id="3" title="Disabled" [disabled]="true">
         <template ngbPanelContent>
           Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
           aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
@@ -80,46 +80,43 @@
         </template>
       </ngb-panel>
     </ngb-accordion>
-
-    <div class="highlight"><pre class="language-html"><code class="language-html"><span class="nt"><span class="nt"><span class="nt">&lt;</span>ngb-accordion</span> <span class="token na">#acc</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>ngbAccordion<span class="nt">"</span></span> <span class="token na">activeIds</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>ngb-panel-0<span class="nt">"</span></span><span class="nt">&gt;</span></span>
-    <span class="nt"><span class="nt"><span class="nt">&lt;</span>ngb-panel</span> <span class="token na">title</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>Simple<span class="nt">"</span></span><span class="nt">&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="nt">&lt;</span>template</span> <span class="token na">ngbPanelContent</span><span class="nt">&gt;</span></span>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-        labore sustainable VHS.
-      <span class="nt"><span class="nt"><span class="nt">&lt;/</span>template</span><span class="nt">&gt;</span></span>
-    <span class="nt"><span class="nt"><span class="nt">&lt;/</span>ngb-panel</span><span class="nt">&gt;</span></span>
-    <span class="nt"><span class="nt"><span class="nt">&lt;</span>ngb-panel</span><span class="nt">&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="nt">&lt;</span>template</span> <span class="token na">ngbPanelTitle</span><span class="nt">&gt;</span></span>
-        <span class="nt"><span class="nt"><span class="nt">&lt;</span>span</span><span class="nt">&gt;</span></span><span class="token entity" title="★">&amp;#9733;</span> <span class="nt"><span class="nt"><span class="nt">&lt;</span>b</span><span class="nt">&gt;</span></span>Fancy<span class="nt"><span class="nt"><span class="nt">&lt;/</span>b</span><span class="nt">&gt;</span></span> title <span class="token entity" title="★">&amp;#9733;</span><span class="nt"><span class="nt"><span class="nt">&lt;/</span>span</span><span class="nt">&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="nt">&lt;/</span>template</span><span class="nt">&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="nt">&lt;</span>template</span> <span class="token na">ngbPanelContent</span><span class="nt">&gt;</span></span>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-        labore sustainable VHS.
-      <span class="nt"><span class="nt"><span class="nt">&lt;/</span>template</span><span class="nt">&gt;</span></span>
-    <span class="nt"><span class="nt"><span class="nt">&lt;/</span>ngb-panel</span><span class="nt">&gt;</span></span>
-    <span class="nt"><span class="nt"><span class="nt">&lt;</span>ngb-panel</span> <span class="token na">title</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>Disabled<span class="nt">"</span></span> <span class="token na">[disabled]</span><span class="token s"><span class="nt">=</span><span class="nt">"</span>true<span class="nt">"</span></span><span class="nt">&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="nt">&lt;</span>template</span> <span class="token na">ngbPanelContent</span><span class="nt">&gt;</span></span>
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-        labore sustainable VHS.
-      <span class="nt"><span class="nt"><span class="nt">&lt;/</span>template</span><span class="nt">&gt;</span></span>
-    <span class="nt"><span class="nt"><span class="nt">&lt;/</span>ngb-panel</span><span class="nt">&gt;</span></span>
-  <span class="nt"><span class="nt"><span class="nt">&lt;/</span>ngb-accordion</span><span class="nt">&gt;</span></span>
-  </code></pre></div>
-
- </div>
-          
-
-
   </div>
+
+  <div class="highlight"><pre><code class="language-html">
+    <span class="nt">&lt;ngb-accordion</span> <span class="na">[closeOthers]</span><span class="token s">="true"</span> <span class="na">activeIds</span><span class="token s">="1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ngb-panel</span> <span class="na">id</span><span class="token s">="1"</span> <span class="na">title</span><span class="token s">="Simple"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;template</span> <span class="na">ngbPanelContent</span><span class="nt">&gt;</span>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+        labore sustainable VHS.
+      <span class="nt">&lt;/template</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/ngb-panel</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ngb-panel</span> <span class="na">id</span><span class="token s">="2"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;template</span> <span class="na">ngbPanelTitle</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span><span class="nt">&gt;</span><span class="token entity" title="★">&amp;#9733;</span> <span class="nt">&lt;b</span><span class="nt">&gt;</span>Fancy<span class="nt">&lt;/b</span><span class="nt">&gt;</span> title <span class="token entity" title="★">&amp;#9733;</span><span class="nt">&lt;/span</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/template</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;template</span> <span class="na">ngbPanelContent</span><span class="nt">&gt;</span>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+        labore sustainable VHS.
+      <span class="nt">&lt;/template</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/ngb-panel</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ngb-panel</span> <span class="na">id</span><span class="token s">="3"</span> <span class="na">title</span><span class="token s">="Disabled"</span> <span class="na">[disabled]</span><span class="token s">="true"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;template</span> <span class="na">ngbPanelContent</span><span class="nt">&gt;</span>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+        labore sustainable VHS.
+      <span class="nt">&lt;/template</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/ngb-panel</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/ngb-accordion</span><span class="nt">&gt;</span>
+  </code></pre></div>
+</div>
