@@ -37,6 +37,7 @@ export class AuthService {
   constructor(private httpService: TnApiHttpService, private storage: LocalStorageService) {
     this.user$ = new BehaviorSubject<Authorization>(this.user);
     this.storage.observe('AuthService.user').subscribe(this.user$);
+    this.httpService.setBaseUrl('http://localhost:8001');
   };
 
   /**

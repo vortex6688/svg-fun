@@ -1,44 +1,50 @@
-<div class="container">
-  <div class="row">
-    <div class="col"></div>
-    <div class="col">
-      <header>
-        <h2>Sign in to your account</h2>
-        <p class="instructions">Or, <a href="#">create a new account</a>.</p>
-      </header>
-      <div class="typeahead">
-        <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit(login)">
-          <div class="form_field">
-            <label class="field_label" for="loginUsername">Email</label>
-            <input type="email" name="username" required [(ngModel)]="login.username">
-            <p class="error">
-              <small>
-                Your email is required.
-              </small>
-              <small>
-                Email is invalid.
-              </small>
-            </p>
-            <label class="field_label note" for="loginPassword">Password</label>
-            <input type="password" name="password" required minlength="8" [(ngModel)]="login.password">
-            <p class="error">
-              <small>
-                Password is required.
-              </small>
-              <small>
-                Password must be at least 8 characters.
-              </small>
-            </p>
-          </div>
-          <div class="popover_button_group">
-            <button class="btn btn-success" [disabled]="!loginForm.valid">
-              Sign in<span class="icon-angle-right"></span>
-          </button>
-      </div>
-        </form>
-      </div>
-
+<div class="modal-header">
+  <h2 class="modal-title">Sign in to your account</h2>
+  <p class="instructions">Or, <a href="#">create a new account</a>.</p>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" *ngIf="user">
+  You signed in as {{user.username}}!
+</div>
+<div class="modal-body" *ngIf="!user">
+  <form novalidate>
+    <div class="form-group">
+      <label for="username">Email</label>
+      <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username">
+        <!-- TO DO: Validation
+        <p class="error">
+          <small>
+            Your email is required.
+          </small>
+          <small>
+            Email is invalid.
+          </small>
+        </p>
+      -->
+      <label for="password">Password</label>
+      <input class="form-control" type="password" name="password" required minlength="8" [(ngModel)]="credentials.password">
+        <!-- TO DO: Validation
+        <p class="error">
+          <small>
+            Password is required.
+          </small>
+          <small>
+            Password must be at least 8 characters.
+          </small>
+        </p>
+      -->
     </div>
-    <div class="col"></div>
-  </div>
+    <div class="popover_button_group">
+      <!-- TO DO: Validation <button class="btn btn-success" [disabled]="!loginForm.valid"> -->
+      <a class="btn btn-success" (click)="logIn(credentials)">
+        Sign in
+      </a>
+      {{errorMessage}}
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Cross click')">Close</button>
 </div>

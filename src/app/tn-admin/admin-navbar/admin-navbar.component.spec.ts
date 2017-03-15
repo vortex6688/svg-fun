@@ -10,7 +10,7 @@ describe('TnAdminNavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ NgbModule, RouterTestingModule.withRoutes([]) ],
+      imports: [ NgbModule.forRoot(), RouterTestingModule.withRoutes([]) ],
       declarations: [ AdminNavbarComponent ]
     })
     .compileComponents();
