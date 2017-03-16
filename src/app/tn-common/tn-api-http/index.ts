@@ -1,1 +1,1 @@
-export { TnApiClientService } from './tn-api-http.service.ts';
+export { TnApiHttpService } from './tn-api-http.service';

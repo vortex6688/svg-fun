@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConnectionBackend, Headers, Http,
-         Request, RequestOptions, RequestOptionsArgs, Response } from '@angular/http';
+         Request, RequestOptions, RequestOptionsArgs, Response, XHRBackend } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Rx';
 
@@ -17,6 +17,18 @@ import { Subject } from 'rxjs/Rx';
  */
 @Injectable()
 export class TnApiHttpService extends Http {
+
+  public static factory(backend, options) {
+    return new TnApiHttpService(backend, options);
+  }
+
+  public static provider() {
+    return {
+      provide: TnApiHttpService,
+      deps: [XHRBackend, RequestOptions],
+      useFactory: TnApiHttpService.factory
+    };
+  }
 
   /**
    * Observable of errors so auth and other services can watch for issues with the API.
@@ -44,7 +56,6 @@ export class TnApiHttpService extends Http {
    * @memberOf TnApiHttpService
    */
   protected token: string;
-
   /**
    * Creates an instance of TnApiHttpService.
    *
