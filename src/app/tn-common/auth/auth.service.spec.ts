@@ -8,11 +8,14 @@ import {
 import { AuthService } from './auth.service';
 import { MockBackend } from '@angular/http/testing';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
+import { LocalStorageService } from 'ng2-webstorage';
+import { ANONYMOUS_AUTHORIZATION } from './auth.model';
 
 describe('AuthService', () => {
   let mockBackend: MockBackend;
   let authService: AuthService;
   let apiClient: TnApiHttpService;
+  let storage: LocalStorageService;
 
   const successBody = {
     id: 10,
@@ -31,8 +34,6 @@ describe('AuthService', () => {
     token: 'token',
   };
 
-  const successBodyLogout = {};
-
   const errorBody = {
     message: 'Username or password invalid'
   };
@@ -44,7 +45,7 @@ describe('AuthService', () => {
   }));
 
   const mockResponseLogout = new Response(new ResponseOptions({
-    body: JSON.stringify(successBodyLogout),
+    body: JSON.stringify(null),
     status: 200,
     statusText: 'Success'
   }));
@@ -61,10 +62,11 @@ describe('AuthService', () => {
   };
 
   beforeEach(() => {
-      mockBackend = new MockBackend();
-      let options = new BaseRequestOptions();
-      apiClient = new TnApiHttpService(mockBackend, options);
-      authService = new AuthService(apiClient);
+    storage = new LocalStorageService();
+    mockBackend = new MockBackend();
+    let options = new BaseRequestOptions();
+    apiClient = new TnApiHttpService(mockBackend, options);
+    authService = new AuthService(apiClient, storage);
   });
 
   it('should be created', () => {
@@ -72,25 +74,41 @@ describe('AuthService', () => {
   });
 
   it('should return the errors if the credentials are incorrect', () => {
+    let credentials = { username: 'jane@doe.com', password: 'incorrectPassword' };
+
     mockBackend.connections.subscribe((connection) => {
-      connection.mockRespond(mockResponseError);
+      connection.mockError(mockResponseError);
     });
 
-    authService.login('jane@doe.com', 'incorrectPassword').subscribe((result) => {
-      expect(result).toEqual(errorBody, 'Response does not match');
-      expect(localStorage.getItem('user')).toBeFalsy('User info not deleted from store');
+    authService.login(credentials).subscribe(
+      null,
+      (error) => {
+        expect(error).toBe(mockResponseError);
+        expect(storage.retrieve('AuthService.user'))
+          .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
+        expect(authService.user$.getValue()).toEqual(ANONYMOUS_AUTHORIZATION,
+          'Subject user$ does not contain the Anonymous User');
+      },
+      null
+    );
+
+    apiClient.errors$.subscribe((error) => {
+       expect(error).toBe(mockResponseError);
     });
   });
 
   it('should return the user on login', () => {
+    let credentials = { username: 'jane@doe.com', password: 'password' };
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
 
-    authService.login('jane@doe.com', 'password').subscribe((result) => {
+    authService.login(credentials).subscribe((result) => {
       expect(result).toEqual(successBody, 'Response does not match');
-      expect(JSON.parse(localStorage.getItem('user')))
+      expect(storage.retrieve('AuthService.user'))
         .toEqual(successBody, 'User data not saved in storage');
+      expect(authService.user$.getValue()).toEqual(successBody,
+        'Subject user$ does not contain the User');
     });
   });
 
@@ -100,35 +118,27 @@ describe('AuthService', () => {
     });
 
     authService.logout().subscribe((result) => {
-      expect(result).toEqual(successBodyLogout, 'Response does not match');
-      expect(localStorage.getItem('user')).toBeFalsy('User info not deleted from store');
+      expect(result).toEqual(ANONYMOUS_AUTHORIZATION, 'Response does not match');
+      expect(storage.retrieve('AuthService.user'))
+        .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
+      expect(authService.user$.getValue()).toEqual(ANONYMOUS_AUTHORIZATION,
+        'Subject user$ does not contain the Anonymous User');
     });
   });
 
-  it('should return false if the user is not logged in', () => {
-    expect(authService.isLoggedIn()).toBeFalsy('Got true, but user is not logged-in');
-  });
-
-  it('should return true if the user is logged in', () => {
+  it('should return the user on register', () => {
+    let credentials = { email: 'jane@doe.com', username: 'jane@doe.com',
+      password: 'password' };
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
 
-    authService.login('jane@doe.com', 'password').subscribe((result) => {
+    authService.register(credentials).subscribe((result) => {
       expect(result).toEqual(successBody, 'Response does not match');
-    });
-    expect(authService.isLoggedIn()).toBeTruthy('Got false, but user is logged-in');
-  });
-
-  it('should return the user on login', () => {
-    mockBackend.connections.subscribe((connection) => {
-      connection.mockRespond(mockResponse);
-    });
-
-    authService.register('jane@doe.com', 'password').subscribe((result) => {
-      expect(result).toEqual(successBody, 'Response does not match');
-      expect(JSON.parse(localStorage.getItem('user')))
+      expect(storage.retrieve('AuthService.user'))
         .toEqual(successBody, 'User data not saved in storage');
+      expect(authService.user$.getValue()).toEqual(successBody,
+        'Subject user$ does not contain the User');
     });
   });
 

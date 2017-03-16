@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../user/user.model';
+import { Authorization, ANONYMOUS_AUTHORIZATION } from './auth.model';
+import { Credentials, RegistrationCredentials } from './credentials';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
+import { LocalStorageService, LocalStorage } from 'ng2-webstorage';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 /**
@@ -16,7 +18,10 @@ import { BehaviorSubject } from 'rxjs/Rx';
 @Injectable()
 export class AuthService {
 
-  public user$: BehaviorSubject<User>;
+  public user$: BehaviorSubject<Authorization>;
+
+  @LocalStorage('AuthService.user')
+  protected user = ANONYMOUS_AUTHORIZATION;
 
   /**
    * Creates an instance of AuthService.
@@ -25,34 +30,29 @@ export class AuthService {
    * in that injection.
    *
    * @param {TnApiHttpService} httpService
+   * @param {LocalStorageService} storage
    *
    * @memberOf AuthService
    */
-  constructor(private httpService: TnApiHttpService) {
-    let user: User = JSON.parse(localStorage.getItem('user'));
-    this.user$ = new BehaviorSubject<User>(user);
+  constructor(private httpService: TnApiHttpService, private storage: LocalStorageService) {
+    this.user$ = new BehaviorSubject<Authorization>(this.user);
+    this.storage.observe('AuthService.user').subscribe(this.user$);
   };
 
   /**
    * Authenticate and return the user with the authentication token.
    *
    * @public
-   * @param {string} [email] Email of the user to be authenticated.
-   * @param {string} [password] Password of the user to be authenticated.
-   *
+   * @param {Credentials} [credentials] Credentials of the user to be registered.
    * @memberOf AuthService
    */
-  public login(email: string, password: string): Observable<User> {
-    return this.httpService.post('/auth/login/', {
-        username: email,
-        password
-      })
-      .map((res: any) => {
-        let user: User = JSON.parse(res._body);
+  public login(credentials: Credentials): Observable<Authorization> {
+    return this.httpService.post('/auth/login/', credentials)
+      .map((user: any) => {
         this.httpService.setAuthToken(user.token);
-        localStorage.setItem('user', JSON.stringify(user));
-        this.user$.next(user);
-        return user;
+        // if the user$ behavior subject is subscribed to
+        // this.user it should automatically get it's next called.
+        return this.user = user;
       });
   }
 
@@ -67,43 +67,25 @@ export class AuthService {
     return this.httpService.post('/auth/logout/', {})
       .map((res: any) => {
         this.httpService.setAuthToken();
-        localStorage.removeItem('user');
-        this.user$.unsubscribe();
+        return this.user = ANONYMOUS_AUTHORIZATION;
       });
-  }
-
-  /**
-   * Return a boolean if the user is authenticated.
-   *
-   * @public
-   *
-   * @memberOf AuthService
-   */
-  public isLoggedIn(): boolean {
-    return !!this.user$.getValue();
   }
 
   /**
    * Register the user and authenticate him and return the user with the authentication token.
    *
    * @public
-   * @param {string} [email] Email of the user to be registered.
-   * @param {string} [password] Password of the user to be registered.
+   * @param {Credentials} [credentials] Credentials of the user to be registered.
    *
    * @memberOf AuthService
    */
-  public register(email: string, password: string): Observable<User> {
-    return this.httpService.post('/api/1/user/', {
-        username: email,
-        email,
-        password,
-      })
-      .map((res: any) => {
-        let user: User = JSON.parse(res._body);
+  public register(credentials: RegistrationCredentials): Observable<Authorization> {
+    return this.httpService.post('/api/1/user/', credentials)
+      .map((user: any) => {
         this.httpService.setAuthToken(user.token);
-        localStorage.setItem('user', JSON.stringify(user));
-        this.user$.next(user);
-        return user;
+        // if the user$ behavior subject is subscribed to
+        // this.user it should automatically get it's next called.
+        return this.user = user;
       });
   }
 }

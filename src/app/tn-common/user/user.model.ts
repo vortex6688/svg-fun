@@ -22,8 +22,8 @@ export class User {
   public is_admin: boolean;
   public can_invoice: boolean;
   public tax_exempt: boolean;
-  public created_at: string;
-  public updated_at: string;
+  public created_at: number;
+  public updated_at: number;
   // email_subscriptions: // Array
   // foundry: // Array
 }
