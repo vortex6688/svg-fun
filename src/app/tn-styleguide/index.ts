@@ -1,1 +1,1 @@
-export * from './tn-styleguide.module';
+export { TnStyleguideModule } from './tn-styleguide.module';

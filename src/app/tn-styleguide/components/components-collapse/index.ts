@@ -1,1 +1,1 @@
-export * from './components-collapse.component.ts';
+export { ComponentsCollapseComponent } from './components-collapse.component';

@@ -11,16 +11,16 @@ import { StyleguideComponent } from './styleguide.component';
 import { LayoutOverviewComponent,
          LayoutGridComponent,
          LayoutMediaObjectComponent,
-         LayoutResponsiveUtilitiesComponent } from './layout/index.ts';
+         LayoutResponsiveUtilitiesComponent } from './layout';
 import { ContentRebootComponent,
          ContentTypographyComponent,
          ContentCodeComponent,
          ContentImagesComponent,
          ContentTablesComponent,
-         ContentFiguresComponent } from './content/index.ts';
+         ContentFiguresComponent } from './content';
 import { ComponentsAlertsComponent,
          ComponentsCollapseComponent,
-         ComponentsModalComponent } from './components/index.ts';
+         ComponentsModalComponent } from './components';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
@@ -28,7 +28,7 @@ import { UtilitiesBordersComponent,
          UtilitiesColorsComponent,
          UtilitiesDisplayPropertyComponent,
          UtilitiesInvisibleContentComponent,
-         UtilitiesImageReplacementComponent } from './utilities/index.ts';
+         UtilitiesImageReplacementComponent } from './utilities';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
