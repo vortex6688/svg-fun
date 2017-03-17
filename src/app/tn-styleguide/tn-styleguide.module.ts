@@ -18,7 +18,8 @@ import { ContentRebootComponent,
          ContentImagesComponent,
          ContentTablesComponent,
          ContentFiguresComponent } from './content/index.ts';
-import { ComponentsAlertsComponent } from './components/index.ts';
+import { ComponentsAlertsComponent,
+         ComponentsModalComponent } from './components/index.ts';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
@@ -47,6 +48,7 @@ const ROUTES: Routes = [
       {  path: 'content/figures', component: ContentFiguresComponent },
       {  path: 'components', redirectTo: 'components/alerts', pathMatch: 'full' },
       {  path: 'components/alerts', component: ComponentsAlertsComponent },
+      {  path: 'components/modal', component: ComponentsModalComponent },
       {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
       {  path: 'utilities/borders', component: UtilitiesBordersComponent },
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent },
@@ -75,6 +77,7 @@ const ROUTES: Routes = [
     ContentTablesComponent,
     ContentFiguresComponent,
     ComponentsAlertsComponent,
+    ComponentsModalComponent,
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent,
     UtilitiesCloseIconComponent,

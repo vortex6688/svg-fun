@@ -344,7 +344,7 @@ $btn-secondary-bg:               $white;
 $btn-secondary-border:           #ccc;
 
 $btn-info-color:                 $white;
-$btn-info-bg:                    $brand-info;
+$btn-info-bg:                    $gray-lightest;
 $btn-info-border:                $btn-info-bg;
 
 $btn-success-color:              $white;
@@ -752,21 +752,21 @@ $modal-dialog-sm-up-margin-y: 30px;
 $modal-title-line-height:     $line-height-base;
 
 $modal-content-bg:               $white;
-$modal-content-border-color:     rgba($black,.2);
+$modal-content-border-color:     $gray-lightest;
 $modal-content-border-width:     $border-width;
 $modal-content-xs-box-shadow:    0 3px 9px rgba($black,.5);
 $modal-content-sm-up-box-shadow: 0 5px 15px rgba($black,.5);
 
 $modal-backdrop-bg:           $black;
 $modal-backdrop-opacity:      .5;
-$modal-header-border-color:   $gray-lighter;
+$modal-header-border-color:   $gray-lightest;
 $modal-footer-border-color:   $modal-header-border-color;
-$modal-header-border-width:   $modal-content-border-width;
-$modal-footer-border-width:   $modal-header-border-width;
-$modal-header-padding:        15px;
+$modal-header-border-width:   $modal-header-border-width;
+$modal-footer-border-width:   none;
+$modal-header-padding:        1.5rem 0 0 0;
 
 $modal-lg:                    800px;
-$modal-md:                    500px;
+$modal-md:                    550px;
 $modal-sm:                    300px;
 
 $modal-transition:            transform .3s ease-out;

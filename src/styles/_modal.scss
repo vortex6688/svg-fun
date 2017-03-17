@@ -1,0 +1,80 @@
+@import "~bootstrap/scss/modal";
+
+.modal-content {
+    padding: 1rem;
+    color: $gray-lighter;
+
+  // override headers font-weight to match mockups examples
+  .modal-header h1, h2, h3, h4, h5, h6 {
+    font-weight: $lead-font-weight;
+  }
+
+  .modal-body {
+    padding: 1rem 0;
+    min-height: 8rem;
+    border-bottom: 1px solid $gray-lightest;
+    font-size: $font-size-sm;
+    color: $gray-dark;
+  }
+
+  .modal-footer {
+    padding: 1.5rem 0 0.5rem 0;
+    justify-content: center;
+  }
+
+  .btn {
+    // update button defaults to match TN editorial mockups
+    min-width: 10rem;
+
+    &.close-icon {
+      &:before {
+        content: "\00d7";
+        font-size: 1.6rem;
+        line-height: 0;
+        bottom: -0.225rem;
+        position: relative;
+      }
+    }
+
+    &.check-icon {
+      &:before {
+        content:"";
+        height: 0.4rem;
+        width: 0.7rem;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        display: inline-block;
+        transform: rotate(-45deg);
+        position: relative;
+        bottom: 0.225rem;
+      }
+    }
+
+    &.create-icon {
+      &:before {
+        content: "+";
+        font-size: 1rem;
+        line-height: 0;
+      }
+    }
+  }
+  
+  // override close icon style rules inside a modal template
+  .close {
+    font-size: 2.5rem;
+    font-weight: normal;
+    position: absolute;
+    top: -0.1rem;
+    right: 0.5rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .modal-lg { 
+    max-width: $modal-lg;  
+
+    .modal-dialog {
+      max-width: $modal-lg; 
+    } 
+  }
+}
