@@ -4,10 +4,14 @@ import { Component } from '@angular/core';
 import { TnCommonModule  } from './tn-common.module';
 import { TnApiHttpService } from './tn-api-http';
 import { AuthService } from './auth';
+import { ModelService } from './model';
+import { User } from './user/user.model';
 
-@Component({ template: '' })
+@Component({ template: '', })
 class TnCommonModuleProvidersTestComponent {
-    constructor(public apiHttpService: TnApiHttpService, public authService: AuthService) {}
+    constructor(public apiHttpService: TnApiHttpService,
+                public authService: AuthService,
+                public modelService: ModelService<User>) {}
 }
 
 describe('TnCommonModule', () => {
