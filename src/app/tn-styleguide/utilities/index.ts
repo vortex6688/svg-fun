@@ -1,8 +1,8 @@
-export * from './utilities-borders/utilities-borders.component.ts';
-export * from './utilities-clearfix/utilities-clearfix.component.ts';
-export * from './utilities-close-icon/utilities-close-icon.component.ts';
-export * from './utilities-flexbox/utilities-flexbox.component.ts';
-export * from './utilities-colors/utilities-colors.component.ts';
-export * from './utilities-display-property/utilities-display-property.component.ts';
-export * from './utilities-invisible-content/utilities-invisible-content.component.ts';
-export * from './utilities-image-replacement/utilities-image-replacement.component.ts';
+export { UtilitiesBordersComponent } from './utilities-borders';
+export { UtilitiesClearfixComponent } from './utilities-clearfix';
+export { UtilitiesCloseIconComponent } from './utilities-close-icon';
+export { UtilitiesColorsComponent } from './utilities-colors';
+export { UtilitiesDisplayPropertyComponent } from './utilities-display-property';
+export { UtilitiesFlexboxComponent } from './utilities-flexbox';
+export { UtilitiesImageReplacementComponent } from './utilities-image-replacement';
+export { UtilitiesInvisibleContentComponent } from './utilities-invisible-content';

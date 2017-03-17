@@ -11,15 +11,16 @@ import { StyleguideComponent } from './styleguide.component';
 import { LayoutOverviewComponent,
          LayoutGridComponent,
          LayoutMediaObjectComponent,
-         LayoutResponsiveUtilitiesComponent } from './layout/index.ts';
+         LayoutResponsiveUtilitiesComponent } from './layout';
 import { ContentRebootComponent,
          ContentTypographyComponent,
          ContentCodeComponent,
          ContentImagesComponent,
          ContentTablesComponent,
-         ContentFiguresComponent } from './content/index.ts';
+         ContentFiguresComponent } from './content';
 import { ComponentsAlertsComponent,
-         ComponentsModalComponent } from './components/index.ts';
+         ComponentsCollapseComponent,
+         ComponentsModalComponent } from './components';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
@@ -27,7 +28,7 @@ import { UtilitiesBordersComponent,
          UtilitiesColorsComponent,
          UtilitiesDisplayPropertyComponent,
          UtilitiesInvisibleContentComponent,
-         UtilitiesImageReplacementComponent } from './utilities/index.ts';
+         UtilitiesImageReplacementComponent } from './utilities';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -48,6 +49,7 @@ const ROUTES: Routes = [
       {  path: 'content/figures', component: ContentFiguresComponent },
       {  path: 'components', redirectTo: 'components/alerts', pathMatch: 'full' },
       {  path: 'components/alerts', component: ComponentsAlertsComponent },
+      {  path: 'components/collapse', component: ComponentsCollapseComponent },
       {  path: 'components/modal', component: ComponentsModalComponent },
       {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
       {  path: 'utilities/borders', component: UtilitiesBordersComponent },
@@ -77,6 +79,7 @@ const ROUTES: Routes = [
     ContentTablesComponent,
     ContentFiguresComponent,
     ComponentsAlertsComponent,
+    ComponentsCollapseComponent,
     ComponentsModalComponent,
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent,

@@ -1,1 +1,1 @@
-export * from './components-alerts.component.ts';
+export { ComponentsAlertsComponent } from './components-alerts.component';
