@@ -1,4 +1,6 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 
@@ -8,7 +10,13 @@ describe('AdminOrdersListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminOrdersListComponent ]
+      imports: [
+        FormsModule
+      ],
+      declarations: [
+        AdminOrdersListComponent,
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
   }));

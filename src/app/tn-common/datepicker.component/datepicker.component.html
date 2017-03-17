@@ -1,0 +1,20 @@
+<form>
+  <div class="form-group">
+    <div class="input-group">
+      <input (click)="d.toggle()" class="form-control date" placeholder="mm/dd/yyyy" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+      <span class="input-group-addon">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+            <g (click)="d.toggle()" calendar-icon class="input-img"></g>
+          </svg>
+      </span>
+    </div>
+  </div>
+</form>
+
+<!-- @todo: Use these SVG components (caret-left-icon and caret-right-icon)
+     as the next and previous buttons for the calendar
+-->
+<!--
+<div caret-left-icon></div>
+<div caret-right-icon></div>
+-->
