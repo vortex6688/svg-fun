@@ -9,7 +9,7 @@ This project contains the angular 2 components that make up the Editorial and Ad
 ## Quickstart (Requires Node 6 or better)
 
 1. `npm install`
-1. `npm run start:hmr`
+1. `npm run start`
 1. Open `localhost:3000/`,  `localhost:3000/admin`, `localhost:3000/styleguide`
 
 ## Issue Tracking
@@ -31,7 +31,7 @@ npm run test
 *terminal 1*
 ```
 # serve a build for the end 2 end tests.
-npm run server:dev:hmr
+npm start
 ```
 
 *terminal 2*

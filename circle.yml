@@ -10,7 +10,7 @@ test:
     # needed so we hace a destination to copy tests to.
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
   override:
-    - npm run ci:aot
+    - npm run ci
   post:
     - cp -rp dist/tests/junit/* $CIRCLE_TEST_REPORTS/junit/
 
