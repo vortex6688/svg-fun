@@ -3,9 +3,11 @@ import { HttpModule }          from '@angular/http';
 import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
 import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
+import { Ng2Webstorage }       from 'ng2-webstorage';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { TnNavbarComponent } from './tn-navbar/tn-navbar.component';
+import { AuthService } from './auth';
 import { TnApiHttpService } from './tn-api-http';
 import { DatepickerComponent,
          CalendarIconComponent,
@@ -13,8 +15,9 @@ import { DatepickerComponent,
          CaretRightIconComponent }  from './datepicker.component';
 
 @NgModule({
-  imports:      [ CommonModule, FormsModule, HttpModule, RouterModule, NgbModule ],
-  providers:    [ TnApiHttpService.provider() ],
+  imports:      [ CommonModule, FormsModule, HttpModule,
+                  RouterModule, NgbModule, Ng2Webstorage ],
+  providers:    [ AuthService, TnApiHttpService.provider() ],
   declarations: [ DatepickerComponent,
                   CalendarIconComponent,
                   CaretLeftIconComponent,

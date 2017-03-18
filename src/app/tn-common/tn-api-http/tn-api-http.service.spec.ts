@@ -5,11 +5,10 @@ import {
   Response,
   ResponseOptions
 } from '@angular/http';
-import { TestBed, async, inject } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
 import { TnApiHttpService } from './tn-api-http.service';
 
-describe('TnApiClientService', () => {
+describe('TnApiHttpService', () => {
   let apiClient: TnApiHttpService;
   let mockBackend: MockBackend;
 
