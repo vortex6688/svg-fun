@@ -40,7 +40,7 @@ module.exports = function (config) {
      * By default all assets are served at http://localhost:[PORT]/base/
      */
     proxies: {
-      "/assets/": "/base/src/assets/"
+      '/assets/': '/base/src/assets/'
     },
 
     /*
@@ -58,8 +58,9 @@ module.exports = function (config) {
 
     remapCoverageReporter: {
       'text-summary': null,
-      json: './coverage/coverage.json',
-      html: './coverage/html'
+      'lcovonly': './coverage/lcov.info',
+      // json: './coverage/coverage.json',
+      // html: './coverage/html',
     },
 
     // the default configuration
@@ -77,7 +78,7 @@ module.exports = function (config) {
       noInfo: true,
       // and use stats to turn off verbose output
       stats: {
-        // options i.e. 
+        // options i.e.
         chunks: false
       }
     },

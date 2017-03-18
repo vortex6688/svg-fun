@@ -1,5 +1,8 @@
 # TN NG2 Project
 
+[![CircleCI](https://circleci.com/gh/TypeNetwork/tn-admin-editorial.svg?style=shield&circle-token=7d7eaf4f2e884ef841038b1b0767c2ebec293d72)](https://circleci.com/gh/TypeNetwork/tn-admin-editorial)
+[![codecov](https://codecov.io/gh/TypeNetwork/tn-admin-editorial/branch/master/graph/badge.svg?token=E3dSKH8Vpt)](https://codecov.io/gh/TypeNetwork/tn-admin-editorial)
+
 This project contains the angular 2 components that make up the Editorial and Admin interfaces for TypeNetwork.
 
 ## Prerequisites

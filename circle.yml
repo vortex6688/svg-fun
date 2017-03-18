@@ -13,6 +13,7 @@ test:
     - npm run ci
   post:
     - cp -rp dist/tests/junit/* $CIRCLE_TEST_REPORTS/junit/
+    - npm run codecov
 
 deployment:
   development:
