@@ -4,7 +4,7 @@ export class Authorization extends User {
   public token: string;
 }
 
-export const ANONYMOUS_AUTHORIZATION = {
+export const ANONYMOUS_AUTHORIZATION: Authorization = {
   id: 0,
   email: 'anonymous@user.com',
   username: 'anonymous@user.com',

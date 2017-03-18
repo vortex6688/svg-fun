@@ -80,6 +80,13 @@ describe('AuthService', () => {
       connection.mockError(mockResponseError);
     });
 
+    let observer = jasmine.createSpy('observer');
+    authService.user$.subscribe(observer);
+
+    apiClient.errors$.subscribe((error) => {
+       expect(error).toBe(mockResponseError);
+    });
+
     authService.login(credentials).subscribe(
       null,
       (error) => {
@@ -88,20 +95,23 @@ describe('AuthService', () => {
           .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
         expect(authService.user$.getValue()).toEqual(ANONYMOUS_AUTHORIZATION,
           'Subject user$ does not contain the Anonymous User');
+        expect(observer).toHaveBeenCalledTimes(1);
+        expect(observer.calls.argsFor(0)).toContain(ANONYMOUS_AUTHORIZATION,
+          'user$ should call subscribers with an initial value.');
       },
       null
     );
 
-    apiClient.errors$.subscribe((error) => {
-       expect(error).toBe(mockResponseError);
-    });
   });
 
-  it('should return the user on login', () => {
+  it('should login users with proper credentials', () => {
     let credentials = { username: 'jane@doe.com', password: 'password' };
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
+
+    let observer = jasmine.createSpy('observer');
+    authService.user$.subscribe(observer);
 
     authService.login(credentials).subscribe((result) => {
       expect(result).toEqual(successBody, 'Response does not match');
@@ -109,29 +119,60 @@ describe('AuthService', () => {
         .toEqual(successBody, 'User data not saved in storage');
       expect(authService.user$.getValue()).toEqual(successBody,
         'Subject user$ does not contain the User');
+      expect(observer).toHaveBeenCalledTimes(2);
+      expect(observer.calls.argsFor(0)).toContain(ANONYMOUS_AUTHORIZATION,
+          'user$ should call subscribers with an initial value.');
+      expect(observer.calls.argsFor(1)).toContain(successBody,
+          'user$ should call subscribers on successful login.');
     });
   });
 
-  it('should delete the user data from the storage on logout', () => {
+  it('should logout users', () => {
     mockBackend.connections.subscribe((connection) => {
-      connection.mockRespond(mockResponseLogout);
+      if (connection.request.url === '/auth/login/') {
+        connection.mockRespond(mockResponse);
+      } else {
+        connection.mockRespond(mockResponseLogout);
+      }
     });
 
-    authService.logout().subscribe((result) => {
-      expect(result).toEqual(ANONYMOUS_AUTHORIZATION, 'Response does not match');
-      expect(storage.retrieve('AuthService.user'))
-        .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
-      expect(authService.user$.getValue()).toEqual(ANONYMOUS_AUTHORIZATION,
-        'Subject user$ does not contain the Anonymous User');
+    let observer = jasmine.createSpy('observer');
+    authService.user$.subscribe(observer);
+
+    let credentials = { username: 'jane@doe.com', password: 'password' };
+    authService.login(credentials).subscribe(() => {
+      // verify we're starting with a logged in user.
+      expect(authService.user$.getValue()).toEqual(successBody,
+          'Subject user$ does not contain an Authenticated user');
+      expect(observer).toHaveBeenCalledTimes(2);
+      expect(observer.calls.argsFor(1)).toContain(successBody,
+          'user$ does show login event');
+      // now logout
+      authService.logout().subscribe((result) => {
+        expect(result).toEqual(ANONYMOUS_AUTHORIZATION, 'Response does not match');
+        expect(storage.retrieve('AuthService.user'))
+          .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
+        expect(authService.user$.getValue()).toEqual(ANONYMOUS_AUTHORIZATION,
+          'Subject user$ does not contain the Anonymous User');
+        expect(observer).toHaveBeenCalledTimes(3);
+        expect(observer.calls.argsFor(2)).toContain(ANONYMOUS_AUTHORIZATION,
+          'user$ does not show logout event');
+      });
     });
+
   });
 
-  it('should return the user on register', () => {
+  it('should register new users', () => {
     let credentials = { email: 'jane@doe.com', username: 'jane@doe.com',
       password: 'password' };
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
+
+    let observer = jasmine.createSpy('observer');
+    authService.user$.subscribe(observer);
+    expect(observer).toHaveBeenCalledTimes(1);
+    expect(observer.calls.argsFor(0)).toContain(ANONYMOUS_AUTHORIZATION);
 
     authService.register(credentials).subscribe((result) => {
       expect(result).toEqual(successBody, 'Response does not match');
@@ -139,6 +180,9 @@ describe('AuthService', () => {
         .toEqual(successBody, 'User data not saved in storage');
       expect(authService.user$.getValue()).toEqual(successBody,
         'Subject user$ does not contain the User');
+      expect(observer).toHaveBeenCalledTimes(2);
+      expect(observer.calls.argsFor(1)).toContain(successBody,
+          'user$ does show login event');
     });
   });
 
