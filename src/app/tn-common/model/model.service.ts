@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, OpaqueToken } from '@angular/core';
 import { RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { TnApiHttpService } from '../tn-api-http';
 
-export interface IModel {
+interface IModel {
   id?: number | string;
 }
+
+export let MODEL_URL = new OpaqueToken('myToken');
 
 /**
  * Model Service.
@@ -19,20 +21,12 @@ export interface IModel {
 export class ModelService<T extends IModel> {
 
   /**
-   * Url of a particular model, every child should override this accordingly.
-   *
-   * @protected
-   * @type {string}
-   */
-  private modelUrl: string = '';
-
-  /**
    * Creates an instance of the ModelService
    *
    * @param {string} modelUrl
    * @param {TnApiHttpService} apiHttp
    */
-  constructor(private apiHttp: TnApiHttpService) {
+  constructor(@Inject(MODEL_URL) private modelUrl: string, private apiHttp: TnApiHttpService) {
   }
 
   /**
@@ -64,7 +58,7 @@ export class ModelService<T extends IModel> {
    */
   public save(model: T): Observable<T> {
     let options = new RequestOptions({body: model});
-    if (this.alreadyExists(model)) {
+    if (model.id) {
       return this.apiHttp.put(this.modelUrl + model.id, options);
     } else {
       return this.apiHttp.post(this.modelUrl, options);
@@ -79,24 +73,6 @@ export class ModelService<T extends IModel> {
    */
   public delete(model: T): Observable<T> {
     return this.apiHttp.delete(this.modelUrl + model.id);
-  }
-
-  /**
-   * Helper function that determines if the passed module already exists
-   *
-   * @param {T} model
-   * @returns {boolean}
-   */
-  private alreadyExists(model: T): boolean {
-    let alreadyExists = false;
-    if (model.id) {
-      this.get(model.id).subscribe((result) => {
-        if (result.id === model.id) {
-          alreadyExists = true;
-        }
-      });
-    }
-    return alreadyExists;
   }
 
 }
