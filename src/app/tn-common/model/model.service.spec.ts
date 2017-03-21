@@ -12,6 +12,19 @@ import { ModelService } from './model.service';
 class TestType {
   public id?: number | string;
   public token?: string;
+  public password?: string;
+  public firstName?: string;
+  public lastName?: string;
+  public address1?: string;
+  public address2?: string;
+  public state?: string;
+  public city?: string;
+  public zipcode?: string;
+  public country?: string;
+  public company?: string;
+  public website?: string;
+  public phone?: string;
+  public vat?: string;
 }
 
 describe('ModelService', () => {
@@ -21,10 +34,27 @@ describe('ModelService', () => {
 
   const modelUrl = '/model_url/';
   const query = { id: 10 };
-  const element: TestType = { id: '10', token: 'token' };
+  const element: TestType = { id: '10', token: 'token', city: 'NY' };
   const successBody: TestType = element;
   const successBodyList: [TestType] = [successBody, successBody];
-  const errorBody = { message: 'An error occured' };
+  const errorBody = {
+    status: 'Bad request',
+    message: 'User could not be created with received data.',
+    errors: [
+    {
+      field: 'username',
+      message: 'This field may not be blank.'
+    },
+    {
+      field: 'password',
+      message: 'This field may not be blank.'
+    },
+    {
+      field: 'email',
+      message: 'This field may not be blank.'
+    }
+    ]
+  };
 
   const mockResponse = new Response(new ResponseOptions({
     body: JSON.stringify(successBody),
@@ -71,13 +101,15 @@ describe('ModelService', () => {
     expect(apiClient.get).toHaveBeenCalledWith(modelUrl + '10');
   });
 
-  it('should return an Observable<T> on get in case of error', () => {
+  it('should rethrow the error on get in case of error', () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponseError);
     });
 
-    modelService.get('10').subscribe((result) => {
-      expect(result).toEqual(errorBody, 'Error response does not match');
+    modelService.get('10').subscribe(
+      null,
+      (error) => {
+        expect(error).toBe(mockResponseError, 'Error response does not match');
     });
   });
 
@@ -99,22 +131,23 @@ describe('ModelService', () => {
 
   });
 
-  it('should return an Observable<T> on find in case of error', () => {
+  it('should rethrow the error on find in case of error', () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponseError);
     });
 
-    modelService.find(query).subscribe((result) => {
-      expect(result).toEqual(errorBody, 'Error response does not match');
+    modelService.find(query).subscribe(
+      null,
+      (error) => {
+        expect(error).toBe(mockResponseError, 'Error response does not match');
     });
   });
 
   /*
    * save()
    */
-  it(`should return the element being saved in case of success and call the
-      underlying post method from TnApiHttpService on save
-      when the element does not have an id`, () => {
+  it(`should return the element being saved in case of success and call TnApiHttpService's
+      post method on save when the element does not have an id`, () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
@@ -127,9 +160,8 @@ describe('ModelService', () => {
                                                 new RequestOptions({body: newElement}));
   });
 
-  it(`should return the element being saved in case of success and call the
-      underlying put method from TnApiHttpService on save
-      when the element has an id`, () => {
+  it(`should return the element being saved in case of success and call TnApiHttpService's
+      put method on save when the element has an id`, () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
@@ -142,13 +174,15 @@ describe('ModelService', () => {
                                                new RequestOptions({body: element}));
   });
 
-  it('should return an Observable<T> on find in case of error', () => {
+  it('should rethrow the error on save in case of error', () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponseError);
     });
 
-    modelService.save(element).subscribe((result) => {
-      expect(result).toEqual(errorBody, 'Error response does not match');
+    modelService.save(element).subscribe(
+      null,
+      (error) => {
+        expect(error).toBe(mockResponseError, 'Error response does not match');
     });
   });
 
@@ -168,13 +202,15 @@ describe('ModelService', () => {
     expect(apiClient.delete).toHaveBeenCalledWith(modelUrl + element.id);
   });
 
-  it('should return an Observable<T> on delete in case of error', () => {
+  it('should rethrow the error on delete in case of error', () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponseError);
     });
 
-    modelService.delete(element).subscribe((result) => {
-      expect(result).toEqual(errorBody, 'Error response does not match');
+    modelService.delete(element).subscribe(
+      null,
+      (error) => {
+        expect(error).toBe(mockResponseError, 'Error response does not match');
     });
   });
 

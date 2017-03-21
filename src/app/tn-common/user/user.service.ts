@@ -21,7 +21,7 @@ export class UserService extends ModelService<User> {
    * @param {TnApiHttpService} apiHttp
    */
   constructor(apiHttp: TnApiHttpService) {
-    super('/user/', apiHttp);
+    super('/users/', apiHttp);
   }
 
 }
