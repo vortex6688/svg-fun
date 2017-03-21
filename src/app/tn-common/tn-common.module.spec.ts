@@ -5,7 +5,7 @@ import { TnCommonModule } from './tn-common.module';
 import { TnApiHttpService } from './tn-api-http';
 import { AuthService } from './auth';
 import { ModelService, MODEL_URL } from './model';
-import { User } from './user/user.model';
+import { User, UserService } from './user';
 
 @Component({ template: '', })
 //             providers: [{ provide: MODEL_URL, useValue: 'someValue', deps: OpaqueToken }]
@@ -13,6 +13,7 @@ import { User } from './user/user.model';
 class TnCommonModuleProvidersTestComponent {
     constructor(public apiHttpService: TnApiHttpService,
                 public authService: AuthService,
+                public userService: UserService,
                 /* public modelService: ModelService<User> */) {}
 }
 

@@ -52,7 +52,7 @@ describe('ModelService', () => {
   });
 
   it('should create', () => {
-    expect(apiClient).toBeTruthy();
+    expect(modelService).toBeTruthy();
   });
 
   /*
