@@ -11,6 +11,7 @@ import { ModelService } from './model';
 import { UserService } from './user';
 import { AuthService } from './auth';
 import { TnApiHttpService } from './tn-api-http';
+import { OrderService } from './orders';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
@@ -21,6 +22,7 @@ import { DatepickerComponent,
                   RouterModule, NgbModule, Ng2Webstorage ],
   providers:    [ UserService,
                   AuthService,
+                  OrderService,
                   TnApiHttpService.provider() ],
   declarations: [ DatepickerComponent,
                   CalendarIconComponent,

@@ -1,3 +1,4 @@
+import { ActionCreatorFactory } from 'ngrx-action-creator-factory';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule, ApplicationRef } from '@angular/core';
@@ -30,7 +31,7 @@ const ROUTES: Routes = [];
     TnStyleguideModule
 
   ],
-  providers: [],
+  providers: [ActionCreatorFactory],
   bootstrap: [AppComponent]
 })
 export class AppModule {
