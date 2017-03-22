@@ -12,36 +12,25 @@
   <form novalidate>
     <div class="form-group">
       <label for="username">Email</label>
-      <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username">
-        <!-- TO DO: Validation
-        <p class="error">
+      <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username" #username="ngModel">
+        <p class="error" *ngIf="username.errors && (username.dirty || username.touched)">
           <small>
             Your email is required.
           </small>
-          <small>
-            Email is invalid.
-          </small>
         </p>
-      -->
       <label for="password">Password</label>
-      <input class="form-control" type="password" name="password" required minlength="8" [(ngModel)]="credentials.password">
-        <!-- TO DO: Validation
-        <p class="error">
+      <input class="form-control" type="password" name="password" required [(ngModel)]="credentials.password" #password="ngModel">
+        <p class="error" *ngIf="password.errors && (password.dirty || password.touched)">
           <small>
             Password is required.
           </small>
-          <small>
-            Password must be at least 8 characters.
-          </small>
         </p>
-      -->
     </div>
     <div class="popover_button_group">
-      <!-- TO DO: Validation <button class="btn btn-success" [disabled]="!loginForm.valid"> -->
       <a class="btn btn-success" (click)="logIn(credentials)">
         Sign in
       </a>
-      {{errorMessage}}
+      <p class="error">{{ errorMessage }}</p>
     </div>
   </form>
 </div>

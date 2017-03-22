@@ -5,6 +5,7 @@ import { Credentials, RegistrationCredentials } from './credentials';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
 import { LocalStorageService, LocalStorage } from 'ng2-webstorage';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { environment } from '../../../environments/environment';
 
 /**
  * TypeNetwork Authentication Service.
@@ -37,7 +38,7 @@ export class AuthService {
   constructor(private httpService: TnApiHttpService, private storage: LocalStorageService) {
     this.user$ = new BehaviorSubject<Authorization>(this.user);
     this.storage.observe('AuthService.user').subscribe(this.user$);
-    this.httpService.setBaseUrl('http://localhost:8001');
+    this.httpService.setBaseUrl(environment.djangoBaseUrl);
   };
 
   /**
