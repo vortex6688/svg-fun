@@ -21,8 +21,18 @@
     padding: 1.5rem 0 0.5rem 0;
     justify-content: center;
   }
+  
+  // override close icon style rules inside a modal template
+  .close {
+    font-size: 2.5rem;
+    font-weight: normal;
+    position: absolute;
+    top: -0.1rem;
+    right: 0.5rem;
+  }
+}
 
-  .btn {
+.btn {
     // update button defaults to match TN editorial mockups
     min-width: 10rem;
 
@@ -58,16 +68,6 @@
       }
     }
   }
-  
-  // override close icon style rules inside a modal template
-  .close {
-    font-size: 2.5rem;
-    font-weight: normal;
-    position: absolute;
-    top: -0.1rem;
-    right: 0.5rem;
-  }
-}
 
 @include media-breakpoint-up(md) {
   .modal-lg { 
