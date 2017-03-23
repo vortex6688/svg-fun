@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/add/operator/filter';
 
+import { AuthService } from '../../tn-common/auth';
 import { LoginComponent } from '../login';
 
 @Component({
@@ -16,7 +17,9 @@ export class AdminNavbarComponent implements OnInit {
    public isLayout: Boolean = false;
    public isNavbarCollapsed: Boolean = true;
 
-   constructor(private router: Router, private modalService: NgbModal) {}
+   constructor(private router: Router,
+               private modalService: NgbModal,
+               private authService: AuthService) {}
 
    public ngOnInit() {
      // track current url so menu can open and close as needed.
@@ -29,7 +32,10 @@ export class AdminNavbarComponent implements OnInit {
    }
 
   public openLoginModal() {
-    this.modalService.open(LoginComponent);
+    let user = this.authService.user$.getValue();
+    if (user.username === 'anonymous@user.com') {
+      this.modalService.open(LoginComponent);
+    }
   }
 
 }

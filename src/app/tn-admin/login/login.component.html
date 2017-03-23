@@ -27,7 +27,10 @@
         </p>
     </div>
     <div class="popover_button_group">
-      <a class="btn btn-success" (click)="logIn(credentials)">
+      <a class="btn btn-success" *ngIf="!username.errors && !password.errors" (click)="logIn(credentials)">
+        Sign in
+      </a>
+      <a class="btn btn-success disabled" *ngIf="username.errors || password.errors">
         Sign in
       </a>
       <p class="error">{{ errorMessage }}</p>

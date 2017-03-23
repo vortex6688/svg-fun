@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { ConnectionBackend } from '@angular/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { TnApiHttpService } from '../../tn-common/tn-api-http';
 import { AuthService, Credentials } from '../../tn-common/auth';
 import { User } from '../../tn-common/user/user.model';
 
