@@ -1,7 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +13,8 @@ describe('ComponentsPaginationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ NgbModule.forRoot(), RouterTestingModule.withRoutes([]) ],
-      declarations: [ ComponentsPaginationComponent ]
+      declarations: [ ComponentsPaginationComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

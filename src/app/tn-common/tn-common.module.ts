@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpModule }          from '@angular/http';
 import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
@@ -15,21 +15,30 @@ import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
          CaretRightIconComponent }  from './datepicker.component';
+import { TnPaginationComponent } from './tn-pagination/tn-pagination.component';
+import { TnPaginationConfig } from './tn-pagination/pagination-config';
 
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
                   RouterModule, NgbModule, Ng2Webstorage ],
-  providers:    [ UserService,
-                  AuthService,
+  providers:    [ AuthService,
+                  TnApiHttpService.provider(),
                   OrderService,
-                  TnApiHttpService.provider() ],
+                  TnPaginationConfig,
+                  UserService ],
   declarations: [ DatepickerComponent,
                   CalendarIconComponent,
                   CaretLeftIconComponent,
                   CaretRightIconComponent,
-                  TnNavbarComponent ],
+                  TnNavbarComponent,
+                  TnPaginationComponent
+                ],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
-  exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent ]
+  exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent, TnPaginationComponent ]
 
 })
-export class TnCommonModule { }
+export class TnCommonModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: TnCommonModule, providers: [TnPaginationConfig]};
+  }
+}

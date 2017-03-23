@@ -4,22 +4,27 @@
 .page-item {
 
   .page-link {
-    // reduce line height to even out height and width of the pagination elements
-    line-height: 1.1;
+    padding: 0.05rem 0.2rem;
   }
 
   &:first-child {
     .page-link {
       margin-right: 1px;
       border: 1px solid $gray-lightest;
-      border-radius: 0.15rem;
+      border-radius: 0.1rem;
+      font-size: $font-size-base;
+      line-height: 0;
+      padding: 0.5rem 0.3rem;
     }
   }
   &:last-child {
     .page-link {
       margin-left: 1px;
       border: 1px solid $gray-lightest;
-      border-radius: 0.15rem;
+      border-radius: 0.1rem;
+      font-size: $font-size-base;
+      line-height: 0;
+      padding: 0.5rem 0.3rem;
     }
   }
 }

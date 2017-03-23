@@ -1,0 +1,20 @@
+import { TnPaginationConfig } from './pagination-config';
+
+describe('tn-pagination-config', () => {
+  it('should have sensible default values', () => {
+    const config = new TnPaginationConfig();
+
+    expect(config.disabled).toBe(false);
+    expect(config.boundaryLinks).toBe(false);
+    expect(config.boundaryLinksFirst).toBe('««');
+    expect(config.boundaryLinksLast).toBe('»»');
+    expect(config.directionLinks).toBe(true);
+    expect(config.directionLinksPrevious).toBe('«');
+    expect(config.directionLinksNext).toBe('»');
+    expect(config.ellipses).toBe(true);
+    expect(config.maxSize).toBe(0);
+    expect(config.pageSize).toBe(10);
+    expect(config.rotate).toBe(false);
+    expect(config.size).toBeUndefined();
+  });
+});
