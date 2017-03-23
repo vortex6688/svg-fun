@@ -4,13 +4,14 @@ import { Component, OpaqueToken } from '@angular/core';
 import { TnCommonModule } from './tn-common.module';
 import { TnApiHttpService } from './tn-api-http';
 import { AuthService } from './auth';
-import { ModelService } from './model';
+import { OrderService } from './orders';
 import { User, UserService } from './user';
 
 @Component({ template: '', })
 class TnCommonModuleProvidersTestComponent {
     constructor(public apiHttpService: TnApiHttpService,
                 public authService: AuthService,
+                public orderService: OrderService,
                 public userService: UserService) {}
 }
 

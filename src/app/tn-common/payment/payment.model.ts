@@ -1,6 +1,7 @@
 /* tslint:disable:variable-name */
 
 export class Payments {
+  public id?: number;
   public order: number;
   public amount: number;
   public provider: number;

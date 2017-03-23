@@ -13,6 +13,9 @@ import {
   getSelected,
   getAll,
   getPaymentType,
+  getOrderById,
+  getOrderByCustomerId,
+  getOrderByStatus,
  } from './order.selectors';
 
 let OrderMock = {
@@ -45,7 +48,7 @@ let OrderMock = {
   status: 1
 };
 
-describe('The Player Search reducer', () => {
+describe('OrderReducer', () => {
   const mockedState = (results = []): OrderState => (initialOrderState);
 
   const orderActions = new OrderActions();
@@ -145,6 +148,31 @@ describe('The Player Search reducer', () => {
         providerData.message ? providerData.message :
         'Unknown';
       expect(paymentType).toEqual(expectedPayment);
+    });
+
+    it('getOrderById should return an especific Order with the id provided', () => {
+      let selectedOrder = getOrderById(addedState, OrderMock.id);
+      expect(selectedOrder).toEqual(OrderMock);
+    });
+
+    it('getOrderByCustomerId should return all the Orders of one customer that has', () => {
+      let selectedOrder = getOrderByCustomerId(addedState, OrderMock.user);
+      expect(selectedOrder).toEqual([OrderMock]);
+    });
+
+    it('getOrderByCustomerId should return all the Orders of one customer without order', () => {
+      let selectedOrder = getOrderByCustomerId(addedState, 99);
+      expect(selectedOrder).toEqual([]);
+    });
+
+    it('getOrderByStatus should return all the Orders with one of the status provided', () => {
+      let selectedOrder = getOrderByStatus(addedState, [OrderMock.status]);
+      expect(selectedOrder).toEqual([OrderMock]);
+    });
+
+    it('getOrderByStatus should return all the existent Orders with the status provided', () => {
+      let selectedOrder = getOrderByStatus(addedState, [0]);
+      expect(selectedOrder).toEqual([]);
     });
   });
 });
