@@ -7,14 +7,18 @@ describe('Admin', () => {
   });
 
   it('should have a title', () => {
-    let subject = browser.getTitle();
-    let result  = 'Type Network';
-    expect(subject).toEqual(result);
+    let request = browser.getTitle();
+    return request.then((subject) => {
+      let result  = 'Type Network';
+      expect(subject).toEqual(result);
+    });
   });
 
   it('should have <admin>', () => {
-    let subject = element(by.css('admin')).isPresent();
-    let result  = true;
-    expect(subject).toEqual(result);
+    let request = element(by.css('admin')).isPresent();
+    request.then((subject) => {
+      let result  = true;
+      expect(subject).toEqual(result);
+    });
   });
 });
