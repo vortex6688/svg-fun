@@ -1,13 +1,17 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, async, inject } from '@angular/core/testing';
-import { Component } from '@angular/core';
-import { TnCommonModule  } from './tn-common.module';
+import { Component, OpaqueToken } from '@angular/core';
+import { TnCommonModule } from './tn-common.module';
 import { TnApiHttpService } from './tn-api-http';
 import { AuthService } from './auth';
+import { ModelService } from './model';
+import { User, UserService } from './user';
 
-@Component({ template: '' })
+@Component({ template: '', })
 class TnCommonModuleProvidersTestComponent {
-    constructor(public apiHttpService: TnApiHttpService, public authService: AuthService) {}
+    constructor(public apiHttpService: TnApiHttpService,
+                public authService: AuthService,
+                public userService: UserService) {}
 }
 
 describe('TnCommonModule', () => {

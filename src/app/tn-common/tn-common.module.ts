@@ -7,6 +7,8 @@ import { Ng2Webstorage }       from 'ng2-webstorage';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { TnNavbarComponent } from './tn-navbar/tn-navbar.component';
+import { ModelService } from './model';
+import { UserService } from './user';
 import { AuthService } from './auth';
 import { TnApiHttpService } from './tn-api-http';
 import { DatepickerComponent,
@@ -17,7 +19,9 @@ import { DatepickerComponent,
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
                   RouterModule, NgbModule, Ng2Webstorage ],
-  providers:    [ AuthService, TnApiHttpService.provider() ],
+  providers:    [ UserService,
+                  AuthService,
+                  TnApiHttpService.provider() ],
   declarations: [ DatepickerComponent,
                   CalendarIconComponent,
                   CaretLeftIconComponent,
