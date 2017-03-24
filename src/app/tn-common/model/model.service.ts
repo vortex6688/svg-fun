@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { TnApiHttpService } from '../tn-api-http';
 
 interface IModel {
-  id?: number | string;
+  id?: number;
 }
 
 /**

@@ -10,7 +10,7 @@ import { TnApiHttpService } from '../tn-api-http/';
 import { ModelService } from './model.service';
 
 class TestType {
-  public id?: number | string;
+  public id?: number;
   public token?: string;
   public password?: string;
   public firstName?: string;
@@ -34,7 +34,7 @@ describe('ModelService', () => {
 
   const modelUrl = '/model_url/';
   const query = { id: 10 };
-  const element: TestType = { id: '10', token: 'token', city: 'NY' };
+  const element: TestType = { id: 10, token: 'token', city: 'NY' };
   const successBody: TestType = element;
   const successBodyList: [TestType] = [successBody, successBody];
   const errorBody = {
