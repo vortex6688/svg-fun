@@ -1,1 +1,1 @@
-export { ModelService, MODEL_URL } from './model.service';
+export { ModelService } from './model.service';

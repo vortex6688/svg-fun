@@ -7,8 +7,6 @@ interface IModel {
   id?: number | string;
 }
 
-export let MODEL_URL = new OpaqueToken('myToken');
-
 /**
  * Model Service.
  *
@@ -26,7 +24,7 @@ export class ModelService<T extends IModel> {
    * @param {string} modelUrl
    * @param {TnApiHttpService} apiHttp
    */
-  constructor(@Inject(MODEL_URL) private modelUrl: string, private apiHttp: TnApiHttpService) {
+  constructor(private modelUrl: string, private apiHttp: TnApiHttpService) {
   }
 
   /**

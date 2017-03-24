@@ -4,17 +4,14 @@ import { Component, OpaqueToken } from '@angular/core';
 import { TnCommonModule } from './tn-common.module';
 import { TnApiHttpService } from './tn-api-http';
 import { AuthService } from './auth';
-import { ModelService, MODEL_URL } from './model';
+import { ModelService } from './model';
 import { User, UserService } from './user';
 
 @Component({ template: '', })
-//             providers: [{ provide: MODEL_URL, useValue: 'someValue', deps: OpaqueToken }]
-// })
 class TnCommonModuleProvidersTestComponent {
     constructor(public apiHttpService: TnApiHttpService,
                 public authService: AuthService,
-                public userService: UserService,
-                /* public modelService: ModelService<User> */) {}
+                public userService: UserService) {}
 }
 
 describe('TnCommonModule', () => {
