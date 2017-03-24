@@ -8,8 +8,8 @@ describe('Editorial:Home', () => {
   });
 
   it('should have a title', () => {
-    let subject = browser.getTitle();
-    let result  = 'Type Network';
-    expect(subject).toEqual(result);
+    return browser.getTitle().then((subject) => {
+      expect(subject).toEqual('Type Network');
+    });
   });
 });

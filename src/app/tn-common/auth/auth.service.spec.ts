@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 import { MockBackend } from '@angular/http/testing';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
 import { LocalStorageService } from 'ng2-webstorage';
-import { ANONYMOUS_AUTHORIZATION } from './auth.model';
+import { ANONYMOUS_AUTHORIZATION, Authorization } from './auth.model';
 
 describe('AuthService', () => {
   let mockBackend: MockBackend;
@@ -17,7 +17,7 @@ describe('AuthService', () => {
   let apiClient: TnApiHttpService;
   let storage: LocalStorageService;
 
-  const successBody = {
+  const successBody: Authorization = {
     id: 10,
     username: 'jane@doe.com',
     email: 'jane@doe.com',
@@ -29,8 +29,8 @@ describe('AuthService', () => {
     is_staff: false,
     can_invoice: true,
     tax_exempt: true,
-    created_at: '2017-02-16',
-    updated_at: '2017-02-16',
+    created_at: Date.now(),
+    updated_at: Date.now(),
     token: 'token',
   };
 
