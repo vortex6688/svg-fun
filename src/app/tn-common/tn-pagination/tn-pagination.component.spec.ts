@@ -73,61 +73,6 @@ describe('TnPaginationComponent', () => {
       expectSameValues(pagination, defaultConfig);
     });
 
-    it('should calculate and update no of pages (default page size)', () => {
-      pagination.collectionSize = 100;
-      pagination.ngOnChanges(null);
-      expect(pagination.pages.length).toEqual(10);
-
-      pagination.collectionSize = 200;
-      pagination.ngOnChanges(null);
-      expect(pagination.pages.length).toEqual(20);
-    });
-
-    it('should calculate and update no of pages (custom page size)', () => {
-      pagination.collectionSize = 100;
-      pagination.pageSize = 20;
-      pagination.ngOnChanges(null);
-      expect(pagination.pages.length).toEqual(5);
-
-      pagination.collectionSize = 200;
-      pagination.ngOnChanges(null);
-      expect(pagination.pages.length).toEqual(10);
-
-      pagination.pageSize = 10;
-      pagination.ngOnChanges(null);
-      expect(pagination.pages.length).toEqual(20);
-    });
-
-    it('should allow setting a page within a valid range (default page size)', () => {
-      pagination.collectionSize = 100;
-      pagination.page = 2;
-      pagination.ngOnChanges(null);
-      expect(pagination.page).toEqual(2);
-    });
-
-    it('should auto-correct page no if outside of valid range (default page size)', () => {
-      pagination.collectionSize = 100;
-      pagination.page = 100;
-      pagination.ngOnChanges(null);
-      expect(pagination.page).toEqual(10);
-
-      pagination.page = -100;
-      pagination.ngOnChanges(null);
-      expect(pagination.page).toEqual(1);
-
-      pagination.page = 5;
-      pagination.collectionSize = 10;
-      pagination.ngOnChanges(null);
-      expect(pagination.page).toEqual(1);
-    });
-
-    it('should allow setting a page within a valid range (custom page size)', () => {
-      pagination.collectionSize = 100;
-      pagination.pageSize = 20;
-      pagination.page = 2;
-      pagination.ngOnChanges(null);
-      expect(pagination.page).toEqual(2);
-    });
   });
 });
 
@@ -135,11 +80,8 @@ describe('Custom config as provider', () => {
   let config = new TnPaginationConfig();
   config.disabled = true;
   config.boundaryLinks = true;
-  config.boundaryLinksFirst = 'first';
-  config.boundaryLinksLast = 'last';
   config.directionLinks = false;
-  config.directionLinksPrevious = 'previous';
-  config.directionLinksNext = 'next';
+
   config.ellipses = false;
   config.maxSize = 42;
   config.pageSize = 7;
