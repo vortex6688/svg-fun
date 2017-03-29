@@ -627,7 +627,7 @@ $pagination-active-color:              $gray-lighter;
 $pagination-active-bg:                 #fff;
 $pagination-active-border:             #fff;
 
-$pagination-disabled-color:            $gray-lighter;
+$pagination-disabled-color:            rgba($gray-lighter,.5);
 $pagination-disabled-bg:               $white;
 $pagination-disabled-border:           #fff;
 
