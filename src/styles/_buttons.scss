@@ -1,5 +1,85 @@
 @import "~bootstrap/scss/buttons";
 
 .btn {
+  // update button defaults to match TN editorial mockups
+  min-width: 10rem;
   font-size: $font-size-sm;
+  margin: 0.25rem 0;
+
+  &.close-icon {
+    &:before {
+      content: "\00d7";
+      font-size: 1.6rem;
+      line-height: 0;
+      bottom: -0.225rem;
+      position: relative;
+    }
+  }
+
+  &.check-icon {
+    &:before {
+      content:"";
+      height: 0.4rem;
+      width: 0.7rem;
+      border-left: 2px solid;
+      border-bottom: 2px solid;
+      display: inline-block;
+      transform: rotate(-45deg);
+      position: relative;
+      bottom: 0.225rem;
+    }
+  }
+
+  &.create-icon {
+    &:before {
+      content: "+";
+      font-size: 1rem;
+      line-height: 0;
+    }
+  }
+
+  &.revert-icon-white,
+  &.revert-icon-gray:hover {
+    &:before {
+      content: url('../assets/img/button-revert-icon-white.svg');
+      width: 0.85rem;
+      position: absolute;
+      margin-left: -1.1rem;
+      margin-top: 0.1rem;
+    }
+  }
+
+// alternative option in case .btn-outline-... used, to make icon visible on the white background
+
+  &.revert-icon-gray {
+    &:before {
+      content: url('../assets/img/button-revert-icon-gray.svg');
+      width: 0.85rem;
+      position: absolute;
+      margin-left: -1.1rem;
+      margin-top: 0.1rem;
+    }
+  }
+
+  &.delete-icon-white,
+  &.delete-icon-red:hover {
+    &:before {
+      content: url('../assets/img/button-delete-icon-white.svg');
+      width: 0.85rem;
+      position: absolute;
+      margin-left: -1.1rem;
+      margin-top: 0.04rem;
+    }
+  }
+
+// alternative option in case .btn-outline-... used, to make icon visible on the white background
+  &.delete-icon-red {
+    &:before {
+      content: url('../assets/img/button-delete-icon-red.svg');
+      width: 0.85rem;
+      position: absolute;
+      margin-left: -1.1rem;
+      margin-top: 0.04rem;
+    }
+  }
 }

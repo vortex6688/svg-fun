@@ -89,7 +89,7 @@ const ROUTES: Routes = [
     ComponentsFormsComponent,
     ComponentsModalComponent,
     ComponentsPaginationComponent,
-    ComponentsButtonsComponent,    
+    ComponentsButtonsComponent,
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent,
     UtilitiesCloseIconComponent,
