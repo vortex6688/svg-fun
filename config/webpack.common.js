@@ -175,7 +175,7 @@ module.exports = function (options) {
         /* File loader for supporting images, for example, in CSS files.
          */
         {
-          test: /\.(jpg|png|gif)$/,
+          test: /\.(jpg|png|gif|svg)$/,
           use: 'file-loader'
         },
 
