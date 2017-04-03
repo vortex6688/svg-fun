@@ -1,0 +1,13 @@
+
+.sidebar {
+  height: 100%;
+  position: fixed;
+  width: 17.4375rem;
+  // .card-block container is adding another 1.25rem, total padding 2.625rem
+  padding: 1.375rem;
+  overflow-y: auto; 
+
+  @include media-breakpoint-down(lg) { 
+    width: 15.4375rem;  
+  }
+}

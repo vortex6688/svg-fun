@@ -1,0 +1,9 @@
+
+.content {
+  margin-left: 17.4375rem;
+  top: 2.625rem;
+
+  @include media-breakpoint-down(lg) { 
+    margin-left: 15.4375rem;  
+  }
+}
