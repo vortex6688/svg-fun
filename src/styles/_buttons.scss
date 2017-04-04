@@ -82,4 +82,26 @@
       margin-top: 0.04rem;
     }
   }
+
+  &.download-icon-white,
+  &.download-icon-gray:hover {
+    &:before {
+      content: url('../assets/img/button-download-icon-white.svg');
+      width: 0.85rem;
+      position: absolute;
+      margin-left: -1.1rem;
+      margin-top: 0.04rem;
+    }
+  }
+
+// alternative option in case .btn-outline-... used, to make icon visible on the white background
+  &.download-icon-gray {
+    &:before {
+      content: url('../assets/img/button-download-icon-gray.svg');
+      width: 0.85rem;
+      position: absolute;
+      margin-left: -1.1rem;
+      margin-top: 0.04rem;
+    }
+  }
 }
