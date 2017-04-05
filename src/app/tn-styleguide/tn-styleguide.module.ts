@@ -20,7 +20,8 @@ import { ContentRebootComponent,
          ContentFiguresComponent } from './content';
 import { ComponentsAlertsComponent,
          ComponentsCollapseComponent,
-         ComponentsModalComponent } from './components';
+         ComponentsModalComponent,
+         ComponentsPaginationComponent } from './components';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
@@ -51,6 +52,7 @@ const ROUTES: Routes = [
       {  path: 'components/alerts', component: ComponentsAlertsComponent },
       {  path: 'components/collapse', component: ComponentsCollapseComponent },
       {  path: 'components/modal', component: ComponentsModalComponent },
+      {  path: 'components/pagination', component: ComponentsPaginationComponent },
       {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
       {  path: 'utilities/borders', component: UtilitiesBordersComponent },
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent },
@@ -81,6 +83,7 @@ const ROUTES: Routes = [
     ComponentsAlertsComponent,
     ComponentsCollapseComponent,
     ComponentsModalComponent,
+    ComponentsPaginationComponent,
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent,
     UtilitiesCloseIconComponent,
