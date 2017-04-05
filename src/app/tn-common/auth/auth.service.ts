@@ -22,7 +22,7 @@ export class AuthService {
   public user$: BehaviorSubject<Authorization>;
 
   @LocalStorage('AuthService.user')
-  protected user = ANONYMOUS_AUTHORIZATION;
+  protected user;
 
   /**
    * Creates an instance of AuthService.
@@ -36,6 +36,12 @@ export class AuthService {
    * @memberOf AuthService
    */
   constructor(private httpService: TnApiHttpService, private storage: LocalStorageService) {
+    let storedUser = this.storage.retrieve('AuthService.user');
+    if (storedUser) {
+      this.user = storedUser;
+    } else {
+      this.user = ANONYMOUS_AUTHORIZATION;
+    }
     this.user$ = new BehaviorSubject<Authorization>(this.user);
     this.storage.observe('AuthService.user').subscribe(this.user$);
     this.httpService.setBaseUrl(environment.djangoBaseUrl);
