@@ -40,6 +40,7 @@
 
   &.revert-icon-white,
   &.revert-icon-gray:hover {
+    padding: 0.5rem 0.7rem 0.5rem 1.3rem;
     &:before {
       content: url('../assets/img/button-revert-icon-white.svg');
       width: 0.85rem;
@@ -52,6 +53,7 @@
 // alternative option in case .btn-outline-... used, to make icon visible on the white background
 
   &.revert-icon-gray {
+    padding: 0.5rem 0.7rem 0.5rem 1.3rem;
     &:before {
       content: url('../assets/img/button-revert-icon-gray.svg');
       width: 0.85rem;
@@ -63,6 +65,7 @@
 
   &.delete-icon-white,
   &.delete-icon-red:hover {
+    padding: 0.5rem 0.7rem 0.5rem 1.3rem;
     &:before {
       content: url('../assets/img/button-delete-icon-white.svg');
       width: 0.85rem;
@@ -74,6 +77,7 @@
 
 // alternative option in case .btn-outline-... used, to make icon visible on the white background
   &.delete-icon-red {
+    padding: 0.5rem 0.7rem 0.5rem 1.3rem;
     &:before {
       content: url('../assets/img/button-delete-icon-red.svg');
       width: 0.85rem;
@@ -85,6 +89,7 @@
 
   &.download-icon-white,
   &.download-icon-gray:hover {
+    padding: 0.5rem 0.7rem 0.5rem 1.3rem;
     &:before {
       content: url('../assets/img/button-download-icon-white.svg');
       width: 0.85rem;
@@ -96,6 +101,7 @@
 
 // alternative option in case .btn-outline-... used, to make icon visible on the white background
   &.download-icon-gray {
+    padding: 0.5rem 0.7rem 0.5rem 1.3rem;
     &:before {
       content: url('../assets/img/button-download-icon-gray.svg');
       width: 0.85rem;
