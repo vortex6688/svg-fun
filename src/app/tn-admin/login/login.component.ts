@@ -8,8 +8,7 @@ import { User } from '../../tn-common/user/user.model';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   public errorMessage: string = '';
@@ -21,8 +20,6 @@ export class LoginComponent {
   public logIn(credentials: Credentials): void {
     this.authService.login(credentials).subscribe((result) => {
       this.user = result;
-      console.log(this.user);
-      // this.activeModal.dismiss();
     }, (error) => {
       this.handleErrorResponse(error);
     });

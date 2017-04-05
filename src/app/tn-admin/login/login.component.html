@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h2 class="modal-title">Sign in to your account</h2>
-  <p class="instructions">Or, <a href="#">create a new account</a>.</p>
+  <p class="instructions">Or, <a class="disabled" aria-disabled="true">create a new account</a>.</p>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -13,14 +13,14 @@
     <div class="form-group">
       <label for="username">Email</label>
       <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username" #username="ngModel">
-        <p class="error" *ngIf="username.errors && (username.dirty || username.touched)">
+        <p class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
           <small>
             Your email is required.
           </small>
         </p>
       <label for="password">Password</label>
       <input class="form-control" type="password" name="password" required [(ngModel)]="credentials.password" #password="ngModel">
-        <p class="error" *ngIf="password.errors && (password.dirty || password.touched)">
+        <p class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
           <small>
             Password is required.
           </small>
@@ -30,10 +30,10 @@
       <a class="btn btn-success" *ngIf="!username.errors && !password.errors" (click)="logIn(credentials)">
         Sign in
       </a>
-      <a class="btn btn-success disabled" *ngIf="username.errors || password.errors">
+      <a class="btn btn-success disabled" aria-disabled="true" *ngIf="username.errors || password.errors">
         Sign in
       </a>
-      <p class="error">{{ errorMessage }}</p>
+      <p class="text-danger">{{ errorMessage }}</p>
     </div>
   </form>
 </div>
