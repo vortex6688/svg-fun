@@ -11,3 +11,17 @@ a.btn.disabled {
   font-size: $font-size-sm;
   margin: 0.25rem 0;
 }
+
+// Invert colors where they're the same as the hover on outline buttons.
+.btn-outline-success:hover .text-success {
+  // use !important as long as the bootstrap text emphasis mixin uses important.
+  fill: $white !important;
+}
+
+.btn-outline-danger:hover .text-danger {
+  fill: $white !important;
+}
+
+.btn-outline-info:hover .text-info {
+  fill: $white !important;
+}

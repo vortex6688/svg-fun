@@ -1,0 +1,16 @@
+// Typography
+
+// apply to fill so it will hit SVGs the same as text for icons.
+@mixin text-emphasis-variant($parent, $color) {
+  #{$parent} {
+    color: $color !important;
+    fill: $color !important;
+
+  }
+  a#{$parent} {
+    @include hover-focus {
+      color: darken($color, 10%) !important;
+      fill: darken($color, 10%) !important;
+    }
+  }
+}
