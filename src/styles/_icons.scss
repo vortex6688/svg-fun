@@ -1,0 +1,104 @@
+
+.icon-close {
+  &:before {
+    content: "\00d7";
+    font-size: 1.6rem;
+    line-height: 0;
+    bottom: -0.225rem;
+    position: relative;
+  }
+}
+
+.icon-check {
+  &:before {
+    content:"";
+    height: 0.4rem;
+    width: 0.7rem;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    display: inline-block;
+    transform: rotate(-45deg);
+    position: relative;
+    bottom: 0.225rem;
+  }
+}
+
+.icon-create {
+  &:before {
+    content: "+";
+    font-size: 1rem;
+    line-height: 0;
+  }
+}
+
+.revert-icon-white,
+.revert-icon-gray:hover {
+  padding: 0.3rem;
+  &:before {
+    content: url('../assets/img/button-revert-icon-white.svg');
+    width: 0.85rem;
+    position: absolute;
+    margin-left: -0.8rem;
+    margin-top: 0.1rem;
+  }
+}
+
+// alternative option in case .btn-outline-... used, to make icon visible on the white background
+.revert-icon-gray {
+  padding: 0.3rem;
+  &:before {
+    content: url('../assets/img/button-revert-icon-gray.svg');
+    width: 0.85rem;
+    position: absolute;
+    margin-left: -0.8rem;
+    margin-top: 0.1rem;
+  }
+}
+
+.delete-icon-white,
+.delete-icon-red:hover {
+  padding: 0.3rem;
+  &:before {
+    content: url('../assets/img/button-delete-icon-white.svg');
+    width: 0.85rem;
+    position: absolute;
+    margin-left: -0.8rem;
+    margin-top: 0.04rem;
+  }
+}
+
+// alternative option in case .btn-outline-... used, to make icon visible on the white background
+.delete-icon-red {
+  padding: 0.3rem;
+  &:before {
+    content: url('../assets/img/button-delete-icon-red.svg');
+    width: 0.85rem;
+    position: absolute;
+    margin-left: -0.8rem;
+    margin-top: 0.04rem;
+  }
+}
+
+.download-icon-white,
+.download-icon-gray:hover {
+  padding: 0.3rem;
+  &:before {
+    content: url('../assets/img/button-download-icon-white.svg');
+    width: 0.85rem;
+    position: absolute;
+    margin-left: -0.8rem;
+    margin-top: 0.04rem;
+  }
+}
+
+// alternative option in case .btn-outline-... used, to make icon visible on the white background
+.download-icon-gray {
+  padding: 0.3rem;
+  &:before {
+    content: url('../assets/img/button-download-icon-gray.svg');
+    width: 0.85rem;
+    position: absolute;
+    margin-left: -0.8rem;
+    margin-top: 0.04rem;
+  }
+}
