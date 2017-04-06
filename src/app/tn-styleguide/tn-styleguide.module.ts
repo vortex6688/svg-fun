@@ -21,6 +21,7 @@ import { ContentRebootComponent,
 import { ComponentsAlertsComponent,
          ComponentsCollapseComponent,
          ComponentsModalComponent,
+         ComponentsFormsComponent } from './components/index.ts';
          ComponentsPaginationComponent } from './components';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
@@ -51,6 +52,7 @@ const ROUTES: Routes = [
       {  path: 'components', redirectTo: 'components/alerts', pathMatch: 'full' },
       {  path: 'components/alerts', component: ComponentsAlertsComponent },
       {  path: 'components/collapse', component: ComponentsCollapseComponent },
+      {  path: 'components/forms', component: ComponentsFormsComponent },
       {  path: 'components/modal', component: ComponentsModalComponent },
       {  path: 'components/pagination', component: ComponentsPaginationComponent },
       {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
@@ -82,6 +84,7 @@ const ROUTES: Routes = [
     ContentFiguresComponent,
     ComponentsAlertsComponent,
     ComponentsCollapseComponent,
+    ComponentsFormsComponent,
     ComponentsModalComponent,
     ComponentsPaginationComponent,
     UtilitiesBordersComponent,

@@ -1,5 +1,5 @@
+@import "variables";
 @import "~bootstrap/scss/reboot";
-
 
 // override with linear gradient text image background method.
 u {
@@ -9,4 +9,11 @@ u {
     background-repeat: repeat-x;
     background-size: 1px 1px;
     text-shadow: 1px 1px white, 1px -1px white, -1px 1px white, -1px -1px white;
+}
+
+// add style rules to make labels match TN mockups
+label {
+    color: $gray-lighter;
+    text-transform: uppercase; // TN labels are always uppercase
+    font-size: $font-size-sm; // matches 13px
 }
