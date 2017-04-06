@@ -1586,11 +1586,16 @@ export class TypeaheadExampleComponent {{ '{' }}
 
 <h3 id="datepicker">Datepicker in a popup</h3>
 <div class="bd-example" data-example-id="">
-  <datepicker></datepicker>
+  <div style="width: 12rem;">
+    <datepicker></datepicker>
+  </div>
 </div>
 
 <figure class="highlight"><pre><code class="language-html">
-  <span class="nt">&lt;datepicker&gt;&lt;/datepicker&gt;</span>
+  <span class="c">// datepicker takes 100% width of it's container/parent</span>
+  <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"width: 12rem;"</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;datepicker&gt;&lt;/datepicker&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
 </code></pre></figure>
 
 </div>
