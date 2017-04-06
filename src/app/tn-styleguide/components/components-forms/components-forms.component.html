@@ -1599,37 +1599,12 @@ export class TypeaheadExampleComponent {{ '{' }}
 
   <h3 id="datepicker">Datepicker in a popup</h3>
   <div class="bd-example" data-example-id="">
-
-    <form class="form-inline">
-      <div class="form-group">
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd"
-                name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-          <div class="input-group-addon" (click)="d.toggle()" >
-            <img src="./assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-          </div>
-        </div>
-      </div>
-    </form>
-
-    <figure class="highlight">
-      <pre class="language-html"><code class="language-html">
-      <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>form</span> <span class="token na">class</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-inline<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-        <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-group<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-          <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>input-group<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-            <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>input</span> <span class="token na">class</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token na">placeholder</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>yyyy-mm-dd<span class="token punctuation">"</span></span>
-            <span class="token na">name</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>dp<span class="token punctuation">"</span></span> <span class="token na">[(ngModel)]</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>model<span class="token punctuation">"</span></span> <span class="token na">ngbDatepicker</span> <span class="token na">#d</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>ngbDatepicker<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-              <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>input-group-addon<span class="token punctuation">"</span></span> <span class="token na">(click)</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>d.toggle()<span class="token punctuation">"</span></span> <span class="token punctuation">&gt;</span></span>
-              <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>img</span> <span class="token na">src</span><span class="token s"><span class="token punctuation">=</span><span class="token punctuation">"</span>img/calendar-icon.svg<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token na"> <span class="token na">style</span></span><span class="token punctuation">="</span><span class="token s"><span class="token property">width</span><span class="token punctuation">:</span> 1.2rem<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span> 1rem<span class="token punctuation">;</span> <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
-            <span class="nt"><span class="nt"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-          <span class="nt"><span class="nt"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-        <span class="nt"><span class="nt"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/&gt;</span></span>
-      <span class="nt"><span class="nt"><span class="token punctuation">&lt;</span>pre</span><span class="token punctuation">&gt;</span></span>Model: {{ model | json }}<span class="nt"><span class="nt"><span class="token punctuation">&lt;/</span>pre</span><span class="token punctuation">&gt;</span></span>
-      </code></pre>
-    </figure>
-
+    <datepicker></datepicker>
   </div>
+
+<figure class="highlight"><pre><code class="language-html">
+    <span class="nt">&lt;datepicker&gt;&lt;/datepicker&gt;</span>
+</code></pre></figure>
+
 
 </div>

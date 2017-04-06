@@ -1,1 +1,1 @@
-export * from './components-forms.component.ts';
+export { ComponentsFormsComponent } from './components-forms.component.ts';

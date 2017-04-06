@@ -21,7 +21,7 @@ import { ContentRebootComponent,
 import { ComponentsAlertsComponent,
          ComponentsCollapseComponent,
          ComponentsModalComponent,
-         ComponentsFormsComponent } from './components/index.ts';
+         ComponentsFormsComponent,
          ComponentsPaginationComponent } from './components';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,

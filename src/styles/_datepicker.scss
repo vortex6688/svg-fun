@@ -1,0 +1,116 @@
+
+// styling datepicker
+.input-group {
+  .date-input:focus {
+    border-color: rgba( $black,.15);
+  }
+  .input-group-addon {
+    width: 12.5%;
+    max-height: 100%;
+    padding: 0.3rem;
+    background: #fff;
+
+    img {
+      width: 100%;
+    }
+  }
+  div[caret-left-icon], div[caret-right-icon] {
+    fill: $gray-lighter;
+  }
+}
+
+ngb-datepicker {
+  top: 1.9rem !important;
+
+  .bg-faded {
+    background: none;
+  }
+
+  &.dropdown-menu {
+    width: 100%;
+    
+    /* this CSS forms the triangles */
+    /* this border color controlls the outside, thin border */
+    &:before {
+      content: '';
+      position: absolute;
+      left: 90.85%;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.3) transparent transparent transparent;
+      border-width: 0.4875rem;
+    }
+    /* this border color controlls the color of the triangle (what looks like the fill of the triangle) */
+    &:after {
+      content: '';
+      position: absolute;
+      left: 90.85%;
+      border-style: solid;
+      top: -0.0625rem;
+      border-color: #fff transparent  transparent  transparent;
+      border-width: 0.4875rem;
+    }
+  }
+
+  /* Arrows. Previous and next month button */
+  ngb-datepicker-navigation > button span.ngb-dp-navigation-chevron {
+    border: none;
+    color: $gray-lighter;
+
+    &:before {
+      width: 0px;
+      height: 0px;
+      border-top: 6px solid transparent !important;
+      border-bottom: 6px solid transparent !important;
+      border-right: 6px solid $gray-lighter !important;
+      transform: rotate(0deg) !important;
+      margin: 0 0 .1rem 2.5rem !important;
+    }
+  }
+
+  ngb-datepicker-navigation > button span.ngb-dp-navigation-chevron.right {
+    &:before {
+      transform: rotate(180deg) !important;
+      margin: 0 2.5rem .1rem 0 !important;
+    }
+  }
+
+  /* Month/Year title */
+  .ngb-dp-months .ngb-dp-month-name {
+    color: $black;
+    font-size: $font-size-sm;
+    border-bottom: 1px rgba($gray-lightest,.25) solid;
+    background: #fff;
+    margin: 0 0.5rem;
+  }
+
+  /* Days of the week */
+  .ngb-dp-weekday {
+    color: $gray-lightest !important;
+    font-weight: $headings-font-weight;
+    border: 0;
+    background-color: $white;
+    font-style: normal !important;
+  }
+
+  .ngb-dp-day {
+    
+    /* Black numbers */
+    .btn-secondary {
+      color: $black;
+      font-weight: $font-weight-normal;
+      font-size: $font-size-sm;
+    }
+
+    /* Grey numbers */
+    .text-muted.outside.btn-secondary {
+      color: $gray-lightest !important;
+    }
+
+    /* Blue "selected" box. Selected day */
+    .bg-primary.text-white.btn-secondary {
+      background-color: $blue;
+      border-radius: 0;
+    }
+  }
+}
+
