@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h2 class="modal-title">Sign in to your account</h2>
+  <p class="instructions">Or, <a class="disabled" aria-disabled="true">create a new account</a>.</p>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" *ngIf="user">
+  You signed in as {{user.username}}!
+</div>
+<div class="modal-body" *ngIf="!user">
+  <form novalidate>
+    <div class="form-group">
+      <label for="username">Email</label>
+      <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username" #username="ngModel">
+        <p class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
+          <small>
+            Your email is required.
+          </small>
+        </p>
+      <label for="password">Password</label>
+      <input class="form-control" type="password" name="password" required [(ngModel)]="credentials.password" #password="ngModel">
+        <p class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+          <small>
+            Password is required.
+          </small>
+        </p>
+    </div>
+    <div class="popover_button_group">
+      <a class="btn btn-success" *ngIf="!username.errors && !password.errors" (click)="logIn(credentials)">
+        Sign in
+      </a>
+      <a class="btn btn-success disabled" aria-disabled="true" *ngIf="username.errors || password.errors">
+        Sign in
+      </a>
+      <p class="text-danger">{{ errorMessage }}</p>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Cross click')">Close</button>
+</div>

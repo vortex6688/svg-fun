@@ -13,6 +13,7 @@ import { TnCommonModule } from '../tn-common';
 import { AdminComponent } from './admin';
 import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
+import { LoginComponent } from './login';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
@@ -30,6 +31,7 @@ export const routes: Routes = [
     AdminComponent,
     AdminNavbarComponent,
     AdminOrdersListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ export const routes: Routes = [
     NgbModule.forRoot(),
     TnCommonModule,
   ],
+  entryComponents: [ LoginComponent ],
   providers: []
 })
 export class TnAdminModule {}
