@@ -144,7 +144,7 @@ describe('AuthService', () => {
           'user$ does show login event');
 
       // now logout
-      authService.logout()
+      authService.logout();
 
       expect(storage.retrieve('AuthService.user'))
         .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
