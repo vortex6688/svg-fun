@@ -45,7 +45,6 @@ describe('AuthService', () => {
   }));
 
   const mockResponseLogout = new Response(new ResponseOptions({
-    body: JSON.stringify(null),
     status: 200,
     statusText: 'Success'
   }));
@@ -82,10 +81,6 @@ describe('AuthService', () => {
 
     let observer = jasmine.createSpy('observer');
     authService.user$.subscribe(observer);
-
-    apiClient.errors$.subscribe((error) => {
-       expect(error).toBe(mockResponseError);
-    });
 
     authService.login(credentials).subscribe(
       null,
@@ -147,19 +142,18 @@ describe('AuthService', () => {
       expect(observer).toHaveBeenCalledTimes(2);
       expect(observer.calls.argsFor(1)).toContain(successBody,
           'user$ does show login event');
-      // now logout
-      authService.logout().subscribe((result) => {
-        expect(result).toEqual(ANONYMOUS_AUTHORIZATION, 'Response does not match');
-        expect(storage.retrieve('AuthService.user'))
-          .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
-        expect(authService.user$.getValue()).toEqual(ANONYMOUS_AUTHORIZATION,
-          'Subject user$ does not contain the Anonymous User');
-        expect(observer).toHaveBeenCalledTimes(3);
-        expect(observer.calls.argsFor(2)).toContain(ANONYMOUS_AUTHORIZATION,
-          'user$ does not show logout event');
-      });
-    });
 
+      // now logout
+      authService.logout()
+
+      expect(storage.retrieve('AuthService.user'))
+        .toEqual(ANONYMOUS_AUTHORIZATION, 'User data not saved in storage');
+      expect(authService.user$.getValue()).toEqual(ANONYMOUS_AUTHORIZATION,
+        'Subject user$ does not contain the Anonymous User');
+      expect(observer).toHaveBeenCalledTimes(3);
+      expect(observer.calls.argsFor(2)).toContain(ANONYMOUS_AUTHORIZATION,
+        'user$ does not show logout event');
+    });
   });
 
   it('should login and keep user credentials across AuthService instances', () => {
