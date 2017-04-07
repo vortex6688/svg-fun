@@ -27,10 +27,7 @@
         </p>
     </div>
     <div class="popover_button_group">
-      <a class="btn btn-success" *ngIf="!username.errors && !password.errors" (click)="logIn(credentials)">
-        Sign in
-      </a>
-      <a class="btn btn-success disabled" aria-disabled="true" *ngIf="username.errors || password.errors">
+      <a class="btn btn-success login" [ngClass]="{'disabled': username.errors || password.errors}" (click)="login()">
         Sign in
       </a>
       <p class="text-danger">{{ errorMessage }}</p>

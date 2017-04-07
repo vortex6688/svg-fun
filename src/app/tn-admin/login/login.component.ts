@@ -17,8 +17,8 @@ export class LoginComponent {
 
   constructor(public activeModal: NgbActiveModal, private authService: AuthService) {}
 
-  public logIn(credentials: Credentials): void {
-    this.authService.login(credentials).subscribe((result) => {
+  public login(): void {
+    this.authService.login(this.credentials).subscribe((result) => {
       this.user = result;
       this.activeModal.close();
     }, (error) => {
