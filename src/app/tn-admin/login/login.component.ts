@@ -20,6 +20,7 @@ export class LoginComponent {
   public logIn(credentials: Credentials): void {
     this.authService.login(credentials).subscribe((result) => {
       this.user = result;
+      this.activeModal.close();
     }, (error) => {
       this.handleErrorResponse(error);
     });
