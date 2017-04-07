@@ -1,4 +1,3 @@
-
 <nav class="fixed-top navbar navbar-inverse bg-inverse navbar-toggleable-md">
   <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,17 +6,20 @@
     <span class="text-white">Type</span><span class="text-info">Network |</span> <span class="text-white">Admin</span>
   </a>
   <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse justify-content-center ">
-    <ul class="navbar-nav navbar-inverse primary-nav">
+    <ul class="navbar-nav navbar-inverse primary-nav mr-auto ml-auto">
       <li class="nav-item dropdown" [ngClass]="{ show: currentUrl.indexOf('orders')  !== -1 }">
         <a class="nav-link dropdown-toggle" routerLink="orders" id="LayoutPrimaryMenuItem" routerLinkActive="active">Orders</a>
         <div class="dropdown-menu bg-faded col justify-content-center" aria-labelledby="LayoutPrimaryMenuItem">
-          <div style="width: 130px"></div>
-          <a class="nav-link" routerLink="orders/list" routerLinkActive="active">Orders</a>
+          <a class="nav-link" routerLink="orders/list" routerLinkActive="active">List</a>
+          <div style="width: 520px"></div>
         </div>
       </li>
     </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link login" *ngIf="ANONYMOUS.username === user.username" (click)="login()">Login</a>
+        <a class="nav-link logout" *ngIf="ANONYMOUS.username !== user.username" (click)="logout()">Logout {{user.username}}</a>
+      </li>
+    </ul>
   </div>
-  <a (click)="openLoginModal()">
-    <img src="./assets/img/icon_account.svg" class="login-icon"/>
-  </a>
 </nav>
