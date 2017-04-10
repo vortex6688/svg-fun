@@ -178,7 +178,7 @@ describe('AuthService', () => {
           'user$ should call subscribers on successful login.');
 
       let authService2 = new AuthService(apiClient, storage);
-       expect(authService2.user$.getValue()).toEqual(successBody,
+      expect(authService2.user$.getValue()).toEqual(successBody,
         'Subject user$ does not contain the User in a different instance of AuthService');
       authService.logout();
     });
