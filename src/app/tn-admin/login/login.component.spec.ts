@@ -68,29 +68,30 @@ describe('LoginComponent', () => {
 
   it('should set the user if the credentials are correct', () => {
     expect(component.user).toBeFalsy('User already set prior to logIn!');
-    component.logIn(credentials);
+    component.credentials = credentials;
+    component.login();
     expect(component.user).toBeTruthy('Did not set user!');
     expect(component.user.username).toBe(credentials.username,
                                          'Did not set the correct username!');
   });
 
   it('should return the errors if the credentials are incorrect', () => {
-    credentials.password = 'incorrectPassword';
-    component.logIn(credentials);
+    component.credentials.password = 'incorrectPassword';
+    component.login();
     expect(component.errorMessage).toBe('Invalid username or password', 'errorMessage not set');
     expect(component.user).toBeFalsy('User set after an erroneous logIn attempt!');
   });
 
   it('should return the errors if there is no conection to the server', () => {
-    credentials.username = 'no_server';
-    component.logIn(credentials);
+    component.credentials.username = 'no_server';
+    component.login();
     expect(component.errorMessage).toBe('The server can\'t be reached!', 'errorMessage not set');
     expect(component.user).toBeFalsy('User set after an erroneous logIn attempt!');
   });
 
   it('should return default error message if a different error happens', () => {
-    credentials.username = 'error';
-    component.logIn(credentials);
+    component.credentials.username = 'error';
+    component.login();
     expect(component.errorMessage).toBe('An error happened!', 'errorMessage not set');
     expect(component.user).toBeFalsy('User set after an erroneous logIn attempt!');
   });
