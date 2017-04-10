@@ -162,6 +162,34 @@ describe('AuthService', () => {
 
   });
 
+  it('should login and keep user credentials across AuthService instances', () => {
+    let credentials = { username: 'jane@doe.com', password: 'password' };
+    mockBackend.connections.subscribe((connection) => {
+      connection.mockRespond(mockResponse);
+    });
+
+    let observer = jasmine.createSpy('observer');
+    authService.user$.subscribe(observer);
+
+    authService.login(credentials).subscribe((result) => {
+      expect(result).toEqual(successBody, 'Response does not match');
+      expect(storage.retrieve('AuthService.user'))
+        .toEqual(successBody, 'User data not saved in storage');
+      expect(authService.user$.getValue()).toEqual(successBody,
+        'Subject user$ does not contain the User');
+      expect(observer).toHaveBeenCalledTimes(2);
+      expect(observer.calls.argsFor(0)).toContain(ANONYMOUS_AUTHORIZATION,
+          'user$ should call subscribers with an initial value.');
+      expect(observer.calls.argsFor(1)).toContain(successBody,
+          'user$ should call subscribers on successful login.');
+
+      let authService2 = new AuthService(apiClient, storage);
+       expect(authService2.user$.getValue()).toEqual(successBody,
+        'Subject user$ does not contain the User in a different instance of AuthService');
+      authService.logout();
+    });
+  });
+
   it('should register new users', () => {
     let credentials = { email: 'jane@doe.com', username: 'jane@doe.com',
       password: 'password' };
