@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Authorization, ANONYMOUS_AUTHORIZATION } from './auth.model';
+import { Authorization, ANONYMOUS_AUTHORIZATION as ANONYMOUS } from './auth.model';
 import { Credentials, RegistrationCredentials } from './credentials';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
 import { LocalStorageService, LocalStorage } from 'ng2-webstorage';
@@ -22,7 +22,7 @@ export class AuthService {
   public user$: BehaviorSubject<Authorization>;
 
   @LocalStorage('AuthService.user')
-  protected user = ANONYMOUS_AUTHORIZATION;
+  protected user: Authorization = this.storage.retrieve('AuthService.user') || ANONYMOUS;
 
   /**
    * Creates an instance of AuthService.
@@ -36,7 +36,9 @@ export class AuthService {
    * @memberOf AuthService
    */
   constructor(private httpService: TnApiHttpService, private storage: LocalStorageService) {
+    // create behavior subject with initial value.
     this.user$ = new BehaviorSubject<Authorization>(this.user);
+    // subscribe to storage changes. (when this.user is set is should trigger storage update)
     this.storage.observe('AuthService.user').subscribe(this.user$);
     this.httpService.setBaseUrl(environment.djangoBaseUrl);
   };
@@ -66,10 +68,10 @@ export class AuthService {
    * @memberOf AuthService
    */
   public logout() {
-    return this.httpService.post('/auth/logout/', {})
-      .map((res: any) => {
+    this.httpService.post('/auth/logout/', {})
+      .subscribe((res: any) => {
         this.httpService.setAuthToken();
-        return this.user = ANONYMOUS_AUTHORIZATION;
+        this.user = ANONYMOUS;
       });
   }
 

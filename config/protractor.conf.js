@@ -10,7 +10,7 @@ var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 var JUnitXmlReporter = require('jasmine-reporters').JUnitXmlReporter;
 
 exports.config = {
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: 'http://localhost:3100/',
 
   // use `npm run e2e`
   specs: [
