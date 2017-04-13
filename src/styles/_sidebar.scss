@@ -1,13 +1,12 @@
 
 .sidebar {
-  height: 100%;
   position: fixed;
-  width: 17.4375rem;
-  // .card-block container is adding another 1.25rem, total padding 2.625rem
-  padding: 1.375rem;
+  width: $sidebar-width;
   overflow-y: auto; 
+  top: $navbar-height;
+  bottom: 0;
 
-  @include media-breakpoint-down(lg) { 
-    width: 15.4375rem;  
+  @include media-breakpoint-down(md) {
+    top: $navbar-collapsed-height;
   }
 }

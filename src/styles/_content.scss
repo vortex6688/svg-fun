@@ -1,9 +1,9 @@
 
-.content {
-  margin-left: 17.4375rem;
-  top: 2.625rem;
+.main {
+  margin-left: $sidebar-width;
+  margin-top: $navbar-height;
 
-  @include media-breakpoint-down(lg) { 
-    margin-left: 15.4375rem;  
+  @include media-breakpoint-down(md) {
+    margin-top: $navbar-collapsed-height;
   }
 }
