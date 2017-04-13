@@ -1,80 +1,8 @@
 @import '../../../styles/variables';
 @import '~bootstrap/scss/mixins';
+@import '../../tn-common/tn-navbar/tn-navbar.component';
 
 :host {
-
-  margin-bottom: 3rem;
-  @include media-breakpoint-up(lg) {
-    margin-bottom: 5.5rem;
-  }
-
-  display: block;
-  font-size: 1.125rem;
-
-  .dropdown {
-    position: initial;
-  }
-
-  .dropdown-menu {
-    padding: 0.25rem 0;
-    height: 44px;
-    font-weight: 500;
-    line-height: 19.2px;
-  }
-
-  .primary-nav {
-    height: 44px;
-    font-weight: 600;
-  }
-
-  @include media-breakpoint-down(lg) {
-    .primary-nav, .dropdown-menu {
-      height: auto;
-    }
-  }
-
-// adding arrow to a primary nav active link
-  .nav-link {
-    position: relative;
-
-    &:after {
-      content: none;
-    }
-
-    &.active:after {
-      bottom: -0.5rem;
-      margin-left: -50%;
-      border-top: 0.5rem solid $brand-inverse;
-      border-right: 0.5rem solid transparent;
-      border-left: 0.5rem solid transparent;
-      z-index: 1100;
-      position: absolute;
-      content: "";
-    }
-  }
-
-  .bg-faded {
-    background-color: $gray;
-  }
-
-// adding arrow to a secondary nav active link
-  .bg-faded {
-    .nav-link {
-      &.active:after {
-        bottom: -0.75rem;
-        border-top: 0.5rem solid $gray;
-      }
-    }
-  }
-
-  .show > .dropdown-menu {
-    display: flex;
-    margin: 0;
-    border: none;
-
-    @media (max-width: 992px) { display: block; }
-  }
-
   img.login-icon {
     height: 1.5625rem;
   }

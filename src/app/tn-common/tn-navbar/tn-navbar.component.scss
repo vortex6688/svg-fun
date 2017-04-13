@@ -2,12 +2,6 @@
 @import '~bootstrap/scss/mixins';
 
 :host {
-
-  margin-bottom: 3rem;
-  @include media-breakpoint-up(lg) {
-    margin-bottom: 5.5rem;
-  }
-
   display: block;
   font-size: 1.125rem;
 
