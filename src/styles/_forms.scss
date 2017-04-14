@@ -19,9 +19,6 @@
   }
 }
 
-input:disabled {
-  opacity: 0.5;
-}
 select:focus,
 .custom-select:focus {
   cursor: pointer;
@@ -33,6 +30,7 @@ select:focus,
 .custom-checkbox {
   .custom-control-indicator {
     border: 0.1em solid $gray-lightest;
+    top: 0;
   }
   .custom-control-input:checked ~ .custom-control-indicator {
     background-size: 0;
