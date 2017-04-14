@@ -11,6 +11,7 @@
 
 @import "variables";
 @import "~bootstrap/scss/mixins";
+@import "mixins/text-emphasis";
 
 @import "~bootstrap/scss/print";
 
@@ -53,8 +54,10 @@
 
 // Utility classes
 @import "~bootstrap/scss/utilities";
+@import "utilities/text";
 
 // Custom / Non-bootstrap
 @import "border";
+
 @import "sidebar";
 @import "content";

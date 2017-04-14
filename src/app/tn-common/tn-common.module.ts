@@ -17,6 +17,12 @@ import { DatepickerComponent,
          CaretRightIconComponent }  from './datepicker.component';
 import { TnPaginationComponent } from './tn-pagination/tn-pagination.component';
 import { TnPaginationConfig } from './tn-pagination/pagination-config';
+import { IconCheckComponent,
+         IconCloseComponent,
+         IconCreateComponent,
+         IconDeleteComponent,
+         IconDownloadComponent,
+         IconRevertComponent } from './tn-icons';
 
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
@@ -31,10 +37,14 @@ import { TnPaginationConfig } from './tn-pagination/pagination-config';
                   CaretLeftIconComponent,
                   CaretRightIconComponent,
                   TnNavbarComponent,
-                  TnPaginationComponent
+                  TnPaginationComponent,
+                  IconCheckComponent, IconCloseComponent, IconCreateComponent,
+                  IconDeleteComponent, IconDownloadComponent, IconRevertComponent
                 ],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
-  exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent, TnPaginationComponent ]
+  exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent, TnPaginationComponent,
+                  IconCheckComponent, IconCloseComponent, IconCreateComponent,
+                  IconDeleteComponent, IconDownloadComponent, IconRevertComponent ]
 
 })
 export class TnCommonModule {

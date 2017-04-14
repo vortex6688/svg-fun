@@ -1,5 +1,27 @@
 @import "~bootstrap/scss/buttons";
 
+ // update a cursor style for disabled button links
+a.btn.disabled {
+  pointer-events: auto;
+}
+
 .btn {
+  // update button defaults to match TN editorial mockups
+  min-width: 10rem;
   font-size: $font-size-sm;
+  margin: 0.25rem 0;
+}
+
+// Invert colors where they're the same as the hover on outline buttons.
+.btn-outline-success:hover .text-success {
+  // use !important as long as the bootstrap text emphasis mixin uses important.
+  fill: $white !important;
+}
+
+.btn-outline-danger:hover .text-danger {
+  fill: $white !important;
+}
+
+.btn-outline-info:hover .text-info {
+  fill: $white !important;
 }
