@@ -3,6 +3,7 @@ import {
   async,
 } from '@angular/core/testing';
 
+import { Order } from './order.model';
 import { OrderReducer } from './order.reducer';
 import { OrderActions } from './order.actions';
 import { OrderState, initialOrderState } from './order.state';
@@ -18,18 +19,26 @@ import {
   getOrderByStatus,
  } from './order.selectors';
 
-let OrderMock = {
+let OrderMock: Order = {
   id: 123,
   user: 1,
-  total: '34.60',
-  created: '2028-06-08T18:16:50Z',
+  subtotal: 10,
+  tax: 0.5,
+  total: 10.5,
+  status: 1,
   licensee_first_name: 'John',
   licensee_last_name: 'Doe',
   licensee_company: 'John Doe INC',
+  licensee_street1: '123 Unnamed Road',
+  created: '2028-06-08T18:16:50Z',
+  licensee_city: 'Wonderland',
+  licensee_zipcode: '33333',
+  licensee_country: 'United States',
+  licensee_vat: 'SuperVAT',
   payments: [
       {
           order: 128,
-          amount: '34.60',
+          amount: 34.60,
           provider: 0,
           status: 1,
           provider_data: '{ \"source\": {\"brand\": \"Visa\"} }',
@@ -44,8 +53,9 @@ let OrderMock = {
           created: '2016-05-25T21:14:40.609000Z'
       }
   ],
-  coupon: null,
-  status: 1
+  order_token: 'AnOrderToken',
+  upgrade_price_adjustment: 0,
+  coupon: null
 };
 
 describe('OrderReducer', () => {
