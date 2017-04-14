@@ -8,9 +8,14 @@ This project contains the angular 2 components that make up the Editorial and Ad
 ## Prerequisites
 
 * NodeJS  >=6.9.x
+* Docker for *
 
 ## Quickstart (Requires Node 6 or better)
 
+1. `docker-compose up -d`
+1. `docker exec -ti tnadmineditorial_django_1 /code/venv/bin/python /code/manage.py migrate`
+1. `docker exec -ti tnadmineditorial_django_1 /code/venv/bin/python /code/manage.py createsuperuser`
+1. `docker exec -ti tnadmineditorial_django_1 /code/venv/bin/python /code/manage.py loaddata fonts/fixtures/font_subset.json`
 1. `npm install`
 1. `npm run start`
 1. Open `localhost:3000/`,  `localhost:3000/admin`, `localhost:3000/styleguide`
