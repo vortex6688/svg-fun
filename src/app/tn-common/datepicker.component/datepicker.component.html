@@ -1,12 +1,10 @@
 <form>
   <div class="form-group">
     <div class="input-group">
-      <input (click)="d.toggle()" class="form-control date" placeholder="mm/dd/yyyy" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-      <span class="input-group-addon">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
-            <g (click)="d.toggle()" calendar-icon class="input-img"></g>
-          </svg>
-      </span>
+      <input style="border-right: none;" class="form-control date-input" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+      <div style="border-left: none;" class="input-group-addon" (click)="d.toggle()" >
+        <img src="./assets/img/calendar-icon.svg" />
+      </div>
     </div>
   </div>
 </form>
