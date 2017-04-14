@@ -17,7 +17,12 @@ import { DatepickerComponent,
          CaretRightIconComponent }  from './datepicker.component';
 import { TnPaginationComponent } from './tn-pagination/tn-pagination.component';
 import { TnPaginationConfig } from './tn-pagination/pagination-config';
-import { IconCheckComponent, IconCloseComponent, IconCreateComponent, IconDeleteComponent, IconDownloadComponent, IconRevertComponent } from './tn-icons';
+import { IconCheckComponent,
+         IconCloseComponent,
+         IconCreateComponent,
+         IconDeleteComponent,
+         IconDownloadComponent,
+         IconRevertComponent } from './tn-icons';
 
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
