@@ -1,0 +1,66 @@
+# Start up a tn-api instance for local development.
+
+# build the django container for testing.
+django:
+  image: typenetwork/tn-api
+  environment:
+    - DEBUG=True
+    - DATABASE_URL=psql://typenet:J9Ef7NsVR~49GUJ@postgres/typenet
+    - CACHE_URL=redis://redis:6379/cache?key_prefix=tn&timeout=18000
+    - BROKER_URL=redis://redis:6379
+  ports:
+    - "8000:80"
+  entrypoint: /code/venv/bin/gunicorn typenetwork.wsgi:application -w 4 -b 0.0.0.0:80 --chdir=/code --timeout 120  --error-logfile '-' --log-level debug --access-logfile '-'
+  links:
+    - 'postgres:postgres'
+    - 'redis:redis'
+
+# setup celery worker.
+celery:
+  image: typenetwork/tn-api
+  environment:
+    - DEBUG=True
+    - DATABASE_URL=psql://typenet:J9Ef7NsVR~49GUJ@postgres/typenet
+    - CACHE_URL=redis://redis:6379/cache?key_prefix=tn&timeout=18000
+    - BROKER_URL=redis://redis:6379
+  entrypoint: /code/venv/bin/celery -A typenetwork worker -l info --purge
+  links:
+    - 'postgres:postgres'
+    - 'redis:redis'
+
+#setup celery beat scheduler.
+celery-beat:
+  image: typenetwork/tn-api
+  environment:
+    - DEBUG=True
+    - DATABASE_URL=psql://typenet:J9Ef7NsVR~49GUJ@postgres/typenet
+    - CACHE_URL=redis://redis:6379/cache?key_prefix=tn&timeout=18000
+    - BROKER_URL=redis://redis:6379
+  entrypoint: /code/venv/bin/celery beat -A typenetwork -l info
+  links:
+    - 'postgres:postgres'
+    - 'redis:redis'
+
+# volume container to provide consistent storage.
+postgres-data:
+  image: sameersbn/postgresql:9.4-12
+  command: /bin/true
+
+# a postgres container for providing database access.
+postgres:
+  image: sameersbn/postgresql:9.4-12
+  environment:
+    - PGPASSWORD=hCgtaoulKYH!hdv
+    - DB_USER=typenet
+    - DB_PASS=J9Ef7NsVR~49GUJ
+    - DB_NAME=typenet
+  expose:
+    - "5432"
+  volumes_from:
+    - postgres-data
+
+# redis for caching and queueing.
+redis:
+  image: redis:3-alpine
+  expose:
+    - "6379"
