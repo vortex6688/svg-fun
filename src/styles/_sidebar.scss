@@ -1,0 +1,12 @@
+
+.sidebar {
+  position: fixed;
+  width: $sidebar-width;
+  overflow-y: auto; 
+  top: $navbar-height;
+  bottom: 0;
+
+  @include media-breakpoint-down(md) {
+    top: $navbar-collapsed-height;
+  }
+}

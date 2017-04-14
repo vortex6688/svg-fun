@@ -1,0 +1,9 @@
+
+.main {
+  margin-left: $sidebar-width;
+  margin-top: $navbar-height;
+
+  @include media-breakpoint-down(md) {
+    margin-top: $navbar-collapsed-height;
+  }
+}
