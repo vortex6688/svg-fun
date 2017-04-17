@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Order } from '../../tn-common/orders/order.model';
-import { OrderService } from '../../tn-common/orders/order.service';
-import { AuthService } from '../../tn-common/auth/auth.service';
+import { Title } from '@angular/platform-browser';
+import { Order, OrderService } from '../../tn-common/orders';
 
 @Component({
   selector: 'admin-orders-list',
@@ -100,7 +99,7 @@ export class AdminOrdersListComponent {
    */
   public filteredOrders: Order[] = [];
 
-  constructor(private orderService: OrderService, private authService: AuthService) {
+  constructor(private orderService: OrderService) {
     this.searchOrders();
   }
 
@@ -118,10 +117,8 @@ export class AdminOrdersListComponent {
       foundry: this.searchFoundry,
     };
 
-    this.authService.login({username: 'a@a.com', password: 'a'}).subscribe((response) => {
-      this.orderService.find(query).subscribe((response) =>{
-        this.filteredOrders = response;
-      });
+    this.orderService.find(query).subscribe((response) =>{
+      this.filteredOrders = response;
     });
   }
 
