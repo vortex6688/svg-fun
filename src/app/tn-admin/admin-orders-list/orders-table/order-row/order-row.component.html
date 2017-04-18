@@ -1,4 +1,4 @@
-<tr class="d-flex">
+<tr class="row">
   <td class="col">
     <i (click)='isCollapsed = !isCollapsed'
   [attr.aria-expanded]='!isCollapsed' [attr.aria-controls]='order'>
@@ -10,12 +10,11 @@
   <td class="col">{{order.amount}}</td>
   <td class="col">{{order.date}}</td>
   <td class="col">{{order.status}}</td>
-  <td class="col"><button class="btn btn-info">IMPERSONATE</button></td>
+  <td class="col"><button class="btn btn-sm btn-outline-info">IMPERSONATE</button></td>
 </tr>
 
-<tr class="d-flex">
 <table class="table no-borders" [attr.id]='order' [ngbCollapse]='isCollapsed'>
-  <thead class="d-flex table-active">
+  <thead class="row table-active">
     <th class="col"><b>Order Summary</b></th>
     <th class="col">Families purchased:</th>
     <th class="col">License types:</th>
@@ -23,7 +22,7 @@
     <th class="col">New vs. returning</th>
     <th class="col">Download PDF</th>
   </thead>
-  <tbody class="d-flex table-active">
+  <tbody class="row table-active">
     <th class="col"></th>
     <td class="col">
       <ul>
@@ -40,4 +39,4 @@
     <td class="col">1854</td>
   </tbody>
 </table>
-</tr>
+
