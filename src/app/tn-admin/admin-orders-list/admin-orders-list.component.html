@@ -3,7 +3,7 @@
         <div class="sidebar p-3 border-right-gradient-inset">
           <div class="card">
               <div class="card-block">
-                  <button class="btn btn-success">+ New Order</button>
+                  <button class="btn btn-success btn-block">+ New Order</button>
                   <fieldset  class="form-group">
                     <a (click)="clearSearch()" class="float-right">Clear all</a>
                     <h4><small>SEARCH BY:</small></h4>
@@ -69,26 +69,7 @@
         </div>
         <div class="main p-5 w-100">
           <h2>Orders</h2>
-          <table  class="table">
-            <thead>
-              <th>Order number</th>
-              <th>Customer</th>
-              <th>Amount</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2367</td>
-                <td>Longname, Person</td>
-                <td>237.00</td>
-                <td>10/20/2016</td>
-                <td>Pending</td>
-                <td><button class="btn">IMPERSONATE</button></td>
-              </tr>
-            </tbody>
-          </table>
+          <app-orders-collapse></app-orders-collapse>
         </div>
     </div>
 </div>

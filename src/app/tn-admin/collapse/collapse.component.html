@@ -1,0 +1,11 @@
+<!-- TO DO implement the icon as component when button documentation merged -->
+<i (click)='isCollapsed = !isCollapsed'
+  [attr.aria-expanded]='!isCollapsed' [attr.aria-controls]='item.id'>
+  <img style="position: absolute; margin-top: -3.3rem;" src="./assets/img/right-arrow.svg"/>
+</i>
+
+<table class="table no-borders" [attr.id]='item.id' [ngbCollapse]='isCollapsed'>
+  <ng-content select='[item-labels]'></ng-content>
+  <ng-content select='[item-content]'></ng-content>
+</table>
+

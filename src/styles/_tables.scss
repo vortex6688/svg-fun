@@ -14,6 +14,7 @@
     padding: $table-cell-padding;
     vertical-align: top;
     border-top: $table-border-width solid $table-border-color;
+    font-size: $font-size-sm;
   }
 
   th {
@@ -23,9 +24,7 @@
   thead th {
     vertical-align: bottom;
     border-bottom: (1 * $table-border-width) solid $table-border-color;
-    padding: (0.5 * $table-cell-padding);
-
-    font-size: $table-head-font-size;
+    padding: (0.5 * $table-cell-padding) $table-cell-padding;
     font-weight: normal;
 
     color: $table-head-color;
@@ -38,6 +37,28 @@
 
   .table {
     background-color: $body-bg;
+  }
+
+// update list style type for list elements in a table
+  ul {
+    list-style-type: none;
+  }
+
+  ul li {
+    margin-left: -20px;
+
+    &:before {
+      content: '\2014';
+      position: absolute;
+      margin-left: -20px;
+    }
+  }
+}
+
+.table.no-borders {
+  td,
+  th {
+    @extend .border-0;
   }
 }
 

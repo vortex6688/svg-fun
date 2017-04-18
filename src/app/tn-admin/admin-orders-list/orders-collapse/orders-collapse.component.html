@@ -1,0 +1,56 @@
+<table class="table">
+  <thead>
+    <tr class="d-flex">
+      <th class="col">Order number</th>
+      <th class="col">Customer</th>
+      <th class="col">Amount</th>
+      <th class="col">Date</th>
+      <th class="col">Status</th>
+      <th class="col"></th>
+    </tr>
+  </thead>
+  <tbody *ngFor='let order of orders' style="position: relative;">
+    <tr class="d-flex">
+      <td class="col">
+        <b style="padding-left: 0.5rem;">{{order.number}}</b>
+      </td>
+      <td class="col">{{order.customer}}</td>
+      <td class="col">{{order.amount}}</td>
+      <td class="col">{{order.date}}</td>
+      <td class="col">{{order.status}}</td>
+      <td class="col"><button class="btn btn-info">IMPERSONATE</button></td>
+    </tr>
+    <!-- we are including a separate table in the next row, that will pop up when button is toggled -->
+    <tr>
+
+      <app-collapse [item]='order'>
+        <thead class="d-flex table-active" item-labels>
+          <th class="col"><b>Order Summary</b></th>
+          <th class="col">Families purchased:</th>
+          <th class="col">License types:</th>
+          <th class="col">Total styles:</th>
+          <th class="col">New vs. returning</th>
+          <th class="col">Download PDF</th>
+        </thead>
+
+        <tbody class="d-flex table-active" item-content>
+          <th class="col"></th>
+          <td class="col">
+            <ul>
+              <li *ngFor='let family of order.families'>{{family}}</li>
+            </ul>
+          </td>
+          <td class="col">
+            <ul>
+              <li *ngFor='let licenseType of order.licenseTypes'>{{licenseType}}</li>
+            </ul>
+          </td>
+          <td class="col">{{order.totalStyles}}</td>
+          <td class="col">{{order.returning}}</td>
+          <td class="col">1854</td>
+        </tbody>
+      </app-collapse>
+
+    </tr>
+  </tbody>
+</table>
