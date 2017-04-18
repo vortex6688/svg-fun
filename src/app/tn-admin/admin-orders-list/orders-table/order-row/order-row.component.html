@@ -5,11 +5,11 @@
     <i>
       <icon-right-arrow></icon-right-arrow>
     </i>
-    <b>{{order.number}}</b>
+    <b>{{order.id}}</b>
   </td>
-  <td class="col">{{order.customer}}</td>
-  <td class="col">{{order.amount}}</td>
-  <td class="col">{{order.date}}</td>
+  <td class="col">{{order.licensee_last_name}}, {{order.licensee_first_name}}</td>
+  <td class="col">{{order.total}}</td>
+  <td class="col">{{order.created}}</td>
   <td class="col">{{order.status}}</td>
   <td class="col"><button class="btn btn-sm btn-outline-info">IMPERSONATE</button></td>
 </tr>

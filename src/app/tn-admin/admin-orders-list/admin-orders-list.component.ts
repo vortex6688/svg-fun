@@ -117,12 +117,12 @@ export class AdminOrdersListComponent {
       font: this.searchFont,
       foundry: this.searchFoundry,
     };
-    this.authService.login({username: 'martin.jfreytes@gmail.com', password: 'adminadmin'}).subscribe((response) => {
+
+    this.authService.login({username: 'a@a.com', password: 'a'}).subscribe((response) => {
       this.orderService.find(query).subscribe((response) =>{
         this.filteredOrders = response;
       });
     });
-
   }
 
   /**
