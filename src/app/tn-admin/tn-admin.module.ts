@@ -14,8 +14,8 @@ import { AdminComponent } from './admin';
 import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
 import { LoginComponent } from './login';
-import { CollapseComponent } from './collapse';
-import { OrdersCollapseComponent } from './admin-orders-list/orders-collapse';
+import { OrderRowComponent } from './admin-orders-list/orders-table/order-row';
+import { OrdersTableComponent } from './admin-orders-list/orders-table';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
@@ -34,8 +34,8 @@ export const routes: Routes = [
     AdminNavbarComponent,
     AdminOrdersListComponent,
     LoginComponent,
-    CollapseComponent,
-    OrdersCollapseComponent,
+    OrderRowComponent,
+    OrdersTableComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +43,7 @@ export const routes: Routes = [
     HttpModule,
     RouterModule.forChild(routes),
     NgbModule.forRoot(),
-    TnCommonModule,
+    TnCommonModule
   ],
   entryComponents: [ LoginComponent ],
   providers: []

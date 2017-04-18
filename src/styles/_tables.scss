@@ -11,7 +11,7 @@
 
   th,
   td {
-    padding: $table-cell-padding;
+    padding: $table-cell-padding 0;
     vertical-align: top;
     border-top: $table-border-width solid $table-border-color;
     font-size: $font-size-sm;
@@ -24,7 +24,7 @@
   thead th {
     vertical-align: bottom;
     border-bottom: (1 * $table-border-width) solid $table-border-color;
-    padding: (0.5 * $table-cell-padding) $table-cell-padding;
+    padding: (0.5 * $table-cell-padding) 0;
     font-weight: normal;
 
     color: $table-head-color;

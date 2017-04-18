@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { CollapseComponent } from '../../collapse';
 
 @Component({
-  selector: 'app-orders-collapse',
-  templateUrl: './orders-collapse.component.html',
-  styleUrls: ['./orders-collapse.component.scss']
+  selector: 'orders-table',
+  templateUrl: './orders-table.component.html',
+  styleUrls: ['./orders-table.component.scss']
 })
-export class OrdersCollapseComponent {
+export class OrdersTableComponent {
 
   /*
    * Test harcoded data, this should be gathered using a service

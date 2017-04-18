@@ -22,7 +22,8 @@ import { IconCheckComponent,
          IconCreateComponent,
          IconDeleteComponent,
          IconDownloadComponent,
-         IconRevertComponent } from './tn-icons';
+         IconRevertComponent,
+         IconRightArrowComponent } from './tn-icons';
 
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
@@ -39,12 +40,14 @@ import { IconCheckComponent,
                   TnNavbarComponent,
                   TnPaginationComponent,
                   IconCheckComponent, IconCloseComponent, IconCreateComponent,
-                  IconDeleteComponent, IconDownloadComponent, IconRevertComponent
+                  IconDeleteComponent, IconDownloadComponent, IconRevertComponent,
+                  IconRightArrowComponent
                 ],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
   exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent, TnPaginationComponent,
                   IconCheckComponent, IconCloseComponent, IconCreateComponent,
-                  IconDeleteComponent, IconDownloadComponent, IconRevertComponent ]
+                  IconDeleteComponent, IconDownloadComponent, IconRevertComponent,
+                  IconRightArrowComponent ]
 
 })
 export class TnCommonModule {
