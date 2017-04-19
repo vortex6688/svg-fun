@@ -5,7 +5,6 @@ import { FormsModule }   from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
 
-
 describe('ComponentsListGroupComponent', () => {
   let component: ComponentsListGroupComponent;
   let fixture: ComponentFixture<ComponentsListGroupComponent>;
