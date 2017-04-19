@@ -9,4 +9,8 @@
   @include media-breakpoint-down(md) {
     top: $navbar-collapsed-height;
   }
+
+  .card-block {
+    border-bottom: 1px solid $gray-lightest;
+  }
 }
