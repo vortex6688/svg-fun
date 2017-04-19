@@ -3,8 +3,9 @@
 .list-group-flush {
   .list-group-item {
     @extend .border-0;
+    @extend .justify-content-between;
     padding: 0;
     font-size: $font-size-sm;
-    font-weight: 600;
+    font-weight: 500;
   }
 }
