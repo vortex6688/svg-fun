@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/card";
+
+.card-header {
+  padding: $card-spacer-x;
+  border-bottom: 1px solid $card-border-color;
+}
+
+.card-footer {
+  padding: $card-spacer-x;
+  border-top: 1px solid $card-border-color;
+}
