@@ -26,15 +26,14 @@ const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
-const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
+const METADATA = webpackMerge(commonConfig.metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
   HMR: false
 });
 
-module.exports = function (env) {
-  return webpackMerge(commonConfig({env: ENV}), {
+module.exports = webpackMerge(commonConfig, {
 
     /**
      * Developer tool to enhance debugging
@@ -87,6 +86,30 @@ module.exports = function (env) {
     module: {
 
       rules: [
+        /*
+         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
+         * Replace templateUrl and stylesUrl with require()
+         *
+         * See: https://github.com/s-panferov/awesome-typescript-loader
+         * See: https://github.com/TheLarkInn/angular2-template-loader
+         */
+        {
+          test: /\.ts$/,
+          use: [
+            '@angularclass/hmr-loader?pretty=false&prod=true',
+            'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
+            'angular2-template-loader',
+            {
+              loader: 'ng-router-loader',
+              options: {
+                loader: 'async-system',
+                genDir: 'compiled',
+                aot: AOT
+              }
+            }
+          ],
+          exclude: [/\.(spec|e2e)\.ts$/]
+        },
 
         /*
          * Extract CSS files from .src/styles directory to external CSS file

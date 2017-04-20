@@ -25,8 +25,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function (options) {
-  return {
+module.exports = {
 
     /**
      * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
@@ -269,6 +268,4 @@ module.exports = function (options) {
       clearImmediate: false,
       setImmediate: false
     }
-
-  };
-}
+};

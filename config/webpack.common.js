@@ -36,9 +36,7 @@ const COMMON_MATCHER = /src\/tn-common\//;
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function (options) {
-  var isProd = options.env === 'production';
-  return {
+module.exports = {
 
     /*
      * Cache generated modules and chunks to improve performance for multiple incremental builds.
@@ -76,7 +74,7 @@ module.exports = function (options) {
 
       // An array of directory names to be resolved to the current directory
       modules: [
-        helpers.root('src'), 
+        helpers.root('src'),
         helpers.root('node_modules')
       ],
 
@@ -84,8 +82,8 @@ module.exports = function (options) {
       // https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
       plugins: [
         new TsConfigPathsPlugin({
-          tsconfig: AOT ? 
-                      helpers.root('tsconfig.webpack.json') : 
+          tsconfig: AOT ?
+                      helpers.root('tsconfig.webpack.json') :
                       helpers.root('tsconfig.json')
         })
       ]
@@ -100,30 +98,7 @@ module.exports = function (options) {
 
       rules: [
 
-        /*
-         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
-         * Replace templateUrl and stylesUrl with require()
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader
-         * See: https://github.com/TheLarkInn/angular2-template-loader
-         */
-        {
-          test: /\.ts$/,
-          use: [
-            '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
-            'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
-            'angular2-template-loader',
-            {
-              loader: 'ng-router-loader',
-              options: {
-                loader: 'async-system',
-                genDir: 'compiled',
-                aot: AOT
-              }
-            }
-          ],
-          exclude: [/\.(spec|e2e)\.ts$/]
-        },
+
 
         /*
          * Json loader support for *.json files.
@@ -371,5 +346,4 @@ module.exports = function (options) {
       setImmediate: false
     }
 
-  };
-}
+};

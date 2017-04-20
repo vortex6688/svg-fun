@@ -24,7 +24,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
 const HMR = helpers.hasProcessFlag('hot');
-const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
+const METADATA = webpackMerge(commonConfig.metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
@@ -40,7 +40,7 @@ const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 module.exports = function (options) {
-  return webpackMerge(commonConfig({env: ENV}), {
+  return webpackMerge(commonConfig, {
 
     /**
      * Developer tool to enhance debugging
@@ -94,6 +94,30 @@ module.exports = function (options) {
     module: {
 
       rules: [
+        /*
+         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
+         * Replace templateUrl and stylesUrl with require()
+         *
+         * See: https://github.com/s-panferov/awesome-typescript-loader
+         * See: https://github.com/TheLarkInn/angular2-template-loader
+         */
+        {
+          test: /\.ts$/,
+          use: [
+            '@angularclass/hmr-loader?pretty=true&prod=false',
+            'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
+            'angular2-template-loader',
+            {
+              loader: 'ng-router-loader',
+              options: {
+                loader: 'async-system',
+                genDir: 'compiled',
+                aot: AOT
+              }
+            }
+          ],
+          exclude: [/\.(spec|e2e)\.ts$/]
+        },
 
         /*
          * css loader support for *.css files (styles directory only)
@@ -167,7 +191,7 @@ module.exports = function (options) {
           ]
         },
         dllDir: helpers.root('dll'),
-        webpackConfig: webpackMergeDll(commonConfig({env: ENV}), {
+        webpackConfig: webpackMergeDll(commonConfig, {
           devtool: 'cheap-module-source-map',
           plugins: []
         })
