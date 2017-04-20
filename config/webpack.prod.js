@@ -266,12 +266,7 @@ module.exports = webpackMerge(commonConfig, {
      * See: https://webpack.github.io/docs/configuration.html#node
      */
     node: {
-      global: true,
-      crypto: 'empty',
-      process: false,
-      module: false,
-      clearImmediate: false,
-      setImmediate: false
+      process: false
     }
 });
 
