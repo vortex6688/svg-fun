@@ -41,6 +41,12 @@
 
   .table {
     background-color: $body-bg;
+
+    th:first-child {
+      // using text-indent instead of padding because padding pushes away other cells in the row
+      text-indent: (1 * $table-cell-padding);
+      color: $black;
+    }
   }
 
 // update list style type for list elements in a table
@@ -65,7 +71,6 @@
     @extend .border-0;
   }
 }
-
 
 //
 // Condensed table w/ half padding
