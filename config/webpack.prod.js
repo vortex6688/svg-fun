@@ -71,38 +71,6 @@ module.exports = webpackMerge(commonConfig, {
 
     },
 
-    module: {
-
-      rules: [
-
-        /*
-         * Extract CSS files from .src/styles directory to external CSS file
-         */
-        {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader'
-            }),
-          include: [helpers.root('src', 'styles')]
-        },
-
-        /*
-         * Extract and compile SCSS files from .src/styles directory to external CSS file
-         */
-        {
-          test: /\.scss$/,
-          loader: ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader!sass-loader'
-            }),
-          include: [helpers.root('src', 'styles')]
-        },
-
-      ]
-
-    },
-
     /**
      * Add additional plugins to the compiler.
      *
