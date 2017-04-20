@@ -74,30 +74,6 @@ module.exports = webpackMerge(commonConfig, {
     module: {
 
       rules: [
-        /*
-         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
-         * Replace templateUrl and stylesUrl with require()
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader
-         * See: https://github.com/TheLarkInn/angular2-template-loader
-         */
-        {
-          test: /\.ts$/,
-          use: [
-            '@angularclass/hmr-loader?pretty=false&prod=true',
-            'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
-            'angular2-template-loader',
-            {
-              loader: 'ng-router-loader',
-              options: {
-                loader: 'async-system',
-                genDir: 'compiled',
-                aot: true
-              }
-            }
-          ],
-          exclude: [/\.(spec|e2e)\.ts$/]
-        },
 
         /*
          * Extract CSS files from .src/styles directory to external CSS file

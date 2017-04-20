@@ -29,6 +29,7 @@ const ngcWebpack = require('ngc-webpack');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
+
 const NODE_MATCHER = /node_modules\//;
 const COMMON_MATCHER = /src\/tn-common\//;
 /*
@@ -97,7 +98,33 @@ module.exports = {
     module: {
 
       rules: [
-
+         /*
+         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
+         * Replace templateUrl and stylesUrl with require()
+         *
+         * See: https://github.com/s-panferov/awesome-typescript-loader
+         * See: https://github.com/TheLarkInn/angular2-template-loader
+         */
+        {
+          test: /\.ts$/,
+          use: [
+            // the prod flag actually tells the HMR Loader to bypass the 'bootstrap' in angular-hmr
+            // see: https://github.com/AngularClass/angular2-hmr/blob/master/src/helpers.ts#L2
+            // see: https://github.com/AngularClass/angular2-hmr-loader/blob/master/index.js#L21
+            '@angularclass/hmr-loader?prod='+ !HMR,
+            'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
+            'angular2-template-loader',
+            {
+              loader: 'ng-router-loader',
+              options: {
+                loader: 'async-system',
+                genDir: 'compiled',
+                aot: AOT
+              }
+            }
+          ],
+          exclude: [/\.(spec|e2e)\.ts$/]
+        },
 
 
         /*

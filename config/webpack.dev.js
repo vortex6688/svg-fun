@@ -18,8 +18,6 @@ const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
 
-const AOT = helpers.hasNpmFlag('aot');
-
 /**
  * Webpack configuration
  *
@@ -80,30 +78,6 @@ module.exports = function (options) {
     module: {
 
       rules: [
-        /*
-         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
-         * Replace templateUrl and stylesUrl with require()
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader
-         * See: https://github.com/TheLarkInn/angular2-template-loader
-         */
-        {
-          test: /\.ts$/,
-          use: [
-            '@angularclass/hmr-loader?pretty=true&prod=false',
-            'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
-            'angular2-template-loader',
-            {
-              loader: 'ng-router-loader',
-              options: {
-                loader: 'async-system',
-                genDir: 'compiled',
-                aot: AOT
-              }
-            }
-          ],
-          exclude: [/\.(spec|e2e)\.ts$/]
-        },
 
         /*
          * css loader support for *.css files (styles directory only)
