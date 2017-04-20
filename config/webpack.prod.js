@@ -20,18 +20,6 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
-/**
- * Webpack Constants
- */
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
-const METADATA = webpackMerge(commonConfig.metadata, {
-  host: HOST,
-  port: PORT,
-  ENV: ENV,
-  HMR: false
-});
 
 module.exports = webpackMerge(commonConfig, {
 
@@ -104,7 +92,7 @@ module.exports = webpackMerge(commonConfig, {
               options: {
                 loader: 'async-system',
                 genDir: 'compiled',
-                aot: AOT
+                aot: true
               }
             }
           ],
@@ -341,6 +329,5 @@ module.exports = webpackMerge(commonConfig, {
       clearImmediate: false,
       setImmediate: false
     }
+});
 
-  });
-}

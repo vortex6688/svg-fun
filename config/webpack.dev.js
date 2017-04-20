@@ -16,23 +16,9 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-
-/**
- * Webpack Constants
- */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 3000;
-const HMR = helpers.hasProcessFlag('hot');
-const METADATA = webpackMerge(commonConfig.metadata, {
-  host: HOST,
-  port: PORT,
-  ENV: ENV,
-  HMR: HMR
-});
-
-
 const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
+
+const AOT = helpers.hasNpmFlag('aot');
 
 /**
  * Webpack configuration
@@ -241,8 +227,8 @@ module.exports = function (options) {
      * See: https://webpack.github.io/docs/webpack-dev-server.html
      */
     devServer: {
-      port: METADATA.port,
-      host: METADATA.host,
+      port: process.env.PORT || 3000,
+      host: process.env.HOST || 'localhost',
       historyApiFallback: true,
       watchOptions: {
         aggregateTimeout: 300,

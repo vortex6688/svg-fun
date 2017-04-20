@@ -16,11 +16,6 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 /**
- * Webpack Constants
- */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
-
-/**
  * Webpack configuration
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
@@ -211,7 +206,7 @@ module.exports = {
        */
       // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
       new webpack.EnvironmentPlugin({
-        'ENV': '',
+        'ENV': 'test',
         'TN_API_URL': 'http://localhost:8000',
       }),
 
