@@ -41,6 +41,10 @@ export class AuthService {
     // subscribe to storage changes. (when this.user is set is should trigger storage update)
     this.storage.observe('AuthService.user').subscribe(this.user$);
     this.httpService.setBaseUrl(environment.djangoBaseUrl);
+    if (this.user.token) {
+      // User already logged in. Set the auth token.
+      this.httpService.setAuthToken(this.user.token);
+    }
   };
 
   /**

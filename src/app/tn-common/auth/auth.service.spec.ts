@@ -122,6 +122,12 @@ describe('AuthService', () => {
     });
   });
 
+  it('should set the Auth Token when it is created, if the user is already logged in', () => {
+    spyOn(apiClient, 'setAuthToken');
+    let aNewAuthService = new AuthService(apiClient, storage);
+    expect(apiClient.setAuthToken).toHaveBeenCalledWith(successBody.token);
+  });
+
   it('should logout users', () => {
     mockBackend.connections.subscribe((connection) => {
       if (connection.request.url.indexOf('/auth/login/') !== -1 ) {
