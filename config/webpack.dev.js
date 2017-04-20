@@ -5,6 +5,7 @@
  */
 
 const helpers = require('./helpers');
+const webpack = require('webpack');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const webpackMergeDll = webpackMerge.strategy({plugins: 'replace'});
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
@@ -13,7 +14,6 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
  * Webpack Plugins
  */
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
@@ -126,23 +126,18 @@ module.exports = function (options) {
     plugins: [
 
       /**
-       * Plugin: DefinePlugin
+       * Plugin: EnvironmentPlugin
        * Description: Define free variables.
        * Useful for having development builds with debug logging or adding global constants.
        *
        * Environment helpers
        *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       * See: https://webpack.js.org/plugins/environment-plugin/
        */
-      // NOTE: when adding more properties, make sure you include them in custom-typings.d.ts
-      new DefinePlugin({
-        'ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR,
-        'process.env': {
-          'ENV': JSON.stringify(METADATA.ENV),
-          'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
-        }
+      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+      new webpack.EnvironmentPlugin({
+        'ENV': '',
+        'TN_API_URL': 'http://localhost:8000',
       }),
 
       new DllBundlesPlugin({

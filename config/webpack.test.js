@@ -6,12 +6,12 @@
 
 const helpers = require('./helpers');
 const path = require('path');
+const webpack = require('webpack');
 
 /**
  * Webpack Plugins
  */
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
@@ -202,23 +202,18 @@ module.exports = function (options) {
     plugins: [
 
       /**
-       * Plugin: DefinePlugin
+       * Plugin: EnvironmentPlugin
        * Description: Define free variables.
        * Useful for having development builds with debug logging or adding global constants.
        *
        * Environment helpers
        *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       * See: https://webpack.js.org/plugins/environment-plugin/
        */
       // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new DefinePlugin({
-        'ENV': JSON.stringify(ENV),
-        'HMR': false,
-        'process.env': {
-          'ENV': JSON.stringify(ENV),
-          'NODE_ENV': JSON.stringify(ENV),
-          'HMR': false,
-        }
+      new webpack.EnvironmentPlugin({
+        'ENV': '',
+        'TN_API_URL': 'http://localhost:8000',
       }),
 
       /**

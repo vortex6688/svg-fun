@@ -5,13 +5,13 @@
  */
 
 const helpers = require('./helpers');
+const webpack = require('webpack');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
 
 /**
  * Webpack Plugins
  */
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
@@ -125,7 +125,7 @@ module.exports = function (env) {
 
       /**
        * Plugin: ExtractTextPlugin
-       * Description: Extracts imported CSS files into external stylesheet 
+       * Description: Extracts imported CSS files into external stylesheet
        *
        * See: https://github.com/webpack/extract-text-webpack-plugin
        */
@@ -140,23 +140,18 @@ module.exports = function (env) {
       new WebpackMd5Hash(),
 
       /**
-       * Plugin: DefinePlugin
+       * Plugin: EnvironmentPlugin
        * Description: Define free variables.
        * Useful for having development builds with debug logging or adding global constants.
        *
        * Environment helpers
        *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       * See: https://webpack.js.org/plugins/environment-plugin/
        */
       // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new DefinePlugin({
-        'ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR,
-        'process.env': {
-          'ENV': JSON.stringify(METADATA.ENV),
-          'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
-        }
+      new webpack.EnvironmentPlugin({
+        'ENV': 'production',
+        'TN_API_URL': 'http://localhost:8000',
       }),
 
       /**
