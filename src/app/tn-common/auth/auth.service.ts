@@ -5,7 +5,6 @@ import { Credentials, RegistrationCredentials } from './credentials';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
 import { LocalStorageService, LocalStorage } from 'ng2-webstorage';
 import { BehaviorSubject } from 'rxjs/Rx';
-import { environment } from '../../../environments/environment';
 
 /**
  * TypeNetwork Authentication Service.
@@ -40,7 +39,7 @@ export class AuthService {
     this.user$ = new BehaviorSubject<Authorization>(this.user);
     // subscribe to storage changes. (when this.user is set is should trigger storage update)
     this.storage.observe('AuthService.user').subscribe(this.user$);
-    this.httpService.setBaseUrl(environment.djangoBaseUrl);
+    this.httpService.setBaseUrl(process.env.TN_API_URL);
     if (this.user.token) {
       // User already logged in. Set the auth token.
       this.httpService.setAuthToken(this.user.token);
