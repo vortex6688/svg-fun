@@ -8,12 +8,17 @@
   margin-bottom: $spacer;
   background-color: $table-bg; // Reset for nesting within parents with `background-color`.
 
+// applying border top on the table row instead of the table cell to center the content not depending on it's type 
+  tr {
+    align-items: baseline;
+    border-top: $table-border-width solid $table-border-color;
+  }
 
   th,
   td {
-    padding: $table-cell-padding;
+    padding: $table-cell-padding 0;
     vertical-align: top;
-    border-top: $table-border-width solid $table-border-color;
+    font-size: $font-size-sm;
   }
 
   th {
@@ -23,9 +28,7 @@
   thead th {
     vertical-align: bottom;
     border-bottom: (1 * $table-border-width) solid $table-border-color;
-    padding: (0.5 * $table-cell-padding);
-
-    font-size: $table-head-font-size;
+    padding: (0.5 * $table-cell-padding) 0;
     font-weight: normal;
 
     color: $table-head-color;
@@ -38,9 +41,36 @@
 
   .table {
     background-color: $body-bg;
+
+    th:first-child {
+      // using text-indent instead of padding because padding pushes away other cells in the row
+      text-indent: (1 * $table-cell-padding);
+      color: $black;
+    }
+  }
+
+// update list style type for list elements in a table
+  ul {
+    list-style-type: none;
+  }
+
+  ul li {
+    margin-left: -20px;
+
+    &:before {
+      content: '\2014';
+      position: absolute;
+      margin-left: -20px;
+    }
   }
 }
 
+.table.no-borders {
+  td,
+  th {
+    @extend .border-0;
+  }
+}
 
 //
 // Condensed table w/ half padding

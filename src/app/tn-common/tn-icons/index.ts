@@ -4,3 +4,4 @@ export { IconCreateComponent } from './icon-create';
 export { IconDeleteComponent } from './icon-delete';
 export { IconDownloadComponent } from './icon-download';
 export { IconRevertComponent } from './icon-revert';
+export { IconRightArrowComponent } from './icon-right-arrow';

@@ -14,6 +14,8 @@ import { AdminComponent } from './admin';
 import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
 import { LoginComponent } from './login';
+import { OrderRowComponent } from './admin-orders-list/orders-table/order-row';
+import { OrdersTableComponent } from './admin-orders-list/orders-table';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
@@ -32,6 +34,8 @@ export const routes: Routes = [
     AdminNavbarComponent,
     AdminOrdersListComponent,
     LoginComponent,
+    OrderRowComponent,
+    OrdersTableComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ export const routes: Routes = [
     HttpModule,
     RouterModule.forChild(routes),
     NgbModule.forRoot(),
-    TnCommonModule,
+    TnCommonModule
   ],
   entryComponents: [ LoginComponent ],
   providers: []

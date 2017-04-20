@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr class="row">
+      <th class="col">Order number</th>
+      <th class="col">Customer</th>
+      <th class="col">Amount</th>
+      <th class="col">Date</th>
+      <th class="col">Status</th>
+      <th class="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <order-row *ngFor='let order of orders' [order]=order></order-row>
+  </tbody>
+</table>
