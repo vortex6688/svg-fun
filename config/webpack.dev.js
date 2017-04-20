@@ -77,21 +77,6 @@ module.exports = function (options) {
 
     plugins: [
 
-      /**
-       * Plugin: EnvironmentPlugin
-       * Description: Define free variables.
-       * Useful for having development builds with debug logging or adding global constants.
-       *
-       * Environment helpers
-       *
-       * See: https://webpack.js.org/plugins/environment-plugin/
-       */
-      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new webpack.EnvironmentPlugin({
-        'ENV': '',
-        'TN_API_URL': 'http://localhost:8000',
-      }),
-
       new DllBundlesPlugin({
         bundles: {
           polyfills: [

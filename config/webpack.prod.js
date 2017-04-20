@@ -4,6 +4,9 @@
  * @author: @AngularClass
  */
 
+// force environment for prodution builds prior to including common.js.
+process.env.ENV = 'production';
+
 const helpers = require('./helpers');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
@@ -95,21 +98,6 @@ module.exports = webpackMerge(commonConfig, {
       new WebpackMd5Hash(),
 
       /**
-       * Plugin: EnvironmentPlugin
-       * Description: Define free variables.
-       * Useful for having development builds with debug logging or adding global constants.
-       *
-       * Environment helpers
-       *
-       * See: https://webpack.js.org/plugins/environment-plugin/
-       */
-      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new webpack.EnvironmentPlugin({
-        'ENV': 'production',
-        'TN_API_URL': 'http://localhost:8000',
-      }),
-
-      /**
        * Plugin: UglifyJsPlugin
        * Description: Minimize all JavaScript output of chunks.
        * Loaders are switched into minimizing mode.
@@ -173,48 +161,8 @@ module.exports = webpackMerge(commonConfig, {
       ),
 
 
-      // AoT
-      // new NormalModuleReplacementPlugin(
-      //   /@angular(\\|\/)upgrade/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /@angular(\\|\/)compiler/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /@angular(\\|\/)platform-browser-dynamic/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /dom(\\|\/)debug(\\|\/)ng_probe/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /dom(\\|\/)debug(\\|\/)by/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /src(\\|\/)debug(\\|\/)debug_node/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /src(\\|\/)debug(\\|\/)debug_renderer/,
-      //   helpers.root('config/empty.js')
-      // ),
-
-      /**
-       * Plugin: CompressionPlugin
-       * Description: Prepares compressed versions of assets to serve
-       * them with Content-Encoding
-       *
-       * See: https://github.com/webpack/compression-webpack-plugin
-       */
-      //  install compression-webpack-plugin
-      // new CompressionPlugin({
-      //   regExp: /\.css$|\.html$|\.js$|\.map$/,
-      //   threshold: 2 * 1024
-      // })
+      // TODO: add compression plugin for production builds.
+      // lets save the webserver the trouble.
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)
@@ -246,17 +194,6 @@ module.exports = webpackMerge(commonConfig, {
 
         }
       }),
-
-      /**
-       * Plugin: BundleAnalyzerPlugin
-       * Description: Webpack plugin and CLI utility that represents
-       * bundle content as convenient interactive zoomable treemap
-       *
-       * `npm run build:prod -- --env.analyze` to use
-       *
-       * See: https://github.com/th0r/webpack-bundle-analyzer
-       */
-
     ],
 
     /*
