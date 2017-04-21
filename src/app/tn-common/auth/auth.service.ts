@@ -39,7 +39,6 @@ export class AuthService {
     this.user$ = new BehaviorSubject<Authorization>(this.user);
     // subscribe to storage changes. (when this.user is set is should trigger storage update)
     this.storage.observe('AuthService.user').subscribe(this.user$);
-    this.httpService.setBaseUrl(process.env.TN_API_URL);
     if (this.user.token) {
       // User already logged in. Set the auth token.
       this.httpService.setAuthToken(this.user.token);

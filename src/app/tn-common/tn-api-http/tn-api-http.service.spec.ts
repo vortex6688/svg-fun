@@ -51,17 +51,29 @@ describe('TnApiHttpService', () => {
   beforeEach(() => {
     mockBackend = new MockBackend();
     let options = new BaseRequestOptions();
-    apiClient = new TnApiHttpService(mockBackend, options);
+    apiClient = new TnApiHttpService(mockBackend, options, baseUrl);
   });
 
   it('should be created', () => {
     expect(apiClient).toBeTruthy();
   });
 
-  it('should setBaseUrl properly', () => {
+  it('shoud construct with the proper baseUrl', () => {
     let path = 'api/users/1';
     let url = baseUrl + path;
-    apiClient.setBaseUrl(baseUrl);
+
+    mockBackend.connections.subscribe((connection) => {
+      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+    });
+
+    apiClient.get(path);
+  });
+
+  it('should setBaseUrl properly', () => {
+    let path = 'api/users/1';
+    let newBaseUrl = baseUrl + 'v2/';
+    let url = newBaseUrl + path;
+    apiClient.setBaseUrl(newBaseUrl);
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.url).toBe(url, 'Incorrect URL used');
@@ -155,11 +167,11 @@ describe('TnApiHttpService', () => {
   });
 
   it('should unwrap json on put', () => {
-    let url = '/api/1/people/';
+    let url = 'api/1/people/';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Put, 'Not using PUT method');
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
       expect(connection.request._body).toBe(data, 'Incorrect data sent');
       connection.mockRespond(mockResponse);
     });
@@ -170,10 +182,10 @@ describe('TnApiHttpService', () => {
   });
 
   it('should catch and rethrow errors on put', () => {
-    let url = 'http://localhost:2223/api/users/1';
+    let url = 'api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
       connection.mockError(mockResponseError);
     });
 
@@ -189,11 +201,11 @@ describe('TnApiHttpService', () => {
   });
 
   it('should unwrap json on post', () => {
-    let url = '/api/1/people/';
+    let url = 'api/1/people/';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Post, 'Not using POST method');
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
       expect(connection.request._body).toBe(data, 'Incorrect data sent');
       connection.mockRespond(mockResponse);
     });
@@ -204,10 +216,10 @@ describe('TnApiHttpService', () => {
   });
 
   it('should catch and rethrow errors on post', () => {
-    let url = 'http://localhost:2223/api/users/1';
+    let url = 'api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
       connection.mockError(mockResponseError);
     });
 
@@ -223,11 +235,11 @@ describe('TnApiHttpService', () => {
   });
 
   it('should unwrap json on delete', () => {
-    let url = '/api/1/people/1';
+    let url = 'api/1/people/1';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Delete, 'Not using DELETE method');
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
       connection.mockRespond(mockResponse);
     });
 
@@ -237,10 +249,10 @@ describe('TnApiHttpService', () => {
   });
 
   it('should catch and rethrow errors on delete', () => {
-    let url = 'http://localhost:2223/api/users/1';
+    let url = 'api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
-      expect(connection.request.url).toBe(url, 'Incorrect URL used');
+      expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
       connection.mockError(mockResponseError);
     });
 
