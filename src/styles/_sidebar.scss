@@ -5,12 +5,9 @@
   overflow-y: auto; 
   top: $navbar-height;
   bottom: 0;
+  padding: 2.625rem;
 
   @include media-breakpoint-down(md) {
     top: $navbar-collapsed-height;
-  }
-
-  .card-block {
-    border-bottom: 1px solid $gray-lightest;
   }
 }

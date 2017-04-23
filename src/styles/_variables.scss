@@ -132,8 +132,8 @@ $spacers: (
     y: ($spacer-y * 1.5)
   ),
   5: (
-    x: ($spacer-x * 2),
-    y: ($spacer-y * 2)
+    x: ($spacer-x * 3),
+    y: ($spacer-y * 3)
   )
 );
 $border-width: 1px;
@@ -669,7 +669,7 @@ $state-danger-border:            darken($state-danger-bg, 5%);
 
 // Cards
 
-$card-spacer-x:            1rem 0;
+$card-spacer-x:            .75rem 0;
 $card-spacer-y:            .75rem;
 $card-border-width:        0px;
 $card-border-radius:       $border-radius;
