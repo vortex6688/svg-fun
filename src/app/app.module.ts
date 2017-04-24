@@ -13,6 +13,8 @@ import { TnStyleguideModule } from './tn-styleguide';
 
 import { AppComponent } from './app.component';
 
+import { TnApiBaseUrl } from './tn-common/tn-api-http';
+
 import '../styles/main.scss';
 
 const ROUTES: Routes = [];
@@ -31,7 +33,11 @@ const ROUTES: Routes = [];
     TnStyleguideModule
 
   ],
-  providers: [ActionCreatorFactory],
+  providers: [
+    ActionCreatorFactory,
+    // provide TnApiBaseUrl, required configuration.
+    { provide: TnApiBaseUrl, useValue: process.env.TN_API_URL }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

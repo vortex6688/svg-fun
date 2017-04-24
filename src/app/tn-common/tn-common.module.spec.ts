@@ -2,7 +2,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { Component, OpaqueToken } from '@angular/core';
 import { TnCommonModule } from './tn-common.module';
-import { TnApiHttpService } from './tn-api-http';
+import { TnApiHttpService, TnApiBaseUrl } from './tn-api-http';
 import { AuthService } from './auth';
 import { OrderService } from './orders';
 import { User, UserService } from './user';
@@ -19,7 +19,9 @@ describe('TnCommonModule', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:   [ TnCommonModule ],
-      declarations: [ TnCommonModuleProvidersTestComponent ]
+      declarations: [ TnCommonModuleProvidersTestComponent ],
+      // must provide TnApiBaseUrl in order for the TnApiHttpService to build.
+      providers: [ { provide: TnApiBaseUrl, useValue: 'http://localhost:2222/' } ]
     })
     .compileComponents();
   });

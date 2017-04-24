@@ -3,6 +3,7 @@ import { ConnectionBackend, Headers, Http,
          Request, RequestOptions, RequestOptionsArgs, Response, XHRBackend } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Rx';
+import { TnApiBaseUrl } from './tn-api-base-url';
 
 /**
  * TypeNetwork API HTTP client.
@@ -18,14 +19,14 @@ import { Subject } from 'rxjs/Rx';
 @Injectable()
 export class TnApiHttpService extends Http {
 
-  public static factory(backend, options) {
-    return new TnApiHttpService(backend, options);
+  public static factory(backend: XHRBackend, options: RequestOptions, baseUrl: TnApiBaseUrl) {
+    return new TnApiHttpService(backend, options, baseUrl);
   }
 
   public static provider() {
     return {
       provide: TnApiHttpService,
-      deps: [XHRBackend, RequestOptions],
+      deps: [XHRBackend, RequestOptions, TnApiBaseUrl],
       useFactory: TnApiHttpService.factory
     };
   }
@@ -46,7 +47,7 @@ export class TnApiHttpService extends Http {
    * @type {string}
    * @memberOf TnApiHttpService
    */
-  protected baseUrl: string;
+  protected baseUrl: TnApiBaseUrl;
 
   /**
    * API Authorization Token
@@ -68,8 +69,9 @@ export class TnApiHttpService extends Http {
    *
    * @memberOf TnApiHttpService
    */
-  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
+  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, baseUrl: TnApiBaseUrl) {
     super(backend, defaultOptions);
+    this.baseUrl = baseUrl;
   }
 
   /**
@@ -97,7 +99,6 @@ export class TnApiHttpService extends Http {
    */
   public setBaseUrl(url?: string) {
     this.baseUrl = url;
-    this._defaultOptions.url = url;
   }
 
   public request(url: string|Request, options?: RequestOptionsArgs): Observable<Response> {
