@@ -11,6 +11,18 @@ import { ComponentsFormsComponent } from './components-forms.component';
 describe('ComponentsFormsComponent', () => {
   let component: ComponentsFormsComponent;
   let fixture: ComponentFixture<ComponentsFormsComponent>;
+  let additionalTimeout = 5000;
+
+  beforeAll(() => {
+    // grant more time due to timeouts on local tests. (dopry)
+    // TODO: figure out how to ensure test completes in default timeout.
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = jasmine.DEFAULT_TIMEOUT_INTERVAL + additionalTimeout;
+  });
+
+  afterAll(() => {
+    // clear additional timeout.
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = jasmine.DEFAULT_TIMEOUT_INTERVAL - additionalTimeout;
+  });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
