@@ -10,4 +10,12 @@
   @include media-breakpoint-down(md) {
     top: $navbar-collapsed-height;
   }
+
+  dl {
+    font-size: $font-size-sm;
+
+    dt {
+        font-weight: 600;
+    }
+  }
 }
