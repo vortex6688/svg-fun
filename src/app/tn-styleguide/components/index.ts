@@ -4,3 +4,4 @@ export { ComponentsFormsComponent } from './components-forms';
 export { ComponentsModalComponent } from './components-modal';
 export { ComponentsPaginationComponent } from './components-pagination';
 export { ComponentsButtonsComponent } from './components-buttons';
+export { ComponentsCardComponent } from './components-card';

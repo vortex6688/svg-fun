@@ -23,7 +23,8 @@ import { ComponentsAlertsComponent,
          ComponentsModalComponent,
          ComponentsFormsComponent,
          ComponentsPaginationComponent,
-         ComponentsButtonsComponent } from './components';
+         ComponentsButtonsComponent,
+         ComponentsCardComponent } from './components';
 import { UtilitiesBordersComponent,
          UtilitiesClearfixComponent,
          UtilitiesCloseIconComponent,
@@ -57,6 +58,7 @@ const ROUTES: Routes = [
       {  path: 'components/modal', component: ComponentsModalComponent },
       {  path: 'components/pagination', component: ComponentsPaginationComponent },
       {  path: 'components/buttons', component: ComponentsButtonsComponent },
+      {  path: 'components/card', component: ComponentsCardComponent },
       {  path: 'utilities', redirectTo: 'utilities/borders', pathMatch: 'full' },
       {  path: 'utilities/borders', component: UtilitiesBordersComponent },
       {  path: 'utilities/clearfix', component: UtilitiesClearfixComponent },
@@ -90,6 +92,7 @@ const ROUTES: Routes = [
     ComponentsModalComponent,
     ComponentsPaginationComponent,
     ComponentsButtonsComponent,
+    ComponentsCardComponent,
     UtilitiesBordersComponent,
     UtilitiesClearfixComponent,
     UtilitiesCloseIconComponent,
@@ -97,7 +100,8 @@ const ROUTES: Routes = [
     UtilitiesColorsComponent,
     UtilitiesDisplayPropertyComponent,
     UtilitiesInvisibleContentComponent,
-    UtilitiesImageReplacementComponent
+    UtilitiesImageReplacementComponent,
+    ComponentsCardComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

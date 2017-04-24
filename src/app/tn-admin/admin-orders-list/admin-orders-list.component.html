@@ -1,75 +1,83 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="sidebar p-3 border-right-gradient-inset">
-          <div class="card">
-              <div class="card-block">
-                  <button class="btn btn-success btn-block">+ New Order</button>
-                  <fieldset  class="form-group">
-                    <a (click)="clearSearch()" class="float-right">Clear all</a>
-                    <h4><small>SEARCH BY:</small></h4>
-                    <div class="form-group">
-                      <label for="searchOrderNumber">Order Number</label>
-                      <input type="text" class="form-control" id="searchOrderNumber" />
-                    </div>
-                    <div class="form-group">
-                      <label for="searchOrderNumber">Date Range</label>
-                      <div class="input-group">
-                          <!-- to do add "start" label for the datepicked -->
-                          <datepicker></datepicker>
-                      </div>
-                      <div class="input-group">
-                          <!-- to do add "start" label for the datepicked -->
-                          <datepicker></datepicker>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="searchCustomer">Customer</label>
-                      <input type="text" class="form-control" id="searchCustomer" aria-describedby="searchCustomerHelp"/>
-                      <small id="searchCustomerHelp" class="form-text text-muted">Name, email address, or company (licensee name/company)</small>
-                    </div>
-                    <div class="form-group">
-                      <label for="searchProject">Project</label>
-                      <input type="text" class="form-control" id="searchProject" aria-describedby="searchProjectHelp"/>
-                      <small id="searchProjectHelp" class="form-text text-muted">Project name, URL</small>
-                    </div>
-                    <div class="form-group">
-                      <label for="searchFont">Family or Style</label>
-                      <input type="text" class="form-control" id="searchFont"/>
-                    </div>
-                     <div class="form-group">
-                      <label for="searchFoundry">Foundry or Designer</label>
-                      <input type="text" class="form-control" id="searchFoundry" />
-                    </div>
-                  </fieldset>
-                  <fieldset  class="form-group">
-                    <a (click)="clearFilters()" class="float-right">Clear filters</a>
-                    <h4><small>FILTER BY:</small></h4>
-                    <div class="form-group">
-                      <label for="filterLicenseType">License Type</label>
-                      <ul class="list-group">
-                        <li class="list-group-item justify-content-between">Desktop <span>(228)</span></li>
-                        <li class="list-group-item justify-content-between">Web (hosted) <span>(228)</span></li>
-                        <li class="list-group-item justify-content-between">Web (self-hosted) <span>(228)</span></li>
-                        <li class="list-group-item justify-content-between">Application <span>(228)</span></li>
-                        <li class="list-group-item justify-content-between">E-publication <span>(228)</span></li>
-                      </ul>
-                    </div>
-                    <div class="form-group">
-                      <label for="filterOrderStatus">Status</label>
-                      <ul class="list-group">
-                        <li class="list-group-item justify-content-between">Compelted <span>(228)</span></li>
-                        <li class="list-group-item justify-content-between">Pending <span>(228)</span></li>
-                        <li class="list-group-item justify-content-between">Failed <span>(228)</span></li>
-                        <li class="list-group-item justify-content-between">Cancelled <span>(228)</span></li>
-                      </ul>
-                    </div>
-                  </fieldset>
+  <div class="row">
+    <div class="sidebar border-right-gradient-inset">
+      <div class="card">
+        <div class="card-block card-header">
+          <button class="btn btn-success col"><icon-create class="text-white"></icon-create> New Order</button>
+        </div>
+        <div class="card-block card-header">
+          <form>
+            <span class="row justify-content-between">
+              <small><b class="col">SEARCH BY:</b></small>
+              <small><a (click)="clearSearch()" class="col text-right">Clear all</a></small>
+            </span>
+            <div class="form-group">
+              <label for="searchOrderNumber">Order Number</label>
+              <input type="text" class="form-control" id="searchOrderNumber" />
+            </div>
+            <div class="form-group">
+              <label for="searchOrderNumber">Date Range</label>
+              <div class="input-group">
+                  <!-- to do add "start" label for the datepicked -->
+                  <datepicker></datepicker>
               </div>
-          </div>
+              <div class="input-group">
+                  <!-- to do add "start" label for the datepicked -->
+                  <datepicker></datepicker>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="searchCustomer">Customer</label>
+              <input type="text" class="form-control" id="searchCustomer" aria-describedby="searchCustomerHelp"/>
+              <small id="searchCustomerHelp" class="form-text text-muted">Name, email address, or company (licensee name/company)</small>
+            </div>
+            <div class="form-group">
+              <label for="searchProject">Project</label>
+              <input type="text" class="form-control" id="searchProject" aria-describedby="searchProjectHelp"/>
+              <small id="searchProjectHelp" class="form-text text-muted">Project name, URL</small>
+            </div>
+            <div class="form-group">
+              <label for="searchFont">Family or Style</label>
+              <input type="text" class="form-control" id="searchFont" />
+            </div>
+            <div class="form-group">
+              <label for="searchFoundry">Foundry or Designer</label>
+              <input type="text" class="form-control" id="searchFoundry" />
+            </div>
+          </form>
         </div>
-        <div class="main p-5 w-100">
-          <h2>Orders</h2>
-          <orders-table></orders-table>
+        <div class="card-block card-header">
+          <form>
+            <span class="row justify-content-between">
+              <small><b class="col">SEARCH BY:</b></small>
+              <small><a (click)="clearFilters()" class="col text-right">Clear all</a></small>
+            </span>
+            <div class="form-group">
+              <label for="filterLicenseType">License Type</label>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item justify-content-between">Desktop <span>(228)</span></li>
+                <li class="list-group-item justify-content-between">Web (hosted) <span>(228)</span></li>
+                <li class="list-group-item justify-content-between">Web (self-hosted) <span>(228)</span></li>
+                <li class="list-group-item justify-content-between">Application <span>(228)</span></li>
+                <li class="list-group-item justify-content-between">E-publication <span>(228)</span></li>
+              </ul>
+            </div>
+            <div class="form-group list-group-flush">
+              <label for="filterOrderStatus">Status</label>
+              <ul class="list-group">
+                <li class="list-group-item justify-content-between">Compelted <span>(228)</span></li>
+                <li class="list-group-item justify-content-between">Pending <span>(228)</span></li>
+                <li class="list-group-item justify-content-between">Failed <span>(228)</span></li>
+                <li class="list-group-item justify-content-between">Cancelled <span>(228)</span></li>
+              </ul>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+    <div class="main p-5 w-100">
+      <h2>Orders</h2>
+      <orders-table></orders-table>
+    </div>
+  </div>
 </div>
