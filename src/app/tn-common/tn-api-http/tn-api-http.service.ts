@@ -19,7 +19,7 @@ import { TnApiBaseUrl } from './tn-api-base-url';
 @Injectable()
 export class TnApiHttpService extends Http {
 
-  public static factory(backend: XHRBackend, options: RequestOptions, baseUrl: TnApiBaseUrl) {
+  public static factory(backend: XHRBackend, options: RequestOptions, baseUrl?: TnApiBaseUrl) {
     return new TnApiHttpService(backend, options, baseUrl);
   }
 
@@ -69,7 +69,7 @@ export class TnApiHttpService extends Http {
    *
    * @memberOf TnApiHttpService
    */
-  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, baseUrl: TnApiBaseUrl) {
+  constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, baseUrl?: TnApiBaseUrl) {
     super(backend, defaultOptions);
     this.baseUrl = baseUrl;
   }
