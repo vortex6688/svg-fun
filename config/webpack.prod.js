@@ -4,6 +4,9 @@
  * @author: @AngularClass
  */
 
+// force environment for prodution builds prior to including common.js.
+process.env.ENV = 'production';
+
 const helpers = require('./helpers');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
@@ -20,21 +23,8 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
-/**
- * Webpack Constants
- */
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
-const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
-  host: HOST,
-  port: PORT,
-  ENV: ENV,
-  HMR: false
-});
 
-module.exports = function (env) {
-  return webpackMerge(commonConfig({env: ENV}), {
+module.exports = webpackMerge(commonConfig, {
 
     /**
      * Developer tool to enhance debugging
@@ -84,38 +74,6 @@ module.exports = function (env) {
 
     },
 
-    module: {
-
-      rules: [
-
-        /*
-         * Extract CSS files from .src/styles directory to external CSS file
-         */
-        {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader'
-            }),
-          include: [helpers.root('src', 'styles')]
-        },
-
-        /*
-         * Extract and compile SCSS files from .src/styles directory to external CSS file
-         */
-        {
-          test: /\.scss$/,
-          loader: ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader!sass-loader'
-            }),
-          include: [helpers.root('src', 'styles')]
-        },
-
-      ]
-
-    },
-
     /**
      * Add additional plugins to the compiler.
      *
@@ -138,21 +96,6 @@ module.exports = function (env) {
        * See: https://www.npmjs.com/package/webpack-md5-hash
        */
       new WebpackMd5Hash(),
-
-      /**
-       * Plugin: EnvironmentPlugin
-       * Description: Define free variables.
-       * Useful for having development builds with debug logging or adding global constants.
-       *
-       * Environment helpers
-       *
-       * See: https://webpack.js.org/plugins/environment-plugin/
-       */
-      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new webpack.EnvironmentPlugin({
-        'ENV': 'production',
-        'TN_API_URL': 'http://localhost:8000',
-      }),
 
       /**
        * Plugin: UglifyJsPlugin
@@ -218,48 +161,8 @@ module.exports = function (env) {
       ),
 
 
-      // AoT
-      // new NormalModuleReplacementPlugin(
-      //   /@angular(\\|\/)upgrade/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /@angular(\\|\/)compiler/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /@angular(\\|\/)platform-browser-dynamic/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /dom(\\|\/)debug(\\|\/)ng_probe/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /dom(\\|\/)debug(\\|\/)by/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /src(\\|\/)debug(\\|\/)debug_node/,
-      //   helpers.root('config/empty.js')
-      // ),
-      // new NormalModuleReplacementPlugin(
-      //   /src(\\|\/)debug(\\|\/)debug_renderer/,
-      //   helpers.root('config/empty.js')
-      // ),
-
-      /**
-       * Plugin: CompressionPlugin
-       * Description: Prepares compressed versions of assets to serve
-       * them with Content-Encoding
-       *
-       * See: https://github.com/webpack/compression-webpack-plugin
-       */
-      //  install compression-webpack-plugin
-      // new CompressionPlugin({
-      //   regExp: /\.css$|\.html$|\.js$|\.map$/,
-      //   threshold: 2 * 1024
-      // })
+      // TODO: add compression plugin for production builds.
+      // lets save the webserver the trouble.
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)
@@ -291,17 +194,6 @@ module.exports = function (env) {
 
         }
       }),
-
-      /**
-       * Plugin: BundleAnalyzerPlugin
-       * Description: Webpack plugin and CLI utility that represents
-       * bundle content as convenient interactive zoomable treemap
-       *
-       * `npm run build:prod -- --env.analyze` to use
-       *
-       * See: https://github.com/th0r/webpack-bundle-analyzer
-       */
-
     ],
 
     /*
@@ -311,13 +203,7 @@ module.exports = function (env) {
      * See: https://webpack.github.io/docs/configuration.html#node
      */
     node: {
-      global: true,
-      crypto: 'empty',
-      process: false,
-      module: false,
-      clearImmediate: false,
-      setImmediate: false
+      process: false
     }
+});
 
-  });
-}

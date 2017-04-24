@@ -29,6 +29,7 @@ const ngcWebpack = require('ngc-webpack');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
+
 const NODE_MATCHER = /node_modules\//;
 const COMMON_MATCHER = /src\/tn-common\//;
 /*
@@ -36,9 +37,7 @@ const COMMON_MATCHER = /src\/tn-common\//;
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function (options) {
-  var isProd = options.env === 'production';
-  return {
+module.exports = {
 
     /*
      * Cache generated modules and chunks to improve performance for multiple incremental builds.
@@ -76,7 +75,7 @@ module.exports = function (options) {
 
       // An array of directory names to be resolved to the current directory
       modules: [
-        helpers.root('src'), 
+        helpers.root('src'),
         helpers.root('node_modules')
       ],
 
@@ -84,8 +83,8 @@ module.exports = function (options) {
       // https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
       plugins: [
         new TsConfigPathsPlugin({
-          tsconfig: AOT ? 
-                      helpers.root('tsconfig.webpack.json') : 
+          tsconfig: AOT ?
+                      helpers.root('tsconfig.webpack.json') :
                       helpers.root('tsconfig.json')
         })
       ]
@@ -99,8 +98,7 @@ module.exports = function (options) {
     module: {
 
       rules: [
-
-        /*
+         /*
          * Typescript loader support for .ts and Angular 2 async routes via .async.ts
          * Replace templateUrl and stylesUrl with require()
          *
@@ -110,7 +108,10 @@ module.exports = function (options) {
         {
           test: /\.ts$/,
           use: [
-            '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
+            // the prod flag actually tells the HMR Loader to bypass the 'bootstrap' in angular-hmr
+            // see: https://github.com/AngularClass/angular2-hmr/blob/master/src/helpers.ts#L2
+            // see: https://github.com/AngularClass/angular2-hmr-loader/blob/master/index.js#L21
+            '@angularclass/hmr-loader?prod='+ !HMR,
             'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
             'angular2-template-loader',
             {
@@ -124,6 +125,7 @@ module.exports = function (options) {
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
         },
+
 
         /*
          * Json loader support for *.json files.
@@ -159,6 +161,30 @@ module.exports = function (options) {
           ]
         },
 
+        /*
+         * css loader support for *.css files (styles directory only)
+         * Loads external css styles into the DOM, supports HMR
+         *
+         */
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+          include: [helpers.root('src', 'styles')]
+        },
+
+        /*
+         * sass loader support for *.scss files (styles directory only)
+         * Loads external sass styles into the DOM, supports HMR
+         *
+         */
+        {
+          test: /\.scss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+          include: [
+            helpers.root('src', 'styles'),
+          ]
+        },
+
         /* Raw loader support for *.html
          * Returns file content as string
          *
@@ -189,6 +215,21 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
+      /**
+       * Plugin: EnvironmentPlugin
+       * Description: Define free variables.
+       * Useful for having development builds with debug logging or adding global constants.
+       *
+       * Environment helpers
+       *
+       * See: https://webpack.js.org/plugins/environment-plugin/
+       */
+      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+      new webpack.EnvironmentPlugin({
+        'ENV': '',
+        'TN_API_URL': 'http://localhost:8000',
+      }),
+
       new AssetsPlugin({
         path: helpers.root('dist'),
         filename: 'webpack-assets.json',
@@ -356,6 +397,24 @@ module.exports = function (options) {
       })
     ],
 
+    /**
+     * Webpack Development Server configuration
+     * Description: The webpack-dev-server is a little node.js Express server.
+     * The server emits information about the compilation state to the client,
+     * which reacts to those events.
+     *
+     * See: https://webpack.github.io/docs/webpack-dev-server.html
+     */
+    devServer: {
+      port: process.env.PORT || 3000,
+      host: process.env.HOST || 'localhost',
+      historyApiFallback: true,
+      watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+      }
+    },
+
     /*
      * Include polyfills or mocks for various node stuff
      * Description: Node configuration
@@ -371,5 +430,4 @@ module.exports = function (options) {
       setImmediate: false
     }
 
-  };
-}
+};
