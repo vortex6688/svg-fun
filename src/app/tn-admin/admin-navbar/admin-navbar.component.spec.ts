@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 // vendor imports
 import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
-import { LocalStorageService } from 'ng2-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
 
 // local imports
 import { TnApiHttpService } from '../../tn-common/tn-api-http';

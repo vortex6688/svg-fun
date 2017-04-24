@@ -3,7 +3,7 @@ import { HttpModule }          from '@angular/http';
 import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
 import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
-import { Ng2Webstorage }       from 'ng2-webstorage';
+import { Ng2Webstorage }       from 'ngx-webstorage';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { TnNavbarComponent } from './tn-navbar/tn-navbar.component';
