@@ -8,7 +8,7 @@ import {
 import { AuthService } from './auth.service';
 import { MockBackend } from '@angular/http/testing';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
-import { LocalStorageService } from 'ng2-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
 import { ANONYMOUS_AUTHORIZATION, Authorization } from './auth.model';
 
 describe('AuthService', () => {

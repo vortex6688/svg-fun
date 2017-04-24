@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Authorization, ANONYMOUS_AUTHORIZATION as ANONYMOUS } from './auth.model';
 import { Credentials, RegistrationCredentials } from './credentials';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
-import { LocalStorageService, LocalStorage } from 'ng2-webstorage';
+import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject } from 'rxjs/Rx';
 
 /**
@@ -20,8 +20,8 @@ export class AuthService {
 
   public user$: BehaviorSubject<Authorization>;
 
-  @LocalStorage('AuthService.user')
-  protected user: Authorization = this.storage.retrieve('AuthService.user') || ANONYMOUS;
+  @LocalStorage('AuthService.user', ANONYMOUS)
+  protected user: Authorization;
 
   /**
    * Creates an instance of AuthService.
