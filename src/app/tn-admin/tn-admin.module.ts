@@ -22,7 +22,9 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
       { path: '', redirectTo: 'orders/list', pathMatch: 'full' },
       { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
-      { path: 'orders/list', component: AdminOrdersListComponent}
+      { path: 'orders/list', component: AdminOrdersListComponent,
+        data: { title: 'TN Admin | Orders List'}
+      }
     ]
   }
 ];

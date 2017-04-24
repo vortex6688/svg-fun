@@ -76,7 +76,7 @@ describe('TnPaginationComponent', () => {
   });
 });
 
-describe('Custom config as provider', () => {
+describe('TnPaginationConfig', () => {
   let config = new TnPaginationConfig();
   config.disabled = true;
   config.boundaryLinks = true;
@@ -90,7 +90,7 @@ describe('Custom config as provider', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TnCommonModule.forRoot()],
+      imports: [TnCommonModule.forRoot(), RouterTestingModule.withRoutes([])],
       providers: [{provide: TnPaginationConfig, useValue: config}]
     });
   });

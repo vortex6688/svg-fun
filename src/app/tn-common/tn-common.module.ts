@@ -10,6 +10,7 @@ import { TnNavbarComponent } from './tn-navbar/tn-navbar.component';
 import { UserService } from './user';
 import { AuthService } from './auth';
 import { TnApiHttpService } from './tn-api-http';
+import { TnTitleService } from './tn-title';
 import { OrderService } from './orders';
 import { DatepickerComponent,
          CalendarIconComponent,
@@ -32,6 +33,7 @@ import { IconCheckComponent,
                   TnApiHttpService.provider(),
                   OrderService,
                   TnPaginationConfig,
+                  TnTitleService.provider(),
                   UserService ],
   declarations: [ DatepickerComponent,
                   CalendarIconComponent,
@@ -54,4 +56,5 @@ export class TnCommonModule {
   public static forRoot(): ModuleWithProviders {
     return {ngModule: TnCommonModule, providers: [TnPaginationConfig]};
   }
+  constructor(protected titleService: TnTitleService) {}
 }
