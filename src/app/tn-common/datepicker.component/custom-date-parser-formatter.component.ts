@@ -21,25 +21,26 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     constructor() {
         super();
     }
+
     public format(date: NgbDateStruct): string {
-        return date ?
-            `${isNumber(date.month) ? padNumber(date.month) : ''}/${isNumber(date.day) ?
-                padNumber(date.day) : ''}/${date.year}` : '';
+        return date ? `${isNumber(date.month) ? padNumber(date.month) : ''}/${isNumber(date.day) ?
+        padNumber(date.day) : ''}/${date.year}` : '';
     }
 
     public parse(value: string): NgbDateStruct {
-        if (value) {
-        const dateParts = value.trim().split('/');
-        if (dateParts.length === 1 && isNumber(dateParts[0])) {
-            return {year: toInteger(dateParts[2]), month: null, day: null};
-        } else if (dateParts.length === 2 && isNumber(dateParts[2]) && isNumber(dateParts[1])) {
-            return {year: toInteger(dateParts[2]), month: toInteger(dateParts[0]), day: null};
-        } else if (dateParts.length === 3 && isNumber(dateParts[2]) && isNumber(dateParts[1])
-        && isNumber(dateParts[1])) {
-            return {year: toInteger(dateParts[2]), month: toInteger(dateParts[0]),
-        day: toInteger(dateParts[1])};
+        if (!value) {
+            return null;
         }
+        const dateParts = value.trim().split('/').map(toInteger);
+        switch (dateParts.length) {
+            case 1:
+                return { year: dateParts[0], month: null, day: null };
+            case 2:
+                return { year: dateParts[1], month: dateParts[0], day: null };
+            case 3:
+                return { year: dateParts[2], month: dateParts[0], day: dateParts[1] };
+            default:
+                return null;
         }
-        return null;
     }
 }
