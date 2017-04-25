@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnCommonModule } from '../tn-common';
 
 // Local Components & Services
+import { TnAdminStoreModule } from './store';
 import { AdminComponent } from './admin';
 import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
@@ -46,7 +47,8 @@ export const routes: Routes = [
     HttpModule,
     RouterModule.forChild(routes),
     NgbModule.forRoot(),
-    TnCommonModule
+    TnCommonModule,
+    TnAdminStoreModule,
   ],
   entryComponents: [ LoginComponent ],
   providers: []

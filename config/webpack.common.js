@@ -228,6 +228,7 @@ module.exports = {
       new webpack.EnvironmentPlugin({
         'ENV': '',
         'TN_API_URL': 'http://localhost:8000',
+        'ENABLE_STORE_DEVTOOLS': true,
       }),
 
       new AssetsPlugin({
