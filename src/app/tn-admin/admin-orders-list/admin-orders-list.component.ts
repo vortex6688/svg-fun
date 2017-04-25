@@ -104,25 +104,6 @@ export class AdminOrdersListComponent {
   }
 
   /**
-   * Fetch the server and get all the orders with the provided query
-   */
-  private searchOrders() {
-    let query = {
-      id: this.searchOrderNumber,
-      from: this.searchDateStart,
-      to: this.searchDateEnd,
-      customer: this.searchCustomer,
-      project: this.searchProject,
-      font: this.searchFont,
-      foundry: this.searchFoundry,
-    };
-
-    this.orderService.find(query).subscribe((response) =>{
-      this.filteredOrders = response;
-    });
-  }
-
-  /**
    * Clear search related component properties.
    *
    * @public
@@ -147,5 +128,24 @@ export class AdminOrdersListComponent {
   public clearFilters() {
     this.filterLicenseTypes = [];
     this.filterStatuses = [];
+  }
+
+  /**
+   * Fetch the server and get all the orders with the provided query
+   */
+  private searchOrders() {
+    let query = {
+      id: this.searchOrderNumber,
+      from: this.searchDateStart,
+      to: this.searchDateEnd,
+      customer: this.searchCustomer,
+      project: this.searchProject,
+      font: this.searchFont,
+      foundry: this.searchFoundry,
+    };
+
+    this.orderService.find(query).subscribe((response) => {
+      this.filteredOrders = response;
+    });
   }
 }
