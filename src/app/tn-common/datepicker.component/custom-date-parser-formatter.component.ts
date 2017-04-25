@@ -28,19 +28,18 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     }
 
     public parse(value: string): NgbDateStruct {
-        let returnVal: NgbDateStruct;
-        if (!value) {
-            returnVal = null;
-        } else {
-            try {
-                let dateParts = this.datePipe.transform(value, 'M-d-y').split('/');
-                returnVal = { year: parseInt(dateParts[2], 10),
-                              month: parseInt(dateParts[0], 10),
-                              day: parseInt(dateParts[1], 10) };
-            } catch (e) {
-                returnVal = null;
-            }
+        if (value) {
+        const dateParts = value.trim().split('/');
+        if (dateParts.length === 1 && isNumber(dateParts[0])) {
+            return {year: toInteger(dateParts[2]), month: null, day: null};
+        } else if (dateParts.length === 2 && isNumber(dateParts[2]) && isNumber(dateParts[1])) {
+            return {year: toInteger(dateParts[2]), month: toInteger(dateParts[0]), day: null};
+        } else if (dateParts.length === 3 && isNumber(dateParts[2]) && isNumber(dateParts[1])
+        && isNumber(dateParts[1])) {
+            return {year: toInteger(dateParts[2]), month: toInteger(dateParts[0]),
+        day: toInteger(dateParts[1])};
         }
-        return returnVal;
+        }
+        return null;
     }
 }
