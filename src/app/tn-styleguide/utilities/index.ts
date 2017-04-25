@@ -7,3 +7,4 @@ export { UtilitiesFlexboxComponent } from './utilities-flexbox';
 export { UtilitiesImageReplacementComponent } from './utilities-image-replacement';
 export { UtilitiesInvisibleContentComponent } from './utilities-invisible-content';
 export { UtilitiesSizingComponent } from './utilities-sizing';
+export { UtilitiesSpacingComponent } from './utilities-spacing';
