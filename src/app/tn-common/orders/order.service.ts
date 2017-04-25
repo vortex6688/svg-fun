@@ -13,7 +13,7 @@ export class OrderService extends ModelService<Order> {
    * @param {TnApiHttpService} apiHttp
    */
   constructor(apiHttp: TnApiHttpService) {
-    super('/orders/', apiHttp);
+    super('/api/1/orders/', apiHttp);
   }
 
 }
