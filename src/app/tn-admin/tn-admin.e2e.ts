@@ -10,7 +10,7 @@ describe('Admin', () => {
 
   it('should have a title', () => {
     return browser.getTitle().then((subject) => {
-      let result  = 'Type Network';
+      let result  = 'TN Admin | Orders List';
       expect(subject).toEqual(result);
     });
   });
