@@ -32,7 +32,8 @@ import { UtilitiesBordersComponent,
          UtilitiesColorsComponent,
          UtilitiesDisplayPropertyComponent,
          UtilitiesInvisibleContentComponent,
-         UtilitiesImageReplacementComponent } from './utilities';
+         UtilitiesImageReplacementComponent,
+         UtilitiesSizingComponent } from './utilities';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -67,7 +68,8 @@ const ROUTES: Routes = [
       {  path: 'utilities/colors', component: UtilitiesColorsComponent },
       {  path: 'utilities/display-property', component: UtilitiesDisplayPropertyComponent },
       {  path: 'utilities/invisible-content', component: UtilitiesInvisibleContentComponent },
-      {  path: 'utilities/image-replacement', component: UtilitiesImageReplacementComponent }
+      {  path: 'utilities/image-replacement', component: UtilitiesImageReplacementComponent },
+      {  path: 'utilities/sizing', component: UtilitiesSizingComponent }
     ]
   }
 ];
@@ -101,7 +103,8 @@ const ROUTES: Routes = [
     UtilitiesDisplayPropertyComponent,
     UtilitiesInvisibleContentComponent,
     UtilitiesImageReplacementComponent,
-    ComponentsCardComponent
+    ComponentsCardComponent,
+    UtilitiesSizingComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
