@@ -106,7 +106,7 @@ ngb-datepicker {
   }
 
   .ngb-dp-day {
-    width: 13.75% !important;
+    width: 14.25% !important;
     height: 1.6rem !important;
     
     /* Black numbers */
@@ -115,6 +115,9 @@ ngb-datepicker {
       font-weight: $font-weight-normal;
       font-size: $font-size-sm;
       background: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.6rem;
 
       &:hover {
         background-color: $gray-lightest;
@@ -124,6 +127,10 @@ ngb-datepicker {
     /* Grey numbers */
     .text-muted.outside.btn-secondary {
       color: $gray-lightest !important;
+
+      &:hover {
+        color: $gray !important;
+      }
     }
 
     /* Blue "selected" box. Selected day */
