@@ -50,7 +50,7 @@ describe('TnApiHttpService', () => {
 
   beforeEach(() => {
     mockBackend = new MockBackend();
-    let options = new BaseRequestOptions();
+    const options = new BaseRequestOptions();
     apiClient = new TnApiHttpService(mockBackend, options, baseUrl);
   });
 
@@ -59,8 +59,8 @@ describe('TnApiHttpService', () => {
   });
 
   it('shoud construct with the proper baseUrl', () => {
-    let path = 'api/users/1';
-    let url = baseUrl + path;
+    const path = 'api/users/1';
+    const url = baseUrl + path;
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.url).toBe(url, 'Incorrect URL used');
@@ -70,9 +70,9 @@ describe('TnApiHttpService', () => {
   });
 
   it('should setBaseUrl properly', () => {
-    let path = 'api/users/1';
-    let newBaseUrl = baseUrl + 'v2/';
-    let url = newBaseUrl + path;
+    const path = 'api/users/1';
+    const newBaseUrl = baseUrl + 'v2/';
+    const url = newBaseUrl + path;
     apiClient.setBaseUrl(newBaseUrl);
 
     mockBackend.connections.subscribe((connection) => {
@@ -83,8 +83,8 @@ describe('TnApiHttpService', () => {
   });
 
   it('should un setBaseUrl properly', () => {
-    let path = 'api/users/1';
-    let url = baseUrl + path;
+    const path = 'api/users/1';
+    const url = baseUrl + path;
     apiClient.setBaseUrl(baseUrl);
     apiClient.setBaseUrl();
 
@@ -96,7 +96,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should not use BaseUrl when passed a full url', () => {
-    let url = 'http://localhost:2223/test/test';
+    const url = 'http://localhost:2223/test/test';
     apiClient.setBaseUrl(baseUrl);
 
     mockBackend.connections.subscribe((connection) => {
@@ -107,7 +107,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should setAuthToken properly', () => {
-    let token = 'token';
+    const token = 'token';
     apiClient.setAuthToken(token);
 
     mockBackend.connections.subscribe((connection) => {
@@ -121,7 +121,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should un setAuthToken properly', () => {
-    let token = 'token';
+    const token = 'token';
     apiClient.setAuthToken(token);
     apiClient.setAuthToken();
 
@@ -135,7 +135,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should unwrap json on get', () => {
-    let url = 'http://localhost:2223/api/users/1';
+    const url = 'http://localhost:2223/api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.url).toBe(url, 'Incorrect URL used');
@@ -148,7 +148,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should catch and rethrow errors on get', () => {
-    let url = 'http://localhost:2223/api/users/1';
+    const url = 'http://localhost:2223/api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.url).toBe(url, 'Incorrect URL used');
@@ -167,7 +167,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should unwrap json on put', () => {
-    let url = 'api/1/people/';
+    const url = 'api/1/people/';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Put, 'Not using PUT method');
@@ -182,7 +182,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should catch and rethrow errors on put', () => {
-    let url = 'api/users/1';
+    const url = 'api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
@@ -201,7 +201,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should unwrap json on post', () => {
-    let url = 'api/1/people/';
+    const url = 'api/1/people/';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Post, 'Not using POST method');
@@ -216,7 +216,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should catch and rethrow errors on post', () => {
-    let url = 'api/users/1';
+    const url = 'api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');
@@ -235,7 +235,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should unwrap json on delete', () => {
-    let url = 'api/1/people/1';
+    const url = 'api/1/people/1';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.method).toBe(RequestMethod.Delete, 'Not using DELETE method');
@@ -249,7 +249,7 @@ describe('TnApiHttpService', () => {
   });
 
   it('should catch and rethrow errors on delete', () => {
-    let url = 'api/users/1';
+    const url = 'api/users/1';
 
     mockBackend.connections.subscribe((connection) => {
       expect(connection.request.url).toBe(baseUrl + url, 'Incorrect URL used');

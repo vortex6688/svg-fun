@@ -134,7 +134,7 @@ export class AdminOrdersListComponent {
    * Fetch the server and get all the orders with the provided query
    */
   private searchOrders() {
-    let query = {
+    const query = {
       id: this.searchOrderNumber,
       from: this.searchDateStart,
       to: this.searchDateEnd,

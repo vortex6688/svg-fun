@@ -17,7 +17,6 @@ import { MockBackend } from '@angular/http/testing';
 import { EditorialHomeComponent } from './home.component';
 
 describe(`Editorial:Home`, () => {
-  let comp: EditorialHomeComponent;
   let fixture: ComponentFixture<EditorialHomeComponent>;
 
   // async beforeEach
@@ -43,21 +42,12 @@ describe(`Editorial:Home`, () => {
   // synchronous beforeEach
   beforeEach(() => {
     fixture = TestBed.createComponent(EditorialHomeComponent);
-    comp = fixture.componentInstance;
-
     fixture.detectChanges(); // trigger initial data binding
   });
 
-  it('should have default data', () => {
-    expect(comp.localState).toEqual({ value: '' });
-  });
-
-  it('should log ngOnInit', () => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
-
-    comp.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
+  it(`should be readly initialized`, () => {
+    expect(fixture).toBeDefined();
+    expect(fixture.componentInstance).toBeDefined();
   });
 
 });

@@ -1,1 +1,1 @@
-export { AdminOrdersListComponent } from './admin-orders-list.component'
+export { AdminOrdersListComponent } from './admin-orders-list.component';

@@ -16,7 +16,7 @@ describe('UserService', () => {
 
   beforeEach(() => {
     mockBackend = new MockBackend();
-    let options = new BaseRequestOptions();
+    const options = new BaseRequestOptions();
     apiClient = new TnApiHttpService(mockBackend, options);
     userService = new UserService(apiClient);
   });

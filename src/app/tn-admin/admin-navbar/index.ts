@@ -1,1 +1,1 @@
-export { AdminNavbarComponent } from './admin-navbar.component'
+export { AdminNavbarComponent } from './admin-navbar.component';

@@ -48,15 +48,15 @@ export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
  * @type {Reselect.Selector}
  */
 export const getPaymentType = createSelector(getEntities, getSelectedId, (entities, selectedId) => {
-  let order: Order = entities[selectedId];
+  const order: Order = entities[selectedId];
 
   if (order.status === 3) {
     return 'Cancelled';
   }
 
-  let hasPayments = order.payments.length && order.payments.length !== 0;
+  const hasPayments = order.payments.length && order.payments.length !== 0;
   if (hasPayments && order.payments[0].provider === 0) {
-    let providerData = JSON.parse(order.payments[0].provider_data);
+    const providerData = JSON.parse(order.payments[0].provider_data);
     return providerData.free_trial ? 'Free Trial' :
       providerData.free_order ? 'Free' :
         providerData.card ? providerData.card.brand :
@@ -86,7 +86,7 @@ export const getOrderById = (state: OrderState, orderId: number) => {
  * @param customerId number Customer Id to return orders
  */
 export const getOrderByCustomerId = (state: OrderState, customerId: number) => {
-  let orders = state.ids.map((id) => state.entities[id]);
+  const orders = state.ids.map((id) => state.entities[id]);
   return orders.filter((order) => order.user === customerId);
 };
 
@@ -97,6 +97,6 @@ export const getOrderByCustomerId = (state: OrderState, customerId: number) => {
  * @param status number Of the status to filter
  */
 export const getOrderByStatus = (state: OrderState, status: number[]) => {
-  let orders = state.ids.map((id) => state.entities[id]);
+  const orders = state.ids.map((id) => state.entities[id]);
   return orders.filter((order) => status.indexOf(order.status) >= 0);
 };

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'tn-editorial',
@@ -14,8 +14,4 @@ import { Component, OnInit } from '@angular/core';
     </main>
   `
 })
-export class TnEditorialComponent implements OnInit {
-  public ngOnInit() {
-    console.log('TnEditorialComponent ngOnInit');
-  }
-}
+export class TnEditorialComponent {}

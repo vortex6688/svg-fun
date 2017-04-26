@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ComponentsCardComponent } from './components-card.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ComponentsCardComponent', () => {
   let component: ComponentsCardComponent;

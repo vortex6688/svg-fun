@@ -5,7 +5,7 @@ import { BaseRequestOptions } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
 // vendor imports
-import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LocalStorageService } from 'ngx-webstorage';
 
 // local imports
@@ -18,7 +18,7 @@ import { AdminNavbarComponent } from './admin-navbar.component';
 describe('TnAdminNavbarComponent', () => {
   let component: AdminNavbarComponent;
   let fixture: ComponentFixture<AdminNavbarComponent>;
-  let mockBackend: MockBackend = new MockBackend();
+  const mockBackend: MockBackend = new MockBackend();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -29,7 +29,7 @@ describe('TnAdminNavbarComponent', () => {
         LocalStorageService,
         {
            provide: TnApiHttpService,
-           useFactory: () => { return new TnApiHttpService(mockBackend, new BaseRequestOptions()); }
+           useFactory: () => new TnApiHttpService(mockBackend, new BaseRequestOptions())
         }
       ]
     })

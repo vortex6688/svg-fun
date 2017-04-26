@@ -10,8 +10,8 @@ import 'rxjs/add/operator/filter';
 export class TnNavbarComponent implements OnInit {
    public root: string = '/styleguide';
    public currentUrl: string = '';
-   public isLayout: Boolean = false;
-   public isNavbarCollapsed: Boolean = true;
+   public isLayout: boolean = false;
+   public isNavbarCollapsed: boolean = true;
 
    constructor(private router: Router) {}
 

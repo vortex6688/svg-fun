@@ -10,7 +10,6 @@ import {
 import { TnEditorialComponent } from './tn-editorial.component';
 
 describe(`Editorial`, () => {
-  let comp: TnEditorialComponent;
   let fixture: ComponentFixture<TnEditorialComponent>;
 
   // async beforeEach
@@ -26,22 +25,11 @@ describe(`Editorial`, () => {
   // synchronous beforeEach
   beforeEach(() => {
     fixture = TestBed.createComponent(TnEditorialComponent);
-    comp    = fixture.componentInstance;
-
     fixture.detectChanges(); // trigger initial data binding
   });
 
   it(`should be readly initialized`, () => {
     expect(fixture).toBeDefined();
-    expect(comp).toBeDefined();
+    expect(fixture.componentInstance).toBeDefined();
   });
-
-  it('should log ngOnInit', () => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
-
-    comp.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
-  });
-
 });

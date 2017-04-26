@@ -76,7 +76,7 @@ describe('ModelService', () => {
 
   beforeEach(() => {
     mockBackend = new MockBackend();
-    let options = new BaseRequestOptions();
+    const options = new BaseRequestOptions();
     apiClient = new TnApiHttpService(mockBackend, options);
     modelService = new ModelService<TestType>(modelUrl, apiClient);
   });
@@ -151,7 +151,7 @@ describe('ModelService', () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
-    let newElement: TestType = { token: 'a_token' };
+    const newElement: TestType = { token: 'a_token' };
     spyOn(apiClient, 'post').and.callThrough();
     modelService.save(newElement).subscribe((result) => {
       expect(result).toEqual(successBody, 'Response does not match');

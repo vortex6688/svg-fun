@@ -19,8 +19,8 @@ import { LoginComponent } from '../login';
 export class AdminNavbarComponent implements OnInit {
    public root: string = '/admin';
    public currentUrl: string = '';
-   public isLayout: Boolean = false;
-   public isNavbarCollapsed: Boolean = true;
+   public isLayout: boolean = false;
+   public isNavbarCollapsed: boolean = true;
    public ANONYMOUS = ANONYMOUS;
    public user: Authorization;
 

@@ -42,7 +42,7 @@ class MockAuthService {
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let credentials: Credentials = {
+  const credentials: Credentials = {
     username: 'jane@doe.com',
     password: 'correctPassword'
   };

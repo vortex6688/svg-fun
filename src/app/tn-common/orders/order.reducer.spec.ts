@@ -19,7 +19,7 @@ import {
   getOrderByStatus,
  } from './order.selectors';
 
-let OrderMock: Order = {
+const OrderMock: Order = {
   id: 123,
   user: 1,
   subtotal: 10,
@@ -121,38 +121,38 @@ describe('OrderReducer', () => {
     });
 
     it('getEntities should return all the entities of an OrderState', () => {
-      let entities = getEntities(addedState);
+      const entities = getEntities(addedState);
       expect(entities).toEqual(addedState.entities);
     });
 
     it('getIds should return all the ids of an OrderState', () => {
-      let ids = getIds(addedState);
+      const ids = getIds(addedState);
       expect(ids).toEqual(addedState.ids);
     });
 
     it('getSelectedId should return the id of the selected OrderState', () => {
-      let selectedOrderId = getSelectedId(addedState);
+      const selectedOrderId = getSelectedId(addedState);
       expect(selectedOrderId).toEqual(addedState.selectedOrderId);
     });
 
     it('getSelected should return the entity of the selected OrderState', () => {
-      let selectedOrder = getSelected(addedState);
-      let selected = addedState.entities[addedState.selectedOrderId];
+      const selectedOrder = getSelected(addedState);
+      const selected = addedState.entities[addedState.selectedOrderId];
       expect(selectedOrder).toEqual(selected);
     });
 
     it('getAll should return all the entities of the OrderState', () => {
-      let selectedOrder = getAll(addedState);
-      let selected = addedState.ids.map((id) => addedState.entities[id]);
+      const selectedOrder = getAll(addedState);
+      const selected = addedState.ids.map((id) => addedState.entities[id]);
       expect(selectedOrder).toEqual(selected);
     });
 
-    it(`getPaymentType should return the payment type of an specific 
+    it(`getPaymentType should return the payment type of an specific
     entity in the OrderState`, () => {
-      let paymentType = getPaymentType(addedState);
-      let selectedOrder = getSelected(addedState);
-      let providerData = JSON.parse(selectedOrder.payments[0].provider_data);
-      let expectedPayment = providerData.free_trial ? 'Free Trial' :
+      const paymentType = getPaymentType(addedState);
+      const selectedOrder = getSelected(addedState);
+      const providerData = JSON.parse(selectedOrder.payments[0].provider_data);
+      const expectedPayment = providerData.free_trial ? 'Free Trial' :
         providerData.free_order ? 'Free' :
         providerData.card ? providerData.card.brand :
         providerData.message ? providerData.message :
@@ -161,27 +161,27 @@ describe('OrderReducer', () => {
     });
 
     it('getOrderById should return an especific Order with the id provided', () => {
-      let selectedOrder = getOrderById(addedState, OrderMock.id);
+      const selectedOrder = getOrderById(addedState, OrderMock.id);
       expect(selectedOrder).toEqual(OrderMock);
     });
 
     it('getOrderByCustomerId should return all the Orders of one customer that has', () => {
-      let selectedOrder = getOrderByCustomerId(addedState, OrderMock.user);
+      const selectedOrder = getOrderByCustomerId(addedState, OrderMock.user);
       expect(selectedOrder).toEqual([OrderMock]);
     });
 
     it('getOrderByCustomerId should return all the Orders of one customer without order', () => {
-      let selectedOrder = getOrderByCustomerId(addedState, 99);
+      const selectedOrder = getOrderByCustomerId(addedState, 99);
       expect(selectedOrder).toEqual([]);
     });
 
     it('getOrderByStatus should return all the Orders with one of the status provided', () => {
-      let selectedOrder = getOrderByStatus(addedState, [OrderMock.status]);
+      const selectedOrder = getOrderByStatus(addedState, [OrderMock.status]);
       expect(selectedOrder).toEqual([OrderMock]);
     });
 
     it('getOrderByStatus should return all the existent Orders with the status provided', () => {
-      let selectedOrder = getOrderByStatus(addedState, [0]);
+      const selectedOrder = getOrderByStatus(addedState, [0]);
       expect(selectedOrder).toEqual([]);
     });
   });

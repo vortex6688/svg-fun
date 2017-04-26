@@ -28,8 +28,8 @@ describe('TnCommonModule', () => {
   });
 
   it('should provide all the common services', () => {
-    let fixture = TestBed.createComponent(TnCommonModuleProvidersTestComponent);
-    let component = fixture.componentInstance;
+    const fixture = TestBed.createComponent(TnCommonModuleProvidersTestComponent);
+    const component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
