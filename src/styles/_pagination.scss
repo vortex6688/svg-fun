@@ -1,6 +1,10 @@
 @import "variables";
 @import "~bootstrap/scss/pagination";
 
+.pagination {
+  margin-bottom: 0.5rem;
+}
+
 .page-item {
 
   .page-link {

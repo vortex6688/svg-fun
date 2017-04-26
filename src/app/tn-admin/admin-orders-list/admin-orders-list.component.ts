@@ -11,6 +11,7 @@ import { getAllFoundOrders } from '../store/reducers';
   styleUrls: ['./admin-orders-list.component.scss']
 })
 export class AdminOrdersListComponent {
+  public page: number;
   /**
    *  Orders collection to display for list.
    *
