@@ -34,6 +34,5 @@ export class LoginComponent {
     } else {
       this.errorMessage = 'An error happened!';
     }
-    console.log(error);
   }
 }

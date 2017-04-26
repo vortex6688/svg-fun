@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpModule }          from '@angular/http';
-import { CommonModule }        from '@angular/common';
-import { FormsModule }         from '@angular/forms';
-import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
-import { Ng2Webstorage }       from 'ngx-webstorage';
+import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2Webstorage } from 'ngx-webstorage';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { TnNavbarComponent } from './tn-navbar/tn-navbar.component';
@@ -15,7 +15,7 @@ import { OrderService } from './orders';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
-         CaretRightIconComponent }  from './datepicker.component';
+         CaretRightIconComponent } from './datepicker.component';
 import { TnPaginationComponent } from './tn-pagination/tn-pagination.component';
 import { TnPaginationConfig } from './tn-pagination/pagination-config';
 import { IconCheckComponent,

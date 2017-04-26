@@ -43,7 +43,7 @@ export class AuthService {
       // User already logged in. Set the auth token.
       this.httpService.setAuthToken(this.user.token);
     }
-  };
+  }
 
   /**
    * Authenticate and return the user with the authentication token.

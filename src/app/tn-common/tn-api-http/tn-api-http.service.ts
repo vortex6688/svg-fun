@@ -129,13 +129,13 @@ export class TnApiHttpService extends Http {
    * Make a POST request against the TypeNetwork API.
    *
    * @param {string} url
-   * @param {Object} data
+   * @param {object} data
    * @param {RequestOptions} [options]
    * @returns {Observable<ApiEntity>}
    *
    * @memberOf TnApiHttpService
    */
-  public post(url: string, data: Object, options?: RequestOptions): Observable<any> {
+  public post(url: string, data: object, options?: RequestOptions): Observable<any> {
     return super.post(url, data, options)
                   .map((response) => response.json())
                   .catch((error) => this.catchAndRethrowError(error));
@@ -145,13 +145,13 @@ export class TnApiHttpService extends Http {
    * Make a PUT request against the TypeNetwork API.
    *
    * @param {string} url
-   * @param {Object} data
+   * @param {object} data
    * @param {RequestOptions} [options]
    * @returns {Observable<any>}
    *
    * @memberOf TnApiHttpService
    */
-  public put(url: string, data: Object, options?: RequestOptions): Observable<any> {
+  public put(url: string, data: object, options?: RequestOptions): Observable<any> {
     return super.put(url, data, options)
                   .map((response) => response.json())
                   .catch((error) => this.catchAndRethrowError(error));

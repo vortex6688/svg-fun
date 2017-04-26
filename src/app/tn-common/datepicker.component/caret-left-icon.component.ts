@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: '[caret-left-icon]',
-  template: `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
+  template: `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="270.621px" height="500px"
     viewBox="0 0 270.621 500" enable-background="new 0 0 270.621 500" xml:space="preserve">
 <g id="surface1">
@@ -14,5 +14,4 @@ import { Component } from '@angular/core';
 </g>
 </svg>`
 })
-export class CaretLeftIconComponent {
-}
+export class CaretLeftIconComponent {}

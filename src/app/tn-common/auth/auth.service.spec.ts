@@ -63,7 +63,7 @@ describe('AuthService', () => {
   beforeEach(() => {
     storage = new LocalStorageService();
     mockBackend = new MockBackend();
-    let options = new BaseRequestOptions();
+    const options = new BaseRequestOptions();
     apiClient = new TnApiHttpService(mockBackend, options);
     authService = new AuthService(apiClient, storage);
   });
@@ -73,13 +73,13 @@ describe('AuthService', () => {
   });
 
   it('should return the errors if the credentials are incorrect', () => {
-    let credentials = { username: 'jane@doe.com', password: 'incorrectPassword' };
+    const credentials = { username: 'jane@doe.com', password: 'incorrectPassword' };
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockError(mockResponseError);
     });
 
-    let observer = jasmine.createSpy('observer');
+    const observer = jasmine.createSpy('observer');
     authService.user$.subscribe(observer);
 
     authService.login(credentials).subscribe(
@@ -100,12 +100,12 @@ describe('AuthService', () => {
   });
 
   it('should login users with proper credentials', () => {
-    let credentials = { username: 'jane@doe.com', password: 'password' };
+    const credentials = { username: 'jane@doe.com', password: 'password' };
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
 
-    let observer = jasmine.createSpy('observer');
+    const observer = jasmine.createSpy('observer');
     authService.user$.subscribe(observer);
 
     authService.login(credentials).subscribe((result) => {
@@ -124,7 +124,7 @@ describe('AuthService', () => {
 
   it('should set the Auth Token when it is created, if the user is already logged in', () => {
     spyOn(apiClient, 'setAuthToken');
-    let aNewAuthService = new AuthService(apiClient, storage);
+    const aNewAuthService = new AuthService(apiClient, storage);
     expect(apiClient.setAuthToken).toHaveBeenCalledWith(successBody.token);
   });
 
@@ -137,10 +137,10 @@ describe('AuthService', () => {
       }
     });
 
-    let observer = jasmine.createSpy('observer');
+    const observer = jasmine.createSpy('observer');
     authService.user$.subscribe(observer);
 
-    let credentials = { username: 'jane@doe.com', password: 'password' };
+    const credentials = { username: 'jane@doe.com', password: 'password' };
     authService.login(credentials).subscribe(() => {
       // verify we're starting with a logged in user.
       expect(authService.user$.getValue()).toEqual(successBody,
@@ -163,12 +163,12 @@ describe('AuthService', () => {
   });
 
   it('should login and keep user credentials across AuthService instances', () => {
-    let credentials = { username: 'jane@doe.com', password: 'password' };
+    const credentials = { username: 'jane@doe.com', password: 'password' };
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
 
-    let observer = jasmine.createSpy('observer');
+    const observer = jasmine.createSpy('observer');
     authService.user$.subscribe(observer);
 
     authService.login(credentials).subscribe((result) => {
@@ -183,7 +183,7 @@ describe('AuthService', () => {
       expect(observer.calls.argsFor(1)).toContain(successBody,
           'user$ should call subscribers on successful login.');
 
-      let authService2 = new AuthService(apiClient, storage);
+      const authService2 = new AuthService(apiClient, storage);
       expect(authService2.user$.getValue()).toEqual(successBody,
         'Subject user$ does not contain the User in a different instance of AuthService');
       authService.logout();
@@ -191,13 +191,13 @@ describe('AuthService', () => {
   });
 
   it('should register new users', () => {
-    let credentials = { email: 'jane@doe.com', username: 'jane@doe.com',
+    const credentials = { email: 'jane@doe.com', username: 'jane@doe.com',
       password: 'password' };
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
 
-    let observer = jasmine.createSpy('observer');
+    const observer = jasmine.createSpy('observer');
     authService.user$.subscribe(observer);
     expect(observer).toHaveBeenCalledTimes(1);
     expect(observer.calls.argsFor(0)).toContain(ANONYMOUS_AUTHORIZATION);

@@ -5,9 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './layout-media-object.component.html',
   styleUrls: ['./layout-media-object.component.css']
 })
-export class LayoutMediaObjectComponent implements OnInit {
-
-  public ngOnInit() {
-    console.log('LayoutMediaObjectComponent ngOnInit');
-  }
-}
+export class LayoutMediaObjectComponent {}

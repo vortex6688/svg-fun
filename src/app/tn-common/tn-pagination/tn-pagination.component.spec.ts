@@ -4,13 +4,13 @@ import { By } from '@angular/platform-browser';
 import { DebugElement, Component } from '@angular/core';
 
 import { RouterTestingModule } from '@angular/router/testing';
-import { NgbModule }           from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnPaginationComponent } from './tn-pagination.component';
 import { TnPaginationConfig } from './pagination-config';
 import { TnCommonModule } from '../tn-common.module';
 
-function createGenericTestComponent<T>
-  (html: string, type: {new (...args: any[]): T}): ComponentFixture<T> {
+function createGenericTestComponent<T>(html: string,
+                                       type: {new (...args: any[]): T}): ComponentFixture<T> {
     TestBed.overrideComponent(type, {set: {template: html}});
     const fixture = TestBed.createComponent(type);
     fixture.detectChanges();
@@ -77,7 +77,7 @@ describe('TnPaginationComponent', () => {
 });
 
 describe('TnPaginationConfig', () => {
-  let config = new TnPaginationConfig();
+  const config = new TnPaginationConfig();
   config.disabled = true;
   config.boundaryLinks = true;
   config.directionLinks = false;
@@ -99,7 +99,7 @@ describe('TnPaginationConfig', () => {
     const fixture = TestBed.createComponent(TnPaginationComponent);
     fixture.detectChanges();
 
-    let pagination = fixture.componentInstance;
+    const pagination = fixture.componentInstance;
     expectSameValues(pagination, config);
   });
 });

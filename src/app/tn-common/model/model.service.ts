@@ -40,11 +40,11 @@ export class ModelService<T extends IModel> {
   /**
    * Search for a collection of models, pass null to get all.
    *
-   * @param {Object} query
+   * @param {object} query
    * @returns {Observable<T[]>}
    */
-  public find(query: Object): Observable<T[]> {
-    let options = new RequestOptions({body: query});
+  public find(query: object): Observable<T[]> {
+    const options = new RequestOptions({body: query});
     return this.apiHttp.get(this.modelUrl, options);
   }
 
@@ -55,7 +55,7 @@ export class ModelService<T extends IModel> {
    * @returns {Observable<T>}
    */
   public save(model: T): Observable<T> {
-    let options = new RequestOptions({body: model});
+    const options = new RequestOptions({body: model});
     if (model.id) {
       return this.apiHttp.put(this.modelUrl + model.id, options);
     } else {

@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./components-alerts.component.scss']
 })
 export class ComponentsAlertsComponent {
-  public staticAlertClosed: Boolean = false;
+  public staticAlertClosed: boolean = false;
 }

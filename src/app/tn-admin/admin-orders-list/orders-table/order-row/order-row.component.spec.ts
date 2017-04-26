@@ -42,12 +42,12 @@ describe('OrderRowComponent', () => {
     });
 
     it('should transform a valid order status id to its corresponding label', () => {
-      let randomStatusId: number = Math.floor(Math.random() * 4);
+      const randomStatusId: number = Math.floor(Math.random() * 4);
       expect(pipe.transform(randomStatusId)).toEqual(STATUSES[randomStatusId]);
     });
 
     it('should transform an invalid order status id to `Unknown`', () => {
-      let outOfRangeStatusId: number = 10;
+      const outOfRangeStatusId: number = 10;
       expect(pipe.transform(outOfRangeStatusId)).toEqual('Unknown');
     });
 

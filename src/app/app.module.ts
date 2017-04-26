@@ -41,11 +41,13 @@ const ROUTES: Routes = [];
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef) {}
+  constructor(public appRef: ApplicationRef) {
+    /* tslint:disable:no-console */
+    console.log('TypeNetwork, (c) 2017, All Rights Reserved.');
+    /* tslint:enable:no-console */
+  }
   public hmrOnInit(store) {
     if (!store || !store.state) { return; }
-    console.log('HMR store', store);
-    console.log('store.state.data:', store.state.data);
     // inject AppStore here and update it
     // this.AppStore.update(store.state)
     if ('restoreInputValues' in store) {
@@ -57,7 +59,7 @@ export class AppModule {
     delete store.restoreInputValues;
   }
   public hmrOnDestroy(store) {
-    let cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
+    const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
     // recreate elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
     // inject your AppStore and grab state then set it on store

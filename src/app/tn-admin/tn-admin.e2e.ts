@@ -10,45 +10,45 @@ describe('Admin', () => {
 
   it('should have a title', () => {
     return browser.getTitle().then((subject) => {
-      let result  = 'TN Admin | Orders List';
+      const result  = 'TN Admin | Orders List';
       expect(subject).toEqual(result);
     });
   });
 
   it('should have <admin>', () => {
     return element(by.css('admin')).isPresent().then((subject) => {
-      let result  = true;
+      const result  = true;
       expect(subject).toEqual(result);
     });
   });
 
   it('should have <admin-navbar>', () => {
     return element(by.css('admin-navbar')).isPresent().then((subject) => {
-      let result  = true;
+      const result  = true;
       expect(subject).toEqual(result);
     });
   });
 
   it('should have a Login link', () => {
-     let login = element(by.css('admin-navbar .login'));
+     const login = element(by.css('admin-navbar .login'));
      expect(login).toBeTruthy();
   });
 
   it('users can click the login link to reveal the login modal', () => {
-    let login = element(by.css('admin-navbar .login'));
+    const login = element(by.css('admin-navbar .login'));
     login.click();
-    let loginModal = element(by.css('app-login'));
+    const loginModal = element(by.css('app-login'));
     expect(loginModal).toBeTruthy();
   });
 
   it('logging in with invalid credentials displays an error', () => {
-    let loginModal = element(by.css('app-login'));
-    let username = loginModal.element(by.name('username'));
+    const loginModal = element(by.css('app-login'));
+    const username = loginModal.element(by.name('username'));
     username.sendKeys('incorrect@email.com');
-    let password = loginModal.element(by.name('password'));
+    const password = loginModal.element(by.name('password'));
     password.sendKeys('incorrectPassword');
 
-    let submit = loginModal.element(by.css('a.btn.btn-success'));
+    const submit = loginModal.element(by.css('a.btn.btn-success'));
     submit.click();
     expect(loginModal.element(by.css('error'))).toBeTruthy();
 
@@ -62,17 +62,17 @@ describe('Admin', () => {
   // dockerized.
 
   // it('logging in with valid credentials closes the login dialog', () => {
-  //   let loginModal = element(by.css('app-login'));
-  //   let username = loginModal.element(by.name('username'));
+  //   const loginModal = element(by.css('app-login'));
+  //   const username = loginModal.element(by.name('username'));
   //   username.clear().then(() => {
   //     username.sendKeys('darrel.opry@spry-group.com');
   //   });
-  //   let password = loginModal.element(by.name('password'));
+  //   const password = loginModal.element(by.name('password'));
   //   password.clear().then(() => {
   //     password.sendKeys('test');
   //   });
 
-  //   let submit = loginModal.element(by.css('.btn.login'));
+  //   const submit = loginModal.element(by.css('.btn.login'));
   //   submit.click();
   //   // there has to be a better way to wait on the http response.
   //   browser.driver.sleep(1000);
@@ -83,7 +83,7 @@ describe('Admin', () => {
   // });
 
   // it('username is displayed in the navbar when logged in', () => {
-  //   let logout = element(by.css('admin-navbar .logout'));
+  //   const logout = element(by.css('admin-navbar .logout'));
   //   expect(logout).toBeTruthy();
   //   logout.getText().then((text) => {
   //     expect(text).toEqual('Logout darrel.opry@spry-group.com');
@@ -92,7 +92,7 @@ describe('Admin', () => {
 
   // it('users remain logged in after a page reload', () => {
   //   browser.get('/admin');
-  //   let logout = element(by.css('admin-navbar .logout'));
+  //   const logout = element(by.css('admin-navbar .logout'));
   //   expect(logout).toBeTruthy();
   //   logout.getText().then((text) => {
   //     expect(text).toEqual('Logout darrel.opry@spry-group.com');

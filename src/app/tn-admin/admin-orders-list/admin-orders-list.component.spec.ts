@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Order, OrderService } from '../../tn-common/orders';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 
-let OrderMock: Order = {
+const OrderMock: Order = {
   id: 123,
   user: 1,
   subtotal: 10,
@@ -46,7 +46,7 @@ let OrderMock: Order = {
 };
 
 class MockOrderService {
-  public find(query: Object): Observable<Order[]> {
+  public find(query: object): Observable<Order[]> {
     return Observable.of([OrderMock]);
   }
 }

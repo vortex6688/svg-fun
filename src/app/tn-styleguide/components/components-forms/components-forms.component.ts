@@ -32,5 +32,5 @@ export class ComponentsFormsComponent {
       .distinctUntilChanged()
       .map((text) => text.length < 2 ? []
         : states.filter((v) => new RegExp(text, 'gi').test(v))
-                .splice(0, 10));
+                .splice(0, 10))
 }
