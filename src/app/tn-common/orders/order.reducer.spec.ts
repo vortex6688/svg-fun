@@ -10,7 +10,10 @@ import { OrderState, initialOrderState } from './order.state';
 import {
   getEntities,
   getIds,
+  getFoundIds,
   getSelectedId,
+  getLoading,
+  getAllFound,
   getSelected,
   getAll,
   getPaymentType,
@@ -57,6 +60,20 @@ const OrderMock: Order = {
   upgrade_price_adjustment: 0,
   coupon: null
 };
+const searchItems: Order[] = [
+  { ...OrderMock, id: 11 },
+  { ... OrderMock, id: 23456 },
+];
+const searchState: OrderState = {
+  ids: searchItems.map((item) => item.id),
+  entities: searchItems.reduce((result, item) => ({ ...result, [item.id]: item }), {}),
+  selectedOrderId: null,
+  search: {
+    ids: searchItems.map((item) => item.id),
+    loading: false,
+    query: initialOrderState.search.query,
+  }
+};
 
 describe('OrderReducer', () => {
   const mockedState = (results = []): OrderState => (initialOrderState);
@@ -94,12 +111,44 @@ describe('OrderReducer', () => {
     expect(actual).toEqual(expected);
   });
 
+  it('should update search object on SEARCH_QUERY', () => {
+    const state = mockedState();
+    const query = {
+      id: '2',
+      from: new Date(),
+      to: new Date(Date.now() - 50000),
+      customer: 'Kebab',
+      project: 'Project Laif',
+      font: 'Best Font',
+      foundry: 'Based',
+    };
+    const actual = OrderReducer(state, orderActions.searchQuery(query));
+    const expected: OrderState = {
+      ...initialOrderState,
+      search: {
+        ids: [],
+        loading: true,
+        query,
+      },
+    };
+    expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
+  });
+
+  it('should add search results on SEARCH_COMPLETE', () => {
+    const state = mockedState();
+    state.search.loading = true;
+    const actual = OrderReducer(state, orderActions.searchComplete(searchItems));
+    const expected: OrderState = searchState;
+    expect(actual).toEqual(expected, 'Didn\'t add search items');
+  });
+
   describe('when an Order already exists in the state', () => {
     const state = mockedState();
     let addedState = initialOrderState;
 
     beforeEach(() => {
       addedState = OrderReducer(state, orderActions.placeOrder(OrderMock));
+
     });
 
     it('should GET_ORDERS when there already exists an Order on the state', () => {
@@ -187,6 +236,38 @@ describe('OrderReducer', () => {
     it('getOrderByStatus should return all the existent Orders with the status provided', () => {
       const selectedOrder = getOrderByStatus(addedState, [0]);
       expect(selectedOrder).toEqual([]);
+    });
+
+    it('getLoading should return loading flag', () => {
+      const noSearchLoading = getLoading(addedState);
+      expect(noSearchLoading).toEqual(true, 'Loading flag should be false');
+
+      const searchLoadin = getLoading({
+        ...addedState,
+        search: {
+          ids: [],
+          loading: true,
+          query: initialOrderState.search.query,
+        }
+      });
+      expect(noSearchLoading).toEqual(true, 'Loading flag should be true');
+    });
+
+    it('getFoundIds should return only ids contained in search', () => {
+      const foundIds = getFoundIds(addedState);
+      expect(foundIds).toEqual([], 'Found ids should be empty');
+
+      const actualFoundIds = getFoundIds(searchState);
+      expect(actualFoundIds).toEqual(searchState.search.ids, 'Missing ids');
+    });
+
+    it('getAllFound should return only items from search ids', () => {
+      const foundItems = getAllFound(addedState);
+      expect(foundItems).toEqual([], 'No searched items present');
+
+      const actualFoundItems = getAllFound(searchState);
+      const expectedItems = searchState.search.ids.map((id) => searchState.entities[id]);
+      expect(actualFoundItems).toEqual(expectedItems, 'Missing search items');
     });
   });
 });

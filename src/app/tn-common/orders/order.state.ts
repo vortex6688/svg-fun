@@ -6,9 +6,9 @@ export interface OrderState {
   selectedOrderId: number | null;
   search: {
     ids: number[],
-    loading: boolean
+    loading: boolean,
     query: {
-      id: string,
+      id: string | number,
       from: Date,
       to: Date,
       customer: string,
@@ -16,7 +16,7 @@ export interface OrderState {
       font: string,
       foundry: string,
     },
-  }
+  };
 }
 
 export const initialOrderState: OrderState = {

@@ -7,20 +7,20 @@ export const StoreRegistry = {
   reducers: {},
   actions: [],
 
-  registerReducers (reducersRegisters: StoreReducerPackage[]) {
+  registerReducers(reducersRegisters: StoreReducerPackage[]) {
     reducersRegisters.forEach((reducerRegistry) => this.registerReducer(reducerRegistry));
     return this;
   },
-  registerReducer (reducerPackage: StoreReducerPackage) {
+  registerReducer(reducerPackage: StoreReducerPackage) {
     this.addReducer(reducerPackage.reducer);
     this.addActions(reducerPackage.actions);
     return this;
   },
-  addReducer (reducer) {
+  addReducer(reducer) {
     Object.assign(this.reducers, reducer);
     return this;
   },
-  addActions (actionsClass) {
+  addActions(actionsClass) {
     this.actions.push(actionsClass);
     return this;
   },

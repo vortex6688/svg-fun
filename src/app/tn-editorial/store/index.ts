@@ -21,4 +21,4 @@ if (process.env.ENABLE_STORE_DEVTOOLS) {
   ],
   providers: [ ...storeAssets.actions ]
 })
-export class TnEditorialStoreModule {};
+export class TnEditorialStoreModule {}
