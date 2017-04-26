@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Title } from '@angular/platform-browser';
-import { Order, OrderService } from '../../tn-common/orders';
-import { getAllOrders } from '../store/reducers';
+import { Order, OrderService, OrderActions } from '../../tn-common/orders';
+import { getAllFoundOrders } from '../store/reducers';
 
 @Component({
   selector: 'admin-orders-list',
@@ -16,9 +16,7 @@ export class AdminOrdersListComponent {
    *
    * @memberOf AdminOrdersListComponent
    */
-  public orders$ = this.store.select(getAllOrders).subscribe((data) => {
-    console.log('order data', data);
-  });
+  public orders$ = this.store.select(getAllFoundOrders);
 
   /**
    * Specific number of the order to search.
@@ -101,7 +99,9 @@ export class AdminOrdersListComponent {
    */
   public filterStatuses: string[] = [];
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private orderActions: OrderActions) {
+    this.searchOrders();
+  }
 
   /**
    * Clear search related component properties.
@@ -144,7 +144,6 @@ export class AdminOrdersListComponent {
       foundry: this.searchFoundry,
     };
 
-    // TODO: modify query to use store.
-    console.log('searchOrders', query);
+    this.store.dispatch(this.orderActions.searchQuery(query));
   }
 }

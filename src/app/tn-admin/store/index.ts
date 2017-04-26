@@ -3,7 +3,7 @@ import { StoreModule, combineReducers } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { StoreRegistry } from '../../tn-common/store/store.registry';
-import { moduleReducers } from './reducers';
+import { moduleReducers, moduleEffects } from './reducers';
 
 const storeAssets = StoreRegistry.registerReducers(moduleReducers);
 const productionReducer = combineReducers(storeAssets.reducers);
@@ -16,6 +16,7 @@ if (process.env.ENABLE_STORE_DEVTOOLS) {
 @NgModule({
   imports: [
     StoreModule.provideStore(productionReducer),
+    moduleEffects,
     ...devTools,
   ],
   providers: [ ...storeAssets.actions ]

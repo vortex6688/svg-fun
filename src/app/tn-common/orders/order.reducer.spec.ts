@@ -76,7 +76,8 @@ describe('OrderReducer', () => {
     const expected = {
       ids: [...state.ids, ...[OrderMock.id]],
       entities: Object.assign({}, state.entities, { [OrderMock.id]: OrderMock }),
-      selectedOrderId: OrderMock.id
+      selectedOrderId: OrderMock.id,
+      search: state.search,
     };
     expect(actual).toEqual(expected);
   });
@@ -87,7 +88,8 @@ describe('OrderReducer', () => {
     const expected = {
       ids: [],
       entities: {},
-      selectedOrderId: null
+      selectedOrderId: null,
+      search: initialOrderState.search,
     };
     expect(actual).toEqual(expected);
   });
@@ -105,7 +107,8 @@ describe('OrderReducer', () => {
       const expected = {
         ids: [...state.ids, ...[OrderMock.id]],
         entities: Object.assign({}, state.entities, { [OrderMock.id]: OrderMock }),
-        selectedOrderId: null
+        selectedOrderId: null,
+        search: initialOrderState.search,
       };
       expect(actual).toEqual(expected);
     });
@@ -115,7 +118,8 @@ describe('OrderReducer', () => {
       const expected = {
         ids: [OrderMock.id],
         entities: { [OrderMock.id]: OrderMock },
-        selectedOrderId: OrderMock.id
+        selectedOrderId: OrderMock.id,
+        search: initialOrderState.search,
       };
       expect(actual).toEqual(expected);
     });
