@@ -23,6 +23,7 @@ describe('OrderByPipe', () => {
     const sortKey = 'key';
     const expected = [...multiArray].sort((a, b) => a[sortKey] - b[sortKey]);
     expect(pipe.transform(multiArray, [sortKey])).toEqual(expected);
+    expect(pipe.transform(multiArray, ['+'])).toEqual(expected);
     expect(pipe.transform(multiArray, [`-${sortKey}`])).toEqual(expected.reverse());
   });
 
@@ -49,11 +50,13 @@ describe('OrderByPipe', () => {
       { key: 'gaga', no: 8765 },
       { key: 'dbghjh', no: 1 },
       { key: 'aaa', no: 8765 },
+      { key: 'aaa', no: 8765 },
     ];
     const ascKeys = ['no', 'key'];
     const expectedAsc = [
       { key: 'dbghjh', no: 1 },
       { key: 'va', no: 234 },
+      { key: 'aaa', no: 8765 },
       { key: 'aaa', no: 8765 },
       { key: 'gaga', no: 8765 },
     ];
@@ -65,12 +68,14 @@ describe('OrderByPipe', () => {
       { key: 'va', no: 234 },
       { key: 'gaga', no: 8765 },
       { key: 'aaa', no: 8765 },
+      { key: 'aaa', no: 8765 },
     ];
     expect(pipe.transform(multiArray, ascDescKeys)).toEqual(expectedAscDesc);
 
     const descKeys = ['-no', '-key'];
     const expectedDesc = [
       { key: 'gaga', no: 8765 },
+      { key: 'aaa', no: 8765 },
       { key: 'aaa', no: 8765 },
       { key: 'va', no: 234 },
       { key: 'dbghjh', no: 1 },
