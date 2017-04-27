@@ -34,6 +34,7 @@ import { UtilitiesBordersComponent,
          UtilitiesDisplayPropertyComponent,
          UtilitiesInvisibleContentComponent,
          UtilitiesImageReplacementComponent,
+         UtilitiesSpacingComponent,
          UtilitiesSizingComponent } from './utilities';
 
 const ROUTES: Routes = [
@@ -71,7 +72,8 @@ const ROUTES: Routes = [
       {  path: 'utilities/display-property', component: UtilitiesDisplayPropertyComponent },
       {  path: 'utilities/invisible-content', component: UtilitiesInvisibleContentComponent },
       {  path: 'utilities/image-replacement', component: UtilitiesImageReplacementComponent },
-      {  path: 'utilities/sizing', component: UtilitiesSizingComponent }
+      {  path: 'utilities/sizing', component: UtilitiesSizingComponent },
+      {  path: 'utilities/spacing', component: UtilitiesSpacingComponent }
     ]
   }
 ];
@@ -103,6 +105,7 @@ const ROUTES: Routes = [
     UtilitiesCloseIconComponent,
     UtilitiesFlexboxComponent,
     UtilitiesColorsComponent,
+    UtilitiesSpacingComponent,
     UtilitiesDisplayPropertyComponent,
     UtilitiesInvisibleContentComponent,
     UtilitiesImageReplacementComponent,
