@@ -2,24 +2,19 @@
   <thead>
     <tr class="row">
       <th class="col" (click)="sortBy('id')">
-        <span>Order number</span>
-        <i class="float-right pr-3" *ngIf="sortKey.endsWith('id')">{{sortKey[0]}}</i>
+        <span >Order number</span>
       </th>
       <th class="col" (click)="sortBy('licensee_last_name')">
-        <span>Customer</span>
-        <i class="float-right pr-3" *ngIf="sortKey.endsWith('licensee_last_name')">{{sortKey[0]}}</i>
+        <span >Customer</span>
       </th>
       <th class="col" (click)="sortBy('total')">
-        <span>Amount</span>
-        <i class="float-right pr-3" *ngIf="sortKey.endsWith('total')">{{sortKey[0]}}</i>
+        <span >Amount</span>
       </th>
-      <th class="col" (click)="sortBy('created')">
-        <span>Date</span>
-        <i class="float-right pr-3" *ngIf="sortKey.endsWith('created')">{{sortKey[0]}}</i>
+      <th class="col">
+        <span >Date</span>
       </th>
       <th class="col" (click)="sortBy('status')">
-        <span>Status</span>
-        <i class="float-right pr-3" *ngIf="sortKey.endsWith('status')">{{sortKey[0]}}</i>
+        <span >Status</span>
       </th>
       <th class="col">&nbsp;</th>
     </tr>

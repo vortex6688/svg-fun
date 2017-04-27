@@ -8,6 +8,32 @@
   margin-bottom: $spacer;
   background-color: $table-bg; // Reset for nesting within parents with `background-color`.
 
+  // sorting arrow icon
+  .sort-asc {
+    &:after {
+      border-top: 4px solid $gray-lightest;
+      border-bottom: none;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      margin: .5rem 0.25rem;
+      content: '';
+      position: absolute;
+    }
+  }
+
+  .sort-desc {
+    &:after {
+      border-top: 4px solid $gray-light;
+      border-bottom: none;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      margin: .5rem 0.25rem;
+      content: '';
+      transform: rotate(180deg);
+      position: absolute;
+    }
+  }
+
 // applying border top on the table row instead of the table cell to center the content not depending on it's type 
   tr {
     align-items: baseline;
