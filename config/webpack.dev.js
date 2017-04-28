@@ -75,9 +75,7 @@ module.exports = function (options) {
        */
       new webpack.LoaderOptionsPlugin({
         debug: true,
-        options: {
-
-        }
+        options: {}
       }),
 
     ],

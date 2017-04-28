@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnCommonModule } from '../tn-common';
 import { TnEditorialComponent } from './tn-editorial.component';
 import { EditorialHomeComponent } from './home';
+import { TnEditorialStoreModule } from './store';
 
 export const ROUTES: Routes = [
   { path: '',      component: EditorialHomeComponent },
@@ -27,6 +28,7 @@ export const ROUTES: Routes = [
     TnCommonModule,
     RouterModule.forChild(ROUTES),
     NgbModule,
+    TnEditorialStoreModule,
   ],
   providers: [ ],
 })

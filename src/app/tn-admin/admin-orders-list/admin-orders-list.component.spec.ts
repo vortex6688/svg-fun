@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Order, OrderService } from '../../tn-common/orders';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
+import { TnAdminStoreModule } from '../store';
 
 const OrderMock: Order = {
   id: 123,
@@ -58,7 +59,8 @@ describe('AdminOrdersListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule
+        FormsModule,
+        TnAdminStoreModule,
       ],
       declarations: [
         AdminOrdersListComponent,

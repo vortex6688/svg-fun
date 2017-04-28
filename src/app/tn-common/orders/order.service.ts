@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Order } from './order.model';
-import { ModelService } from '../../tn-common/model';
-import { TnApiHttpService } from '../../tn-common/tn-api-http';
+import { ModelService } from '../model';
+import { TnApiHttpService } from '../tn-api-http';
 
 @Injectable()
 export class OrderService extends ModelService<Order> {

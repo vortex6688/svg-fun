@@ -8,11 +8,7 @@ export const OrderReducer: ActionReducer<OrderState> = (state = initialOrderStat
                                                         action: Action) => {
   switch (action.type) {
     case OrderActions.GET_ORDERS:
-      return {
-        ids: state.ids,
-        entities: state.entities,
-        selectedOrderId: null,
-      };
+      return { ...state, selectedOrderId: null };
 
     case OrderActions.GET_ORDER: {
       const order: Order = action.payload;
@@ -23,6 +19,7 @@ export const OrderReducer: ActionReducer<OrderState> = (state = initialOrderStat
           [order.id]: order
         },
         selectedOrderId: order.id,
+        search: state.search,
       };
     }
 
@@ -35,6 +32,40 @@ export const OrderReducer: ActionReducer<OrderState> = (state = initialOrderStat
           [order.id]: order
         }),
         selectedOrderId: order.id,
+        search: state.search,
+      };
+    }
+
+    case OrderActions.SEARCH_QUERY: {
+      const search = {
+        ids: [],
+        loading: true,
+        query: action.payload,
+      };
+
+      return { ...state, search };
+    }
+
+    case OrderActions.SEARCH_COMPLETE: {
+      const orders: Order[] = action.payload;
+      const { newOrderEntities, newIds } = orders.reduce((result, order) => {
+        if (state.entities[order.id]) {
+          return result;
+        }
+        result.newOrderEntities[order.id] = order;
+        result.newIds.push(order.id);
+        return result;
+      }, { newOrderEntities: {}, newIds: [] });
+
+      return {
+        ids: [ ...state.ids, ...newIds ],
+        entities: Object.assign({}, state.entities, newOrderEntities),
+        selectedOrderId: state.selectedOrderId,
+        search: {
+          ids: newIds,
+          loading: false,
+          query: state.search.query,
+        },
       };
     }
 

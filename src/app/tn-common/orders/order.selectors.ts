@@ -18,11 +18,25 @@ export const getEntities = (state: OrderState) => state.entities;
 export const getIds = (state: OrderState) => state.ids;
 
 /**
+ * Returns all the ids of the searched orders.
+ *
+ * @param {state} OrderState
+ */
+export const getFoundIds = (state: OrderState) => state.search.ids;
+
+/**
  * Return the id of the selected order.
  *
  * @param {state} OrderState
  */
 export const getSelectedId = (state: OrderState) => state.selectedOrderId;
+
+/**
+ * Return if the search is loading.
+ *
+ * @param {state} OrderState
+ */
+export const getLoading = (state: OrderState) => state.search.loading;
 
 /**
  * Return the specific order selected.
@@ -39,6 +53,15 @@ export const getSelected = createSelector(getEntities, getSelectedId, (entities,
  * @type {Reselect.Selector}
  */
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
+  return ids.map((id) => entities[id]);
+});
+
+/**
+ * Return all the orders resulted from search.
+ *
+ * @param state OrderState
+ */
+export const getAllFound = createSelector(getEntities, getFoundIds, (entities, ids) => {
   return ids.map((id) => entities[id]);
 });
 

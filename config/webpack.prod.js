@@ -6,6 +6,7 @@
 
 // force environment for prodution builds prior to including common.js.
 process.env.ENV = 'production';
+process.env.ENABLE_STORE_DEVTOOLS = 'false';
 
 const helpers = require('./helpers');
 const webpack = require('webpack');
