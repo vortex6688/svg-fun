@@ -22,6 +22,19 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
+    case LicenseActions.ADD_LICENSE: {
+      const license: License = action.payload;
+
+      return {
+        ids: [ ...state.ids, license.id ],
+        entities: Object.assign({}, state.entities, {
+          [license.id]: license
+        }),
+        selectedLicenseId: license.id,
+        search: state.search,
+      };
+    }
+
     case LicenseActions.SEARCH_QUERY: {
       const search = {
         ids: [],

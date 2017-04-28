@@ -11,4 +11,5 @@ export class License {
   public years?: number;
   public start?: string;
   public end?: string;
+  public self_hosted?: boolean;
 }

@@ -13,6 +13,7 @@ import { of } from 'rxjs/observable/of';
 
 import { LicenseService } from './license.service';
 import { LicenseActions } from './license.actions';
+import { License } from './license.model';
 
 @Injectable()
 export class LicenseEffects {

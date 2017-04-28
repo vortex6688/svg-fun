@@ -8,7 +8,7 @@ import { TnApiHttpService } from '../tn-api-http';
 export class LicenseService extends ModelService<License> {
 
   /**
-   * Creates an instance of the OrderService
+   * Creates an instance of the LicenseService
    *
    * @param {TnApiHttpService} apiHttp
    */

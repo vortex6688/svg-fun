@@ -12,4 +12,12 @@ export {
   getLoading,
   getSelected,
   getAll,
+  getLicenseById,
+  getLicencesByType,
+  getActiveLicences,
+  getFreeTrialLicences,
+  getPerpetualLicences,
+  getNotPerpetualLicences,
+  getHostedLicences,
+  getSelfHostedLicences
 } from './license.selectors';
