@@ -1,21 +1,11 @@
 <table class="table table-sortable">
   <thead>
     <tr class="row">
-      <th class="col" (click)="sortBy('id')">
-        <span >Order number</span>
-      </th>
-      <th class="col" (click)="sortBy('licensee_last_name')">
-        <span >Customer</span>
-      </th>
-      <th class="col" (click)="sortBy('total')">
-        <span >Amount</span>
-      </th>
-      <th class="col">
-        <span >Date</span>
-      </th>
-      <th class="col" (click)="sortBy('status')">
-        <span >Status</span>
-      </th>
+      <th class="col sortable" (click)="sortBy('id')" [ngClass]="{'sort-asc': sortKey === '+id', 'sort-desc': sortKey === '-id'}">Order number</th>
+      <th class="col sortable" (click)="sortBy('licensee_last_name')" [ngClass]="{'sort-asc': sortKey === '+licensee_last_name', 'sort-desc': sortKey === '-licensee_last_name'}">Customer</th>
+      <th class="col sortable" (click)="sortBy('total')" [ngClass]="{'sort-asc': sortKey === '+total', 'sort-desc': sortKey === '-total'}">Amount</th>
+      <th class="col sortable" (click)="sortBy('created')"  [ngClass]="{'sort-asc': sortKey === '+created', 'sort-desc': sortKey === '-created'}">Date</th>
+      <th class="col sortable" (click)="sortBy('status')" [ngClass]="{'sort-asc': sortKey === '+status', 'sort-desc': sortKey === '-status'}">Status</th>
       <th class="col">&nbsp;</th>
     </tr>
   </thead>
