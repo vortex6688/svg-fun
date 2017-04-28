@@ -8,7 +8,7 @@ import { Order } from '../../../tn-common/orders/';
 })
 export class OrdersTableComponent {
   @Input() public orders: Order[] = [];
-  public sortKey = '';
+  public sortKey = '-created';
 
   public sortBy(key) {
     const sortSide = this.sortKey.endsWith(key) && this.sortKey.startsWith('-') ? '+' : '-';

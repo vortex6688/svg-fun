@@ -28,4 +28,15 @@ describe('ContentTablesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set correct sort key', () => {
+    const testKey = 'key';
+    const nextKey = 'key2';
+    component.sortBy(testKey);
+    expect(component.sortKey).toEqual(`-${testKey}`, 'Expected descending key');
+    component.sortBy(testKey);
+    expect(component.sortKey).toEqual(`+${testKey}`, 'Expected ascending key');
+    component.sortBy(nextKey);
+    expect(component.sortKey).toEqual(`-${nextKey}`, 'Expected next key');
+  });
 });

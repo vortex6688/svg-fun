@@ -8,8 +8,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  */
 
 @Pipe({
-  name: 'orderBy',
-  pure: false,
+  name: 'orderBy'
 })
 export class OrderByPipe implements PipeTransform {
   /**
