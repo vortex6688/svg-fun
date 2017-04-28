@@ -27,6 +27,25 @@ describe('OrderByPipe', () => {
     expect(pipe.transform(multiArray, [`-${sortKey}`])).toEqual(expected.reverse());
   });
 
+  it('should sort multidimensional date array by single provided key', () => {
+    const multiArray = [
+      { key: new Date(Date.now() - 5000) },
+      { key: new Date(Date.now() + 5000) },
+      { key: new Date(Date.now() - 12000) },
+      { key: new Date(Date.now()) },
+      { key: new Date(Date.now() + 554) },
+    ];
+    const sortKey = 'key';
+    const expected = [...multiArray].sort((a: any, b: any) => {
+      a = +a[sortKey];
+      b = +b[sortKey];
+      return a - b;
+    });
+    expect(pipe.transform(multiArray, [sortKey])).toEqual(expected);
+    expect(pipe.transform(multiArray, ['+'])).toEqual(expected);
+    expect(pipe.transform(multiArray, [`-${sortKey}`])).toEqual(expected.reverse());
+  });
+
   it('should sort multidimensional string array by single provided key', () => {
     const multiArray = [
       { key: 'va' },
@@ -44,42 +63,43 @@ describe('OrderByPipe', () => {
     expect(pipe.transform(multiArray, [`-${sortKey}`])).toEqual(expected.reverse());
   });
 
-  it('should sort multidimensional string array by multiple provided keys', () => {
+  it('should sort multidimensional array by multiple provided keys', () => {
+    const date = Date.now();
     const multiArray = [
-      { key: 'va', no: 234 },
-      { key: 'gaga', no: 8765 },
-      { key: 'dbghjh', no: 1 },
-      { key: 'aaa', no: 8765 },
-      { key: 'aaa', no: 8765 },
+      { key: 'va', no: 234, date: new Date(date), },
+      { key: 'gaga', no: 8765, date: new Date(date - 500000) },
+      { key: 'aaa', no: 8765, date: new Date(date + 5000000) },
+      { key: 'aaa', no: 8765, date: new Date(date - 10000) },
+      { key: 'aaa', no: 8765, date: new Date(date) },
     ];
-    const ascKeys = ['no', 'key'];
+    const ascKeys = ['no', 'key', 'date'];
     const expectedAsc = [
-      { key: 'dbghjh', no: 1 },
-      { key: 'va', no: 234 },
-      { key: 'aaa', no: 8765 },
-      { key: 'aaa', no: 8765 },
-      { key: 'gaga', no: 8765 },
+      multiArray[0],
+      multiArray[3],
+      multiArray[4],
+      multiArray[2],
+      multiArray[1],
     ];
-    expect(pipe.transform(multiArray, ascKeys)).toEqual(expectedAsc);
+    expect(pipe.transform(multiArray.slice(0), ascKeys)).toEqual(expectedAsc, '+no, +key, +date');
 
-    const ascDescKeys = ['no', '-key'];
+    const ascDescKeys = ['no', '-key', '-date'];
     const expectedAscDesc = [
-      { key: 'dbghjh', no: 1 },
-      { key: 'va', no: 234 },
-      { key: 'gaga', no: 8765 },
-      { key: 'aaa', no: 8765 },
-      { key: 'aaa', no: 8765 },
+      multiArray[0],
+      multiArray[1],
+      multiArray[2],
+      multiArray[4],
+      multiArray[3],
     ];
-    expect(pipe.transform(multiArray, ascDescKeys)).toEqual(expectedAscDesc);
+    expect(pipe.transform(multiArray.slice(0), ascDescKeys)).toEqual(expectedAscDesc, '+no, -key, -date');
 
-    const descKeys = ['-no', '-key'];
+    const descKeys = ['-no', '-key', '-date'];
     const expectedDesc = [
-      { key: 'gaga', no: 8765 },
-      { key: 'aaa', no: 8765 },
-      { key: 'aaa', no: 8765 },
-      { key: 'va', no: 234 },
-      { key: 'dbghjh', no: 1 },
+      multiArray[1],
+      multiArray[2],
+      multiArray[4],
+      multiArray[3],
+      multiArray[0],
     ];
-    expect(pipe.transform(multiArray, descKeys)).toEqual(expectedDesc);
+    expect(pipe.transform(multiArray.slice(0), descKeys)).toEqual(expectedDesc, '-no, -key, -date');
   });
 });
