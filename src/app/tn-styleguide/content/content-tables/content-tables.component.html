@@ -288,30 +288,18 @@
 <table class="table table-sortable">
   <thead>
     <tr>
-      <th class="sortable sort-asc">#</th>
-      <th class="sortable">First Name</th>
-      <th class="sortable">Last Name</th>
+      <th class="sortable" [ngClass]="{'sort-asc': sortKey === '+no','sort-desc': sortKey === '-no'}" (click)="sortBy('no')">#</th>
+      <th class="sortable" [ngClass]="{'sort-asc': sortKey === '+fName','sort-desc': sortKey === '-fName'}" (click)="sortBy('fName')">First Name</th>
+      <th class="sortable" [ngClass]="{'sort-asc': sortKey === '+lName','sort-desc': sortKey === '-lName'}" (click)="sortBy('lName')">Last Name</th>
       <th>Username</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+    <tr *ngFor="let row of sortableTableData | orderBy: [sortKey]">
+      <td scope="row">{{row.no}}</td>
+      <td>{{row.fName}}</td>
+      <td>{{row.lName}}</td>
+      <td>{{row.user}}</td>
     </tr>
   </tbody>
 </table>

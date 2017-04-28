@@ -5,6 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { ContentTablesComponent } from './content-tables.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { OrderByPipe } from '../../../tn-common/pipes/';
 
 describe('ContentTablesComponent', () => {
   let component: ContentTablesComponent;
@@ -13,7 +14,7 @@ describe('ContentTablesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule.withRoutes([])],
-      declarations: [ ContentTablesComponent ]
+      declarations: [ ContentTablesComponent, OrderByPipe ]
     })
     .compileComponents();
   }));
