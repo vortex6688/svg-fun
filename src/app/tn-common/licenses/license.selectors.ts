@@ -93,7 +93,7 @@ export const getLicencesByType = (state: LicenseState, type: string[]) => {
  */
 export const getFreeTrialLicences = (state: LicenseState) => {
   const licenses = state.ids.map((id) => state.entities[id]);
-  return licenses.filter((license) => license.years == -2);
+  return licenses.filter((license) => license.years === -2);
 };
 
 /**
@@ -103,7 +103,7 @@ export const getFreeTrialLicences = (state: LicenseState) => {
  */
 export const getPerpetualLicences = (state: LicenseState) => {
   const licenses = state.ids.map((id) => state.entities[id]);
-  return licenses.filter((license) => license.years == -1);
+  return licenses.filter((license) => license.years === -1);
 };
 
 /**
@@ -123,7 +123,7 @@ export const getNotPerpetualLicences = (state: LicenseState) => {
  */
 export const getHostedLicences = (state: LicenseState) => {
   const licenses = state.ids.map((id) => state.entities[id]);
-  return licenses.filter((license) => license.self_hosted == false);
+  return licenses.filter((license) => license.self_hosted === false);
 };
 
 /**
@@ -133,7 +133,7 @@ export const getHostedLicences = (state: LicenseState) => {
  */
 export const getSelfHostedLicences = (state: LicenseState) => {
   const licenses = state.ids.map((id) => state.entities[id]);
-  return licenses.filter((license) => license.self_hosted == true);
+  return licenses.filter((license) => license.self_hosted === true);
 };
 
 /**
@@ -143,5 +143,5 @@ export const getSelfHostedLicences = (state: LicenseState) => {
  */
 export const getActiveLicences = (state: LicenseState) => {
   const licenses = state.ids.map((id) => state.entities[id]);
-  return licenses.filter((license) => license.active == true);
+  return licenses.filter((license) => license.active === true);
 };

@@ -16,7 +16,7 @@ describe('LicenseService', () => {
 
   beforeEach(() => {
     mockBackend = new MockBackend();
-    let options = new BaseRequestOptions();
+    const options = new BaseRequestOptions();
     apiClient = new TnApiHttpService(mockBackend, options);
     licenseService = new LicenseService(apiClient);
   });

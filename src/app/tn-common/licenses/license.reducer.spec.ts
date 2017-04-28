@@ -23,18 +23,18 @@ import {
   getSelfHostedLicences
  } from './license.selectors';
 
-let licenseMock: License = {
+const licenseMock: License = {
   id: 123,
   order: 1,
-  price: "22.0000",
-  price_paid: "22.0000",
+  price: '22.0000',
+  price_paid: '22.0000',
   qty: 2,
   start: null,
   end: null,
   style: 286,
   years: 1,
   active: true,
-  license_type: "app",
+  license_type: 'app',
   self_hosted: false
 };
 
@@ -57,6 +57,18 @@ describe('LicenseReducer', () => {
       ids: [],
       entities: {},
       selectedLicenseId: null,
+      search: initialLicenseState.search,
+    };
+    expect(actual).toEqual(expected);
+  });
+
+  it('should be able to ADD_LICENSE', () => {
+    const state = mockedState();
+    const actual = LicenseReducer(state, licenseActions.addLicense(licenseMock));
+    const expected = {
+      ids: [...state.ids, ...[licenseMock.id]],
+      entities: Object.assign({}, state.entities, { [licenseMock.id]: licenseMock }),
+      selectedLicenseId: licenseMock.id,
       search: initialLicenseState.search,
     };
     expect(actual).toEqual(expected);
@@ -92,35 +104,60 @@ describe('LicenseReducer', () => {
       expect(actual).toEqual(expected);
     });
 
+    it('should update the given license on UPDATE_LICENSE', () => {
+      licenseMock.qty = 42;
+      const actual = LicenseReducer(addedState, licenseActions.updateLicense(licenseMock));
+      const expected = {
+        ids: addedState.ids,
+        entities: { [licenseMock.id]: licenseMock },
+        selectedLicenseId: licenseMock.id,
+        search: initialLicenseState.search,
+      };
+      expect(actual).toEqual(expected);
+    });
+
+    it('should remove the given license on REMOVE_LICENSE', () => {
+      const actual = LicenseReducer(addedState, licenseActions.removeLicense(licenseMock));
+      const expected = {
+        ids: addedState.ids.filter((id) => id !== licenseMock.id),
+        entities: Object.assign({}, state.entities, {
+          [licenseMock.id]: null
+        }),
+        selectedLicenseId: null,
+        search: initialLicenseState.search,
+      };
+      expect(actual).toEqual(expected);
+    });
+
     it('getEntities should return all the entities of a LicenseState', () => {
-      let entities = getEntities(addedState);
+      const entities = getEntities(addedState);
       expect(entities).toEqual(addedState.entities);
     });
 
     it('getIds should return all the ids of a LicenseState', () => {
-      let ids = getIds(addedState);
+      const ids = getIds(addedState);
       expect(ids).toEqual(addedState.ids);
     });
 
     it('getSelectedId should return the id of the selected LicenseState', () => {
-      let selectedLicenseId = getSelectedId(addedState);
+      const selectedLicenseId = getSelectedId(addedState);
       expect(selectedLicenseId).toEqual(addedState.selectedLicenseId);
     });
 
     it('getSelected should return the entity of the selected LicenseState', () => {
-      let selectedLicense = getSelected(addedState);
-      let selected = addedState.entities[addedState.selectedLicenseId];
+      const selectedLicense = getSelected(addedState);
+      const selected = addedState.entities[addedState.selectedLicenseId];
       expect(selectedLicense).toEqual(selected);
     });
 
     it('getAll should return all the entities of the LicenseState', () => {
-      let selectedLicense = getAll(addedState);
-      let selected = addedState.ids.map((id) => addedState.entities[id]);
+      const selectedLicense = getAll(addedState);
+      const selected = addedState.ids.map((id) => addedState.entities[id]);
       expect(selectedLicense).toEqual(selected);
     });
 
     it('getLicenseById should return a specific License with the id provided', () => {
-      let selectedLicense = getLicenseById(addedState, licenseMock.id);
+      const selectedLicense = getLicenseById(addedState, licenseMock.id);
       expect(selectedLicense).toEqual(licenseMock);
     });
 

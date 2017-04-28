@@ -27,6 +27,26 @@ export class LicenseEffects {
         .map((licenses) => this.licenseActions.searchComplete(licenses))
     );
 
+  @Effect()
+  public saveLicense$: Observable<Action> = this.actions$
+    .ofType(LicenseActions.ADD_LICENSE, LicenseActions.UPDATE_LICENSE)
+    .map((action) => action.payload as License)
+    .switchMap((license) =>
+      this.licenseService.save(license)
+        .map(() => this.licenseActions.saveLicenseSuccess(license))
+        .catch(() => of(this.licenseActions.saveLicenseFail(license)))
+    );
+
+  @Effect()
+  public removeLicense$: Observable<Action> = this.actions$
+    .ofType(LicenseActions.REMOVE_LICENSE)
+    .map((action) => action.payload as License)
+    .switchMap((license) =>
+      this.licenseService.delete(license)
+        .map(() => this.licenseActions.removeLicenseSuccess(license))
+        .catch(() => of(this.licenseActions.removeLicenseFail(license)))
+    );
+
   constructor(private actions$: Actions, private licenseService: LicenseService,
               private licenseActions: LicenseActions) {}
 }

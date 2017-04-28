@@ -35,6 +35,32 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
+    case LicenseActions.UPDATE_LICENSE: {
+      const license: License = action.payload;
+
+      return {
+        ids: state.ids,
+        entities: Object.assign({}, state.entities, {
+          [license.id]: license
+        }),
+        selectedLicenseId: license.id,
+        search: state.search,
+      };
+    }
+
+    case LicenseActions.REMOVE_LICENSE: {
+      const license: License = action.payload;
+
+      return {
+        ids: state.ids.filter((id) => id !== license.id),
+        entities: Object.assign({}, state.entities, {
+          [license.id]: null
+        }),
+        selectedLicenseId: null,
+        search: state.search,
+      };
+    }
+
     case LicenseActions.SEARCH_QUERY: {
       const search = {
         ids: [],

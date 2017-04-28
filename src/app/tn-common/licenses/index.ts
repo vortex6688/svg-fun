@@ -12,6 +12,7 @@ export {
   getLoading,
   getSelected,
   getAll,
+  getAllFound,
   getLicenseById,
   getLicencesByType,
   getActiveLicences,

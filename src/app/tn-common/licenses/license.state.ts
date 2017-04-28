@@ -20,7 +20,7 @@ export interface LicenseState {
       start: Date,
       end: Date,
     },
-  }
+  };
 }
 
 export const initialLicenseState: LicenseState = {
