@@ -2,18 +2,24 @@ import { createSelector } from 'reselect';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as order from '../../tn-common/orders';
+import * as auth from '../../tn-common/auth';
 
 export interface AdminState {
   order: order.OrderState;
+  auth: auth.AuthState;
 }
 
 export const moduleReducers = [{
   reducer: { order: order.OrderReducer },
   actions: order.OrderActions,
+}, {
+  reducer: { auth: auth.AuthReducer },
+  actions: auth.AuthActions,
 }];
 
 export const moduleEffects = [
   EffectsModule.run(order.OrderEffects),
+  EffectsModule.run(auth.AuthEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
@@ -37,3 +43,8 @@ export const getOrderByCustomerId = (customerId) => {
 export const getOrderByStatus = (status) => {
   return (state) => order.getOrderByStatus(getOrderState(state), status);
 };
+
+export const getAuthState = (state: AdminState): auth.AuthState => state.auth;
+export const getUser = createSelector(getAuthState, auth.getUser);
+export const isAuthInProgress = createSelector(getAuthState, auth.getProgress);
+export const getAuthError = createSelector(getAuthState, auth.getError);

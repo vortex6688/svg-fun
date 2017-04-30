@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 // vendor imports
+import { Store } from '@ngrx/store';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/add/operator/filter';
 
 // local imports
-import { AuthService, Authorization,
+import { Authorization, AuthActions,
          ANONYMOUS_AUTHORIZATION as ANONYMOUS } from '../../tn-common/auth';
 import { LoginComponent } from '../login';
+import { getUser } from '../store/reducers';
 
 @Component({
   selector: 'admin-navbar',
@@ -26,8 +28,9 @@ export class AdminNavbarComponent implements OnInit {
 
    constructor(private router: Router,
                private modalService: NgbModal,
-               private authService: AuthService) {
-    this.authService.user$.subscribe((v) => this.user = v);
+               private store: Store<any>,
+               private authActions: AuthActions) {
+    this.store.select(getUser).subscribe((user) => this.user = user);
   }
 
    public ngOnInit() {
@@ -45,6 +48,6 @@ export class AdminNavbarComponent implements OnInit {
   }
 
   public logout() {
-    this.authService.logout();
+    this.store.dispatch(this.authActions.logout());
   }
 }
