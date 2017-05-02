@@ -59,10 +59,12 @@ const OrderMock: Order = {
   upgrade_price_adjustment: 0,
   coupon: null
 };
+const orderDate = Date.now();
 const addItems: Order[] = [
-  { ...OrderMock, id: 11, status: 1 },
-  { ... OrderMock, id: 1, status: 2 },
-  { ... OrderMock, id: 23456, status: 2 },
+  { ...OrderMock, id: 11, status: 1, created: new Date(orderDate).toString() },
+  { ... OrderMock, id: 1, status: 2, created: new Date(orderDate - 5000).toString() },
+  { ... OrderMock, id: 2, status: 0, created: new Date(orderDate).toString() },
+  { ... OrderMock, id: 23456, status: 2, created: new Date(orderDate + 5000).toString() },
 ];
 const addedData = {
   ids: addItems.map((item) => item.id),
@@ -118,8 +120,8 @@ describe('OrderReducer', () => {
     const state = mockedState();
     const query: OrderSearch = {
       id: '2',
-      from: new Date(),
-      to: new Date(Date.now() - 50000),
+      from: new Date(orderDate - 4000),
+      to: new Date(orderDate + 6000),
       customer: 'Kebab',
       project: 'Project Laif',
       font: 'Best Font',
@@ -138,28 +140,50 @@ describe('OrderReducer', () => {
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
 
-    const statusQuery: OrderSearch = {
+    const fullQuery: OrderSearch = {
       id: '',
-      from: null,
-      to: null,
+      from: new Date(orderDate - 4000),
+      to: new Date(orderDate + 3000),
       customer: '',
       project: '',
       font: '',
       foundry: '',
-      status: [1],
+      status: [1, 2],
       licenses: [],
     };
     const searchExpected: OrderState = {
       ...nonEmptyState,
       search: {
-        ids: nonEmptyState.ids.filter((id) =>
-          statusQuery.status.indexOf(nonEmptyState.entities[id].status) !== -1),
+        ids: nonEmptyState.ids.filter((id) => {
+          const order = nonEmptyState.entities[id];
+          return (
+            fullQuery.status.indexOf(order.status) !== -1 &&
+            new Date(order.created) >= fullQuery.from &&
+            new Date(order.created) <= fullQuery.to
+          );
+        }),
         active: true,
-        query: statusQuery,
+        query: fullQuery,
       }
     };
-    const realSearch = OrderReducer(nonEmptyState, orderActions.searchQuery(statusQuery));
-    expect(realSearch).toEqual(searchExpected, 'Should have an active search');
+    const fullSearch = OrderReducer(nonEmptyState, orderActions.searchQuery(fullQuery));
+    expect(fullSearch).toEqual(searchExpected, 'Should have an active search');
+
+    const targetId = 11;
+    const idQuery: OrderSearch = {
+      ...fullQuery,
+      id: targetId,
+    };
+    const idExpected: OrderState = {
+      ...nonEmptyState,
+      search: {
+        ids: nonEmptyState.ids.filter((id) => id === targetId),
+        active: true,
+        query: idQuery,
+      }
+    };
+    const idSearch = OrderReducer(nonEmptyState, orderActions.searchQuery(idQuery));
+    expect(idSearch).toEqual(idExpected, 'Should have results by id');
   });
 
   it('should add orders on ADD_ORDERS', () => {

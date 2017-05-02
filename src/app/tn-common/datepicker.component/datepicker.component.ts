@@ -18,7 +18,7 @@ import { CustomDateParserFormatter } from './custom-date-parser-formatter.compon
 export class DatepickerComponent {
   public model: NgbDateStruct;
   public d;
-  @Output() private dateUpdate = new EventEmitter<Date>();
+  @Output() public dateUpdate = new EventEmitter<Date>();
 
   constructor(config: NgbDatepickerConfig) {
     config.firstDayOfWeek = 7;
