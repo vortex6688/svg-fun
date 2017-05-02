@@ -38,4 +38,12 @@ describe('OrdersTableComponent', () => {
     component.sortBy(nextKey);
     expect(component.sortKey).toEqual(`-${nextKey}`, 'Expected next key');
   });
+
+  it('should manage collapseState', () => {
+    expect(component.collapseState$.getValue()).toEqual(true);
+    component.expandAll();
+    expect(component.collapseState$.getValue()).toEqual(false);
+    component.collapseAll();
+    expect(component.collapseState$.getValue()).toEqual(true);
+  });
 });

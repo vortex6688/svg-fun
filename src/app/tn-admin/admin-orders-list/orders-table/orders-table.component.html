@@ -1,3 +1,10 @@
+<div class="d-flex">
+  <div class="ml-auto text-uppercase small">
+    <span class="px-1" (click)="expandAll()">Expand all</span>
+    <span> | </span>
+    <span class="px-1" (click)="collapseAll()">Collapse all</span>
+  </div>
+</div>
 <table class="table table-sortable">
   <thead>
     <tr class="row">
@@ -10,6 +17,6 @@
     </tr>
   </thead>
   <tbody>
-    <order-row *ngFor='let order of orders | orderBy: [sortKey]' [order]=order></order-row>
+    <order-row *ngFor='let order of orders | orderBy: [sortKey]' [order]=order [collapseSubject]="collapseState$"></order-row>
   </tbody>
 </table>
