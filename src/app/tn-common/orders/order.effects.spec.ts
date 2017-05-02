@@ -81,13 +81,12 @@ describe('OrderEffects', () => {
     orderEffects = TestBed.get(OrderEffects);
   });
 
-  describe('search$', () => {
-    it('should return a search complete action with results', () => {
-      const expectedResult = orderActions.searchComplete(mockOrders);
-      runner.queue(orderActions.searchQuery({}));
+  describe('loadData$', () => {
+    it('should call db.open when initially subscribed to', () => {
+      const expectedResult = orderActions.addOrders(mockOrders);
 
-      let result = null;
-      orderEffects.search$.subscribe((data) => result = data);
+      let result;
+      orderEffects.loadData$.subscribe((data) => result = data);
       expect(result).toEqual(expectedResult);
     });
   });

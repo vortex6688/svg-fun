@@ -6,13 +6,12 @@ import {
 import { Order } from './order.model';
 import { OrderReducer } from './order.reducer';
 import { OrderActions } from './order.actions';
-import { OrderState, initialOrderState } from './order.state';
+import { OrderState, OrderSearch, initialOrderState } from './order.state';
 import {
   getEntities,
   getIds,
   getFoundIds,
   getSelectedId,
-  getLoading,
   getAllFound,
   getSelected,
   getAll,
@@ -60,17 +59,21 @@ const OrderMock: Order = {
   upgrade_price_adjustment: 0,
   coupon: null
 };
-const searchItems: Order[] = [
-  { ...OrderMock, id: 11 },
-  { ... OrderMock, id: 23456 },
+const addItems: Order[] = [
+  { ...OrderMock, id: 11, status: 1 },
+  { ... OrderMock, id: 1, status: 2 },
+  { ... OrderMock, id: 23456, status: 2 },
 ];
-const searchState: OrderState = {
-  ids: searchItems.map((item) => item.id),
-  entities: searchItems.reduce((result, item) => ({ ...result, [item.id]: item }), {}),
+const addedData = {
+  ids: addItems.map((item) => item.id),
+  entities: addItems.reduce((result, item) => ({ ... result, [item.id]: item }), {}),
+};
+const nonEmptyState: OrderState = {
+  ...addedData,
   selectedOrderId: null,
   search: {
-    ids: searchItems.map((item) => item.id),
-    loading: false,
+    ids: [],
+    active: false,
     query: initialOrderState.search.query,
   }
 };
@@ -113,7 +116,7 @@ describe('OrderReducer', () => {
 
   it('should update search object on SEARCH_QUERY', () => {
     const state = mockedState();
-    const query = {
+    const query: OrderSearch = {
       id: '2',
       from: new Date(),
       to: new Date(Date.now() - 50000),
@@ -121,25 +124,49 @@ describe('OrderReducer', () => {
       project: 'Project Laif',
       font: 'Best Font',
       foundry: 'Based',
+      status: [23, 1],
+      licenses: [1, 11],
     };
     const actual = OrderReducer(state, orderActions.searchQuery(query));
     const expected: OrderState = {
       ...initialOrderState,
       search: {
         ids: [],
-        loading: true,
+        active: false,
         query,
       },
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
+
+    const statusQuery: OrderSearch = {
+      id: '',
+      from: null,
+      to: null,
+      customer: '',
+      project: '',
+      font: '',
+      foundry: '',
+      status: [1],
+      licenses: [],
+    };
+    const searchExpected: OrderState = {
+      ...nonEmptyState,
+      search: {
+        ids: nonEmptyState.ids.filter((id) =>
+          statusQuery.status.indexOf(nonEmptyState.entities[id].status) !== -1),
+        active: true,
+        query: statusQuery,
+      }
+    };
+    const realSearch = OrderReducer(nonEmptyState, orderActions.searchQuery(statusQuery));
+    expect(realSearch).toEqual(searchExpected, 'Should have an active search');
   });
 
-  it('should add search results on SEARCH_COMPLETE', () => {
+  it('should add orders on ADD_ORDERS', () => {
     const state = mockedState();
-    state.search.loading = true;
-    const actual = OrderReducer(state, orderActions.searchComplete(searchItems));
-    const expected: OrderState = searchState;
-    expect(actual).toEqual(expected, 'Didn\'t add search items');
+    const actual = OrderReducer(state, orderActions.addOrders(addItems));
+    const expected: OrderState = nonEmptyState;
+    expect(actual).toEqual(expected, 'Didn\'t add new orders');
   });
 
   describe('when an Order already exists in the state', () => {
@@ -238,36 +265,39 @@ describe('OrderReducer', () => {
       expect(selectedOrder).toEqual([]);
     });
 
-    it('getLoading should return loading flag', () => {
-      const noSearchLoading = getLoading(addedState);
-      expect(noSearchLoading).toEqual(true, 'Loading flag should be false');
+    it('getFoundIds should return search ids or all ids if search is inactive', () => {
+      const foundIds = getFoundIds(addedState);
+      const allIds = getIds(addedState);
+      expect(foundIds).toEqual(allIds, 'Found ids should equal all ids on inactive search');
 
-      const searchLoadin = getLoading({
+      const expectedIds = [1, 2, 3];
+      const searchState = {
+        ...addedState,
+        search: {
+          ids: expectedIds,
+          active: true,
+          query: addedState.search.query
+        }
+      };
+      const actualFoundIds = getFoundIds(searchState);
+      expect(actualFoundIds).toEqual(expectedIds, 'Missing ids');
+    });
+
+    it('getAllFound should return search results or all items if search is inactive', () => {
+      const foundItems = getAllFound(addedState);
+      const allItems = getAll(addedState);
+      expect(foundItems).toEqual(allItems, 'Should return all items on non active search');
+
+      const searchState = {
         ...addedState,
         search: {
           ids: [],
-          loading: true,
-          query: initialOrderState.search.query,
+          active: true,
+          query: addedState.search.query,
         }
-      });
-      expect(noSearchLoading).toEqual(true, 'Loading flag should be true');
-    });
-
-    it('getFoundIds should return only ids contained in search', () => {
-      const foundIds = getFoundIds(addedState);
-      expect(foundIds).toEqual([], 'Found ids should be empty');
-
-      const actualFoundIds = getFoundIds(searchState);
-      expect(actualFoundIds).toEqual(searchState.search.ids, 'Missing ids');
-    });
-
-    it('getAllFound should return only items from search ids', () => {
-      const foundItems = getAllFound(addedState);
-      expect(foundItems).toEqual([], 'No searched items present');
-
+      };
       const actualFoundItems = getAllFound(searchState);
-      const expectedItems = searchState.search.ids.map((id) => searchState.entities[id]);
-      expect(actualFoundItems).toEqual(expectedItems, 'Missing search items');
+      expect(actualFoundItems).toEqual([], 'Should be empty');
     });
   });
 });

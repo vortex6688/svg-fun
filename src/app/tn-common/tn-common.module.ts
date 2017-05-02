@@ -60,5 +60,10 @@ export class TnCommonModule {
   public static forRoot(): ModuleWithProviders {
     return {ngModule: TnCommonModule, providers: [TnPaginationConfig]};
   }
-  constructor(protected titleService: TnTitleService, protected autoscrollService: TnAutoscrollService) {}
+
+  constructor(
+    protected titleService: TnTitleService,
+    protected autoscrollService: TnAutoscrollService,
+    protected authService: AuthService
+  ) {}
 }
