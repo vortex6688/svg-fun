@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Order } from '../../../tn-common/orders/';
 
 @Component({
   selector: 'orders-table',
@@ -6,5 +7,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./orders-table.component.scss']
 })
 export class OrdersTableComponent {
-  @Input() public orders;
+  @Input() public orders: Order[] = [];
+  public sortKey = '-created';
+
+  public sortBy(key) {
+    const sortSide = this.sortKey.endsWith(key) && this.sortKey.startsWith('-') ? '+' : '-';
+    this.sortKey = sortSide + key;
+  }
 }

@@ -9,6 +9,7 @@
   <li><a [routerLink]="[]" fragment="contents" id="markdown-toc-contents">Contents</a></li>
   <li><a [routerLink]="[]" fragment="examples" id="markdown-toc-examples">Examples</a></li>
   <li><a [routerLink]="[]" fragment="table-head-options" id="markdown-toc-table-head-options">Table head options</a></li>
+  <li><a [routerLink]="[]" fragment="sortable-table-head" id="markdown-toc-table-head-options">Sortable table head</a></li>
   <li><a [routerLink]="[]" fragment="striped-rows" id="markdown-toc-striped-rows">Striped rows</a></li>
   <li><a [routerLink]="[]" fragment="bordered-table" id="markdown-toc-bordered-table">Bordered table</a></li>
   <li><a [routerLink]="[]" fragment="hoverable-rows" id="markdown-toc-hoverable-rows">Hoverable rows</a></li>
@@ -277,6 +278,65 @@
     <span class="nt">&lt;/tr&gt;</span>
   <span class="nt">&lt;/tbody&gt;</span>
 <span class="nt">&lt;/table&gt;</span></code></pre></div>
+
+<h2 id="sortable-table-head">Sortable table head</h2>
+
+<p>Use <code class="highlighter-rouge">.table-sortable</code> to enable sorting markup for <code class="highlighter-rouge">&lt;thead&gt;</code>.</p>
+<p>Adding <code class="highlighter-rouge">.sortable</code> will add sorting icons. Icon display is controlled by <code class="highlighter-rouge">.sort-asc</code> and <code class="highlighter-rouge">.sort-desc</code> classes</p>
+
+<div class="bd-example" data-exmaple-id="">
+<table class="table table-sortable">
+  <thead>
+    <tr>
+      <th class="sortable" [ngClass]="{'sort-asc': sortKey === '+no','sort-desc': sortKey === '-no'}" (click)="sortBy('no')">#</th>
+      <th class="sortable" [ngClass]="{'sort-asc': sortKey === '+fName','sort-desc': sortKey === '-fName'}" (click)="sortBy('fName')">First Name</th>
+      <th class="sortable" [ngClass]="{'sort-asc': sortKey === '+lName','sort-desc': sortKey === '-lName'}" (click)="sortBy('lName')">Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of sortableTableData | orderBy: [sortKey]">
+      <td scope="row">{{row.no}}</td>
+      <td>{{row.fName}}</td>
+      <td>{{row.lName}}</td>
+      <td>{{row.user}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><h4>HTML Code</h4><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-sortable"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;thead&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"sortable"</span> <span class="na">[ng-class]=</span><span class="s">{{'{'}}'sort-asc': sortKey === '+no','sort-desc': sortKey === '-no'}"</span> <span class="na">(click)=</span><span class="s">"sortBy('no')"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"sortable"</span> <span class="na">[ng-class]=</span><span class="s">{{'{'}}'sort-asc': sortKey === '+fName','sort-desc': sortKey === '-fName'}"</span> <span class="na">(click)=</span><span class="s">"sortBy('fName')"</span><span class="nt">&gt;</span>First Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"sortable"</span> <span class="na">[ng-class]=</span><span class="s">{{'{'}}'sort-asc': sortKey === '+lName','sort-desc': sortKey === '-lName'}"</span> <span class="na">(click)=</span><span class="s">"sortBy('lName')"</span><span class="nt">&gt;</span>Last Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>Username<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/thead&gt;</span>
+  <span class="nt">&lt;tbody&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span><span class="na">{{'{'}}{{'{'}}</span>row.no<span class="na">}}</span><span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="na">{{'{'}}{{'{'}}</span>row.fName<span class="na">}}</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="na">{{'{'}}{{'{'}}</span>row.lName<span class="na">}}</span><span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span><span class="na">{{'{'}}{{'{'}}</span>row.iser<span class="na">}}</span><span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><h4>Component Code</h4>export class YourComponentNameComponent {{'{'}}
+  public sortKey = '';
+  public sortableTableData = [
+    {{'{'}} no: 1, fName: 'Mark', lName: 'Otto', user: '@mdo' },
+    {{'{'}} no: 2, fName: 'Jacob', lName: 'Thornton', user: '@fat' },
+    {{'{'}} no: 3, fName: 'Larry', lName: 'the Bird', user: '@twitter' },
+  ];
+
+  public sortBy(key) {{'{'}}
+    const sortSide = this.sortKey.endsWith(key) && this.sortKey.startsWith('-') ? '+' : '-';
+    this.sortKey = sortSide + key;
+  }
+}</code></pre></div>
 
 <h2 id="striped-rows">Striped rows</h2>
 

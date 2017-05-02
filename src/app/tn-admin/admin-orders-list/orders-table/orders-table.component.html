@@ -1,15 +1,15 @@
-<table class="table">
+<table class="table table-sortable">
   <thead>
     <tr class="row">
-      <th class="col">Order number</th>
-      <th class="col">Customer</th>
-      <th class="col">Amount</th>
-      <th class="col">Date</th>
-      <th class="col">Status</th>
+      <th class="col sortable" (click)="sortBy('id')" [ngClass]="{'sort-asc': sortKey === '+id', 'sort-desc': sortKey === '-id'}">Order number</th>
+      <th class="col sortable" (click)="sortBy('licensee_last_name')" [ngClass]="{'sort-asc': sortKey === '+licensee_last_name', 'sort-desc': sortKey === '-licensee_last_name'}">Customer</th>
+      <th class="col sortable" (click)="sortBy('total')" [ngClass]="{'sort-asc': sortKey === '+total', 'sort-desc': sortKey === '-total'}">Amount</th>
+      <th class="col sortable" (click)="sortBy('created')"  [ngClass]="{'sort-asc': sortKey === '+created', 'sort-desc': sortKey === '-created'}">Date</th>
+      <th class="col sortable" (click)="sortBy('status')" [ngClass]="{'sort-asc': sortKey === '+status', 'sort-desc': sortKey === '-status'}">Status</th>
       <th class="col">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
-    <order-row *ngFor='let order of orders' [order]=order></order-row>
+    <order-row *ngFor='let order of orders | orderBy: [sortKey]' [order]=order></order-row>
   </tbody>
 </table>
