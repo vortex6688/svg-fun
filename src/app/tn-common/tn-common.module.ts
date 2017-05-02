@@ -11,6 +11,7 @@ import { UserService } from './user';
 import { AuthService } from './auth';
 import { TnApiHttpService } from './tn-api-http';
 import { TnTitleService } from './tn-title';
+import { TnAutoscrollService } from './tn-autoscroll';
 import { OrderService } from './orders';
 import { DatepickerComponent,
          CalendarIconComponent,
@@ -35,6 +36,7 @@ import { OrderByPipe } from './pipes';
                   OrderService,
                   TnPaginationConfig,
                   TnTitleService.provider(),
+                  TnAutoscrollService.provider(),
                   UserService ],
   declarations: [ DatepickerComponent,
                   CalendarIconComponent,
@@ -58,5 +60,5 @@ export class TnCommonModule {
   public static forRoot(): ModuleWithProviders {
     return {ngModule: TnCommonModule, providers: [TnPaginationConfig]};
   }
-  constructor(protected titleService: TnTitleService) {}
+  constructor(protected titleService: TnTitleService, protected autoscrollService: TnAutoscrollService) {}
 }
