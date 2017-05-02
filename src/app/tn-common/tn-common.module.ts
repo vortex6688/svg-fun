@@ -14,6 +14,7 @@ import { TnTitleService } from './tn-title';
 import { TnAutoscrollService } from './tn-autoscroll';
 import { OrderService } from './orders';
 import { LicenseService } from './licenses';
+import { SeriesService } from './series';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
@@ -37,6 +38,7 @@ import { OrderByPipe } from './pipes';
                   TnApiHttpService.provider(),
                   OrderService,
                   LicenseService,
+                  SeriesService,
                   TnPaginationConfig,
                   TnTitleService.provider(),
                   TnAutoscrollService.provider(),
