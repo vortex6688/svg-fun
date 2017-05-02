@@ -11,11 +11,23 @@
     top: $navbar-collapsed-height;
   }
 
-  dl {
+  fieldset {
     font-size: $font-size-sm;
 
-    dt {
-        font-weight: 600;
+    label {
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: none;
+      color: $gray-dark;
+      position: relative;
+    }
+
+    input:checked + label:before {
+      position: absolute;
+      content: "\00d7";
+      font-size: $font-size-sm * 1.4;
+      line-height: 1;
+      margin-left: -$font-size-sm;
     }
   }
 }

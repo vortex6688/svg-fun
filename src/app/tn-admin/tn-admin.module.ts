@@ -1,7 +1,7 @@
 // Core NG Modules (First)
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
@@ -17,6 +17,7 @@ import { AdminOrdersListComponent } from './admin-orders-list';
 import { LoginComponent } from './login';
 import { OrderRowComponent, OrderStatusPipe } from './admin-orders-list/orders-table/order-row';
 import { OrdersTableComponent } from './admin-orders-list/orders-table';
+import { OrdersControlsComponent } from './admin-orders-list/orders-controls';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
@@ -39,11 +40,13 @@ export const routes: Routes = [
     LoginComponent,
     OrderRowComponent,
     OrdersTableComponent,
-    OrderStatusPipe
+    OrderStatusPipe,
+    OrdersControlsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forChild(routes),
     NgbModule.forRoot(),

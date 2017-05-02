@@ -1,9 +1,10 @@
+/* tslint:disable:max-classes-per-file */
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
-import { Order, OrderService } from '../../tn-common/orders';
+import { Order, OrderService, OrderActions } from '../../tn-common/orders';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule } from '../store';
 
@@ -81,12 +82,21 @@ describe('AdminOrdersListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should clear search', () => {
-    component.searchCustomer = 'Dave';
-    component.searchFont = 'Benton';
-    component.clearSearch();
-    expect(component.searchCustomer).toBe('');
-    expect(component.searchFont).toBe('');
+  it('should call order search action', () => {
+    const orderActions = fixture.debugElement.injector.get(OrderActions);
+    spyOn(orderActions, 'searchQuery').and.callThrough();
+    const query = {
+      id: 2,
+      from: null,
+      to: new Date(),
+      customer: 'custom',
+      project: 'typenetwork',
+      font: 'best font',
+      foundry: 'all of dem',
+      status: [],
+      licenses: [],
+    };
+    component.searchOrders(query);
+    expect(orderActions.searchQuery).toHaveBeenCalledWith(query);
   });
-
 });
