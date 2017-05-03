@@ -25,6 +25,7 @@ export const moduleReducers = [{
 export const moduleEffects = [
   EffectsModule.run(auth.AuthEffects),
   EffectsModule.run(order.OrderEffects),
+  EffectsModule.run(license.LicenseEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
