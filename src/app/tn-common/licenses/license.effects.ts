@@ -28,13 +28,23 @@ export class LicenseEffects {
     );
 
   @Effect()
-  public saveLicense$: Observable<Action> = this.actions$
-    .ofType(LicenseActions.ADD_LICENSE, LicenseActions.UPDATE_LICENSE)
+  public addLicense$: Observable<Action> = this.actions$
+    .ofType(LicenseActions.ADD_LICENSE)
     .map((action) => action.payload as License)
     .switchMap((license) =>
       this.licenseService.save(license)
-        .map(() => this.licenseActions.saveLicenseSuccess(license))
-        .catch(() => of(this.licenseActions.saveLicenseFail(license)))
+        .map(() => this.licenseActions.addLicenseSuccess(license))
+        .catch(() => of(this.licenseActions.addLicenseFail(license)))
+    );
+
+  @Effect()
+  public updateLicense$: Observable<Action> = this.actions$
+    .ofType(LicenseActions.UPDATE_LICENSE)
+    .map((action) => action.payload as License)
+    .switchMap((license) =>
+      this.licenseService.save(license)
+        .map(() => this.licenseActions.updateLicenseSuccess(license))
+        .catch(() => of(this.licenseActions.updateLicenseFail(license)))
     );
 
   @Effect()

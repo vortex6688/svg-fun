@@ -22,7 +22,7 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
-    case LicenseActions.ADD_LICENSE: {
+    case LicenseActions.ADD_LICENSE_SUCCESS: {
       const license: License = action.payload;
 
       return {
@@ -35,7 +35,7 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
-    case LicenseActions.UPDATE_LICENSE: {
+    case LicenseActions.UPDATE_LICENSE_SUCCESS: {
       const license: License = action.payload;
 
       return {
@@ -48,7 +48,7 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
-    case LicenseActions.REMOVE_LICENSE: {
+    case LicenseActions.REMOVE_LICENSE_SUCCESS: {
       const license: License = action.payload;
 
       return {
@@ -59,6 +59,12 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
         selectedLicenseId: null,
         search: state.search,
       };
+    }
+
+    case LicenseActions.ADD_LICENSE_FAIL:
+    case LicenseActions.UPDATE_LICENSE_FAIL:
+    case LicenseActions.REMOVE_LICENSE_FAIL: {
+      return state;
     }
 
     case LicenseActions.SEARCH_QUERY: {

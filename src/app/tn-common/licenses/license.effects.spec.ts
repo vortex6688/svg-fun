@@ -74,15 +74,15 @@ describe('LicenseEffects', () => {
 
   it('should return a collection.AddLicenseSuccess, with the license, on success add', () => {
     runner.queue(licenseActions.addLicense(licenseMock));
-    licenseEffects.saveLicense$.subscribe((result) => {
-      expect(result).toEqual(licenseActions.saveLicenseSuccess(licenseMock));
+    licenseEffects.addLicense$.subscribe((result) => {
+      expect(result).toEqual(licenseActions.addLicenseSuccess(licenseMock));
     });
   });
 
   it('should return a collection.UpdateLicenseSuccess, with the license, on success update', () => {
     runner.queue(licenseActions.updateLicense(licenseMock));
-    licenseEffects.saveLicense$.subscribe((result) => {
-      expect(result).toEqual(licenseActions.saveLicenseSuccess(licenseMock));
+    licenseEffects.updateLicense$.subscribe((result) => {
+      expect(result).toEqual(licenseActions.updateLicenseSuccess(licenseMock));
     });
   });
 
