@@ -9,3 +9,4 @@ export { UtilitiesInvisibleContentComponent } from './utilities-invisible-conten
 export { UtilitiesSizingComponent } from './utilities-sizing';
 export { UtilitiesSpacingComponent } from './utilities-spacing';
 export { UtilitiesTypographyComponent } from './utilities-typography';
+export { UtilitiesPositionComponent } from './utilities-position';
