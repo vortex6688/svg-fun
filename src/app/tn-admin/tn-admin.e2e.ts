@@ -48,7 +48,7 @@ describe('Admin', () => {
     const password = loginModal.element(by.name('password'));
     password.sendKeys('incorrectPassword');
 
-    const submit = loginModal.element(by.css('a.btn.btn-success'));
+    const submit = loginModal.element(by.css('button.btn.btn-success'));
     submit.click();
     expect(loginModal.element(by.css('error'))).toBeTruthy();
 

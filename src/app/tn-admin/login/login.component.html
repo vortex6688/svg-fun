@@ -27,9 +27,9 @@
         </p>
     </div>
     <div class="popover_button_group">
-      <a class="btn btn-success login" [ngClass]="{'disabled': username.errors || password.errors}" (click)="login()">
+      <button type="submit" class="btn btn-success login" [ngClass]="{'disabled': username.errors || password.errors}" (click)="login()">
         Sign in
-      </a>
+      </button>
       <p class="text-danger">{{ errorMessage }}</p>
     </div>
   </form>
