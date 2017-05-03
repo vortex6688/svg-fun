@@ -38,6 +38,7 @@
   tr {
     align-items: baseline;
     border-top: $table-border-width solid $table-border-color;
+    margin: 0;
   }
 
   th,
@@ -94,7 +95,7 @@
 .table.no-borders {
   td,
   th {
-    @extend .border-0;
+    border: none;
   }
 }
 

@@ -3,6 +3,7 @@
   margin-left: $sidebar-width;
   margin-top: $navbar-height;
   overflow: auto;
+  padding: 2.625rem;
 
   @include media-breakpoint-down(md) {
     margin-top: $navbar-collapsed-height;
