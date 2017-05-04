@@ -45,7 +45,7 @@ export class AuthService {
     }
 
     this.httpService.errors$.subscribe((error) => {
-      if (this.user.token && (error.status === 401 || error.status === 403)) {
+      if (this.user.token && error.status === 401) {
         this.cleanAuth();
       }
     });

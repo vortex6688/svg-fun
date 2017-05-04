@@ -55,12 +55,6 @@ describe('AuthService', () => {
     statusText: 'Unauthorized'
   }));
 
-  const mockResponseErrorForbidden = new Response(new ResponseOptions({
-    body: JSON.stringify(errorBody),
-    status: 403,
-    statusText: 'Forbidden'
-  }));
-
   const data = {
     first_name: 'Jane',
     last_name: 'Doe'
@@ -88,21 +82,6 @@ describe('AuthService', () => {
 
     apiClient.get('').subscribe(null, (error) => {
       expect(error).toBe(mockResponseError);
-      expect(authService.user$.value).toEqual(ANONYMOUS_AUTHORIZATION);
-      expect(tokenCall).toHaveBeenCalledWith();
-    });
-  });
-
-  it('should logout users on 403', () => {
-    mockBackend.connections.subscribe((connection) => {
-      connection.mockError(mockResponseErrorForbidden);
-    });
-    storage.store('AuthService.user', successBody);
-
-    const tokenCall = spyOn(apiClient, 'setAuthToken');
-
-    apiClient.get('').subscribe(null, (error) => {
-      expect(error).toBe(mockResponseErrorForbidden);
       expect(authService.user$.value).toEqual(ANONYMOUS_AUTHORIZATION);
       expect(tokenCall).toHaveBeenCalledWith();
     });
