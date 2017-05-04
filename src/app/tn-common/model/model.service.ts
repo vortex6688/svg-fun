@@ -77,4 +77,17 @@ export class ModelService<T extends IModel> {
     return this.apiHttp.delete(this.modelUrl + model.id);
   }
 
+  /**
+   * Recursively go through all pages until everything is fetched
+   *
+   * @param {string} page
+   * @param {T[]} result
+   * @returns {Observable<T>}
+   */
+  public getPage(page: string, result: T[] = []): Observable<T> {
+    return this.apiHttp.get(page).switchMap(({ results, next }) => {
+      result = result.concat(results);
+      return next ? this.getPage(next, result) : Observable.from(result);
+    });
+  }
 }

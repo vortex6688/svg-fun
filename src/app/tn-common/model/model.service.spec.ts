@@ -37,6 +37,10 @@ describe('ModelService', () => {
   const element: TestType = { id: 10, token: 'token', city: 'NY' };
   const successBody: TestType = element;
   const successBodyList: [TestType] = [successBody, successBody];
+  const successBodyPaginated = {
+    next: 'watever',
+    results: [1, 2, 3],
+  };
   const errorBody = {
     status: 'Bad request',
     message: 'User could not be created with received data.',
@@ -72,6 +76,12 @@ describe('ModelService', () => {
     body: JSON.stringify(errorBody),
     status: 401,
     statusText: 'Unauthorized'
+  }));
+
+  const generateResponse = (body) => new Response(new ResponseOptions({
+    body: JSON.stringify(body),
+    status: 200,
+    statusText: 'Success',
   }));
 
   beforeEach(() => {
@@ -214,4 +224,29 @@ describe('ModelService', () => {
     });
   });
 
+  /*
+   * getPage()
+   */
+  it('should get all remaining pages', () => {
+    const expected = [];
+    const totalPages = 5;
+    const startingPage = 2;
+    let page = startingPage;
+    mockBackend.connections.subscribe((connection) => {
+      const item = { ...successBodyPaginated, results: [page] };
+      expected.push(page);
+      if (++page === totalPages) {
+        item.next = null;
+      }
+      connection.mockRespond(generateResponse(item));
+    });
+
+    spyOn(modelService, 'getPage').and.callThrough();
+    modelService.getPage('page')
+      .toArray()
+      .subscribe((result) => {
+        expect(result).toEqual(expected);
+        expect(modelService.getPage).toHaveBeenCalledTimes(totalPages - startingPage);
+      });
+  });
 });
