@@ -127,7 +127,7 @@ describe('ModelService', () => {
       expect(result).toEqual(successBodyList, 'Response does not match');
     });
     expect(apiClient.get).toHaveBeenCalledWith(modelUrl,
-                                               new RequestOptions({body: query}));
+                                               new RequestOptions({params: query}));
 
   });
 

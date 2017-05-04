@@ -1,5 +1,5 @@
 import { Injectable, Inject, OpaqueToken } from '@angular/core';
-import { RequestOptions } from '@angular/http';
+import { RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { TnApiHttpService } from '../tn-api-http';
 
@@ -44,7 +44,9 @@ export class ModelService<T extends IModel> {
    * @returns {Observable<T[]>}
    */
   public find(query: object): Observable<T[]> {
-    const options = new RequestOptions({body: query});
+    const params: URLSearchParams = new URLSearchParams();
+    Object.entries(query).forEach(([key, value]) => params.set(key, value));
+    const options = new RequestOptions({ params });
     return this.apiHttp.get(this.modelUrl, options);
   }
 
