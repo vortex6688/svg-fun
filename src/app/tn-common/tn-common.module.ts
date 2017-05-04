@@ -25,7 +25,8 @@ import { IconCheckComponent,
          IconDeleteComponent,
          IconDownloadComponent,
          IconRevertComponent,
-         IconRightArrowComponent } from './tn-icons';
+         IconRightArrowComponent,
+         IconSelectComponent } from './tn-icons';
 import { OrderByPipe } from './pipes';
 
 @NgModule({
@@ -46,14 +47,14 @@ import { OrderByPipe } from './pipes';
                   TnPaginationComponent,
                   IconCheckComponent, IconCloseComponent, IconCreateComponent,
                   IconDeleteComponent, IconDownloadComponent, IconRevertComponent,
-                  IconRightArrowComponent,
+                  IconRightArrowComponent, IconSelectComponent,
                   OrderByPipe,
                 ],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
   exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent, TnPaginationComponent,
                   IconCheckComponent, IconCloseComponent, IconCreateComponent,
                   IconDeleteComponent, IconDownloadComponent, IconRevertComponent,
-                  IconRightArrowComponent, OrderByPipe ]
+                  IconRightArrowComponent, IconSelectComponent, OrderByPipe ]
 
 })
 export class TnCommonModule {

@@ -1,0 +1,106 @@
+<div class="container-fluid" >
+
+  <h1 class="bd-title" id="content">Dropdown</h1>
+  <p>The Bootstrap dropdown plugin allows you to toggle content on your pages</p>
+
+  <h3>Dropdown Example</h3>
+
+  <h4>Dropdown Button Example</h4>
+
+  <div class="bd-example">
+    <div class="row">
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+              <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+              <span class="h6">Toggle dropdown</span>
+              <icon-select></icon-select>
+          </button>
+          <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+            <li class="list-group-item">
+              <!-- icon close shoul show when item is selected -->
+              <icon-close></icon-close>
+              <span>
+                Item 1
+              </span>
+            </li>
+            <li class="list-group-item">
+              <span>
+                Another Item
+              </span>
+            </li>
+            <li class="list-group-item">
+              <span>
+                Some Other Item
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">row</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+  <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">col</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">ngbDropdown</span> <span class="na">class</span><span class="nt">="</span><span class="token s">d-inline-block</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+      <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">ngbDropdown</span> <span class="na">class</span><span class="nt">="</span><span class="token s">btn btn-info</span><span class="nt">"</span> <span class="na">id</span><span class="nt">="</span><span class="token s">dropdownBasic</span><span class="nt">"</span> <span class="na">ngbDropdownToggle</span><span class="nt">&gt;</span></span>Toggle Dropdown<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+      <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-menu</span><span class="nt">"</span> <span class="na">aria-labelledby</span><span class="nt">="</span><span class="token s">dropdownBasic</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+        <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-item</span><span class="nt">"</span> <span class="nt">&gt;</span></span>Item 1<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+        <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-item</span><span class="nt">"</span> <span class="nt">&gt;</span></span>Another Item<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+        <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-item</span><span class="nt">"</span> <span class="nt">&gt;</span></span>Some other item<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+      <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+  <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+<span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+</code></pre></div>
+
+</div>
+
+<h4>Dropdown Input Example</h4>
+
+  <div class="bd-example">
+    <div class="row">
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <select class="custom-select" id="dropdownInput" style="min-width: 10rem;" ngbDropdownToggle>Default option</select>
+          <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownInput">
+            <li class="list-group-item">
+              <label class="custom-control custom-checkbox mr-sm-2 mb-sm-0">
+                <input type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span>Item 1</span>
+              </label>
+            </li>
+            <li class="list-group-item">
+              <label class="custom-control custom-checkbox mr-sm-2 mb-sm-0">
+                <input type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span>Another Item</span>
+              </label>
+            </li>
+            <li class="list-group-item">
+              <label class="custom-control custom-checkbox mr-sm-2 mb-sm-0">
+                <input type="checkbox" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span>Some other item</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">row</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+  <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">col</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">ngbDropdown</span> <span class="na">class</span><span class="nt">="</span><span class="token s">d-inline-block</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+      <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">ngbDropdown</span> <span class="na">class</span><span class="nt">="</span><span class="token s">btn btn-info</span><span class="nt">"</span> <span class="na">id</span><span class="nt">="</span><span class="token s">dropdownBasic</span><span class="nt">"</span> <span class="na">ngbDropdownToggle</span><span class="nt">&gt;</span></span>Toggle Dropdown<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+      <span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-menu</span><span class="nt">"</span> <span class="na">aria-labelledby</span><span class="nt">="</span><span class="token s">dropdownBasic</span><span class="nt">"</span><span class="nt">&gt;</span></span>
+        <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-item</span><span class="nt">"</span> <span class="nt">&gt;</span></span>Item 1<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+        <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-item</span><span class="nt">"</span> <span class="nt">&gt;</span></span>Another Item<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+        <span class="nt"><span class="nt"><span class="nt">&lt;</span>button</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-item</span><span class="nt">"</span> <span class="nt">&gt;</span></span>Some other item<span class="nt"><span class="nt">&lt;</span>/button</span><span class="nt">&gt;</span>
+      <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+  <span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+<span class="nt"><span class="nt"><span class="nt">&lt;/</span>div</span><span class="nt">&gt;</span></span>
+</code></pre></div>
+
+</div>
