@@ -19,17 +19,6 @@
   }
 }
 
-select:focus,
-.custom-select:focus {
-  cursor: pointer;
-  font-weight: $headings-font-weight;
-}
-
-.custom-control {
-  min-height: auto !important;
-  margin: 0.25rem 0;
-}
-
 // TN custom checkbox
 
 .custom-checkbox {

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComponentsDropdownComponent } from './components-dropdown.component';
@@ -11,7 +11,8 @@ describe('ComponentsDropdownComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ NgbModule.forRoot(), RouterTestingModule.withRoutes([]) ],
-      declarations: [ ComponentsDropdownComponent ]
+      declarations: [ ComponentsDropdownComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

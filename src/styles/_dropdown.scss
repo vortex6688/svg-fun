@@ -4,7 +4,7 @@
   icon-select {
     position: absolute;
     right: 0.5rem;
-    top: 0.7rem;
+    top: 0.725rem;
   }
 
   icon-close {
@@ -28,24 +28,48 @@
 
     &:focus {
       box-shadow: none;
-      background: none;
     }
 
-    &.btn {
+    &.btn,
+    &.custom-select {
       min-width: 15rem;
+      cursor: pointer;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $white;
+      }
     }
   }
 
-  .list-group-item {
-    cursor: pointer;
-    // add some padding to have space for an icon to appear if option was selected
-    padding: 0.125rem 1.5rem;
-    font-size: $font-size-sm;
-    font-weight: 600;
+  .list-group-flush {
+    border-top: 0;
+    &:first-child {
+      border-top: 0;
+    }
 
-    &:hover {
-      color: $blue;
-      background: rgba($gray-lightest,.25);
+    .list-group-item {
+      cursor: pointer;
+      font-size: $font-size-sm;
+      font-weight: 600;
+
+      &:hover,
+      &.selected {
+        color: $blue;
+        background: rgba($gray-lightest,.25);
+      }
+
+      label {
+        text-transform: none;
+        color: $black;
+        cursor: inherit;
+      }
+
+      .custom-control {
+        min-height: auto;
+        margin: 0.25rem 0;
+      }
     }
   }
 }
