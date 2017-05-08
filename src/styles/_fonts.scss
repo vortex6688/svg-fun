@@ -88,3 +88,14 @@ $ui-font-path: "/assets/css/fonts/";
     font-style: normal;
     font-weight: 700;
 }
+
+@font-face {
+    font-family: 'MomentumSansText';
+    src:
+        url(#{$ui-font-path}MomentumSansText-Hundred?iefix) format('embedded-opentype'),
+        url(#{$ui-font-path}MomentumSansText-Hundred.woff) format('woff'),
+        url(#{$ui-font-path}MomentumSansText-Hundred.ttf) format('truetype'),
+        url(#{$ui-font-path}MomentumSansText-Hundred.svg#web) format('svg');
+    font-style: normal;
+    font-weight: 400;
+}
