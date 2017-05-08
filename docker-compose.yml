@@ -2,7 +2,7 @@
 
 # build the django container for testing.
 django:
-  image: typenetwork/tn-api
+  image: typenetwork/tn-api:master
   environment:
     - DEBUG=True
     - DATABASE_URL=psql://typenet:J9Ef7NsVR~49GUJ@postgres/typenet
@@ -17,7 +17,7 @@ django:
 
 # setup celery worker.
 celery:
-  image: typenetwork/tn-api
+  image: typenetwork/tn-api:master
   environment:
     - DEBUG=True
     - DATABASE_URL=psql://typenet:J9Ef7NsVR~49GUJ@postgres/typenet
@@ -30,7 +30,7 @@ celery:
 
 #setup celery beat scheduler.
 celery-beat:
-  image: typenetwork/tn-api
+  image: typenetwork/tn-api:master
   environment:
     - DEBUG=True
     - DATABASE_URL=psql://typenet:J9Ef7NsVR~49GUJ@postgres/typenet
