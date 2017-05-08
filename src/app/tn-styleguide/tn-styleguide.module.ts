@@ -36,7 +36,8 @@ import { UtilitiesBordersComponent,
          UtilitiesImageReplacementComponent,
          UtilitiesSpacingComponent,
          UtilitiesSizingComponent,
-         UtilitiesTypographyComponent } from './utilities';
+         UtilitiesTypographyComponent,
+         UtilitiesPositionComponent } from './utilities';
 
 const ROUTES: Routes = [
   { path: 'styleguide',
@@ -75,7 +76,8 @@ const ROUTES: Routes = [
       {  path: 'utilities/image-replacement', component: UtilitiesImageReplacementComponent },
       {  path: 'utilities/sizing', component: UtilitiesSizingComponent },
       {  path: 'utilities/spacing', component: UtilitiesSpacingComponent },
-      {  path: 'utilities/typography', component: UtilitiesTypographyComponent }
+      {  path: 'utilities/typography', component: UtilitiesTypographyComponent },
+      {  path: 'utilities/position', component: UtilitiesPositionComponent }
     ]
   }
 ];
@@ -113,7 +115,8 @@ const ROUTES: Routes = [
     UtilitiesImageReplacementComponent,
     ComponentsCardComponent,
     UtilitiesSizingComponent,
-    UtilitiesTypographyComponent
+    UtilitiesTypographyComponent,
+    UtilitiesPositionComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
