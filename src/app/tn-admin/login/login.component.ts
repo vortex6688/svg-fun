@@ -18,8 +18,8 @@ export class LoginComponent {
   public loading;
 
   constructor(public activeModal: NgbActiveModal, private store: Store<any>, private authActions: AuthActions) {
-    this.store.select(getAuthState).subscribe(({ isLoggedIn, inProgress, error }) => {
-      if (isLoggedIn) {
+    this.store.select(getAuthState).subscribe(({ user, inProgress, error }) => {
+      if (user && user.token) {
         this.activeModal.close();
         return;
       }

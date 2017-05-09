@@ -137,19 +137,15 @@ describe('AuthService', () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
-    spyOn(apiClient, 'setAuthToken');
 
     authService.login(credentials).subscribe((result) => {
       expect(result).toEqual(successBody, 'Response does not match');
-      expect(apiClient.setAuthToken).toHaveBeenCalledWith(successBody.token);
     });
   });
 
   it('should set the Auth Token when it is created, if the user is already logged in', () => {
-    spyOn(apiClient, 'setAuthToken');
     storage.store('AuthService.user', successBody);
     const aNewAuthService = new AuthService(apiClient, storage, store, authActions);
-    expect(apiClient.setAuthToken).toHaveBeenCalledWith(successBody.token);
     expect(authActions.loginSuccess).toHaveBeenCalledWith(successBody);
   });
 
@@ -161,12 +157,12 @@ describe('AuthService', () => {
         connection.mockRespond(mockResponseLogout);
       }
     });
-    spyOn(apiClient, 'setAuthToken');
+    spyOn(apiClient, 'post').and.callThrough();
 
     const credentials = { username: 'jane@doe.com', password: 'password' };
     storage.store('AuthService.user', successBody);
     authService.logout().subscribe(() => {
-      expect(apiClient.setAuthToken).toHaveBeenCalledWith();
+      expect(apiClient.post).toHaveBeenCalledWith('/auth/logout/', {});
     });
   });
 
@@ -190,11 +186,9 @@ describe('AuthService', () => {
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(mockResponse);
     });
-    spyOn(apiClient, 'setAuthToken');
 
     authService.register(credentials).subscribe((result) => {
       expect(result).toEqual(successBody, 'Response does not match');
-      expect(apiClient.setAuthToken).toHaveBeenCalledWith(successBody.token);
     });
   });
 

@@ -81,7 +81,7 @@ describe('LoginComponent', () => {
     spyOn(component.activeModal, 'close');
     storeSubject.next({});
     expect(component.activeModal.close).not.toHaveBeenCalled();
-    storeSubject.next({ isLoggedIn: true });
+    storeSubject.next({ user: { token: 'token' } });
     expect(component.activeModal.close).toHaveBeenCalled();
   });
 

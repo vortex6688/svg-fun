@@ -9,7 +9,7 @@ export const AuthReducer: ActionReducer<AuthState> = (state = initialAuthState, 
       return { ...state, inProgress: true, error: null };
 
     case AuthActions.LOGIN_SUCCESS:
-      return { ...state, inProgress: false, user: action.payload, isLoggedIn: true };
+      return { ...state, inProgress: false, user: action.payload };
 
     case AuthActions.LOGIN_FAILED:
       return { ...state, inProgress: false, error: action.payload };

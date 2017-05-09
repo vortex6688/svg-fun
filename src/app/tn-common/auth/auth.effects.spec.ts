@@ -1,7 +1,9 @@
+/* tslint:disable:max-classes-per-file */
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { TestBed, inject } from '@angular/core/testing';
-
 import { Observable } from 'rxjs/Observable';
+
+import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
 import { AuthService } from './auth.service';
 import { AuthActions } from './auth.actions';
 import { AuthEffects } from './auth.effects';
@@ -18,7 +20,8 @@ describe('AuthEffects', () => {
   let runner: EffectsRunner;
   let authEffects: AuthEffects;
   let authActions: AuthActions;
-  let authService: AuthService;
+  let authService: MockAuthService;
+  let httpService: MockHttpService;
   const error = 'Test error';
 
   class MockAuthService {
@@ -29,8 +32,12 @@ describe('AuthEffects', () => {
     public login(credentials: any) {
       return credentials.id === mockUser.id ? Observable.of(mockUser) : Observable.throw(error);
     }
-
   }
+
+  class MockHttpService {
+    public setAuthToken = jasmine.createSpy('setAuthToken');
+  }
+
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       EffectsTestingModule
@@ -42,10 +49,15 @@ describe('AuthEffects', () => {
         provide: AuthService,
         useClass: MockAuthService,
       },
+      {
+        provide: TnApiHttpService,
+        useClass: MockHttpService,
+      },
     ]
   }));
 
   beforeEach(() => {
+    httpService = TestBed.get(TnApiHttpService);
     authService = TestBed.get(AuthService);
     runner = TestBed.get(EffectsRunner);
     authActions = TestBed.get(AuthActions);
@@ -58,7 +70,9 @@ describe('AuthEffects', () => {
       runner.queue(authActions.login(mockUser));
 
       authEffects.login$.subscribe(((data) => {
+
         expect(data).toEqual(expected);
+        expect(httpService.setAuthToken).toHaveBeenCalledWith(mockUser.token);
       }));
     });
 
@@ -68,6 +82,7 @@ describe('AuthEffects', () => {
 
       authEffects.login$.subscribe(((data) => {
         expect(data).toEqual(expected);
+        expect(httpService.setAuthToken).not.toHaveBeenCalled();
       }));
     });
   });
@@ -78,7 +93,7 @@ describe('AuthEffects', () => {
       runner.queue(authActions.logout());
 
       authEffects.logout$.subscribe((data) => {
-        expect(data).toEqual('logout');
+        expect(httpService.setAuthToken).toHaveBeenCalledWith();
       });
     });
   });

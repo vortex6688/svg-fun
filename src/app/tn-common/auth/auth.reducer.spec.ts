@@ -47,7 +47,7 @@ describe('AuthReducer', () => {
   it('should set auth data on LOGIN_SUCCESS ', () => {
     const state = mockedState();
     const actual = AuthReducer(state, authActions.loginSuccess(authMock));
-    const expected = { ...state, isLoggedIn: true, user: authMock };
+    const expected = { ...state, user: authMock };
     expect(actual).toEqual(expected, 'Expected auth data to be updated');
   });
 

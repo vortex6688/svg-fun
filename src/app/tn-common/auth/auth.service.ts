@@ -36,7 +36,6 @@ export class AuthService {
               private store: Store<any>, private authActions: AuthActions) {
     if (this.user.token) {
       // User already logged in. Set the auth token.
-      this.httpService.setAuthToken(this.user.token);
       this.store.dispatch(this.authActions.loginSuccess(this.user));
     }
 
@@ -58,11 +57,7 @@ export class AuthService {
    * @memberOf AuthService
    */
   public login(credentials: Credentials): Observable<Authorization> {
-    return this.httpService.post('/auth/login/', credentials)
-      .map((user: any) => {
-        this.httpService.setAuthToken(user.token);
-        return user;
-      });
+    return this.httpService.post('/auth/login/', credentials);
   }
 
   /**
@@ -73,8 +68,7 @@ export class AuthService {
    * @memberOf AuthService
    */
   public logout() {
-    return this.httpService.post('/auth/logout/', {})
-      .map(() => this.httpService.setAuthToken());
+    return this.httpService.post('/auth/logout/', {});
   }
 
   /**
@@ -86,10 +80,6 @@ export class AuthService {
    * @memberOf AuthService
    */
   public register(credentials: RegistrationCredentials): Observable<Authorization> {
-    return this.httpService.post('/api/1/user/', credentials)
-      .map((user: any) => {
-        this.httpService.setAuthToken(user.token);
-        return user;
-      });
+    return this.httpService.post('/api/1/user/', credentials);
   }
 }
