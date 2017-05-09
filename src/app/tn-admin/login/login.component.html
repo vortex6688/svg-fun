@@ -1,37 +1,39 @@
-<div class="modal-header">
-  <h2 class="modal-title">Sign in to your account</h2>
-  <p class="instructions">Or, <a class="disabled" aria-disabled="true">create a new account</a>.</p>
+<div class="modal-header text-info justify-content-between align-items-end">
+    <h4 class="modal-title">Sign in to your account</h4>
+    <span class="text-right">Or, <a class="disabled" aria-disabled="true">create a new account</a>.</span>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <form novalidate>
-    <div class="form-group">
-      <label for="username">Email</label>
-      <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username" #username="ngModel">
+  <div class="modal-body">
+    <form novalidate>
+      <div class="form-group">
+        <label class="small" for="username">Email</label>
+        <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username" #username="ngModel">
         <p class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
-          <small>
+          <span>
             Your email is required.
-          </small>
+          </span>
         </p>
-      <label for="password">Password</label>
-      <input class="form-control" type="password" name="password" required [(ngModel)]="credentials.password" #password="ngModel">
+      </div>
+      <div class="form-group">
+        <label class="small" for="password">Password</label>
+        <input class="form-control" type="password" name="password" required [(ngModel)]="credentials.password" #password="ngModel">
         <p class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
-          <small>
+          <span>
             Password is required.
-          </small>
+          </span>
         </p>
-    </div>
-    <div class="popover_button_group">
-      <button type="submit" class="btn btn-success login" [disabled]="loading" [ngClass]="{'disabled': username.errors || password.errors}" (click)="login()">
-        Sign in
-      </button>
+      </div>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="activeModal.close('Cross click')">Close</button>
+    <button type="submit" class="btn btn-success login" [ngClass]="{'disabled': username.errors || password.errors}" (click)="login()">
+      Sign in
+    </button>
       <span *ngIf="loading">Loading...</span>
-      <p class="text-danger">{{ errorMessage }}</p>
-    </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Cross click')">Close</button>
+  </div>
 </div>
