@@ -43,6 +43,12 @@ export class AuthService {
       // User already logged in. Set the auth token.
       this.httpService.setAuthToken(this.user.token);
     }
+
+    this.httpService.errors$.subscribe((error) => {
+      if (this.user.token && error.status === 401) {
+        this.cleanAuth();
+      }
+    });
   }
 
   /**
@@ -71,10 +77,7 @@ export class AuthService {
    */
   public logout() {
     this.httpService.post('/auth/logout/', {})
-      .subscribe((res: any) => {
-        this.httpService.setAuthToken();
-        this.user = ANONYMOUS;
-      });
+      .subscribe((res: any) => this.cleanAuth());
   }
 
   /**
@@ -93,5 +96,16 @@ export class AuthService {
         // this.user it should automatically get it's next called.
         return this.user = user;
       });
+  }
+
+  /**
+   * Reset authentication token and set user to anonymous.
+   *
+   * @private
+   * @memberOf AuthService
+   */
+  private cleanAuth() {
+    this.httpService.setAuthToken();
+    this.user = ANONYMOUS;
   }
 }

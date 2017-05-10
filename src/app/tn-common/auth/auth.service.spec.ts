@@ -72,6 +72,21 @@ describe('AuthService', () => {
     expect(authService).toBeTruthy();
   });
 
+  it('should logout users on 401', () => {
+    mockBackend.connections.subscribe((connection) => {
+      connection.mockError(mockResponseError);
+    });
+    storage.store('AuthService.user', successBody);
+
+    const tokenCall = spyOn(apiClient, 'setAuthToken');
+
+    apiClient.get('').subscribe(null, (error) => {
+      expect(error).toBe(mockResponseError);
+      expect(authService.user$.value).toEqual(ANONYMOUS_AUTHORIZATION);
+      expect(tokenCall).toHaveBeenCalledWith();
+    });
+  });
+
   it('should return the errors if the credentials are incorrect', () => {
     const credentials = { username: 'jane@doe.com', password: 'incorrectPassword' };
 
