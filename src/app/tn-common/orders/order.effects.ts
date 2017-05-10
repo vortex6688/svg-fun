@@ -12,8 +12,8 @@ import { defer } from 'rxjs/observable/defer';
 @Injectable()
 export class OrderEffects {
   @Effect()
-  public loadData$: Observable<any> = this.orderService.find({})
-    .map((orders) => this.orderActions.addOrders(orders));
+  public loadData$: Observable<any> = defer(() => this.orderService.find({})
+    .map((orders) => this.orderActions.addOrders(orders)));
 
   constructor(private actions$: Actions, private orderService: OrderService, private orderActions: OrderActions) {}
 }

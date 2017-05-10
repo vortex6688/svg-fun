@@ -61,14 +61,14 @@ describe('OrdersControlComponent', () => {
 
   it('should clear filters', () => {
     const values = {
-      status: [true, true, false, false],
+      status: [true, true, false, false, false],
       licenses: [],
     };
     component.filterForm.setValue(values);
     expect(component.filterForm.value).toEqual(values);
     component.clearFilters();
     expect(component.filterForm.value).toEqual({
-      status: [null, null, null, null],
+      status: [null, null, null, null, null],
       licenses: []
     });
   });

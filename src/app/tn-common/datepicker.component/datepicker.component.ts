@@ -26,9 +26,11 @@ export class DatepickerComponent {
   }
 
   public updateDate(data) {
-    if (data) {
-      const date = new Date(`${data.year}-${data.month}-${data.day}`);
-      this.dateUpdate.emit(date);
+    if (!data) {
+      this.dateUpdate.emit(null);
+      return;
     }
+    const date = new Date(`${data.year}-${data.month}-${data.day}`);
+    this.dateUpdate.emit(date);
   }
 }

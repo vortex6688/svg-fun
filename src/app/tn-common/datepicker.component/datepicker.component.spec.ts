@@ -33,7 +33,7 @@ describe('OrdersTableComponent', () => {
     spyOn(component.dateUpdate, 'emit');
 
     component.updateDate('');
-    expect(component.dateUpdate.emit).not.toHaveBeenCalled();
+    expect(component.dateUpdate.emit).toHaveBeenCalledWith(null);
 
     const date = { year: 2012, month: 12, day: 21 };
     component.updateDate(date);

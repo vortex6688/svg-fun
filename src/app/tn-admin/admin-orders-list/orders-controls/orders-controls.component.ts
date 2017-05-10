@@ -17,6 +17,7 @@ export class OrdersControlsComponent implements OnInit {
     { name: 'Pending', value: 0 },
     { name: 'Partially Paid', value: 1 },
     { name: 'Cancelled', value: 3 },
+    { name: 'Approved, Unpaid', value: 4 },
   ];
   public searchForm: FormGroup;
   public filterForm: FormGroup;

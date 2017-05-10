@@ -55,6 +55,7 @@ describe('OrderEffects', () => {
   let runner: EffectsRunner;
   let orderEffects: OrderEffects;
   let orderActions: OrderActions;
+  let orderService: MockOrderService;
 
   class MockOrderService {
     public find(query: object): Observable<Order[]> {
@@ -79,14 +80,17 @@ describe('OrderEffects', () => {
     runner = TestBed.get(EffectsRunner);
     orderActions = TestBed.get(OrderActions);
     orderEffects = TestBed.get(OrderEffects);
+    orderService = TestBed.get(OrderService);
   });
 
   describe('loadData$', () => {
-    it('should call db.open when initially subscribed to', () => {
+    it('should call orderService.find on initial subscription', () => {
       const expectedResult = orderActions.addOrders(mockOrders);
+      spyOn(orderService, 'find').and.callThrough();
 
       let result;
       orderEffects.loadData$.subscribe((data) => result = data);
+      expect(orderService.find).toHaveBeenCalled();
       expect(result).toEqual(expectedResult);
     });
   });
