@@ -12,6 +12,7 @@ u {
 }
 
 // add style rules to make labels match TN mockups
+legend,
 label {
     color: $gray-lighter;
     text-transform: uppercase; // TN labels are always uppercase

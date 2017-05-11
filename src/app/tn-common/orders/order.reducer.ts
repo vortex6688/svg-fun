@@ -37,35 +37,46 @@ export const OrderReducer: ActionReducer<OrderState> = (state = initialOrderStat
     }
 
     case OrderActions.SEARCH_QUERY: {
+      const query = action.payload;
+      const ids = state.ids.filter((id) => {
+        const order = state.entities[id];
+        if (query.id && order.id !== +query.id) {
+          return false;
+        }
+        if (query.status.length && !query.status.includes(order.status)) {
+          return false;
+        }
+        if (query.from && new Date(order.created) < query.from) {
+          return false;
+        }
+        if (query.to && new Date(order.created) > query.to) {
+          return false;
+        }
+        return true;
+      });
+      // If search didn't filter out any data consider it inactive
+      const active = state.ids.length !== ids.length;
       const search = {
-        ids: [],
-        loading: true,
-        query: action.payload,
+        ids,
+        active,
+        query,
       };
 
       return { ...state, search };
     }
 
-    case OrderActions.SEARCH_COMPLETE: {
+    case OrderActions.ADD_ORDERS: {
       const orders: Order[] = action.payload;
-      const { newOrderEntities, newIds } = orders.reduce((result, order) => {
-        if (state.entities[order.id]) {
-          return result;
-        }
-        result.newOrderEntities[order.id] = order;
-        result.newIds.push(order.id);
+      const { orderEntities, orderIds } = orders.reduce((result, order) => {
+        result.orderEntities[order.id] = order;
+        result.orderIds.push(order.id);
         return result;
-      }, { newOrderEntities: {}, newIds: [] });
+      }, { orderEntities: {}, orderIds: [] });
 
       return {
-        ids: [ ...state.ids, ...newIds ],
-        entities: Object.assign({}, state.entities, newOrderEntities),
-        selectedOrderId: state.selectedOrderId,
-        search: {
-          ids: newIds,
-          loading: false,
-          query: state.search.query,
-        },
+        ...state,
+        ids: orderIds,
+        entities: orderEntities,
       };
     }
 

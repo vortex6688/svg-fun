@@ -7,17 +7,13 @@ import { Observable } from 'rxjs/Observable';
 
 import { OrderService } from './order.service';
 import { OrderActions } from './order.actions';
+import { defer } from 'rxjs/observable/defer';
 
 @Injectable()
 export class OrderEffects {
   @Effect()
-  public search$: Observable<Action> = this.actions$
-    .ofType(OrderActions.SEARCH_QUERY)
-    .map(toPayload)
-    .switchMap((query) =>
-      this.orderService.find(query)
-        .map((orders) => this.orderActions.searchComplete(orders))
-    );
+  public loadData$: Observable<any> = defer(() => this.orderService.find({})
+    .map((orders) => this.orderActions.addOrders(orders)));
 
   constructor(private actions$: Actions, private orderService: OrderService, private orderActions: OrderActions) {}
 }

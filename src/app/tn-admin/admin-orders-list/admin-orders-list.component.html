@@ -1,82 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="sidebar border-right-gradient-inset">
-      <div class="card">
-        <div class="card-block card-header">
-          <button class="btn btn-success col"><icon-create class="text-white"></icon-create> New Order</button>
-        </div>
-        <div class="card-block card-header">
-          <form>
-            <span class="row justify-content-between">
-              <small><b class="col">SEARCH BY:</b></small>
-              <small><a (click)="clearSearch()" class="col text-right">Clear all</a></small>
-            </span>
-            <div class="form-group">
-              <label for="searchOrderNumber">Order Number</label>
-              <input type="text" class="form-control" id="searchOrderNumber" />
-            </div>
-            <div class="form-group">
-              <label for="searchOrderNumber">Date Range</label>
-              <div class="input-group">
-                  <!-- to do add "start" label for the datepicked -->
-                  <datepicker></datepicker>
-              </div>
-              <div class="input-group">
-                  <!-- to do add "start" label for the datepicked -->
-                  <datepicker></datepicker>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="searchCustomer">Customer</label>
-              <input type="text" class="form-control" id="searchCustomer" aria-describedby="searchCustomerHelp"/>
-              <small id="searchCustomerHelp" class="form-text text-muted">Name, email address, or company (licensee name/company)</small>
-            </div>
-            <div class="form-group">
-              <label for="searchProject">Project</label>
-              <input type="text" class="form-control" id="searchProject" aria-describedby="searchProjectHelp"/>
-              <small id="searchProjectHelp" class="form-text text-muted">Project name, URL</small>
-            </div>
-            <div class="form-group">
-              <label for="searchFont">Family or Style</label>
-              <input type="text" class="form-control" id="searchFont" />
-            </div>
-            <div class="form-group">
-              <label for="searchFoundry">Foundry or Designer</label>
-              <input type="text" class="form-control" id="searchFoundry" />
-            </div>
-          </form>
-        </div>
-        <div class="card-block card-header">
-          <form>
-            <span class="row justify-content-between">
-              <small><b class="col">SEARCH BY:</b></small>
-              <small><a (click)="clearFilters()" class="col text-right">Clear all</a></small>
-            </span>
-            <div class="form-group">
-              <label for="filterLicenseType">License Type</label>
-                <dl class="row">
-                  <dt class="col-8">Desktop</dt><dd class="col-4 text-right">(228)</dd>
-                  <dt class="col-8">Web (hosted)</dt><dd class="col-4 text-right">(228)</dd>
-                  <dt class="col-8">Web (self-hosted)</dt><dd class="col-4 text-right">(228)</dd>
-                  <dt class="col-8">Application</dt><dd class="col-4 text-right">(228)</dd>
-                  <dt class="col-8">E-publication</dt><dd class="col-4 text-right">(228)</dd>
-                </dl>
-            </div>
-            <div class="form-group">
-              <label for="filterOrderStatus">Status</label>
-                <dl class="row">
-                  <dt class="col-8">Compelted</dt><dd class="col-4 text-right">(228)</dd>
-                  <dt class="col-8">Pending</dt><dd class="col-4 text-right">(228)</dd>
-                  <dt class="col-8">Failed</dt><dd class="col-4 text-right">(228)</dd>
-                  <dt class="col-8">Cancelled</dt><dd class="col-4 text-right">(228)</dd>
-                </dl>
-            </div>
-          </form>
-        </div>
-      </div>
+      <orders-controls [initialQuery]="orderQuery$ | async" (queryUpdate)="searchOrders($event)"></orders-controls>
     </div>
     <div class="main w-100">
-      <orders-table [orders]="this.orders$ | async"></orders-table>
+      <h2>Orders</h2>
+      <orders-table [orders]="orders$ | async"></orders-table>
     </div>
   </div>
 </div>

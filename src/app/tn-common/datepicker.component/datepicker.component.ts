@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NgbDatepickerConfig,
          NgbDatepickerI18n,
          NgbDateStruct,
@@ -16,12 +16,21 @@ import { CustomDateParserFormatter } from './custom-date-parser-formatter.compon
 })
 
 export class DatepickerComponent {
-
   public model: NgbDateStruct;
   public d;
+  @Output() public dateUpdate = new EventEmitter<Date>();
 
   constructor(config: NgbDatepickerConfig) {
-      config.firstDayOfWeek = 7;
-      config.navigation = 'arrows';
+    config.firstDayOfWeek = 7;
+    config.navigation = 'arrows';
+  }
+
+  public updateDate(data) {
+    if (!data) {
+      this.dateUpdate.emit(null);
+      return;
+    }
+    const date = new Date(`${data.year}-${data.month}-${data.day}`);
+    this.dateUpdate.emit(date);
   }
 }

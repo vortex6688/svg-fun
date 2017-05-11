@@ -22,7 +22,7 @@ export const getIds = (state: OrderState) => state.ids;
  *
  * @param {state} OrderState
  */
-export const getFoundIds = (state: OrderState) => state.search.ids;
+export const getFoundIds = (state: OrderState) => state.search.active ? state.search.ids : state.ids;
 
 /**
  * Return the id of the selected order.
@@ -30,13 +30,6 @@ export const getFoundIds = (state: OrderState) => state.search.ids;
  * @param {state} OrderState
  */
 export const getSelectedId = (state: OrderState) => state.selectedOrderId;
-
-/**
- * Return if the search is loading.
- *
- * @param {state} OrderState
- */
-export const getLoading = (state: OrderState) => state.search.loading;
 
 /**
  * Return the specific order selected.
@@ -55,6 +48,13 @@ export const getSelected = createSelector(getEntities, getSelectedId, (entities,
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
   return ids.map((id) => entities[id]);
 });
+
+/**
+ * Return order search query.
+ *
+ * @param state OrderState
+ */
+export const getSearchQuery = (state: OrderState) => state.search.query;
 
 /**
  * Return all the orders resulted from search.

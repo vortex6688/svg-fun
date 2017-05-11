@@ -1,4 +1,5 @@
 /* tslint:disable:no-unused-variable */
+/* tslint:disable:max-classes-per-file */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement, Component } from '@angular/core';
@@ -8,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnPaginationComponent } from './tn-pagination.component';
 import { TnPaginationConfig } from './pagination-config';
 import { TnCommonModule } from '../tn-common.module';
+import { AuthService } from '../auth';
 
 function createGenericTestComponent<T>(html: string,
                                        type: {new (...args: any[]): T}): ComponentFixture<T> {
@@ -88,10 +90,15 @@ describe('TnPaginationConfig', () => {
   config.rotate = true;
   config.size = 'sm';
 
+  class MockAuthService {}
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TnCommonModule.forRoot(), RouterTestingModule.withRoutes([])],
-      providers: [{provide: TnPaginationConfig, useValue: config}]
+      providers: [
+        {provide: AuthService, useClass: MockAuthService},
+        {provide: TnPaginationConfig, useValue: config},
+      ]
     });
   });
 
