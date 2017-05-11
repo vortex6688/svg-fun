@@ -17,18 +17,22 @@ export class AuthEffects {
     .ofType(AuthActions.LOGIN)
     .map(toPayload)
     .switchMap((credentials) => this.authService.login(credentials)
-        .map((user) => {
-          this.httpService.setAuthToken(user.token);
-          return this.authActions.loginSuccess(user);
-        })
-        .catch((error) => of(this.authActions.loginFailed(error)))
+      .map((user) => this.authActions.loginSuccess(user))
+      .catch((error) => of(this.authActions.loginFailed(error)))
     );
+
+  @Effect({ dispatch: false })
+  public loginSuccess$: Observable<any> = this.actions$
+    .ofType(AuthActions.LOGIN_SUCCESS)
+    .map(toPayload)
+    .map((user) => this.httpService.setAuthToken(user.token));
 
   @Effect({ dispatch: false })
   public logout$: Observable<any> = this.actions$
     .ofType(AuthActions.LOGOUT)
     .switchMap(() => this.authService.logout())
-      .map(() => this.httpService.setAuthToken());
+      .map(() => this.httpService.setAuthToken())
+      .catch(() => of(this.httpService.setAuthToken()));
 
   constructor(
     private actions$: Actions,

@@ -29,6 +29,8 @@ export class AuthService {
    *
    * @param {TnApiHttpService} httpService
    * @param {LocalStorageService} storage
+   * @param {Store} store
+   * @param {AuthActions} authActions
    *
    * @memberOf AuthService
    */
@@ -40,10 +42,7 @@ export class AuthService {
     }
 
     this.httpService.errors$
-      .filter((error) => {
-        console.log('got error', error, this.user);
-        return error.status === 401 && !!this.user.token
-      })
+      .filter((error) => error.status === 401 && !!this.user.token)
       .subscribe(() => this.store.dispatch(this.authActions.logout()));
 
     this.store.select((state) => state.auth.user).subscribe((user) => this.user = user);

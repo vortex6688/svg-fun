@@ -45,7 +45,9 @@ export class ModelService<T extends IModel> {
    */
   public find(query: object): Observable<T[]> {
     const params: URLSearchParams = new URLSearchParams();
-    Object.entries(query).forEach(([key, value]) => params.set(key, value));
+    if (query && typeof query === 'object') {
+      Object.entries(query).forEach(([key, value]) => params.set(key, value));
+    }
     const options = new RequestOptions({ params });
     return this.apiHttp.get(this.modelUrl, options);
   }

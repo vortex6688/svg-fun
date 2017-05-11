@@ -92,7 +92,6 @@ describe('AdminOrdersListComponent', () => {
 
   it('should call order search action', () => {
     const orderActions = fixture.debugElement.injector.get(OrderActions);
-    spyOn(orderActions, 'searchQuery').and.callThrough();
     const query = {
       id: 2,
       from: null,

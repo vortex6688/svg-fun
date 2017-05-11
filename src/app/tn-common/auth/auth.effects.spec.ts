@@ -2,6 +2,7 @@
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { TestBed, inject } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
 import { AuthService } from './auth.service';
@@ -22,11 +23,12 @@ describe('AuthEffects', () => {
   let authActions: AuthActions;
   let authService: MockAuthService;
   let httpService: MockHttpService;
+  let logoutSubject;
   const error = 'Test error';
 
   class MockAuthService {
     public logout() {
-      return Observable.of('logout');
+      return logoutSubject;
     }
 
     public login(credentials: any) {
@@ -57,6 +59,7 @@ describe('AuthEffects', () => {
   }));
 
   beforeEach(() => {
+    logoutSubject = new BehaviorSubject('null');
     httpService = TestBed.get(TnApiHttpService);
     authService = TestBed.get(AuthService);
     runner = TestBed.get(EffectsRunner);
@@ -70,9 +73,7 @@ describe('AuthEffects', () => {
       runner.queue(authActions.login(mockUser));
 
       authEffects.login$.subscribe(((data) => {
-
         expect(data).toEqual(expected);
-        expect(httpService.setAuthToken).toHaveBeenCalledWith(mockUser.token);
       }));
     });
 
@@ -87,11 +88,30 @@ describe('AuthEffects', () => {
     });
   });
 
+  describe('loginSuccess$', () => {
+    it('should set token', () => {
+      runner.queue(authActions.loginSuccess(mockUser));
+
+      authEffects.loginSuccess$.subscribe(() => {
+        expect(httpService.setAuthToken).toHaveBeenCalledWith(mockUser.token);
+      });
+    });
+  });
+
   describe('logout$', () => {
     it('should call authService.logout', () => {
-      const expected = authActions.loginFailed(error);
       runner.queue(authActions.logout());
 
+      authEffects.logout$.subscribe((data) => {
+        expect(logoutSubject.observers.length).toEqual(1);
+        expect(httpService.setAuthToken).toHaveBeenCalledWith();
+      });
+    });
+
+    it('should catch logout errors', () => {
+      runner.queue(authActions.logout());
+
+      logoutSubject = Observable.throw('error');
       authEffects.logout$.subscribe((data) => {
         expect(httpService.setAuthToken).toHaveBeenCalledWith();
       });
