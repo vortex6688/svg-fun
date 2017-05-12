@@ -213,7 +213,7 @@ $grid-gutter-widths: (
 // Font, line-height, and color for body text, headings, and more.
 
 
-$font-family-sans-serif: "MomentumSansDeck", "AdobeBlank";
+$font-family-sans-serif: "MomentumSansText", "AdobeBlank";
 $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-base:       $font-family-sans-serif;
 
@@ -236,7 +236,7 @@ $font-size-h5: 1.25rem;
 $font-size-h6: 1rem;
 
 $headings-margin-bottom: ($spacer / 2);
-$headings-font-family:   inherit;
+$headings-font-family:   "MomentumSansDeck", "AdobeBlank";
 $headings-font-weight:   500;
 $headings-line-height:   1.1;
 $headings-color:         inherit;
