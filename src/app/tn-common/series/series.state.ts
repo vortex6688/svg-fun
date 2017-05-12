@@ -1,5 +1,14 @@
 import { Series } from './series.model';
 
+export interface SeriesSearch {
+  id: string | number;
+  name: string;
+  visible: boolean;
+  released: Date;
+  families: number[];
+  styles: number[];
+}
+
 export interface SeriesState {
   ids: number[];
   entities: { [id: number]: Series };
@@ -7,12 +16,7 @@ export interface SeriesState {
   search: {
     ids: number[],
     loading: boolean,
-    query: {
-      id: string | number,
-      family: number,
-      name: string,
-      released: Date,
-    },
+    query: SeriesSearch,
   };
 }
 
@@ -25,9 +29,11 @@ export const initialSeriesState: SeriesState = {
     loading: false,
     query: {
       id: '',
-      family: null,
-      name: null,
+      name: '',
+      visible: null,
       released: null,
+      families: [],
+      styles: [],
     },
   }
 };

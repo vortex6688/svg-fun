@@ -23,7 +23,7 @@ export const SeriesReducer: ActionReducer<SeriesState> = (state = initialSeriesS
       };
     }
 
-    case SeriesActions.PLACE_SERIES: {
+    case SeriesActions.ADD_SERIES: {
       const series: Series = action.payload;
 
       return {

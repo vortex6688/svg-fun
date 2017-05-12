@@ -57,9 +57,9 @@ describe('SeriesReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should PLACE_SERIES place a new series', () => {
+  it('should ADD_SERIES add a new series', () => {
     const state = mockedState();
-    const actual = SeriesReducer(state, seriesActions.placeSeries(SeriesMock));
+    const actual = SeriesReducer(state, seriesActions.addSeries(SeriesMock));
     const expected = {
       ids: [...state.ids, ...[SeriesMock.id]],
       entities: Object.assign({}, state.entities, { [SeriesMock.id]: SeriesMock }),
@@ -85,9 +85,11 @@ describe('SeriesReducer', () => {
     const state = mockedState();
     const query = {
       id: '2',
-      family: 4,
       name: 'Lorem',
+      visible: true,
       released: new Date(Date.now() - 50000),
+      families: [4],
+      styles: [2],
     };
     const actual = SeriesReducer(state, seriesActions.searchQuery(query));
     const expected: SeriesState = {
@@ -114,7 +116,7 @@ describe('SeriesReducer', () => {
     let addedState = initialSeriesState;
 
     beforeEach(() => {
-      addedState = SeriesReducer(state, seriesActions.placeSeries(SeriesMock));
+      addedState = SeriesReducer(state, seriesActions.addSeries(SeriesMock));
 
     });
 

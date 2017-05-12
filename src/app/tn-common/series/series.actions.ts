@@ -4,7 +4,7 @@ import { ActionCreatorFactory } from 'ngrx-action-creator-factory';
 @Injectable()
 export class SeriesActions {
   // Update
-  public static PLACE_SERIES: string = '[Series] PLACE_SERIES';
+  public static ADD_SERIES: string = '[Series] ADD_SERIES';
 
   // Results
   public static GET_ALL_SERIES: string = '[Series] GET_ALL_SERIES';
@@ -12,7 +12,7 @@ export class SeriesActions {
   public static SEARCH_QUERY: string = '[Series] SEARCH_QUERY';
   public static SEARCH_COMPLETE: string = '[Series] SEARCH_COMPLETE';
 
-  public placeSeries = ActionCreatorFactory.create(SeriesActions.PLACE_SERIES);
+  public addSeries = ActionCreatorFactory.create(SeriesActions.ADD_SERIES);
   public getAllSeries = ActionCreatorFactory.create(SeriesActions.GET_ALL_SERIES);
   public getSeries = ActionCreatorFactory.create(SeriesActions.GET_SERIES);
   public searchQuery = ActionCreatorFactory.create(SeriesActions.SEARCH_QUERY);

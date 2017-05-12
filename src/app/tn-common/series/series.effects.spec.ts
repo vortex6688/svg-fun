@@ -32,6 +32,7 @@ describe('SeriesEffects', () => {
   let runner: EffectsRunner;
   let seriesEffects: SeriesEffects;
   let seriesActions: SeriesActions;
+  let seriesService: SeriesService;
 
   class MockSeriesService {
     public find(query: object): Observable<Series[]> {
@@ -56,15 +57,17 @@ describe('SeriesEffects', () => {
     runner = TestBed.get(EffectsRunner);
     seriesActions = TestBed.get(SeriesActions);
     seriesEffects = TestBed.get(SeriesEffects);
+    seriesService = TestBed.get(SeriesService);
   });
 
   describe('search$', () => {
     it('should return a search complete action with results', () => {
-      const expectedResult = seriesActions.searchComplete(mockSeries);
-      runner.queue(seriesActions.searchQuery({}));
+      const expectedResult = seriesActions.addSeries(mockSeries);
+      spyOn(seriesService, 'find').and.callThrough();
 
       let result = null;
-      seriesEffects.search$.subscribe((data) => result = data);
+      seriesEffects.loadData$.subscribe((data) => result = data);
+      expect(seriesService.find).toHaveBeenCalled();
       expect(result).toEqual(expectedResult);
     });
   });

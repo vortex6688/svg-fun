@@ -9,7 +9,7 @@ import { MockBackend } from '@angular/http/testing';
 import { TnApiHttpService } from '../../tn-common/tn-api-http';
 import { SeriesService } from './series.service';
 
-describe('UserService', () => {
+describe('SeriesService', () => {
   let mockBackend: MockBackend;
   let seriesService: SeriesService;
   let apiClient: TnApiHttpService;
