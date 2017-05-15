@@ -30,9 +30,13 @@ export class AdminOrdersListComponent {
   public licenses$ = this.store.select(getAllFoundLicenses);
 
   public orderslicenses$ = Observable.combineLatest(this.orders$, this.licenses$, (orders, licenses) => {
-    return orders.map((order) => Object.assign({}, order, {
-      licenses: licenses.filter((license) => license.order === order.id)
-    }));
+    if (orders instanceof Array) {
+      return orders.map((order) => Object.assign({}, order, {
+        licenses: licenses.filter((license) => license.order === order.id)
+      }));
+    } else {
+      return null;
+    }
   });
   constructor(private store: Store<any>, private orderActions: OrderActions, private licenseActions: LicenseActions) {}
 
