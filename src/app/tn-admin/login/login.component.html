@@ -27,13 +27,13 @@
         </p>
       </div>
     </form>
-    <p class="text-danger">{{ errorMessage }}</p>
+    <span class="text-danger">{{ errorMessage }}</span>
+    <span *ngIf="loading">Loading...</span>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-info" (click)="activeModal.close('Cross click')">Close</button>
     <button type="submit" class="btn btn-success login" [ngClass]="{'disabled': username.errors || password.errors}" (click)="login()">
       Sign in
     </button>
-      <span *ngIf="loading">Loading...</span>
   </div>
 </div>
