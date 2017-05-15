@@ -329,7 +329,7 @@ $table-head-font-size: 0.8em;
 //
 // For each of Bootstrap's buttons, define text, background and border color.
 
-$btn-padding-x:                  1rem;
+$btn-padding-x:                  .5rem;
 $btn-padding-y:                  .5rem;
 $btn-line-height:                1.25;
 $btn-font-weight:                $font-weight-normal;
@@ -827,7 +827,7 @@ $list-group-border-width:        $border-width;
 $list-group-border-radius:       $border-radius;
 
 $list-group-item-padding-x:      .5rem;
-$list-group-item-padding-y:      .05rem;
+$list-group-item-padding-y:      .125rem;
 
 $list-group-hover-bg:            $gray-lightest;
 $list-group-active-color:        $component-active-color;
