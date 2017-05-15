@@ -5,7 +5,8 @@ import { Credentials, RegistrationCredentials } from './credentials';
 import { TnApiHttpService } from '../tn-api-http/tn-api-http.service';
 import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
 import { BehaviorSubject } from 'rxjs/Rx';
-
+import { Store } from '@ngrx/store';
+import { AuthActions } from './auth.actions';
 /**
  * TypeNetwork Authentication Service.
  *
@@ -17,9 +18,6 @@ import { BehaviorSubject } from 'rxjs/Rx';
  */
 @Injectable()
 export class AuthService {
-
-  public user$: BehaviorSubject<Authorization>;
-
   @LocalStorage('AuthService.user', ANONYMOUS)
   protected user: Authorization;
 
@@ -31,24 +29,23 @@ export class AuthService {
    *
    * @param {TnApiHttpService} httpService
    * @param {LocalStorageService} storage
+   * @param {Store} store
+   * @param {AuthActions} authActions
    *
    * @memberOf AuthService
    */
-  constructor(private httpService: TnApiHttpService, private storage: LocalStorageService) {
-    // create behavior subject with initial value.
-    this.user$ = new BehaviorSubject<Authorization>(this.user);
-    // subscribe to storage changes. (when this.user is set is should trigger storage update)
-    this.storage.observe('AuthService.user').subscribe(this.user$);
+  constructor(private httpService: TnApiHttpService, private storage: LocalStorageService,
+              private store: Store<any>, private authActions: AuthActions) {
     if (this.user.token) {
       // User already logged in. Set the auth token.
-      this.httpService.setAuthToken(this.user.token);
+      this.store.dispatch(this.authActions.loginSuccess(this.user));
     }
 
-    this.httpService.errors$.subscribe((error) => {
-      if (this.user.token && error.status === 401) {
-        this.cleanAuth();
-      }
-    });
+    this.httpService.errors$
+      .filter((error) => error.status === 401 && !!this.user.token)
+      .subscribe(() => this.store.dispatch(this.authActions.logout()));
+
+    this.store.select((state) => state.auth.user).subscribe((user) => this.user = user);
   }
 
   /**
@@ -59,13 +56,7 @@ export class AuthService {
    * @memberOf AuthService
    */
   public login(credentials: Credentials): Observable<Authorization> {
-    return this.httpService.post('/auth/login/', credentials)
-      .map((user: any) => {
-        this.httpService.setAuthToken(user.token);
-        // if the user$ behavior subject is subscribed to
-        // this.user it should automatically get it's next called.
-        return this.user = user;
-      });
+    return this.httpService.post('/auth/login/', credentials);
   }
 
   /**
@@ -76,8 +67,7 @@ export class AuthService {
    * @memberOf AuthService
    */
   public logout() {
-    this.httpService.post('/auth/logout/', {})
-      .subscribe((res: any) => this.cleanAuth());
+    return this.httpService.post('/auth/logout/', {});
   }
 
   /**
@@ -89,23 +79,6 @@ export class AuthService {
    * @memberOf AuthService
    */
   public register(credentials: RegistrationCredentials): Observable<Authorization> {
-    return this.httpService.post('/api/1/user/', credentials)
-      .map((user: any) => {
-        this.httpService.setAuthToken(user.token);
-        // if the user$ behavior subject is subscribed to
-        // this.user it should automatically get it's next called.
-        return this.user = user;
-      });
-  }
-
-  /**
-   * Reset authentication token and set user to anonymous.
-   *
-   * @private
-   * @memberOf AuthService
-   */
-  private cleanAuth() {
-    this.httpService.setAuthToken();
-    this.user = ANONYMOUS;
+    return this.httpService.post('/api/1/user/', credentials);
   }
 }

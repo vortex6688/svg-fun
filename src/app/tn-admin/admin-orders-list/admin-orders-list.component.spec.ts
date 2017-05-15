@@ -2,9 +2,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Store } from '@ngrx/store';
 
-import { Order, OrderService, OrderActions } from '../../tn-common/orders';
+import { Order, OrderActions } from '../../tn-common/orders';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule } from '../store';
 
@@ -47,26 +48,33 @@ const OrderMock: Order = {
   coupon: null
 };
 
-class MockOrderService {
-  public find(query: object): Observable<Order[]> {
-    return Observable.of([OrderMock]);
-  }
-}
-
 describe('AdminOrdersListComponent', () => {
   let component: AdminOrdersListComponent;
   let fixture: ComponentFixture<AdminOrdersListComponent>;
+  let storeSubject: BehaviorSubject<object>;
+
+  class MockStore {
+    public dispatch = jasmine.createSpy('dispatch');
+    public select = () => storeSubject;
+  }
+
+  class MockOrderActions {
+    public searchQuery = jasmine.createSpy('searchQuery');
+  }
 
   beforeEach(async(() => {
+    storeSubject = new BehaviorSubject({});
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        TnAdminStoreModule,
       ],
       declarations: [
         AdminOrdersListComponent,
       ],
-      providers: [ {provide: OrderService, useClass: MockOrderService} ],
+      providers: [
+        { provide: Store, useClass: MockStore },
+        { provide: OrderActions, useClass: MockOrderActions },
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
@@ -84,7 +92,6 @@ describe('AdminOrdersListComponent', () => {
 
   it('should call order search action', () => {
     const orderActions = fixture.debugElement.injector.get(OrderActions);
-    spyOn(orderActions, 'searchQuery').and.callThrough();
     const query = {
       id: 2,
       from: null,

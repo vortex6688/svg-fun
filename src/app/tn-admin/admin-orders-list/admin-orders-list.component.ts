@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Title } from '@angular/platform-browser';
-import { Order, OrderService, OrderActions, OrderSearch } from '../../tn-common/orders';
+import { Order, OrderActions, OrderSearch } from '../../tn-common/orders';
 import { getAllFoundOrders, getOrderSearchQuery } from '../store/reducers';
 
 @Component({

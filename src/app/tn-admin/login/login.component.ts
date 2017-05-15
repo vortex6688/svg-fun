@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConnectionBackend } from '@angular/http';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Store } from '@ngrx/store';
 
-import { AuthService, Credentials } from '../../tn-common/auth';
+import { AuthActions, Credentials } from '../../tn-common/auth';
 import { User } from '../../tn-common/user/user.model';
+import { getAuthState, getUser } from '../store/reducers';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +14,25 @@ import { User } from '../../tn-common/user/user.model';
 })
 export class LoginComponent {
   public errorMessage: string = '';
-  public user: User;
   public credentials: Credentials = {username: '', password: ''};
+  public loading;
 
-  constructor(public activeModal: NgbActiveModal, private authService: AuthService) {}
+  constructor(public activeModal: NgbActiveModal, private store: Store<any>, private authActions: AuthActions) {
+    this.store.select(getAuthState).subscribe(({ user, inProgress, error }) => {
+      if (user && user.token) {
+        this.activeModal.close();
+        return;
+      }
+      this.loading = inProgress;
+
+      if (error) {
+        this.handleErrorResponse(error);
+      }
+    });
+  }
 
   public login(): void {
-    this.authService.login(this.credentials).subscribe((result) => {
-      this.user = result;
-      this.activeModal.close();
-    }, (error) => {
-      this.handleErrorResponse(error);
-    });
+    this.store.dispatch(this.authActions.login(this.credentials));
   }
 
   private handleErrorResponse(error) {

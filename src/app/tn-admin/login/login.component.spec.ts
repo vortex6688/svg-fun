@@ -1,9 +1,11 @@
+/* tslint:disable:max-classes-per-file */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Store } from '@ngrx/store';
 
-import { AuthService, Credentials } from '../../tn-common/auth';
+import { AuthActions, Credentials } from '../../tn-common/auth';
 import { User } from '../../tn-common/user/user.model';
 import { LoginComponent } from './login.component';
 
@@ -24,21 +26,6 @@ const user: User = {
   updated_at: Date.now(),
 };
 
-class MockAuthService {
-  public login(credentials: Credentials): Observable<User> {
-    if (credentials.username === 'no_server') {
-      return Observable.throw({status: 404, body: 'Not Found'});
-    } else if (credentials.username === 'error') {
-      return Observable.throw({status: 500, body: 'Internal Server Error'});
-    } else if (credentials.username === user.username
-        && credentials.password === user.password) {
-      return Observable.of(user);
-    } else {
-      return Observable.throw({status: 401, body: 'Unauthorized'});
-    }
-  }
-}
-
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
@@ -46,12 +33,28 @@ describe('LoginComponent', () => {
     username: 'jane@doe.com',
     password: 'correctPassword'
   };
+  let storeSubject: BehaviorSubject<object>;
+
+  class MockStore {
+    public dispatch = jasmine.createSpy('dispatch');
+    public select = () => storeSubject;
+  }
+
+  class MockAuthActions {
+    public login = jasmine.createSpy('login');
+  }
 
   beforeEach(async(() => {
+    storeSubject = new BehaviorSubject({});
+
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [ FormsModule ],
-      providers: [ NgbActiveModal, {provide: AuthService, useClass: MockAuthService} ]
+      providers: [
+        NgbActiveModal,
+        { provide: Store, useClass: MockStore },
+        { provide: AuthActions, useClass: MockAuthActions },
+      ]
     })
     .compileComponents();
   }));
@@ -66,34 +69,52 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set the user if the credentials are correct', () => {
-    expect(component.user).toBeFalsy('User already set prior to logIn!');
+  it('should set loading flag', () => {
+    expect(component.loading).toBeFalsy();
+    storeSubject.next({});
+    expect(component.loading).toBeFalsy();
+    storeSubject.next({ inProgress: true });
+    expect(component.loading).toBeTruthy();
+  });
+
+  it('should attempt to navigate away on login', () => {
+    spyOn(component.activeModal, 'close');
+    storeSubject.next({});
+    expect(component.activeModal.close).not.toHaveBeenCalled();
+    storeSubject.next({ user: { token: 'token' } });
+    expect(component.activeModal.close).toHaveBeenCalled();
+  });
+
+  it('should dispatch login action', () => {
     component.credentials = credentials;
     component.login();
-    expect(component.user).toBeTruthy('Did not set user!');
-    expect(component.user.username).toBe(credentials.username,
-                                         'Did not set the correct username!');
+    const actions = fixture.debugElement.injector.get(AuthActions);
+    expect(actions.login).toHaveBeenCalledWith(credentials);
   });
 
-  it('should return the errors if the credentials are incorrect', () => {
-    component.credentials.password = 'incorrectPassword';
-    component.login();
-    expect(component.errorMessage).toBe('Invalid username or password', 'errorMessage not set');
-    expect(component.user).toBeFalsy('User set after an erroneous logIn attempt!');
-  });
+  it('should set error messages', () => {
+    // Should start clean
+    expect(component.errorMessage).toEqual('', 'Expected no error message');
 
-  it('should return the errors if there is no conection to the server', () => {
-    component.credentials.username = 'no_server';
-    component.login();
-    expect(component.errorMessage).toBe('The server can\'t be reached!', 'errorMessage not set');
-    expect(component.user).toBeFalsy('User set after an erroneous logIn attempt!');
-  });
+    // Should remain clean if no error
+    storeSubject.next({});
+    expect(component.errorMessage).toEqual('', 'Should remain empty');
 
-  it('should return default error message if a different error happens', () => {
-    component.credentials.username = 'error';
-    component.login();
-    expect(component.errorMessage).toBe('An error happened!', 'errorMessage not set');
-    expect(component.user).toBeFalsy('User set after an erroneous logIn attempt!');
+    // Specific status messages
+    storeSubject.next({
+      error: { status: 404 }
+    });
+    expect(component.errorMessage).toEqual('The server can\'t be reached!');
+
+    storeSubject.next({
+      error: { status: 401 }
+    });
+    expect(component.errorMessage).toEqual('Invalid username or password');
+
+    storeSubject.next({
+      error: { status: 4 }
+    });
+    expect(component.errorMessage).toEqual('An error happened!');
   });
 
 });
