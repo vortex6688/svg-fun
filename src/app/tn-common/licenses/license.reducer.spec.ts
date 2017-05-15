@@ -123,7 +123,7 @@ describe('LicenseReducer', () => {
       qty: 2,
       style: 10,
       active: false,
-      license_type: 'app',
+      license_type: ['app'],
       years: 2,
       start: new Date(),
       end: new Date(Date.now() + 50000),
@@ -133,7 +133,7 @@ describe('LicenseReducer', () => {
       ...initialLicenseState,
       search: {
         ids: [],
-        active: true,
+        active: false,
         query,
       },
     };
