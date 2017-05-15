@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
 import { LicenseState } from './license.state';
-import { License } from './license.model';
 
 /**
  * Returns all the license entities selected.
