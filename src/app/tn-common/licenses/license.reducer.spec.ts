@@ -38,6 +38,23 @@ const licenseMock: License = {
   self_hosted: false
 };
 
+const addItems: License[] = [
+  { ...licenseMock, id: 11, order: 1, },
+];
+const addedData = {
+  ids: addItems.map((item) => item.id),
+  entities: addItems.reduce((result, item) => ({ ... result, [item.id]: item }), {}),
+};
+const nonEmptyState: LicenseState = {
+  ...addedData,
+  selectedLicenseId: null,
+  search: {
+    ids: [],
+    active: false,
+    query: initialLicenseState.search.query,
+  }
+};
+
 const searchItems: License[] = [
   { ...licenseMock, id: 11 },
   { ... licenseMock, id: 23456 },
@@ -49,7 +66,7 @@ const searchState: LicenseState = {
   selectedLicenseId: null,
   search: {
     ids: searchItems.map((item) => item.id),
-    loading: false,
+    active: false,
     query: initialLicenseState.search.query,
   }
 };
@@ -80,7 +97,7 @@ describe('LicenseReducer', () => {
 
   it('should be able to ADD_LICENSE_SUCCESS', () => {
     const state = mockedState();
-    const actual = LicenseReducer(state, licenseActions.addLicenseSuccess(licenseMock));
+    const actual = LicenseReducer(state, licenseActions.createLicenseSuccess(licenseMock));
     const expected = {
       ids: [...state.ids, ...[licenseMock.id]],
       entities: Object.assign({}, state.entities, { [licenseMock.id]: licenseMock }),
@@ -92,7 +109,7 @@ describe('LicenseReducer', () => {
 
   it('should be NOT add a license on ADD_LICENSE_FAIL', () => {
     const state = mockedState();
-    const actual = LicenseReducer(state, licenseActions.addLicenseFail(licenseMock));
+    const actual = LicenseReducer(state, licenseActions.createLicenseFail(licenseMock));
     expect(actual).toEqual(state);
   });
 
@@ -116,18 +133,17 @@ describe('LicenseReducer', () => {
       ...initialLicenseState,
       search: {
         ids: [],
-        loading: true,
+        active: true,
         query,
       },
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
   });
 
-  it('should add search results on SEARCH_COMPLETE', () => {
+  it('should add search results on ADD_LICENSES', () => {
     const state = mockedState();
-    state.search.loading = true;
-    const actual = LicenseReducer(state, licenseActions.searchComplete(searchItems));
-    const expected: LicenseState = searchState;
+    const actual = LicenseReducer(state, licenseActions.addLicenses(addItems));
+    const expected: LicenseState = nonEmptyState;
     expect(actual).toEqual(expected, 'Didn\'t add search items');
   });
 
@@ -136,7 +152,7 @@ describe('LicenseReducer', () => {
     let addedState = initialLicenseState;
 
     beforeEach(() => {
-      addedState = LicenseReducer(state, licenseActions.addLicenseSuccess(licenseMock));
+      addedState = LicenseReducer(state, licenseActions.createLicenseSuccess(licenseMock));
     });
 
     it('should GET_LICENSES when there already exists a License on the state', () => {
@@ -181,11 +197,10 @@ describe('LicenseReducer', () => {
 
     it('should remove the given license on REMOVE_LICENSE_SUCCESS', () => {
       const actual = LicenseReducer(addedState, licenseActions.removeLicenseSuccess(licenseMock));
+      delete state.entities[licenseMock.id];
       const expected = {
         ids: addedState.ids.filter((id) => id !== licenseMock.id),
-        entities: Object.assign({}, state.entities, {
-          [licenseMock.id]: null
-        }),
+        entities: Object.assign({}, state.entities),
         selectedLicenseId: null,
         search: initialLicenseState.search,
       };

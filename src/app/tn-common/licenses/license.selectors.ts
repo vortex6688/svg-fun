@@ -32,13 +32,6 @@ export const getFoundIds = (state: LicenseState) => state.search.ids;
 export const getSelectedId = (state: LicenseState) => state.selectedLicenseId;
 
 /**
- * Return if the search is loading.
- *
- * @param {state} LicenseState
- */
-export const getLoading = (state: LicenseState) => state.search.loading;
-
-/**
  * Return the specific license selected.
  *
  * @type {Reselect.Selector}

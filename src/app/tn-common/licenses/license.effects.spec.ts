@@ -64,18 +64,18 @@ describe('LicenseEffects', () => {
   });
 
   it('should return a search complete action with results', () => {
-    const expectedResult = licenseActions.searchComplete(mockLicenses);
+    const expectedResult = licenseActions.addLicenses(mockLicenses);
     runner.queue(licenseActions.searchQuery({}));
 
     let result = null;
-    licenseEffects.search$.subscribe((data) => result = data);
+    licenseEffects.loadData$.subscribe((data) => result = data);
     expect(result).toEqual(expectedResult);
   });
 
   it('should return a collection.AddLicenseSuccess, with the license, on success add', () => {
-    runner.queue(licenseActions.addLicense(licenseMock));
+    runner.queue(licenseActions.createLicense(licenseMock));
     licenseEffects.addLicense$.subscribe((result) => {
-      expect(result).toEqual(licenseActions.addLicenseSuccess(licenseMock));
+      expect(result).toEqual(licenseActions.createLicenseSuccess(licenseMock));
     });
   });
 

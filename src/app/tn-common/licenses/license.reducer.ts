@@ -22,7 +22,7 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
-    case LicenseActions.ADD_LICENSE_SUCCESS: {
+    case LicenseActions.CREATE_LICENSE_SUCCESS: {
       const license: License = action.payload;
 
       return {
@@ -50,18 +50,17 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
 
     case LicenseActions.REMOVE_LICENSE_SUCCESS: {
       const license: License = action.payload;
+      delete state.entities[license.id];
 
       return {
         ids: state.ids.filter((id) => id !== license.id),
-        entities: Object.assign({}, state.entities, {
-          [license.id]: null
-        }),
+        entities: Object.assign({}, state.entities),
         selectedLicenseId: null,
         search: state.search,
       };
     }
 
-    case LicenseActions.ADD_LICENSE_FAIL:
+    case LicenseActions.CREATE_LICENSE_FAIL:
     case LicenseActions.UPDATE_LICENSE_FAIL:
     case LicenseActions.REMOVE_LICENSE_FAIL: {
       return state;
@@ -70,33 +69,25 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
     case LicenseActions.SEARCH_QUERY: {
       const search = {
         ids: [],
-        loading: true,
+        active: true,
         query: action.payload,
       };
 
       return { ...state, search };
     }
 
-    case LicenseActions.SEARCH_COMPLETE: {
+    case LicenseActions.ADD_LICENSES: {
       const licenses: License[] = action.payload;
-      const { newLicenseEntities, newIds } = licenses.reduce((result, license) => {
-        if (state.entities[license.id]) {
-          return result;
-        }
-        result.newLicenseEntities[license.id] = license;
-        result.newIds.push(license.id);
+      const { licenseEntities, licenseIds } = licenses.reduce((result, license) => {
+        result.licenseEntities[license.id] = license;
+        result.licenseIds.push(license.id);
         return result;
-      }, { newLicenseEntities: {}, newIds: [] });
+      }, { licenseEntities: {}, licenseIds: [] });
 
       return {
-        ids: [ ...state.ids, ...newIds ],
-        entities: Object.assign({}, state.entities, newLicenseEntities),
-        selectedLicenseId: state.selectedLicenseId,
-        search: {
-          ids: newIds,
-          loading: false,
-          query: state.search.query,
-        },
+        ...state,
+        ids: licenseIds,
+        entities: licenseEntities,
       };
     }
 

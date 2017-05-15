@@ -60,7 +60,6 @@ export const getLicenseEntities = createSelector(getLicenseState, license.getEnt
 export const getLicenseIds = createSelector(getLicenseState, license.getIds);
 export const getSelectedLicenseId = createSelector(getLicenseState, license.getSelectedId);
 export const getSelectedLicense = createSelector(getLicenseState, license.getSelected);
-export const getLicenseSearchLoading = createSelector(getLicenseState, license.getLoading);
 export const getAllLicenses = createSelector(getLicenseState, license.getAll);
 export const getAllFoundLicenses = createSelector(getLicenseState, license.getAllFound);
 export const getFreeTrialLicenses = createSelector(getLicenseState, license.getFreeTrialLicences);

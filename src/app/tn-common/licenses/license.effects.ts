@@ -10,6 +10,7 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
+import { defer } from 'rxjs/observable/defer';
 
 import { LicenseService } from './license.service';
 import { LicenseActions } from './license.actions';
@@ -19,22 +20,17 @@ import { License } from './license.model';
 export class LicenseEffects {
 
   @Effect()
-  public search$: Observable<Action> = this.actions$
-    .ofType(LicenseActions.SEARCH_QUERY)
-    .map(toPayload)
-    .switchMap((query) =>
-      this.licenseService.find(query)
-        .map((licenses) => this.licenseActions.searchComplete(licenses))
-    );
+  public loadData$: Observable<any> = defer(() => this.licenseService.find({})
+    .map((orders) => this.licenseActions.addLicenses(orders)));
 
   @Effect()
   public addLicense$: Observable<Action> = this.actions$
-    .ofType(LicenseActions.ADD_LICENSE)
+    .ofType(LicenseActions.CREATE_LICENSE)
     .map((action) => action.payload as License)
     .switchMap((license) =>
       this.licenseService.save(license)
-        .map(() => this.licenseActions.addLicenseSuccess(license))
-        .catch(() => of(this.licenseActions.addLicenseFail(license)))
+        .map((addedLicense) => this.licenseActions.createLicenseSuccess(addedLicense))
+        .catch(() => of(this.licenseActions.createLicenseFail(license)))
     );
 
   @Effect()
@@ -43,7 +39,7 @@ export class LicenseEffects {
     .map((action) => action.payload as License)
     .switchMap((license) =>
       this.licenseService.save(license)
-        .map(() => this.licenseActions.updateLicenseSuccess(license))
+        .map((updatedLicense) => this.licenseActions.updateLicenseSuccess(updatedLicense))
         .catch(() => of(this.licenseActions.updateLicenseFail(license)))
     );
 

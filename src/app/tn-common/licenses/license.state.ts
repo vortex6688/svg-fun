@@ -1,25 +1,27 @@
 import { License } from './license.model';
 
+export interface LicenseSearch {
+  id: string;
+  order: number;
+  price: string;
+  price_paid: string;
+  qty: number;
+  style: number;
+  active: boolean;
+  license_type: string;
+  years: number;
+  start: Date;
+  end: Date;
+}
+
 export interface LicenseState {
   ids: number[];
   entities: { [id: number]: License };
   selectedLicenseId: number | null;
   search: {
     ids: number[],
-    loading: boolean
-    query: {
-      id: string,
-      order: number,
-      price: string,
-      price_paid: string,
-      qty: number,
-      style: number,
-      active: boolean,
-      license_type: string,
-      years: number,
-      start: Date,
-      end: Date,
-    },
+    active: boolean,
+    query: LicenseSearch,
   };
 }
 
@@ -29,7 +31,7 @@ export const initialLicenseState: LicenseState = {
   selectedLicenseId: null,
   search: {
     ids: [],
-    loading: false,
+    active: false,
     query: {
       id: '',
       order: 0,
