@@ -119,6 +119,53 @@
   
   <br />
 
+  <h3>Vertically Centered Modal</h3>
+  <p>Toggle a vertically centered modal demo by clicking the button below. It will open a modal window that is vertically centered.</p>
+
+  <p>In order to center the modal window, we set display to flex.</p>
+
+  <div class="bd-example">
+    <template ngbModalContainer></template>
+    <template #vCentered let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>The five boxing wizards jump quickly.</p>
+        <p>The modal is vertically centered</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="c('Close click')">Close</button>
+      </div>
+    </template>
+    <button class="btn btn-info" (click)="openVertCentered(vCentered)">Launch demo modal</button>
+  </div>
+
+  <figure class="highlight"><pre><code class="language-html" data-lang="html">
+    <span class="nt"><span class="nt"><span class="na">&lt;</span>template</span> <span class="token na">#content</span> <span class="token na">let-c</span><span class="token s"><span class="na">=</span><span class="na">"</span>close<span class="na">"</span></span> <span class="token na">let-d</span><span class="token s"><span class="na">=</span><span class="na">"</span>dismiss<span class="na">"</span></span><span class="na">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="na">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="na">=</span><span class="na">"</span>modal-header<span class="na">"</span></span><span class="na">&gt;</span></span>
+      <span class="nt"><span class="nt"><span class="na">&lt;</span>h4</span> <span class="token na">class</span><span class="token s"><span class="na">=</span><span class="na">"</span>modal-title<span class="na">"</span></span><span class="na">&gt;</span></span>Modal title<span class="nt"><span class="nt"><span class="na">&lt;/</span>h4</span><span class="na">&gt;</span></span>
+      <span class="nt"><span class="nt"><span class="na">&lt;</span>button</span> <span class="token na">type</span><span class="token s"><span class="na">=</span><span class="na">"</span>button<span class="na">"</span></span> <span class="token na">class</span><span class="token s"><span class="na">=</span><span class="na">"</span>close<span class="na">"</span></span> <span class="token na">aria-label</span><span class="token s"><span class="na">=</span><span class="na">"</span>Close<span class="na">"</span></span> <span class="token na">(click)</span><span class="token s"><span class="na">=</span><span class="na">"</span>d(<span class="na">'</span>Cross click<span class="na">'</span>)<span class="na">"</span></span><span class="na">&gt;</span></span>
+        <span class="nt"><span class="nt"><span class="na">&lt;</span>span</span> <span class="token na">aria-hidden</span><span class="token s"><span class="na">=</span><span class="na">"</span>true<span class="na">"</span></span><span class="na">&gt;</span></span><span class="token entity" title="×">&amp;times;</span><span class="nt"><span class="nt"><span class="na">&lt;/</span>span</span><span class="na">&gt;</span></span>
+      <span class="nt"><span class="nt"><span class="na">&lt;/</span>button</span><span class="na">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="na">&lt;/</span>div</span><span class="na">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="na">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="na">=</span><span class="na">"</span>modal-body<span class="na">"</span></span><span class="na">&gt;</span></span>
+      <span class="nt"><span class="nt"><span class="na">&lt;</span>p</span><span class="na">&gt;</span></span>The five boxing wizards jump quickly.<span class="nt"><span class="nt"><span class="na">&lt;/</span>p</span><span class="na">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="na">&lt;/</span>div</span><span class="na">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="na">&lt;</span>div</span> <span class="token na">class</span><span class="token s"><span class="na">=</span><span class="na">"</span>modal-footer<span class="na">"</span></span><span class="na">&gt;</span></span>
+      <span class="nt"><span class="nt"><span class="na">&lt;</span>button</span> <span class="token na">type</span><span class="token s"><span class="na">=</span><span class="na">"</span>button<span class="na">"</span></span> <span class="token na">class</span><span class="token s"><span class="na">=</span><span class="na">"</span>btn btn-info<span class="na">"</span></span> <span class="token na">(click)</span><span class="token s"><span class="na">=</span><span class="na">"</span>c(<span class="na">'</span>Close click<span class="na">'</span>)<span class="na">"</span></span><span class="na">&gt;</span></span>Close<span class="nt"><span class="nt"><span class="na">&lt;/</span>button</span><span class="na">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="na">&lt;/</span>div</span><span class="na">&gt;</span></span>
+    <span class="nt"><span class="nt"><span class="na">&lt;/</span>template</span><span class="na">&gt;</span></span>
+
+    <span class="nt"><span class="nt"><span class="na">&lt;</span>button</span> <span class="token na">class</span><span class="token s"><span class="na">=</span><span class="na">"</span>btn btn-info<span class="na">"</span></span> <span class="token na">(click)</span><span class="token s"><span class="na">=</span><span class="na">"</span>open(content)<span class="na">"</span></span><span class="na">&gt;</span></span>Launch demo modal<span class="nt"><span class="nt"><span class="na">&lt;/</span>button</span><span class="na">&gt;</span></span>
+    </code></pre>
+  </figure>
+  
+  <br />
+
   <h3>Modal has buttons with icons</h3>
   <p>Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page.</p>
 
