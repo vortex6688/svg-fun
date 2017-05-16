@@ -1,32 +1,30 @@
-<div class="modal-header text-info justify-content-between align-items-end">
-    <h4 class="modal-title">Sign in to your account</h4>
-    <span class="text-right ml-5">Or, <a class="disabled" aria-disabled="true">create a new account</a>.</span>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
+<form novalidate>
+  <div class="modal-header text-info justify-content-between align-items-end">
+      <h4 class="modal-title">Sign in to your account</h4>
+      <span class="text-right ml-5">Or, <a class="disabled" aria-disabled="true">create a new account</a>.</span>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   <div class="modal-body">
-    <form novalidate>
-      <div class="form-group">
-        <label class="small" for="username">Email</label>
-        <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username" #username="ngModel">
-        <p class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
-          <span>
-            Your email is required.
-          </span>
-        </p>
-      </div>
-      <div class="form-group">
-        <label class="small" for="password">Password</label>
-        <input class="form-control" type="password" name="password" required [(ngModel)]="credentials.password" #password="ngModel">
-        <p class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
-          <span>
-            Password is required.
-          </span>
-        </p>
-      </div>
-    </form>
+    <div class="form-group">
+      <label class="small" for="username">Email</label>
+      <input class="form-control" type="email" name="username" required [(ngModel)]="credentials.username" #username="ngModel">
+      <p class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">
+        <span>
+          Your email is required.
+        </span>
+      </p>
+    </div>
+    <div class="form-group">
+      <label class="small" for="password">Password</label>
+      <input class="form-control" type="password" name="password" required [(ngModel)]="credentials.password" #password="ngModel">
+      <p class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+        <span>
+          Password is required.
+        </span>
+      </p>
+    </div>
     <span class="text-danger">{{ errorMessage }}</span>
     <span *ngIf="loading">Loading...</span>
   </div>
@@ -36,4 +34,5 @@
       Sign in
     </button>
   </div>
-</div>
+</form>
+
