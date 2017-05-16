@@ -43,29 +43,29 @@
       </div>
     </form>
   </div>
-  <div class="card-block card-header">
+  <div class="card-block">
     <form [formGroup]="filterForm" novalidate>
       <span class="row justify-content-between">
-        <small><b class="col">FILTER BY:</b></small>
-        <small><a (click)="clearFilters()" class="col text-right" style="cursor: pointer;">Clear filters</a></small>
+        <b class="col text-primary">FILTER BY:</b>
+        <span (click)="clearFilters()" class="col text-right text-info" style="cursor: pointer;"><small><b>Clear filters</b></small></span>
       </span>
-      <fieldset class="form-group">
-        <legend>License Type</legend>
+      <fieldset class="card-header">
+        <ul class="list-unstyled m-0 small">
         <ul class="list-unstyled" formArrayName="licenses">
           <li class="row" *ngFor="let control of licenseControls.controls; index as i;">
             <input [id]="'license-'+licenseData[i].name" type="checkbox" class="d-none" [value]="licenseData[i].value" [formControlName]="i">
             <label [for]="'license-'+licenseData[i].name" class="col-8">{{licenseData[i].name}}</label>
-            <aside class="col-4 text-right">(228)</aside>
+            <aside class="col-4 text-right text-info">(228)</aside>
           </li>
         </ul>
       </fieldset>
-      <fieldset class="form-group">
-        <legend>Status</legend>
-        <ul class="list-unstyled" formArrayName="status">
-          <li class="row" *ngFor="let control of statusControls.controls; index as i;">
+      <fieldset class="card-header">
+        <ul class="list-unstyled m-0 small" formArrayName="status">
+          <li class="my-1"><b>STATUS</b></li>
+          <li class="row align-items-center" *ngFor="let control of statusControls.controls; index as i;">
             <input [id]="'status-'+statusData[i].name" type="checkbox" class="d-none" [value]="statusData[i].value" [formControlName]="i">
             <label [for]="'status-'+statusData[i].name" class="col-8">{{statusData[i].name}}</label>
-            <aside class="col-4 text-right">(228)</aside>
+            <aside class="col-4 text-right text-info">(228)</aside>
           </li>
         </ul>
       </fieldset>

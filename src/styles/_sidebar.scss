@@ -11,15 +11,17 @@
     top: $navbar-collapsed-height;
   }
 
-  fieldset {
+  .card-block {
     font-size: $font-size-sm;
-
-    label {
+    
+    ul label {
       cursor: pointer;
       font-weight: 600;
       text-transform: none;
-      color: $gray-dark;
+      color: $gray;
       position: relative;
+      font-size: $font-size-base * 0.75;
+      margin-bottom: 0.2rem;
     }
 
     input:checked + label:before {
