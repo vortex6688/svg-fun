@@ -224,29 +224,72 @@ describe('ModelService', () => {
     });
   });
 
-  /*
-   * getPages()
-   */
-  it('should get all remaining pages', () => {
-    const expected = [];
-    const totalPages = 5;
-    const startingPage = 2;
-    let page = startingPage;
-    mockBackend.connections.subscribe((connection) => {
-      const item = { ...successBodyPaginated, results: [page] };
-      expected.push(page);
-      if (++page === totalPages) {
-        item.next = null;
-      }
-      connection.mockRespond(generateResponse(item));
+  describe('paging', () => {
+    /*
+    * getAllPages()
+    */
+    it('should not call getPages if there is no next page', () => {
+      const expected = [1, 2, 3, 4];
+      mockBackend.connections.subscribe((connection) => {
+        const item = {
+          ...successBody,
+          next: null,
+          results: expected };
+        connection.mockRespond(generateResponse(item));
+      });
+      spyOn(modelService, 'getPages').and.callThrough();
+
+      modelService.getAllPages(null)
+        .subscribe((result: any) => {
+          expect(modelService.getPages).not.toHaveBeenCalled();
+          expect(result).toEqual(expected);
+        });
     });
 
-    spyOn(modelService, 'getPages').and.callThrough();
-    modelService.getPages('page')
-      .toArray()
-      .subscribe((result) => {
-        expect(result).toEqual(expected);
-        expect(modelService.getPages).toHaveBeenCalledTimes(totalPages - startingPage);
+    it('should go through all available pages', () => {
+      const expected = [];
+      const totalPages = 4;
+      let page = 0;
+      mockBackend.connections.subscribe((connection) => {
+        const item = { ...successBodyPaginated, results: [page] };
+        expected.push(page);
+        if (++page === totalPages) {
+          item.next = null;
+        }
+        connection.mockRespond(generateResponse(item));
       });
+      spyOn(modelService, 'getPages').and.callThrough();
+
+      modelService.getAllPages(null)
+        .subscribe((result) => {
+          expect(result).toEqual(expected);
+          expect(modelService.getPages).toHaveBeenCalledTimes((totalPages - 1));
+        });
+    });
+    /*
+    * getPages()
+    */
+    it('should get all remaining pages', () => {
+      const expected = [];
+      const totalPages = 5;
+      const startingPage = 2;
+      let page = startingPage;
+      mockBackend.connections.subscribe((connection) => {
+        const item = { ...successBodyPaginated, results: [page] };
+        expected.push(page);
+        if (++page === totalPages) {
+          item.next = null;
+        }
+        connection.mockRespond(generateResponse(item));
+      });
+
+      spyOn(modelService, 'getPages').and.callThrough();
+      modelService.getPages('page')
+        .toArray()
+        .subscribe((result) => {
+          expect(result).toEqual(expected);
+          expect(modelService.getPages).toHaveBeenCalledTimes(totalPages - startingPage);
+        });
+    });
   });
 });

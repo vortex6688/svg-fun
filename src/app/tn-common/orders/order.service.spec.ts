@@ -14,22 +14,6 @@ describe('OrderService', () => {
   let orderService: OrderService;
   let apiClient: TnApiHttpService;
 
-  const successBody = {
-    next: 'watever',
-    results: [1, 2, 3],
-  };
-  const mockResponse = new Response(new ResponseOptions({
-    body: JSON.stringify(successBody),
-    status: 200,
-    statusText: 'Success'
-  }));
-
-  const generateResponse = (body) => new Response(new ResponseOptions({
-    body: JSON.stringify(body),
-    status: 200,
-    statusText: 'Success',
-  }));
-
   beforeEach(() => {
     mockBackend = new MockBackend();
     const options = new BaseRequestOptions();
@@ -39,46 +23,5 @@ describe('OrderService', () => {
 
   it('should create', () => {
     expect(orderService).toBeTruthy();
-  });
-
-  describe('paging', () => {
-    it('should not call getPages if there is no next page', () => {
-      const expected = [1, 2, 3, 4];
-      mockBackend.connections.subscribe((connection) => {
-        const item = {
-          ...successBody,
-          next: null,
-          results: expected };
-        connection.mockRespond(generateResponse(item));
-      });
-      spyOn(orderService, 'getPages').and.callThrough();
-
-      orderService.getAllPages(null)
-        .subscribe((result: any) => {
-          expect(orderService.getPages).not.toHaveBeenCalled();
-          expect(result).toEqual(expected);
-        });
-    });
-
-    it('should go through all available pages', () => {
-      const expected = [];
-      const totalPages = 4;
-      let page = 0;
-      mockBackend.connections.subscribe((connection) => {
-        const item = { ...successBody, results: [page] };
-        expected.push(page);
-        if (++page === totalPages) {
-          item.next = null;
-        }
-        connection.mockRespond(generateResponse(item));
-      });
-      spyOn(orderService, 'getPages').and.callThrough();
-
-      orderService.getAllPages(null)
-        .subscribe((result) => {
-          expect(result).toEqual(expected);
-          expect(orderService.getPages).toHaveBeenCalledTimes((totalPages - 1));
-        });
-    });
   });
 });
