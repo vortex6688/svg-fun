@@ -2,10 +2,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Store } from '@ngrx/store';
 
 import { Order, OrderActions } from '../../tn-common/orders';
+import { License, LicenseService } from '../../tn-common/licenses';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule } from '../store';
 
@@ -48,6 +50,32 @@ const OrderMock: Order = {
   coupon: null
 };
 
+const licenseMock: License = {
+  id: 123,
+  order: 1,
+  price: '22.0000',
+  price_paid: '22.0000',
+  qty: 2,
+  start: null,
+  end: null,
+  style: 286,
+  years: null,
+  active: true,
+  license_type: 'app'
+};
+
+class MockLicenseService {
+  public find(query: object): Observable<License[]> {
+    return Observable.of([licenseMock]);
+  }
+  public save(license: License): Observable<License> {
+    return Observable.of(license);
+  }
+  public delete(license: License): Observable<License> {
+    return Observable.of(license);
+  }
+}
+
 describe('AdminOrdersListComponent', () => {
   let component: AdminOrdersListComponent;
   let fixture: ComponentFixture<AdminOrdersListComponent>;
@@ -74,6 +102,7 @@ describe('AdminOrdersListComponent', () => {
       providers: [
         { provide: Store, useClass: MockStore },
         { provide: OrderActions, useClass: MockOrderActions },
+        { provide: LicenseService, useClass: MockLicenseService },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     })
