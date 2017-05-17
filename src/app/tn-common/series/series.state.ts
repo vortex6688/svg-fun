@@ -15,7 +15,7 @@ export interface SeriesState {
   selectedSeriesId: number | null;
   search: {
     ids: number[],
-    loading: boolean,
+    active: boolean,
     query: SeriesSearch,
   };
 }
@@ -26,7 +26,7 @@ export const initialSeriesState: SeriesState = {
   selectedSeriesId: null,
   search: {
     ids: [],
-    loading: false,
+    active: false,
     query: {
       id: '',
       name: '',

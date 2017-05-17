@@ -11,10 +11,11 @@ export class SeriesActions {
   public static GET_SERIES: string = '[Series] GET_SERIES';
   public static SEARCH_QUERY: string = '[Series] SEARCH_QUERY';
   public static SEARCH_COMPLETE: string = '[Series] SEARCH_COMPLETE';
+  public static CREATE_SERIES: string = '[Series] CREATE_SERIES';
 
   public addSeries = ActionCreatorFactory.create(SeriesActions.ADD_SERIES);
+  public createSeries = ActionCreatorFactory.create(SeriesActions.CREATE_SERIES);
   public getAllSeries = ActionCreatorFactory.create(SeriesActions.GET_ALL_SERIES);
   public getSeries = ActionCreatorFactory.create(SeriesActions.GET_SERIES);
   public searchQuery = ActionCreatorFactory.create(SeriesActions.SEARCH_QUERY);
-  public searchComplete = ActionCreatorFactory.create(SeriesActions.SEARCH_COMPLETE);
 }

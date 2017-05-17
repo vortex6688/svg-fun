@@ -7,7 +7,6 @@ import {
   getIds,
   getFoundIds,
   getSelectedId,
-  getLoading,
   getAllFound,
   getSelected,
   getAll,
@@ -30,17 +29,35 @@ const SeriesMock: Series = {
   description: 'Lorem ipsum',
   description_link: ['https://store.typenetwork.com']
 };
+const addItems: Series[] = [
+  { ...SeriesMock, id: 11, name: 'Lorem Ipsum' },
+  { ...SeriesMock, id: 1, name: 'Test Name' },
+  { ...SeriesMock, id: 2, name: 'Second Name' },
+  { ...SeriesMock, id: 23456, name: 'TN Lorem' },
+];
+const addedData = {
+  ids: addItems.map((item) => item.id),
+  entities: addItems.reduce((result, item) => ({ ... result, [item.id]: item }), {}),
+};
 const searchItems: Series[] = [
   { ...SeriesMock, id: 11 },
-  { ... SeriesMock, id: 23456 },
+  { ...SeriesMock, id: 23456 },
 ];
 const searchState: SeriesState = {
-  ids: searchItems.map((item) => item.id),
-  entities: searchItems.reduce((result, item) => ({ ...result, [item.id]: item }), {}),
+  ...addedData,
   selectedSeriesId: null,
   search: {
     ids: searchItems.map((item) => item.id),
-    loading: false,
+    active: false,
+    query: initialSeriesState.search.query,
+  }
+};
+const nonEmptyState: SeriesState = {
+  ...addedData,
+  selectedSeriesId: null,
+  search: {
+    ids: [],
+    active: false,
     query: initialSeriesState.search.query,
   }
 };
@@ -57,9 +74,9 @@ describe('SeriesReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should ADD_SERIES add a new series', () => {
+  it('should CREATE_SERIES add a new series', () => {
     const state = mockedState();
-    const actual = SeriesReducer(state, seriesActions.addSeries(SeriesMock));
+    const actual = SeriesReducer(state, seriesActions.createSeries(SeriesMock));
     const expected = {
       ids: [...state.ids, ...[SeriesMock.id]],
       entities: Object.assign({}, state.entities, { [SeriesMock.id]: SeriesMock }),
@@ -67,6 +84,13 @@ describe('SeriesReducer', () => {
       search: state.search,
     };
     expect(actual).toEqual(expected);
+  });
+
+  it('should ADD_SERIES add a new series', () => {
+    const state = mockedState();
+    const actual = SeriesReducer(state, seriesActions.addSeries(addItems));
+    const expected: SeriesState = nonEmptyState;
+    expect(actual).toEqual(expected, 'Didn\'t add new orders');
   });
 
   it('should GET_ALL_SERIES when there is no Series on the state', () => {
@@ -96,31 +120,22 @@ describe('SeriesReducer', () => {
       ...initialSeriesState,
       search: {
         ids: [],
-        loading: true,
+        active: true,
         query,
       },
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
   });
 
-  it('should add search results on SEARCH_COMPLETE', () => {
-    const state = mockedState();
-    state.search.loading = true;
-    const actual = SeriesReducer(state, seriesActions.searchComplete(searchItems));
-    const expected: SeriesState = searchState;
-    expect(actual).toEqual(expected, 'Didn\'t add search items');
-  });
-
-  describe('when an Series already exists in the state', () => {
+  describe('when a Series already exists in the state', () => {
     const state = mockedState();
     let addedState = initialSeriesState;
 
     beforeEach(() => {
-      addedState = SeriesReducer(state, seriesActions.addSeries(SeriesMock));
-
+      addedState = SeriesReducer(state, seriesActions.createSeries(SeriesMock));
     });
 
-    it('should GET_ALL_SERIES when there already exists an Series on the state', () => {
+    it('should GET_ALL_SERIES when there already exists a Series on the state', () => {
       const actual = SeriesReducer(addedState, seriesActions.getAllSeries());
       const expected = {
         ids: [...state.ids, ...[SeriesMock.id]],
@@ -142,12 +157,12 @@ describe('SeriesReducer', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('getEntities should return all the entities of an SeriesState', () => {
+    it('getEntities should return all the entities of a SeriesState', () => {
       const entities = getEntities(addedState);
       expect(entities).toEqual(addedState.entities);
     });
 
-    it('getIds should return all the ids of an SeriesState', () => {
+    it('getIds should return all the ids of a SeriesState', () => {
       const ids = getIds(addedState);
       expect(ids).toEqual(addedState.ids);
     });
@@ -169,24 +184,9 @@ describe('SeriesReducer', () => {
       expect(selectedSeries).toEqual(selected);
     });
 
-    it('getSeriesById should return an especific Series with the id provided', () => {
+    it('getSeriesById should return an specific Series with the id provided', () => {
       const selectedSeries = getSeriesById(addedState, SeriesMock.id);
       expect(selectedSeries).toEqual(SeriesMock);
-    });
-
-    it('getLoading should return loading flag', () => {
-      const noSearchLoading = getLoading(addedState);
-      expect(noSearchLoading).toEqual(true, 'Loading flag should be false');
-
-      const searchLoading = getLoading({
-        ...addedState,
-        search: {
-          ids: [],
-          loading: true,
-          query: initialSeriesState.search.query,
-        }
-      });
-      expect(noSearchLoading).toEqual(true, 'Loading flag should be true');
     });
 
     it('getFoundIds should return only ids contained in search', () => {

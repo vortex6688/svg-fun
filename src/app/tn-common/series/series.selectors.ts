@@ -31,13 +31,6 @@ export const getFoundIds = (state: SeriesState) => state.search.ids;
 export const getSelectedId = (state: SeriesState) => state.selectedSeriesId;
 
 /**
- * Return if the search is loading.
- *
- * @param {state} SeriesState
- */
-export const getLoading = (state: SeriesState) => state.search.loading;
-
-/**
  * Return the specific series selected.
  *
  * @type {Reselect.Selector}

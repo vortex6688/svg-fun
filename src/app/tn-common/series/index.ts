@@ -9,7 +9,6 @@ export {
   getIds,
   getFoundIds,
   getSelectedId,
-  getLoading,
   getSelected,
   getAll,
   getAllFound,

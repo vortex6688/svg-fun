@@ -60,7 +60,7 @@ describe('SeriesEffects', () => {
     seriesService = TestBed.get(SeriesService);
   });
 
-  describe('search$', () => {
+  describe('loadData$', () => {
     it('should return a search complete action with results', () => {
       const expectedResult = seriesActions.addSeries(mockSeries);
       spyOn(seriesService, 'find').and.callThrough();

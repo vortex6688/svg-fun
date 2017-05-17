@@ -23,7 +23,7 @@ export const SeriesReducer: ActionReducer<SeriesState> = (state = initialSeriesS
       };
     }
 
-    case SeriesActions.ADD_SERIES: {
+    case SeriesActions.CREATE_SERIES: {
       const series: Series = action.payload;
 
       return {
@@ -39,33 +39,25 @@ export const SeriesReducer: ActionReducer<SeriesState> = (state = initialSeriesS
     case SeriesActions.SEARCH_QUERY: {
       const search = {
         ids: [],
-        loading: true,
+        active: true,
         query: action.payload,
       };
 
       return { ...state, search };
     }
 
-    case SeriesActions.SEARCH_COMPLETE: {
+    case SeriesActions.ADD_SERIES: {
       const series: Series[] = action.payload;
-      const { newSeriesEntities, newIds } = series.reduce((result, singleSeries) => {
-        if (state.entities[singleSeries.id]) {
-          return result;
-        }
-        result.newSeriesEntities[singleSeries.id] = singleSeries;
-        result.newIds.push(singleSeries.id);
+      const { seriesEntities, seriesIds } = series.reduce((result, singleSeries) => {
+        result.seriesEntities[singleSeries.id] = singleSeries;
+        result.seriesIds.push(singleSeries.id);
         return result;
-      }, { newSeriesEntities: {}, newIds: [] });
+      }, { seriesEntities: {}, seriesIds: [] });
 
       return {
-        ids: [ ...state.ids, ...newIds ],
-        entities: Object.assign({}, state.entities, newSeriesEntities),
-        selectedSeriesId: state.selectedSeriesId,
-        search: {
-          ids: newIds,
-          loading: false,
-          query: state.search.query,
-        },
+        ...state,
+        ids: seriesIds,
+        entities: seriesEntities,
       };
     }
 
