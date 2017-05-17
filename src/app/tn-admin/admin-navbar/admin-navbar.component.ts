@@ -44,7 +44,7 @@ export class AdminNavbarComponent implements OnInit {
    }
 
   public login() {
-    this.modalService.open(LoginComponent);
+    this.modalService.open(LoginComponent, { windowClass: 'modal-vert-centered' });
   }
 
   public logout() {

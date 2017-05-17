@@ -1,18 +1,18 @@
 @import "~bootstrap/scss/modal";
 
 .modal-content {
-    padding: 1rem;
-    color: $gray-lighter;
+  padding: 1rem;
+  color: $gray-lighter;
 
   // override headers font-weight to match mockups examples
   .modal-header h1, h2, h3, h4, h5, h6 {
     font-weight: $lead-font-weight;
+    line-height: 1.2;
   }
 
   .modal-body {
     padding: 1rem 0;
     min-height: 8rem;
-    border-bottom: 1px solid $gray-lightest;
     font-size: $font-size-sm;
     color: $gray-dark;
   }
@@ -20,6 +20,7 @@
   .modal-footer {
     padding: 1.5rem 0 0.5rem 0;
     justify-content: center;
+    border-top: 1px solid $gray-lightest;
   }
   
   // override close icon style rules inside a modal template
@@ -30,6 +31,16 @@
     top: -0.1rem;
     right: 0.5rem;
   }
+
+  label {
+    margin: 0;
+  }
+}
+
+// tn login modal should be vertically centered, this will not affect modal components
+.modal-vert-centered {
+  display: flex !important;
+  align-items: center;
 }
 
 @include media-breakpoint-up(md) {

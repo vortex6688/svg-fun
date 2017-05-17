@@ -16,6 +16,10 @@ export class ComponentsModalComponent {
     this.modalService.open(content);
   }
 
+  public openVertCentered(vCentered) {
+    this.modalService.open(vCentered, { windowClass: 'modal-vert-centered' });
+  }
+
   public openModalLarge(modalLarge) {
     this.modalService.open(modalLarge, { windowClass: 'modal-lg modal-dialog' });
   }
