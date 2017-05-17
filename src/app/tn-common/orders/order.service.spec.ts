@@ -42,7 +42,7 @@ describe('OrderService', () => {
   });
 
   describe('paging', () => {
-    it('should not call getPage if there is no next page', () => {
+    it('should not call getPages if there is no next page', () => {
       const expected = [1, 2, 3, 4];
       mockBackend.connections.subscribe((connection) => {
         const item = {
@@ -51,11 +51,11 @@ describe('OrderService', () => {
           results: expected };
         connection.mockRespond(generateResponse(item));
       });
-      spyOn(orderService, 'getPage').and.callThrough();
+      spyOn(orderService, 'getPages').and.callThrough();
 
       orderService.getAllPages(null)
         .subscribe((result: any) => {
-          expect(orderService.getPage).not.toHaveBeenCalled();
+          expect(orderService.getPages).not.toHaveBeenCalled();
           expect(result).toEqual(expected);
         });
     });
@@ -72,12 +72,12 @@ describe('OrderService', () => {
         }
         connection.mockRespond(generateResponse(item));
       });
-      spyOn(orderService, 'getPage').and.callThrough();
+      spyOn(orderService, 'getPages').and.callThrough();
 
       orderService.getAllPages(null)
         .subscribe((result) => {
           expect(result).toEqual(expected);
-          expect(orderService.getPage).toHaveBeenCalledTimes((totalPages - 1));
+          expect(orderService.getPages).toHaveBeenCalledTimes((totalPages - 1));
         });
     });
   });

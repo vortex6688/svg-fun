@@ -80,14 +80,14 @@ export class ModelService<T extends IModel> {
   /**
    * Recursively go through all pages until everything is fetched
    *
-   * @param {string} page
+   * @param {string} page - URL of the page to fetch
    * @param {T[]} result
-   * @returns {Observable<T>}
+   * @returns {Observable<T>} - returns observable that emits each item of every page
    */
-  public getPage(page: string, result: T[] = []): Observable<T> {
+  public getPages(page: string, result: T[] = []): Observable<T> {
     return this.apiHttp.get(page).switchMap(({ results, next }) => {
       result = result.concat(results);
-      return next ? this.getPage(next, result) : Observable.from(result);
+      return next ? this.getPages(next, result) : Observable.from(result);
     });
   }
 }

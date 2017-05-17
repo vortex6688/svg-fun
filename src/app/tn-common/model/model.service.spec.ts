@@ -225,7 +225,7 @@ describe('ModelService', () => {
   });
 
   /*
-   * getPage()
+   * getPages()
    */
   it('should get all remaining pages', () => {
     const expected = [];
@@ -241,12 +241,12 @@ describe('ModelService', () => {
       connection.mockRespond(generateResponse(item));
     });
 
-    spyOn(modelService, 'getPage').and.callThrough();
-    modelService.getPage('page')
+    spyOn(modelService, 'getPages').and.callThrough();
+    modelService.getPages('page')
       .toArray()
       .subscribe((result) => {
         expect(result).toEqual(expected);
-        expect(modelService.getPage).toHaveBeenCalledTimes(totalPages - startingPage);
+        expect(modelService.getPages).toHaveBeenCalledTimes(totalPages - startingPage);
       });
   });
 });

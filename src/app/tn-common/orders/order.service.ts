@@ -20,12 +20,12 @@ export class OrderService extends ModelService<Order> {
   /**
    * Go through all the pages and get all orders
    *
-   * @param {object} query
-   * @returns {Observable<Order[]>}
+   * @param {object} query - query parameters to be appended
+   * @returns {Observable<Order[]>} - returns an observable with all items from all pages as a single event
    */
   public getAllPages(query?: object): Observable<Order[]> {
     return this.find(query)
-      .switchMap(({ results, next }: any) => (next ? this.getPage(next, results) : Observable.from(results)))
+      .switchMap(({ results, next }: any) => (next ? this.getPages(next, results) : Observable.from(results)))
       .toArray();
   }
 }
