@@ -20,10 +20,12 @@ export class LicenseEffects {
 
   @Effect()
   public loadData$: Observable<any> = defer(() => this.licenseService.find({})
-    .map((orders) => this.licenseActions.addLicenses(orders)));
+    .map((licenses) => this.licenseActions.addLicenses(licenses))
+    .catch(() => of())
+  );
 
   @Effect()
-  public addLicense$: Observable<Action> = this.actions$
+  public createLicense$: Observable<Action> = this.actions$
     .ofType(LicenseActions.CREATE_LICENSE)
     .map((action) => action.payload as License)
     .switchMap((license) =>

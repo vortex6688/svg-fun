@@ -31,6 +31,7 @@ describe('LicenseEffects', () => {
   let runner: EffectsRunner;
   let licenseEffects: LicenseEffects;
   let licenseActions: LicenseActions;
+  let licenseService: MockLicenseService;
 
   class MockLicenseService {
     public find(query: object): Observable<License[]> {
@@ -59,38 +60,78 @@ describe('LicenseEffects', () => {
 
   beforeEach(() => {
     runner = TestBed.get(EffectsRunner);
+    licenseService = TestBed.get(LicenseService);
     licenseActions = TestBed.get(LicenseActions);
     licenseEffects = TestBed.get(LicenseEffects);
   });
 
-  it('should return a search complete action with results', () => {
-    const expectedResult = licenseActions.addLicenses(mockLicenses);
-    runner.queue(licenseActions.searchQuery({}));
+  describe('loadData$', () => {
+    it('should call licenserService.find on inital subscription', () => {
+      const expectedResult = licenseActions.addLicenses(mockLicenses);
+      runner.queue(licenseActions.searchQuery({}));
 
-    let result = null;
-    licenseEffects.loadData$.subscribe((data) => result = data);
-    expect(result).toEqual(expectedResult);
-  });
+      let result = null;
+      licenseEffects.loadData$.subscribe((data) => result = data);
+      expect(result).toEqual(expectedResult);
+    });
 
-  it('should return a collection.AddLicenseSuccess, with the license, on success add', () => {
-    runner.queue(licenseActions.createLicense(licenseMock));
-    licenseEffects.addLicense$.subscribe((result) => {
-      expect(result).toEqual(licenseActions.createLicenseSuccess(licenseMock));
+    it('should catch licenseService error', () => {
+      spyOn(licenseService, 'find').and.returnValue(Observable.throw('error'));
+      runner.queue(licenseActions.searchQuery({}));
+
+      const subscription = licenseEffects.loadData$.subscribe();
+      expect(subscription).toBeTruthy();
     });
   });
 
-  it('should return a collection.UpdateLicenseSuccess, with the license, on success update', () => {
-    runner.queue(licenseActions.updateLicense(licenseMock));
-    licenseEffects.updateLicense$.subscribe((result) => {
-      expect(result).toEqual(licenseActions.updateLicenseSuccess(licenseMock));
+  describe('createLicense$', () => {
+    it('should return a createLicenseSuccess, with the license, on success add', () => {
+      runner.queue(licenseActions.createLicense(licenseMock));
+      licenseEffects.createLicense$.subscribe((result) => {
+        expect(result).toEqual(licenseActions.createLicenseSuccess(licenseMock));
+      });
+    });
+
+    it('should return a createLicenseFail action, on service error', () => {
+      spyOn(licenseService, 'save').and.returnValue(Observable.throw('error'));
+      runner.queue(licenseActions.createLicense(licenseMock));
+      licenseEffects.createLicense$.subscribe((result) => {
+        expect(result).toEqual(licenseActions.createLicenseFail(licenseMock));
+      });
     });
   });
 
-  it('should return a collection.RemoveLicenseSuccess, with the license, on success remove', () => {
-    runner.queue(licenseActions.removeLicense(licenseMock));
-    licenseEffects.removeLicense$.subscribe((result) => {
-      expect(result).toEqual(licenseActions.removeLicenseSuccess(licenseMock));
+  describe('updateLicense$', () => {
+    it('should return a updateLicenseSuccess action, with the license, on success update', () => {
+      runner.queue(licenseActions.updateLicense(licenseMock));
+      licenseEffects.updateLicense$.subscribe((result) => {
+        expect(result).toEqual(licenseActions.updateLicenseSuccess(licenseMock));
+      });
+    });
+
+    it('should return a updateLicenseFail action, on service error', () => {
+      spyOn(licenseService, 'save').and.returnValue(Observable.throw('error'));
+      runner.queue(licenseActions.updateLicense(licenseMock));
+      licenseEffects.updateLicense$.subscribe((result) => {
+        expect(result).toEqual(licenseActions.updateLicenseFail(licenseMock));
+      });
     });
   });
 
+  describe('removeLicense$', () => {
+    it('should return a removeLicenseSuccess action, with the license, on success remove', () => {
+      runner.queue(licenseActions.removeLicense(licenseMock));
+      licenseEffects.removeLicense$.subscribe((result) => {
+        expect(result).toEqual(licenseActions.removeLicenseSuccess(licenseMock));
+      });
+    });
+
+    it('should return a removeLicenseFail, on service error', () => {
+      spyOn(licenseService, 'delete').and.returnValue(Observable.throw('error'));
+      runner.queue(licenseActions.removeLicense(licenseMock));
+      licenseEffects.removeLicense$.subscribe((result) => {
+        expect(result).toEqual(licenseActions.removeLicenseFail(licenseMock));
+      });
+    });
+  });
 });
