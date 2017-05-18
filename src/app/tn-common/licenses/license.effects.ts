@@ -20,7 +20,7 @@ export class LicenseEffects {
 
   @Effect()
   public loadData$: Observable<any> = defer(() => this.licenseService.find({})
-    .map((orders) => this.licenseActions.addLicenses(orders))
+    .map((licenses) => this.licenseActions.addLicenses(licenses))
     .catch(() => of())
   );
 
