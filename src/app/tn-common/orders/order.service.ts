@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { Order } from './order.model';
 import { ModelService } from '../model';
@@ -12,8 +13,7 @@ export class OrderService extends ModelService<Order> {
    *
    * @param {TnApiHttpService} apiHttp
    */
-  constructor(apiHttp: TnApiHttpService) {
-    super('/api/1/orders/', apiHttp);
+  constructor(private http: TnApiHttpService) {
+    super('/api/2/orders/', http);
   }
-
 }

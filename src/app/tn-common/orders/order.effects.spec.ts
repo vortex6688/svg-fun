@@ -58,7 +58,7 @@ describe('OrderEffects', () => {
   let orderService: MockOrderService;
 
   class MockOrderService {
-    public find(query: object): Observable<Order[]> {
+    public getAllPages(query: object): Observable<Order[]> {
       return Observable.of(mockOrders);
     }
   }
@@ -84,13 +84,13 @@ describe('OrderEffects', () => {
   });
 
   describe('loadData$', () => {
-    it('should call orderService.find on initial subscription', () => {
+    it('should call orderService.getAllPages on initial subscription', () => {
       const expectedResult = orderActions.addOrders(mockOrders);
-      spyOn(orderService, 'find').and.callThrough();
+      spyOn(orderService, 'getAllPages').and.callThrough();
 
       let result;
       orderEffects.loadData$.subscribe((data) => result = data);
-      expect(orderService.find).toHaveBeenCalled();
+      expect(orderService.getAllPages).toHaveBeenCalled();
       expect(result).toEqual(expectedResult);
     });
   });

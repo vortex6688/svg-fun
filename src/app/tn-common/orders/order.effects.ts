@@ -13,7 +13,7 @@ import { defer } from 'rxjs/observable/defer';
 @Injectable()
 export class OrderEffects {
   @Effect()
-  public loadData$: Observable<any> = defer(() => this.orderService.find({})
+  public loadData$: Observable<any> = defer(() => this.orderService.getAllPages()
     .map((orders) => this.orderActions.addOrders(orders))
     .catch(() => of())
   );

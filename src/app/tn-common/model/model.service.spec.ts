@@ -37,6 +37,10 @@ describe('ModelService', () => {
   const element: TestType = { id: 10, token: 'token', city: 'NY' };
   const successBody: TestType = element;
   const successBodyList: [TestType] = [successBody, successBody];
+  const successBodyPaginated = {
+    next: 'watever',
+    results: [1, 2, 3],
+  };
   const errorBody = {
     status: 'Bad request',
     message: 'User could not be created with received data.',
@@ -72,6 +76,12 @@ describe('ModelService', () => {
     body: JSON.stringify(errorBody),
     status: 401,
     statusText: 'Unauthorized'
+  }));
+
+  const generateResponse = (body) => new Response(new ResponseOptions({
+    body: JSON.stringify(body),
+    status: 200,
+    statusText: 'Success',
   }));
 
   beforeEach(() => {
@@ -214,4 +224,72 @@ describe('ModelService', () => {
     });
   });
 
+  describe('paging', () => {
+    /*
+    * getAllPages()
+    */
+    it('should not call getPages if there is no next page', () => {
+      const expected = [1, 2, 3, 4];
+      mockBackend.connections.subscribe((connection) => {
+        const item = {
+          ...successBody,
+          next: null,
+          results: expected };
+        connection.mockRespond(generateResponse(item));
+      });
+      spyOn(modelService, 'getPages').and.callThrough();
+
+      modelService.getAllPages(null)
+        .subscribe((result: any) => {
+          expect(modelService.getPages).not.toHaveBeenCalled();
+          expect(result).toEqual(expected);
+        });
+    });
+
+    it('should go through all available pages', () => {
+      const expected = [];
+      const totalPages = 4;
+      let page = 0;
+      mockBackend.connections.subscribe((connection) => {
+        const item = { ...successBodyPaginated, results: [page] };
+        expected.push(page);
+        if (++page === totalPages) {
+          item.next = null;
+        }
+        connection.mockRespond(generateResponse(item));
+      });
+      spyOn(modelService, 'getPages').and.callThrough();
+
+      modelService.getAllPages(null)
+        .subscribe((result) => {
+          expect(result).toEqual(expected);
+          expect(modelService.getPages).toHaveBeenCalledTimes((totalPages - 1));
+        });
+    });
+    /*
+    * getPages()
+    */
+    it('should get all remaining pages', () => {
+      const expected = [];
+      const totalPages = 5;
+      const startingPage = 2;
+      let page = startingPage;
+      mockBackend.connections.subscribe((connection) => {
+        const item = { ...successBodyPaginated, results: [page] };
+        expected.push(page);
+        if (++page === totalPages) {
+          item.next = null;
+        }
+        connection.mockRespond(generateResponse(item));
+      });
+
+      spyOn(modelService, 'getPages').and.callThrough();
+      modelService.getPages('page')
+        .toArray()
+        .subscribe((result) => {
+          expect(result).toEqual(expected);
+          expect(modelService.getPages).toHaveBeenCalledTimes(totalPages - startingPage);
+        });
+    });
+  });
 });

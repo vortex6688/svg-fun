@@ -77,4 +77,29 @@ export class ModelService<T extends IModel> {
     return this.apiHttp.delete(this.modelUrl + model.id);
   }
 
+  /**
+   * Go through all the pages and get all model data
+   *
+   * @param {object} query - query parameters to be appended
+   * @returns {Observable<T[]>} - returns an observable with all items from all pages as a single event
+   */
+  public getAllPages(query?: object): Observable<T[]> {
+    return this.find(query)
+      .switchMap(({ results, next }: any) => (next ? this.getPages(next, results) : Observable.from(results)))
+      .toArray();
+  }
+
+  /**
+   * Recursively go through all pages until everything is fetched
+   *
+   * @param {string} page - URL of the page to fetch
+   * @param {T[]} result
+   * @returns {Observable<T>} - returns observable that emits each item of every page
+   */
+  public getPages(page: string, result: T[] = []): Observable<T> {
+    return this.apiHttp.get(page).switchMap(({ results, next }) => {
+      result = result.concat(results);
+      return next ? this.getPages(next, result) : Observable.from(result);
+    });
+  }
 }
