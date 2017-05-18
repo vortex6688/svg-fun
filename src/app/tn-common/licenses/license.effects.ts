@@ -25,7 +25,7 @@ export class LicenseEffects {
   );
 
   @Effect()
-  public addLicense$: Observable<Action> = this.actions$
+  public createLicense$: Observable<Action> = this.actions$
     .ofType(LicenseActions.CREATE_LICENSE)
     .map((action) => action.payload as License)
     .switchMap((license) =>
