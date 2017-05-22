@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { Title } from '@angular/platform-browser';
-import { Order, OrderService, OrderActions, OrderSearch } from '../../tn-common/orders';
+import { Order, OrderActions, OrderSearch } from '../../tn-common/orders';
 import { LicenseActions, LicenseSearch } from '../../tn-common/licenses';
 import { getAllFoundOrders, getOrderSearchQuery, getAllFoundLicenses, getLicenseSearchQuery } from '../store/reducers';
 
