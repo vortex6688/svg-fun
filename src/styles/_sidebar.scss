@@ -24,12 +24,17 @@
       margin-bottom: 0.2rem;
     }
 
+    input:checked + label{
+      color: $blue;
+    }
+
     input:checked + label:before {
       position: absolute;
       content: "\00d7";
       font-size: $font-size-sm * 1.4;
       line-height: 1;
       margin-left: -$font-size-sm;
+      color: $blue;
     }
   }
 }

@@ -50,8 +50,8 @@
         <span (click)="clearFilters()" class="col text-right text-info" style="cursor: pointer;"><small><b>Clear filters</b></small></span>
       </span>
       <fieldset class="card-header">
-        <ul class="list-unstyled m-0 small">
-        <ul class="list-unstyled" formArrayName="licenses">
+        <ul class="list-unstyled m-0 small" formArrayName="licenses">
+          <li class="my-1"><b>LICENSES</b></li>
           <li class="row" *ngFor="let control of licenseControls.controls; index as i;">
             <input [id]="'license-'+licenseData[i].name" type="checkbox" class="d-none" [value]="licenseData[i].value" [formControlName]="i">
             <label [for]="'license-'+licenseData[i].name" class="col-8">{{licenseData[i].name}}</label>
