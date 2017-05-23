@@ -8,7 +8,7 @@ import { OrdersControlsComponent } from './orders-controls.component';
 describe('OrdersControlComponent', () => {
   let component: OrdersControlsComponent;
   let fixture: ComponentFixture<OrdersControlsComponent>;
-  const defaultQuery = initialOrderState.search.query;
+  const defaultQuery: OrderSearch = initialOrderState.search;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -61,15 +61,15 @@ describe('OrdersControlComponent', () => {
 
   it('should clear filters', () => {
     const values = {
-      status: [true, true, false, false, false],
-      licenses: [],
+      status: component.statusData.map(() => true),
+      licenses: component.licenseData.map((data) => data.value),
     };
     component.filterForm.setValue(values);
     expect(component.filterForm.value).toEqual(values);
     component.clearFilters();
     expect(component.filterForm.value).toEqual({
-      status: [null, null, null, null, null],
-      licenses: []
+      status: component.statusData.map(() => null),
+      licenses: component.statusData.map(() => null),
     });
   });
 
