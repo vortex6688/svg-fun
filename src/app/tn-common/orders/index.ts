@@ -1,4 +1,4 @@
-export { Order } from './order.model';
+export { Order, OrderFull } from './order.model';
 export { OrderService } from './order.service';
 export { OrderActions } from './order.actions';
 export { OrderReducer } from './order.reducer';
@@ -7,12 +7,10 @@ export { OrderEffects } from './order.effects';
 export {
   getEntities,
   getIds,
-  getFoundIds,
   getSelectedId,
   getSearchQuery,
   getSelected,
   getAll,
-  getAllFound,
   getPaymentType,
   getOrderById,
   getOrderByCustomerId,

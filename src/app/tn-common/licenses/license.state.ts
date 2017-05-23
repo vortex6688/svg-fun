@@ -18,11 +18,7 @@ export interface LicenseState {
   ids: number[];
   entities: { [id: number]: License };
   selectedLicenseId: number | null;
-  search: {
-    ids: number[],
-    active: boolean,
-    query: LicenseSearch,
-  };
+  search: LicenseSearch;
 }
 
 export const initialLicenseState: LicenseState = {
@@ -30,20 +26,16 @@ export const initialLicenseState: LicenseState = {
   entities: {},
   selectedLicenseId: null,
   search: {
-    ids: [],
+    id: '',
+    order: 0,
+    price: '',
+    price_paid: '',
+    qty: 0,
+    style: 0,
     active: false,
-    query: {
-      id: '',
-      order: 0,
-      price: '',
-      price_paid: '',
-      qty: 0,
-      style: 0,
-      active: false,
-      license_type: [],
-      years: 0,
-      start: null,
-      end: null,
-    },
-  }
+    license_type: [],
+    years: 0,
+    start: null,
+    end: null,
+  },
 };

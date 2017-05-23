@@ -67,21 +67,7 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
     }
 
     case LicenseActions.SEARCH_QUERY: {
-      const query = action.payload;
-      const ids = state.ids.filter((id) => {
-        const license = state.entities[id];
-        if (query.license_type.length && !query.licence_type.includes(license.license_type)) {
-          return false;
-        }
-        return true;
-      });
-      // If search didn't filter out any data consider it inactive
-      const active = state.ids.length !== ids.length;
-      const search = {
-        ids,
-        active,
-        query,
-      };
+      const search = action.payload;
 
       return { ...state, search };
     }
