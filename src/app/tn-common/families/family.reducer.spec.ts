@@ -237,10 +237,10 @@ describe('FamilyReducer', () => {
     const state = mockedState();
     const actual = FamilyReducer(state, familyActions.addFamilies(addItems));
     const expected: FamilyState = nonEmptyState;
-    expect(actual).toEqual(expected, 'Didn\'t add new familys');
+    expect(actual).toEqual(expected, 'Didn\'t add new families');
   });
 
-  describe('when an Family already exists in the state', () => {
+  describe('when a Family already exists in the state', () => {
     const state = mockedState();
     let addedState = initialFamilyState;
 
