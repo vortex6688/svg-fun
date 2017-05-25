@@ -31,6 +31,13 @@ export const getFoundIds = (state: LicenseState) => state.search.ids;
 export const getSelectedId = (state: LicenseState) => state.selectedLicenseId;
 
 /**
+ * Return order search query.
+ *
+ * @param state OrderState
+ */
+export const getSearchQuery = (state: LicenseState) => state.search.query;
+
+/**
  * Return the specific license selected.
  *
  * @type {Reselect.Selector}

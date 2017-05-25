@@ -8,7 +8,7 @@ export interface LicenseSearch {
   qty: number;
   style: number;
   active: boolean;
-  license_type: string;
+  license_type: string[];
   years: number;
   start: Date;
   end: Date;
@@ -40,7 +40,7 @@ export const initialLicenseState: LicenseState = {
       qty: 0,
       style: 0,
       active: false,
-      license_type: '',
+      license_type: [],
       years: 0,
       start: null,
       end: null,

@@ -33,7 +33,7 @@
       </td>
       <td class="col">
         <ul>
-          <li *ngFor='let licenseType of order.licenseTypes'>{{licenseType}}</li>
+          <li *ngFor='let license of order.licenses'>{{license | myLicenseType}}</li>
         </ul>
       </td>
       <td class="col">{{order.totalStyles}}</td>

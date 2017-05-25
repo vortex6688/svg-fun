@@ -15,7 +15,7 @@ import { AdminComponent } from './admin';
 import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
 import { LoginComponent } from './login';
-import { OrderRowComponent, OrderStatusPipe } from './admin-orders-list/orders-table/order-row';
+import { OrderRowComponent, OrderStatusPipe, LicenseTypePipe } from './admin-orders-list/orders-table/order-row';
 import { OrdersTableComponent } from './admin-orders-list/orders-table';
 import { OrdersControlsComponent } from './admin-orders-list/orders-controls';
 
@@ -41,6 +41,7 @@ export const routes: Routes = [
     OrderRowComponent,
     OrdersTableComponent,
     OrderStatusPipe,
+    LicenseTypePipe,
     OrdersControlsComponent
   ],
   imports: [
