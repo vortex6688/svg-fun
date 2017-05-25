@@ -39,7 +39,6 @@ export const getSelectedOrderId = createSelector(getOrderState, order.getSelecte
 export const getSelectedOrder = createSelector(getOrderState, order.getSelected);
 export const getOrderSearchQuery = createSelector(getOrderState, order.getSearchQuery);
 export const getAllOrders = createSelector(getOrderState, order.getAll);
-export const getAllFoundOrders = createSelector(getOrderState, order.getAllFound);
 export const getOrderPaymentType = createSelector(getOrderState, order.getPaymentType);
 export const getOrderById = (orderId) => {
   return (state) => order.getOrderById(state.order, orderId);
@@ -62,7 +61,6 @@ export const getSelectedLicenseId = createSelector(getLicenseState, license.getS
 export const getSelectedLicense = createSelector(getLicenseState, license.getSelected);
 export const getLicenseSearchQuery = createSelector(getOrderState, order.getSearchQuery);
 export const getAllLicenses = createSelector(getLicenseState, license.getAll);
-export const getAllFoundLicenses = createSelector(getLicenseState, license.getAllFound);
 export const getFreeTrialLicenses = createSelector(getLicenseState, license.getFreeTrialLicences);
 export const getPerpetualLicenses = createSelector(getLicenseState, license.getPerpetualLicences);
 export const getNotPerpetualLicenses = createSelector(getLicenseState, license.getNotPerpetualLicences);

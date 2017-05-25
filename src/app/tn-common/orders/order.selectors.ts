@@ -18,13 +18,6 @@ export const getEntities = (state: OrderState) => state.entities;
 export const getIds = (state: OrderState) => state.ids;
 
 /**
- * Returns all the ids of the searched orders.
- *
- * @param {state} OrderState
- */
-export const getFoundIds = (state: OrderState) => state.search.active ? state.search.ids : state.ids;
-
-/**
  * Return the id of the selected order.
  *
  * @param {state} OrderState
@@ -54,16 +47,7 @@ export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
  *
  * @param state OrderState
  */
-export const getSearchQuery = (state: OrderState) => state.search.query;
-
-/**
- * Return all the orders resulted from search.
- *
- * @param state OrderState
- */
-export const getAllFound = createSelector(getEntities, getFoundIds, (entities, ids) => {
-  return ids.map((id) => entities[id]);
-});
+export const getSearchQuery = (state: OrderState) => state.search;
 
 /**
  * Returns the payment type of an specific order.

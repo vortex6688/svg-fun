@@ -48,27 +48,7 @@ const addedData = {
 const nonEmptyState: LicenseState = {
   ...addedData,
   selectedLicenseId: null,
-  search: {
-    ids: [],
-    active: false,
-    query: initialLicenseState.search.query,
-  }
-};
-
-const searchItems: License[] = [
-  { ...licenseMock, id: 11 },
-  { ... licenseMock, id: 23456 },
-];
-
-const searchState: LicenseState = {
-  ids: searchItems.map((item) => item.id),
-  entities: searchItems.reduce((result, item) => ({ ...result, [item.id]: item }), {}),
-  selectedLicenseId: null,
-  search: {
-    ids: searchItems.map((item) => item.id),
-    active: false,
-    query: initialLicenseState.search.query,
-  }
+  search: initialLicenseState.search,
 };
 
 describe('LicenseReducer', () => {
@@ -115,7 +95,7 @@ describe('LicenseReducer', () => {
 
   it('should update search object on SEARCH_QUERY', () => {
     const state = mockedState();
-    const query = {
+    const search = {
       id: '2',
       order: 1,
       price: '100.00',
@@ -128,14 +108,10 @@ describe('LicenseReducer', () => {
       start: new Date(),
       end: new Date(Date.now() + 50000),
     };
-    const actual = LicenseReducer(state, licenseActions.searchQuery(query));
+    const actual = LicenseReducer(state, licenseActions.searchQuery(search));
     const expected: LicenseState = {
       ...initialLicenseState,
-      search: {
-        ids: [],
-        active: false,
-        query,
-      },
+      search,
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
   });

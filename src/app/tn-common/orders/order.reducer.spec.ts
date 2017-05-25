@@ -10,9 +10,7 @@ import { OrderState, OrderSearch, initialOrderState } from './order.state';
 import {
   getEntities,
   getIds,
-  getFoundIds,
   getSelectedId,
-  getAllFound,
   getSelected,
   getAll,
   getPaymentType,
@@ -73,11 +71,7 @@ const addedData = {
 const nonEmptyState: OrderState = {
   ...addedData,
   selectedOrderId: null,
-  search: {
-    ids: [],
-    active: false,
-    query: initialOrderState.search.query,
-  }
+  search: initialOrderState.search,
 };
 
 describe('OrderReducer', () => {
@@ -118,7 +112,7 @@ describe('OrderReducer', () => {
 
   it('should update search object on SEARCH_QUERY', () => {
     const state = mockedState();
-    const query: OrderSearch = {
+    const search: OrderSearch = {
       id: '2',
       from: new Date(orderDate - 4000),
       to: new Date(orderDate + 6000),
@@ -129,61 +123,12 @@ describe('OrderReducer', () => {
       status: [23, 1],
       licenses: [1, 11],
     };
-    const actual = OrderReducer(state, orderActions.searchQuery(query));
+    const actual = OrderReducer(state, orderActions.searchQuery(search));
     const expected: OrderState = {
       ...initialOrderState,
-      search: {
-        ids: [],
-        active: false,
-        query,
-      },
+      search,
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
-
-    const fullQuery: OrderSearch = {
-      id: '',
-      from: new Date(orderDate - 4000),
-      to: new Date(orderDate + 3000),
-      customer: '',
-      project: '',
-      font: '',
-      foundry: '',
-      status: [1, 2],
-      licenses: [],
-    };
-    const searchExpected: OrderState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => {
-          const order = nonEmptyState.entities[id];
-          return (
-            fullQuery.status.indexOf(order.status) !== -1 &&
-            new Date(order.created) >= fullQuery.from &&
-            new Date(order.created) <= fullQuery.to
-          );
-        }),
-        active: true,
-        query: fullQuery,
-      }
-    };
-    const fullSearch = OrderReducer(nonEmptyState, orderActions.searchQuery(fullQuery));
-    expect(fullSearch).toEqual(searchExpected, 'Should have an active search');
-
-    const targetId = 11;
-    const idQuery: OrderSearch = {
-      ...fullQuery,
-      id: targetId,
-    };
-    const idExpected: OrderState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => id === targetId),
-        active: true,
-        query: idQuery,
-      }
-    };
-    const idSearch = OrderReducer(nonEmptyState, orderActions.searchQuery(idQuery));
-    expect(idSearch).toEqual(idExpected, 'Should have results by id');
   });
 
   it('should add orders on ADD_ORDERS', () => {
@@ -287,41 +232,6 @@ describe('OrderReducer', () => {
     it('getOrderByStatus should return all the existent Orders with the status provided', () => {
       const selectedOrder = getOrderByStatus(addedState, [0]);
       expect(selectedOrder).toEqual([]);
-    });
-
-    it('getFoundIds should return search ids or all ids if search is inactive', () => {
-      const foundIds = getFoundIds(addedState);
-      const allIds = getIds(addedState);
-      expect(foundIds).toEqual(allIds, 'Found ids should equal all ids on inactive search');
-
-      const expectedIds = [1, 2, 3];
-      const searchState = {
-        ...addedState,
-        search: {
-          ids: expectedIds,
-          active: true,
-          query: addedState.search.query
-        }
-      };
-      const actualFoundIds = getFoundIds(searchState);
-      expect(actualFoundIds).toEqual(expectedIds, 'Missing ids');
-    });
-
-    it('getAllFound should return search results or all items if search is inactive', () => {
-      const foundItems = getAllFound(addedState);
-      const allItems = getAll(addedState);
-      expect(foundItems).toEqual(allItems, 'Should return all items on non active search');
-
-      const searchState = {
-        ...addedState,
-        search: {
-          ids: [],
-          active: true,
-          query: addedState.search.query,
-        }
-      };
-      const actualFoundItems = getAllFound(searchState);
-      expect(actualFoundItems).toEqual([], 'Should be empty');
     });
   });
 });

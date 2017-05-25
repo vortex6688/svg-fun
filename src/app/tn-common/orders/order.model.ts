@@ -1,7 +1,9 @@
 /* tslint:disable:variable-name */
+/* tslint:disable:max-classes-per-file */
 import { Payments } from '../payment/payment.model';
+import { License } from '../licenses';
 
-export class Order {
+export class BaseOrder {
   public id?: number;
   public user: number;
   public subtotal: number;
@@ -19,10 +21,17 @@ export class Order {
   public licensee_country: string;
   public licensee_company?: string;
   public licensee_vat: string;
-  // public licenses?: number;
   public payments: Payments[];
   public order_token: string;
   public coupon?: string;
   public coupon_discount?: number;
   public upgrade_price_adjustment: number;
+}
+
+export class Order extends BaseOrder {
+  public licenses?: number;
+}
+
+export class OrderFull extends BaseOrder {
+  public licenses: License[];
 }

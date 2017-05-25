@@ -17,13 +17,6 @@ export const getEntities = (state: LicenseState) => state.entities;
 export const getIds = (state: LicenseState) => state.ids;
 
 /**
- * Returns all the ids of the searched licenses.
- *
- * @param {state} LicenseState
- */
-export const getFoundIds = (state: LicenseState) => state.search.ids;
-
-/**
  * Return the id of the selected license.
  *
  * @param {state} LicenseState
@@ -35,7 +28,7 @@ export const getSelectedId = (state: LicenseState) => state.selectedLicenseId;
  *
  * @param state OrderState
  */
-export const getSearchQuery = (state: LicenseState) => state.search.query;
+export const getSearchQuery = (state: LicenseState) => state.search;
 
 /**
  * Return the specific license selected.
@@ -52,15 +45,6 @@ export const getSelected = createSelector(getEntities, getSelectedId, (entities,
  * @type {Reselect.Selector}
  */
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
-  return ids.map((id) => entities[id]);
-});
-
-/**
- * Return all the licenses resulted from search.
- *
- * @param state LicenseState
- */
-export const getAllFound = createSelector(getEntities, getFoundIds, (entities, ids) => {
   return ids.map((id) => entities[id]);
 });
 

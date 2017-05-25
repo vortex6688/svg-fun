@@ -5,8 +5,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRegistry } from '../../tn-common/store/store.registry';
 import { moduleReducers, moduleEffects } from './reducers';
 
-const storeAssets = StoreRegistry.registerReducers(moduleReducers);
-const productionReducer = combineReducers(storeAssets.reducers);
+export const storeAssets = StoreRegistry.registerReducers(moduleReducers);
+export const productionReducer = combineReducers(storeAssets.reducers);
 
 const devTools = [];
 if (process.env.ENABLE_STORE_DEVTOOLS) {

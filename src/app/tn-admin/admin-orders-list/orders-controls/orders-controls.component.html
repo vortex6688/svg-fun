@@ -51,25 +51,10 @@
       </span>
       <fieldset class="form-group">
         <legend>License Type</legend>
-        <ul class="list-unstyled">
-          <li class="row">
-            <label class="col-8">Desktop</label>
-            <aside class="col-4 text-right">(228)</aside>
-          </li>
-          <li class="row">
-            <label class="col-8">Web (hosted)</label>
-            <aside class="col-4 text-right">(228)</aside>
-          </li>
-          <li class="row">
-            <label class="col-8">Web (self-hosted)</label>
-            <aside class="col-4 text-right">(228)</aside>
-          </li>
-          <li class="row">
-            <label class="col-8">Application</label>
-            <aside class="col-4 text-right">(228)</aside>
-          </li>
-          <li class="row">
-            <label class="col-8">E-publication</label>
+        <ul class="list-unstyled" formArrayName="licenses">
+          <li class="row" *ngFor="let control of licenseControls.controls; index as i;">
+            <input [id]="'license-'+licenseData[i].name" type="checkbox" class="d-none" [value]="licenseData[i].value" [formControlName]="i">
+            <label [for]="'license-'+licenseData[i].name" class="col-8">{{licenseData[i].name}}</label>
             <aside class="col-4 text-right">(228)</aside>
           </li>
         </ul>

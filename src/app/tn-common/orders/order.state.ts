@@ -16,11 +16,7 @@ export interface OrderState {
   ids: number[];
   entities: { [id: number]: Order };
   selectedOrderId: number | null;
-  search: {
-    ids: number[],
-    active: boolean,
-    query: OrderSearch,
-  };
+  search: OrderSearch;
 }
 
 export const initialOrderState: OrderState = {
@@ -28,18 +24,14 @@ export const initialOrderState: OrderState = {
   entities: {},
   selectedOrderId: null,
   search: {
-    ids: [],
-    active: false,
-    query: {
-      id: '',
-      from: null,
-      to: null,
-      customer: '',
-      project: '',
-      font: '',
-      foundry: '',
-      status: [],
-      licenses: [],
-    },
-  }
+    id: '',
+    from: null,
+    to: null,
+    customer: '',
+    project: '',
+    font: '',
+    foundry: '',
+    status: [],
+    licenses: [],
+  },
 };

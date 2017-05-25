@@ -37,30 +37,7 @@ export const OrderReducer: ActionReducer<OrderState> = (state = initialOrderStat
     }
 
     case OrderActions.SEARCH_QUERY: {
-      const query = action.payload;
-      const ids = state.ids.filter((id) => {
-        const order = state.entities[id];
-        if (query.id && order.id !== +query.id) {
-          return false;
-        }
-        if (query.status.length && !query.status.includes(order.status)) {
-          return false;
-        }
-        if (query.from && new Date(order.created) < query.from) {
-          return false;
-        }
-        if (query.to && new Date(order.created) > query.to) {
-          return false;
-        }
-        return true;
-      });
-      // If search didn't filter out any data consider it inactive
-      const active = state.ids.length !== ids.length;
-      const search = {
-        ids,
-        active,
-        query,
-      };
+      const search = action.payload;
 
       return { ...state, search };
     }

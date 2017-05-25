@@ -19,10 +19,39 @@ export class OrdersControlsComponent implements OnInit {
     { name: 'Cancelled', value: 3 },
     { name: 'Approved, Unpaid', value: 4 },
   ];
+  public licenseData = [{
+    name: 'Desktop',
+    value: {
+      license_type: 'desktop',
+    }
+  }, {
+    name: 'Web (hosted)',
+    value: {
+      license_type: 'web',
+      self_hosted: false,
+    }
+  }, {
+    name: 'Web (self hosted)',
+    value: {
+      license_type: 'web',
+      self_hosted: true,
+    }
+  }, {
+    name: 'Application',
+    value: {
+      license_type: 'app',
+    }
+  }, {
+    name: 'E-publication',
+    value: {
+      license_type: 'epub',
+    }
+  }];
   public searchForm: FormGroup;
   public filterForm: FormGroup;
 
   get statusControls(): FormArray { return this.filterForm.get('status') as FormArray; }
+  get licenseControls(): FormArray { return this.filterForm.get('licenses') as FormArray; }
 
   constructor(private fb: FormBuilder) {
   }
@@ -30,6 +59,8 @@ export class OrdersControlsComponent implements OnInit {
   public ngOnInit() {
     const statusControls = this.statusData.map((status) =>
       new FormControl(this.initialQuery.status.includes(status.value)));
+    const licenseControls = this.licenseData.map((license) =>
+      new FormControl(this.initialQuery.licenses.includes(license.value)));
 
     this.searchForm = this.fb.group({
       id: this.initialQuery.id,
@@ -43,7 +74,7 @@ export class OrdersControlsComponent implements OnInit {
 
     this.filterForm = this.fb.group({
       status: this.fb.array(statusControls),
-      licenses: this.fb.array([]),
+      licenses: this.fb.array(licenseControls),
     });
 
     const searchFormChanges = this.searchForm.valueChanges.startWith(this.searchForm.value);
@@ -54,10 +85,14 @@ export class OrdersControlsComponent implements OnInit {
           if (item) { result.push(this.statusData[i].value); }
           return result;
         }, []);
+        const activeLicenses = licenses.reduce((result, item, i) => {
+          if (item) { result.push(this.licenseData[i].value); }
+          return result;
+        }, []);
 
         return {
           status: activeStatus,
-          licenses,
+          licenses: activeLicenses,
         };
       });
 

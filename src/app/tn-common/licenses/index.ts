@@ -7,12 +7,10 @@ export { LicenseEffects } from './license.effects';
 export {
   getEntities,
   getIds,
-  getFoundIds,
   getSelectedId,
   getSelected,
   getSearchQuery,
   getAll,
-  getAllFound,
   getLicenseById,
   getLicencesByType,
   getActiveLicences,
