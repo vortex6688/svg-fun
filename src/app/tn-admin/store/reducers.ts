@@ -4,11 +4,13 @@ import { EffectsModule } from '@ngrx/effects';
 import * as order from '../../tn-common/orders';
 import * as auth from '../../tn-common/auth';
 import * as license from '../../tn-common/licenses';
+import * as series from '../../tn-common/series';
 
 export interface AdminState {
   order: order.OrderState;
   auth: auth.AuthState;
   license: license.LicenseState;
+  series: series.SeriesState;
 }
 
 export const moduleReducers = [{
@@ -20,12 +22,16 @@ export const moduleReducers = [{
 }, {
   reducer: { license: license.LicenseReducer },
   actions: license.LicenseActions,
+}, {
+  reducer: { series: series.SeriesReducer },
+  actions: series.SeriesActions,
 }];
 
 export const moduleEffects = [
   EffectsModule.run(auth.AuthEffects),
   EffectsModule.run(order.OrderEffects),
   EffectsModule.run(license.LicenseEffects),
+  EffectsModule.run(series.SeriesEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
@@ -72,4 +78,25 @@ export const getLicenseById = (licenseId) => {
 };
 export const getLicenseByType = (licenseType) => {
   return (state) => license.getLicencesByType(state.license, licenseType);
+};
+
+export const getSeriesState = (state: AdminState): series.SeriesState => state.series;
+export const getSeriesEntities = createSelector(getSeriesState, series.getEntities);
+export const getSeriesIds = createSelector(getSeriesState, series.getIds);
+export const getSelectedSeriesId = createSelector(getSeriesState, series.getSelectedId);
+export const getSelectedSeries = createSelector(getSeriesState, series.getSelected);
+export const getSeriesSearchQuery = createSelector(getSeriesState, series.getSearchQuery);
+export const getAllSeries = createSelector(getSeriesState, series.getAll);
+export const getAllFoundSeries = createSelector(getSeriesState, series.getAllFound);
+export const getSeriesByDesigner = (designer: number) => {
+  return (state) => series.getSeriesByDesigner(getSeriesState(state), designer);
+};
+export const getSeriesByFoundry = (foundry: number) => {
+  return (state) => series.getSeriesByFoundry(getSeriesState(state), foundry);
+};
+export const getSeriesByName = (name: string) => {
+  return (state) => series.getSeriesByName(getSeriesState(state), name);
+};
+export const getSeriesByFamily = (family: number) => {
+  return (state) => series.getSeriesByFamily(getSeriesState(state), family);
 };

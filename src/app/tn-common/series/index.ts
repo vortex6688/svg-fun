@@ -13,4 +13,9 @@ export {
   getAll,
   getAllFound,
   getSeriesById,
+  getSearchQuery,
+  getSeriesByDesigner,
+  getSeriesByFoundry,
+  getSeriesByName,
+  getSeriesByFamily,
 } from './series.selectors';

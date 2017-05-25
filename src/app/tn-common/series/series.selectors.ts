@@ -40,6 +40,13 @@ export const getSelected = createSelector(getEntities, getSelectedId, (entities,
 });
 
 /**
+ * Return series search query.
+ *
+ * @param {state} SeriesState
+ */
+export const getSearchQuery = (state: SeriesState) => state.search.query;
+
+/**
  * Get all series.
  *
  * @type {Reselect.Selector}
@@ -65,4 +72,66 @@ export const getAllFound = createSelector(getEntities, getFoundIds, (entities, i
  */
 export const getSeriesById = (state: SeriesState, seriesId: number) => {
   return state.entities[seriesId];
+};
+
+/**
+ * Return all the series with the provided designer.
+ *
+ * @param {state} SeriesState
+ * @param {designer} number
+ */
+export const getSeriesByDesigner = (state: SeriesState, designer: number) => {
+  return state.ids.reduce((series, id) => {
+    const seriesInstance = state.entities[id];
+
+    if (seriesInstance.designers.indexOf(designer) !== -1) {
+      series.push(seriesInstance);
+    }
+    return series;
+  }, []);
+};
+
+/**
+ * Return all the series with the provided foundry.
+ *
+ * @param {state} SeriesState
+ * @param {foundry} number
+ */
+export const getSeriesByFoundry = (state: SeriesState, foundry: number) => {
+  return state.ids.reduce((series, id) => {
+    const seriesInstance = state.entities[id];
+
+    if (seriesInstance.foundry === foundry) {
+      series.push(seriesInstance);
+    }
+    return series;
+  }, []);
+};
+
+/**
+ * Return all the series with the provided name.
+ *
+ * @param {state} SeriesState
+ * @param {foundry} number
+ */
+export const getSeriesByName = (state: SeriesState, name: string) => {
+  const seriesId = state.ids.find((id) => state.entities[id].name === name);
+  return state.entities[seriesId];
+};
+
+/**
+ * Return all the series with the provided family.
+ *
+ * @param {state} SeriesState
+ * @param {foundry} number
+ */
+export const getSeriesByFamily = (state: SeriesState, family: number) => {
+  return state.ids.reduce((series, id) => {
+    const seriesInstance = state.entities[id];
+
+    if (seriesInstance.family.indexOf(family) !== -1) {
+      series.push(seriesInstance);
+    }
+    return series;
+  }, []);
 };

@@ -1,7 +1,7 @@
 import { Series } from './series.model';
 import { SeriesReducer } from './series.reducer';
 import { SeriesActions } from './series.actions';
-import { SeriesState, initialSeriesState } from './series.state';
+import { SeriesState, initialSeriesState, SeriesSearch } from './series.state';
 import {
   getEntities,
   getIds,
@@ -11,7 +11,11 @@ import {
   getSelected,
   getAll,
   getSeriesById,
- } from './series.selectors';
+  getSeriesByDesigner,
+  getSeriesByFoundry,
+  getSeriesByName,
+  getSeriesByFamily,
+} from './series.selectors';
 
 const SeriesMock: Series = {
   id: 1,
@@ -25,9 +29,12 @@ const SeriesMock: Series = {
   designers: [
     1
   ],
+  visible: true,
   foundry: 1,
   description: 'Lorem ipsum',
-  description_link: ['https://store.typenetwork.com']
+  description_link: ['https://store.typenetwork.com'],
+  pangram: ['Lorem ipsum'],
+  specimen_text: 'Lorem ipsum'
 };
 const addItems: Series[] = [
   { ...SeriesMock, id: 11, name: 'Lorem Ipsum' },
@@ -74,9 +81,9 @@ describe('SeriesReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should CREATE_SERIES add a new series', () => {
+  it('should CREATE_SERIES_SUCCESS add a new series', () => {
     const state = mockedState();
-    const actual = SeriesReducer(state, seriesActions.createSeries(SeriesMock));
+    const actual = SeriesReducer(state, seriesActions.createSeriesSuccess(SeriesMock));
     const expected = {
       ids: [...state.ids, ...[SeriesMock.id]],
       entities: Object.assign({}, state.entities, { [SeriesMock.id]: SeriesMock }),
@@ -84,6 +91,45 @@ describe('SeriesReducer', () => {
       search: state.search,
     };
     expect(actual).toEqual(expected);
+  });
+
+  it('should UPDATE_SERIES_SUCCESS add a new series', () => {
+    SeriesMock.slug = 'test';
+    const state = mockedState();
+    const actual = SeriesReducer(state, seriesActions.updateSeriesSuccess(SeriesMock));
+    const expected = {
+      ids: [...state.ids],
+      entities: { [SeriesMock.id]: SeriesMock },
+      selectedSeriesId: SeriesMock.id,
+      search: state.search,
+    };
+    expect(actual).toEqual(expected);
+  });
+
+  it('should NOT update the given license on UPDATE_SERIES_FAIL', () => {
+    SeriesMock.slug = 'test';
+    const state = mockedState();
+    const actual = SeriesReducer(state, seriesActions.updateSeriesFail(SeriesMock));
+    expect(actual).toEqual(state);
+  });
+
+  it('should REMOVE_SERIES_SUCCESS add a new series', () => {
+    const state = mockedState();
+    const actual = SeriesReducer(state, seriesActions.removeSeriesSuccess(SeriesMock));
+    delete state.entities[SeriesMock.id];
+    const expected = {
+      ids: state.ids.filter((id) => id !== SeriesMock.id),
+      entities: Object.assign({}, state.entities),
+      selectedSeriesId: null,
+      search: initialSeriesState.search,
+    };
+    expect(actual).toEqual(expected);
+  });
+
+  it('should NOT remove the given license on REMOVE_SERIES_FAIL', () => {
+    const state = mockedState();
+    const actual = SeriesReducer(state, seriesActions.removeSeriesFail(SeriesMock));
+    expect(actual).toEqual(state);
   });
 
   it('should ADD_SERIES add a new series', () => {
@@ -108,23 +154,94 @@ describe('SeriesReducer', () => {
   it('should update search object on SEARCH_QUERY', () => {
     const state = mockedState();
     const query = {
-      id: '2',
       name: 'Lorem',
-      visible: true,
+      visibility: true,
       released: new Date(Date.now() - 50000),
       families: [4],
-      styles: [2],
+      designers: [2],
+      foundry: 1,
     };
     const actual = SeriesReducer(state, seriesActions.searchQuery(query));
     const expected: SeriesState = {
       ...initialSeriesState,
       search: {
         ids: [],
-        active: true,
+        active: false,
         query,
       },
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
+
+    const multiQuery: SeriesSearch = {
+      name: '',
+      released: null,
+      foundry: null,
+      designers: null,
+      visibility: true,
+      families: [1, 2],
+    };
+    const searchExpected: SeriesState = {
+      ...nonEmptyState,
+      search: {
+        ids: nonEmptyState.ids.filter((id) => {
+          const series = nonEmptyState.entities[id];
+          return (
+            multiQuery.visibility === series.visible &&
+            series.family.some((family) => multiQuery.families.indexOf(family) !== -1)
+          );
+        }),
+        active: false,
+        query: multiQuery,
+      }
+    };
+    const multiSearch = SeriesReducer(nonEmptyState, seriesActions.searchQuery(multiQuery));
+    expect(multiSearch).toEqual(searchExpected, 'Should have an active visibility and family search');
+
+    const targetName = 'SupaName';
+    const nameQuery: SeriesSearch = {
+      name: targetName,
+      released: null,
+      foundry: null,
+      designers: null,
+      visibility: null,
+      families: [],
+    };
+    const nameExpected: SeriesState = {
+      ...nonEmptyState,
+      search: {
+        ids: nonEmptyState.ids.filter((id) => nonEmptyState.entities[id].name === targetName),
+        active: true,
+        query: nameQuery,
+      }
+    };
+    const nameSearch = SeriesReducer(nonEmptyState, seriesActions.searchQuery(nameQuery));
+    expect(nameSearch).toEqual(nameExpected, 'Should have results by name');
+
+    const foundryDesignerQuery: SeriesSearch = {
+      name: '',
+      released: null,
+      foundry: 5,
+      designers: [2],
+      visibility: null,
+      families: [],
+    };
+    const foundryDesignerExpected: SeriesState = {
+      ...nonEmptyState,
+      search: {
+        ids: nonEmptyState.ids.filter((id) => {
+          const series = nonEmptyState.entities[id];
+          return (
+            foundryDesignerQuery.foundry === series.foundry &&
+            series.designers.some((designer) => multiQuery.designers.indexOf(designer) !== -1)
+          );
+        }),
+        active: true,
+        query: foundryDesignerQuery,
+      }
+    };
+    const foundryDesignerSearch = SeriesReducer(nonEmptyState, seriesActions.searchQuery(foundryDesignerQuery));
+    expect(foundryDesignerSearch).toEqual(foundryDesignerExpected, 'Should have an active foundry and designer search');
+
   });
 
   describe('when a Series already exists in the state', () => {
@@ -132,7 +249,7 @@ describe('SeriesReducer', () => {
     let addedState = initialSeriesState;
 
     beforeEach(() => {
-      addedState = SeriesReducer(state, seriesActions.createSeries(SeriesMock));
+      addedState = SeriesReducer(state, seriesActions.createSeriesSuccess(SeriesMock));
     });
 
     it('should GET_ALL_SERIES when there already exists a Series on the state', () => {
@@ -204,6 +321,26 @@ describe('SeriesReducer', () => {
       const actualFoundItems = getAllFound(searchState);
       const expectedItems = searchState.search.ids.map((id) => searchState.entities[id]);
       expect(actualFoundItems).toEqual(expectedItems, 'Missing search items');
+    });
+
+    it('getSeriesByDesigner should return a list of series with the provided designer', () => {
+      const selectedSeries = getSeriesByDesigner(addedState, SeriesMock.designers[0]);
+      expect(selectedSeries).toEqual([SeriesMock]);
+    });
+
+    it('getSeriesByFoundry should return a list of series with the provided foundry', () => {
+      const selectedSeries = getSeriesByFoundry(addedState, SeriesMock.foundry);
+      expect(selectedSeries).toEqual([SeriesMock]);
+    });
+
+    it('getSeriesByName should return a list of series with the provided name', () => {
+      const selectedSeries = getSeriesByName(addedState, SeriesMock.name);
+      expect(selectedSeries).toEqual(SeriesMock);
+    });
+
+    it('getSeriesByFamily should return a list of series with the provided family', () => {
+      const selectedSeries = getSeriesByFamily(addedState, SeriesMock.family[0]);
+      expect(selectedSeries).toEqual([SeriesMock]);
     });
   });
 });

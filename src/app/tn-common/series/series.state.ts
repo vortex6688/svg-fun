@@ -1,12 +1,12 @@
 import { Series } from './series.model';
 
 export interface SeriesSearch {
-  id: string | number;
   name: string;
-  visible: boolean;
+  visibility: boolean;
   released: Date;
   families: number[];
-  styles: number[];
+  designers: number[];
+  foundry: number;
 }
 
 export interface SeriesState {
@@ -28,12 +28,12 @@ export const initialSeriesState: SeriesState = {
     ids: [],
     active: false,
     query: {
-      id: '',
       name: '',
-      visible: null,
+      visibility: null,
       released: null,
       families: [],
-      styles: [],
+      designers: [],
+      foundry: null,
     },
   }
 };
