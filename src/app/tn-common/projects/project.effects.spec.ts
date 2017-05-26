@@ -15,6 +15,7 @@ describe('ProjectEffects', () => {
     user: 1,
     domains: '["project1.com"]',
     created: '2017-03-05T18:16:50Z',
+    licenses: [1],
     family_count: 1,
     style_count: 1,
   };

@@ -6,11 +6,13 @@ import { Order, OrderActions, OrderSearch } from '../../tn-common/orders';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { Family, FamilyState } from '../../tn-common/families';
+import { Project, ProjectActions } from '../../tn-common/projects';
 import { getAllOrders,
   getOrderSearchQuery,
   getAllLicenses,
   getAllStyles,
   getFamilyEntities,
+  getAllProjects,
 } from '../store/reducers';
 
 @Component({
@@ -50,6 +52,14 @@ export class AdminOrdersListComponent {
    * @memberof AdminOrdersListComponent
    */
   public styles$ = this.store.select(getAllStyles);
+
+  /**
+   *  Projects collection for combination.
+   *
+   * @type {Observable<Project[]>}
+   * @memberof AdminOrdersListComponent
+   */
+  public projects$ = this.store.select(getAllProjects);
 
   /**
    *  Family entity collection for combination.
@@ -101,6 +111,20 @@ export class AdminOrdersListComponent {
     (orders: Order[], licenses: License[]) => orders.map((order) => ({
       ...order,
       licenses: licenses.filter((license) => license.order === order.id),
+    })));
+
+  /**
+   *  Orders collections with populated license data and project data.
+   *
+   * @type {Observable<Order[]>}
+   * @memberof AdminOrdersListComponent
+   */
+  public ordersLicensesProjects$ = Observable.combineLatest(
+    this.ordersLicenses$,
+    this.projects$,
+    (orders: Order[], projects: Project[]): Order[] => orders.map((order) => ({
+      ...order,
+      projects: projects.filter((project) => project.user === order.user),
     })));
 
   /**

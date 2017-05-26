@@ -2,6 +2,7 @@
 /* tslint:disable:max-classes-per-file */
 import { Payments } from '../payment/payment.model';
 import { License } from '../licenses';
+import { Project } from '../projects';
 
 export class Order {
   public id?: number;
@@ -23,6 +24,7 @@ export class Order {
   public licensee_company?: string;
   public licensee_vat: string;
   public payments: Payments[];
+  public projects?: Project[];
   public order_token: string;
   public coupon?: string;
   public coupon_discount?: number;
