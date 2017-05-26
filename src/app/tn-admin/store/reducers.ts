@@ -7,6 +7,7 @@ import * as license from '../../tn-common/licenses';
 import * as series from '../../tn-common/series';
 import * as family from '../../tn-common/families';
 import * as style from '../../tn-common/styles';
+import * as project from '../../tn-common/projects';
 
 export interface AdminState {
   auth: auth.AuthState;
@@ -15,6 +16,7 @@ export interface AdminState {
   series: series.SeriesState;
   family: family.FamilyState;
   style: style.StyleState;
+  project: project.ProjectState;
 }
 
 export const moduleReducers = [{
@@ -35,6 +37,9 @@ export const moduleReducers = [{
 }, {
   reducer: { style: style.StyleReducer },
   actions: style.StyleActions,
+}, {
+  reducer: { project: project.ProjectReducer },
+  actions: project.ProjectActions,
 }];
 
 export const moduleEffects = [
@@ -44,6 +49,7 @@ export const moduleEffects = [
   EffectsModule.run(series.SeriesEffects),
   EffectsModule.run(family.FamilyEffects),
   EffectsModule.run(style.StyleEffects),
+  EffectsModule.run(project.ProjectEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
@@ -52,8 +58,10 @@ export const getAuthState = (state: AdminState): auth.AuthState => state.auth;
 export const getUser = createSelector(getAuthState, auth.getUser);
 export const isAuthInProgress = createSelector(getAuthState, auth.getProgress);
 export const getAuthError = createSelector(getAuthState, auth.getError);
-
 export const getOrderState = (state: AdminState): order.OrderState => state.order;
+export const getLicenseState = (state: AdminState): license.LicenseState => state.license;
+export const getProjectState = (state: AdminState): project.ProjectState => state.project;
+
 export const getOrderEntities = createSelector(getOrderState, order.getEntities);
 export const getOrderIds = createSelector(getOrderState, order.getIds);
 export const getSelectedOrderId = createSelector(getOrderState, order.getSelectedId);
@@ -71,7 +79,6 @@ export const getOrderByStatus = (status) => {
   return (state) => order.getOrderByStatus(getOrderState(state), status);
 };
 
-export const getLicenseState = (state: AdminState): license.LicenseState => state.license;
 export const getLicenseEntities = createSelector(getLicenseState, license.getEntities);
 export const getLicenseIds = createSelector(getLicenseState, license.getIds);
 export const getSelectedLicenseId = createSelector(getLicenseState, license.getSelectedId);
@@ -211,3 +218,14 @@ export const getStylesByRecommendedSize = (size: number) => {
   return (state) => style.getStylesByRecommendedSize(getStyleState(state), size);
 };
 export const getReStyles = createSelector(getStyleState, style.getReStyles);
+
+// PROJECT
+export const getProjectEntities = createSelector(getProjectState, project.getEntities);
+export const getProjectIds = createSelector(getProjectState, project.getIds);
+export const getSelectedProjectId = createSelector(getProjectState, project.getSelectedId);
+export const getSelectedProject = createSelector(getProjectState, project.getSelected);
+export const getProjectSearchQuery = createSelector(getOrderState, order.getSearchQuery);
+export const getAllProjects = createSelector(getProjectState, project.getAll);
+export const getProjectById = (projectId) => {
+  return (state) => project.getProjectById(state.project, projectId);
+};
