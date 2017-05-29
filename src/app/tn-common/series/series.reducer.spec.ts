@@ -106,14 +106,14 @@ describe('SeriesReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should NOT update the given license on UPDATE_SERIES_FAIL', () => {
+  it('should NOT update the given series on UPDATE_SERIES_FAIL', () => {
     SeriesMock.slug = 'test';
     const state = mockedState();
     const actual = SeriesReducer(state, seriesActions.updateSeriesFail(SeriesMock));
     expect(actual).toEqual(state);
   });
 
-  it('should REMOVE_SERIES_SUCCESS add a new series', () => {
+  it('should REMOVE_SERIES_SUCCESS remove a series', () => {
     const state = mockedState();
     const actual = SeriesReducer(state, seriesActions.removeSeriesSuccess(SeriesMock));
     delete state.entities[SeriesMock.id];
@@ -126,7 +126,7 @@ describe('SeriesReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should NOT remove the given license on REMOVE_SERIES_FAIL', () => {
+  it('should NOT remove the given series on REMOVE_SERIES_FAIL', () => {
     const state = mockedState();
     const actual = SeriesReducer(state, seriesActions.removeSeriesFail(SeriesMock));
     expect(actual).toEqual(state);

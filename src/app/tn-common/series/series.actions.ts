@@ -24,7 +24,7 @@ export class SeriesActions {
   public createSeriesSuccess = ActionCreatorFactory.create(SeriesActions.CREATE_SERIES_SUCCESS);
   public createSeriesFail = ActionCreatorFactory.create(SeriesActions.CREATE_SERIES_FAIL);
   public updateSeries = ActionCreatorFactory.create(SeriesActions.UPDATE_SERIES);
-  public  updateSeriesSuccess = ActionCreatorFactory.create(SeriesActions.UPDATE_SERIES_SUCCESS);
+  public updateSeriesSuccess = ActionCreatorFactory.create(SeriesActions.UPDATE_SERIES_SUCCESS);
   public updateSeriesFail = ActionCreatorFactory.create(SeriesActions.UPDATE_SERIES_FAIL);
   public removeSeries = ActionCreatorFactory.create(SeriesActions.REMOVE_SERIES);
   public removeSeriesSuccess = ActionCreatorFactory.create(SeriesActions.REMOVE_SERIES_SUCCESS);
