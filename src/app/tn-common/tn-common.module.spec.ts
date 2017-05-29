@@ -11,6 +11,7 @@ import { TnApiHttpService, TnApiBaseUrl } from './tn-api-http';
 import { AuthService, AuthActions } from './auth';
 import { OrderService } from './orders';
 import { LicenseService } from './licenses';
+import { SeriesService } from './series';
 import { User, UserService } from './user';
 
 @Component({ template: '', })
@@ -19,6 +20,7 @@ class TnCommonModuleProvidersTestComponent {
                 public authService: AuthService,
                 public orderService: OrderService,
                 public licenseService: LicenseService,
+                public seriesService: SeriesService,
                 public userService: UserService) {}
 }
 
