@@ -133,6 +133,13 @@ describe('FamilyReducer', () => {
     expect(actual).toEqual(expected);
   });
 
+  it('should return state on CREATE_FAMILY_FAIL', () => {
+    const state = mockedState();
+    const createdItem = { ...FamilyMock, id: 23456 };
+    const actual = FamilyReducer(state, familyActions.updateFamilyFail(createdItem));
+    expect(actual).toEqual(state);
+  });
+
   it('should GET_FAMILIES when there is no Family on the state', () => {
     const state = mockedState();
     const actual = FamilyReducer(state, familyActions.getFamilies());
@@ -245,8 +252,43 @@ describe('FamilyReducer', () => {
     let addedState = initialFamilyState;
 
     beforeEach(() => {
-      addedState = FamilyReducer(state, familyActions.createFamilySuccess(FamilyMock));
+      addedState = FamilyReducer(state, familyActions.addFamilies([FamilyMock]));
+    });
 
+    it('should update family on UPDATE_FAMILY_SUCCESS', () => {
+      const updatedItem = {
+        ...FamilyMock,
+        name: 'updated name',
+        description: 'new description',
+      };
+      const actual = FamilyReducer(addedState, familyActions.updateFamilySuccess(updatedItem));
+      const expected: FamilyState = {
+        ...addedState,
+        selectedFamilyId: updatedItem.id,
+      };
+      expected.entities[FamilyMock.id] = updatedItem;
+      expect(actual).toEqual(expected, 'Didn\'t update family');
+    });
+
+    it('should return state on UPDATE_FAMILY_FAIL', () => {
+      const updatedItem = { ...FamilyMock, name: 'not updated' };
+      const actual = FamilyReducer(addedState, familyActions.updateFamilyFail(updatedItem));
+      expect(actual).toEqual(addedState);
+    });
+
+    it('should remove family on REMOVE_FAMILY_SUCCESS', () => {
+      const removedItem = FamilyMock;
+      const actual = FamilyReducer(addedState, familyActions.removeFamilySuccess(removedItem));
+      const expected: FamilyState = { ...addedState };
+      expected.ids = expected.ids.filter((ids) => ids !== removedItem.id);
+      delete expected.entities[removedItem.id];
+      expect(actual).toEqual(expected, 'Didn\'t remove family');
+    });
+
+    it('should return state on REMOVE_FAMILY_FAIL', () => {
+      const removedItem = { ...FamilyMock, name: 'not updated' };
+      const actual = FamilyReducer(addedState, familyActions.removeFamilyFail(removedItem));
+      expect(actual).toEqual(addedState);
     });
 
     it('should GET_FAMILIES when there already exists an Family on the state', () => {
