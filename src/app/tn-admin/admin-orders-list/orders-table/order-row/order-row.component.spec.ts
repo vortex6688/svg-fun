@@ -40,6 +40,28 @@ describe('OrderRowComponent', () => {
     expect(component.isCollapsed).toBeFalsy('Should have been expanded after event');
   });
 
+  it('should return unique families', () => {
+    component.order = {
+      id: 1,
+      licenses: [
+        { style: { family: { name: 'family' } } },
+        { style: { family: { name: 'family' } } },
+        { style: {} },
+        { style: { family: { name: 'newFamily' } } },
+        { style: { family: { name: 'thirdFamily' } } },
+      ],
+    };
+
+    const expected = component.order.licenses.reduce((result, license) => {
+      const name = license.style && license.style.family ? license.style.family.name : null;
+      if (name && result.indexOf(name) === -1) {
+        result.push(name);
+      }
+      return result;
+    }, []);
+    expect(component.families).toEqual(expected);
+  });
+
   it('should unsubscribe on destroy', () => {
     expect(collapseSubject.observers.length).toEqual(1, 'Should subscribe initially');
     fixture.destroy();

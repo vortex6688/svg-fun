@@ -36,6 +36,7 @@ import {
 
 const styleMock: Style = {
   id: 1,
+  name: 'Style bolder',
   style_name: 'Bold',
   family: 1,
   base_price: '22.0000',

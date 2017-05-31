@@ -3,7 +3,7 @@
 import { Payments } from '../payment/payment.model';
 import { License } from '../licenses';
 
-export class BaseOrder {
+export class Order {
   public id?: number;
   public user: number;
   public subtotal: number;
@@ -11,6 +11,7 @@ export class BaseOrder {
   public total: number;
   public status: number;
   public created: string;
+  public licenses?: number[] | License[];
   public licensee_first_name: string;
   public licensee_last_name: string;
   public licensee_street1: string;
@@ -26,12 +27,4 @@ export class BaseOrder {
   public coupon?: string;
   public coupon_discount?: number;
   public upgrade_price_adjustment: number;
-}
-
-export class Order extends BaseOrder {
-  public licenses?: number;
-}
-
-export class OrderFull extends BaseOrder {
-  public licenses: License[];
 }

@@ -1,8 +1,12 @@
 /* tslint:disable:variable-name */
+
+import { Family } from '../families';
+
 export class Style {
   public id?: number;
+  public name: string;
   public style_name: string;
-  public family: number;
+  public family: number | Family;
   public base_price: string;
   public pangram?: number;
   public specimen_text?: string;
