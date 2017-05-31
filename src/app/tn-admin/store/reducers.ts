@@ -1,30 +1,35 @@
 import { createSelector } from 'reselect';
 import { EffectsModule } from '@ngrx/effects';
 
-import * as order from '../../tn-common/orders';
 import * as auth from '../../tn-common/auth';
+import * as order from '../../tn-common/orders';
 import * as license from '../../tn-common/licenses';
 import * as series from '../../tn-common/series';
+import * as family from '../../tn-common/families';
 
 export interface AdminState {
-  order: order.OrderState;
   auth: auth.AuthState;
+  order: order.OrderState;
   license: license.LicenseState;
   series: series.SeriesState;
+  family: family.FamilyState;
 }
 
 export const moduleReducers = [{
-  reducer: { order: order.OrderReducer },
-  actions: order.OrderActions,
-}, {
   reducer: { auth: auth.AuthReducer },
   actions: auth.AuthActions,
+}, {
+  reducer: { order: order.OrderReducer },
+  actions: order.OrderActions,
 }, {
   reducer: { license: license.LicenseReducer },
   actions: license.LicenseActions,
 }, {
   reducer: { series: series.SeriesReducer },
   actions: series.SeriesActions,
+}, {
+  reducer: { family: family.FamilyReducer },
+  actions: family.FamilyActions,
 }];
 
 export const moduleEffects = [
@@ -32,13 +37,17 @@ export const moduleEffects = [
   EffectsModule.run(order.OrderEffects),
   EffectsModule.run(license.LicenseEffects),
   EffectsModule.run(series.SeriesEffects),
+  EffectsModule.run(family.FamilyEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
  */
-export const getOrderState = (state: AdminState): order.OrderState => state.order;
-export const getLicenseState = (state: AdminState): license.LicenseState => state.license;
+export const getAuthState = (state: AdminState): auth.AuthState => state.auth;
+export const getUser = createSelector(getAuthState, auth.getUser);
+export const isAuthInProgress = createSelector(getAuthState, auth.getProgress);
+export const getAuthError = createSelector(getAuthState, auth.getError);
 
+export const getOrderState = (state: AdminState): order.OrderState => state.order;
 export const getOrderEntities = createSelector(getOrderState, order.getEntities);
 export const getOrderIds = createSelector(getOrderState, order.getIds);
 export const getSelectedOrderId = createSelector(getOrderState, order.getSelectedId);
@@ -56,11 +65,7 @@ export const getOrderByStatus = (status) => {
   return (state) => order.getOrderByStatus(getOrderState(state), status);
 };
 
-export const getAuthState = (state: AdminState): auth.AuthState => state.auth;
-export const getUser = createSelector(getAuthState, auth.getUser);
-export const isAuthInProgress = createSelector(getAuthState, auth.getProgress);
-export const getAuthError = createSelector(getAuthState, auth.getError);
-
+export const getLicenseState = (state: AdminState): license.LicenseState => state.license;
 export const getLicenseEntities = createSelector(getLicenseState, license.getEntities);
 export const getLicenseIds = createSelector(getLicenseState, license.getIds);
 export const getSelectedLicenseId = createSelector(getLicenseState, license.getSelectedId);
@@ -99,4 +104,49 @@ export const getSeriesByName = (name: string) => {
 };
 export const getSeriesByFamily = (family: number) => {
   return (state) => series.getSeriesByFamily(getSeriesState(state), family);
+};
+
+export const getFamilyState = (state: AdminState): family.FamilyState => state.family;
+export const getFamilyEntities = createSelector(getFamilyState, family.getEntities);
+export const getFamilyIds = createSelector(getFamilyState, family.getIds);
+export const getSelectedFamilyId = createSelector(getFamilyState, family.getSelectedId);
+export const getSelectedFamily = createSelector(getFamilyState, family.getSelected);
+export const getFamilySearchQuery = createSelector(getFamilyState, family.getSearchQuery);
+export const getAllFamilies = createSelector(getFamilyState, family.getAll);
+export const getAllFoundFamilies = createSelector(getFamilyState, family.getAllFound);
+export const getFamilyById = (familyId: number) => {
+  return (state) => family.getFamilyById(getFamilyState(state), familyId);
+};
+export const getFamilyByName = (familyName: string) => {
+  return (state) => family.getFamilyByName(getFamilyState(state), familyName);
+};
+export const getFamiliesByDesigner = (designer: number) => {
+  return (state) => family.getFamiliesByDesigner(getFamilyState(state), designer);
+};
+export const getFamiliesByCategory = (category: number) => {
+  return (state) => family.getFamiliesByCategory(getFamilyState(state), category);
+};
+export const getFamiliesByFoundry = (foundry: number) => {
+  return (state) => family.getFamiliesByFoundry(getFamilyState(state), foundry);
+};
+export const getFamiliesByPosture = (posture: number) => {
+  return (state) => family.getFamiliesByPosture(getFamilyState(state), posture);
+};
+export const getFamiliesByRecommendedFunction = (recommendedFunction: number) => {
+  return (state) => family.getFamiliesByRecommendedFunction(getFamilyState(state), recommendedFunction);
+};
+export const getFamiliesByRecommendedSize = (recommendedSize: number) => {
+  return (state) => family.getFamiliesByRecommendedSize(getFamilyState(state), recommendedSize);
+};
+export const getFamiliesByRelease = (release: Date) => {
+  return (state) => family.getFamiliesByRelease(getFamilyState(state), release);
+};
+export const getFamiliesByVisibility = (visibility: number) => {
+  return (state) => family.getFamiliesByVisibility(getFamilyState(state), visibility);
+};
+export const getFamiliesByWeight = (weight: number) => {
+  return (state) => family.getFamiliesByWeight(getFamilyState(state), weight);
+};
+export const getFamiliesByWidth = (width: number) => {
+  return (state) => family.getFamiliesByWidth(getFamilyState(state), width);
 };

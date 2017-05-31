@@ -15,6 +15,7 @@ import { TnAutoscrollService } from './tn-autoscroll';
 import { OrderService } from './orders';
 import { LicenseService } from './licenses';
 import { SeriesService } from './series';
+import { FamilyService } from './families';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
@@ -39,6 +40,7 @@ import { OrderByPipe } from './pipes';
                   OrderService,
                   LicenseService,
                   SeriesService,
+                  FamilyService,
                   TnPaginationConfig,
                   TnTitleService.provider(),
                   TnAutoscrollService.provider(),
