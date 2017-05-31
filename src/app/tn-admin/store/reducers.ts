@@ -6,6 +6,7 @@ import * as order from '../../tn-common/orders';
 import * as license from '../../tn-common/licenses';
 import * as series from '../../tn-common/series';
 import * as family from '../../tn-common/families';
+import * as style from '../../tn-common/styles';
 
 export interface AdminState {
   auth: auth.AuthState;
@@ -13,6 +14,7 @@ export interface AdminState {
   license: license.LicenseState;
   series: series.SeriesState;
   family: family.FamilyState;
+  style: style.StyleState;
 }
 
 export const moduleReducers = [{
@@ -30,6 +32,9 @@ export const moduleReducers = [{
 }, {
   reducer: { family: family.FamilyReducer },
   actions: family.FamilyActions,
+}, {
+  reducer: { style: style.StyleReducer },
+  actions: style.StyleActions,
 }];
 
 export const moduleEffects = [
@@ -38,6 +43,7 @@ export const moduleEffects = [
   EffectsModule.run(license.LicenseEffects),
   EffectsModule.run(series.SeriesEffects),
   EffectsModule.run(family.FamilyEffects),
+  EffectsModule.run(style.StyleEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
@@ -150,3 +156,58 @@ export const getFamiliesByWeight = (weight: number) => {
 export const getFamiliesByWidth = (width: number) => {
   return (state) => family.getFamiliesByWidth(getFamilyState(state), width);
 };
+
+export const getStyleState = (state: AdminState): style.StyleState => state.style;
+export const getStyleEntities = createSelector(getStyleState, style.getEntities);
+export const getStyleIds = createSelector(getStyleState, style.getIds);
+export const getSelectedStyleId = createSelector(getStyleState, style.getSelectedId);
+export const getSelectedStyle = createSelector(getStyleState, style.getSelected);
+export const getStyleSearchQuery = createSelector(getStyleState, style.getSearchQuery);
+export const getAllStyles = createSelector(getStyleState, style.getAll);
+export const getStyleById = (styleId: number) => {
+  return (state) => style.getStyleById(getStyleState(state), styleId);
+};
+export const getStylesByName = (name: string) => {
+  return (state) => style.getStylesByName(getStyleState(state), name);
+};
+export const getDefaultStyles = createSelector(getStyleState, style.getDefaultStyles);
+export const getStylesByFoundry = (foundryId: number) => {
+  return (state) => style.getStylesByFoundry(getStyleState(state), foundryId);
+};
+export const getStylesByDesigner = (designerId: number) => {
+  return (state) => style.getStylesByDesigner(getStyleState(state), designerId);
+};
+export const getStylesByPosture = (postureId: number) => {
+  return (state) => style.getStylesByPosture(getStyleState(state), postureId);
+};
+export const getStylesByOptical = (optical: number) => {
+  return (state) => style.getStylesByOptical(getStyleState(state), optical);
+};
+export const getStylesByGrade = (grade: number) => {
+  return (state) => style.getStylesByGrade(getStyleState(state), grade);
+};
+export const getStylesByWeight = (weight: number) => {
+  return (state) => style.getStylesByWeight(getStyleState(state), weight);
+};
+export const getStylesByWidth = (width: number) => {
+  return (state) => style.getStylesByWidth(getStyleState(state), width);
+};
+export const getStylesByTnWeight = (tnWeight: number) => {
+  return (state) => style.getStylesByTnWeight(getStyleState(state), tnWeight);
+};
+export const getStylesByTnWidth = (tnWidth: number) => {
+  return (state) => style.getStylesByTnWidth(getStyleState(state), tnWidth);
+};
+export const getStylesByMinRecommendedSize = (minSize: number) => {
+  return (state) => style.getStylesByMinRecommendedSize(getStyleState(state), minSize);
+};
+export const getStylesByMaxRecommendedSize = (maxSize: number) => {
+  return (state) => style.getStylesByMaxRecommendedSize(getStyleState(state), maxSize);
+};
+export const getStylesByRecommendedFunction = (funct: number) => {
+  return (state) => style.getStylesByRecommendedFunction(getStyleState(state), funct);
+};
+export const getStylesByRecommendedSize = (size: number) => {
+  return (state) => style.getStylesByRecommendedSize(getStyleState(state), size);
+};
+export const getReStyles = createSelector(getStyleState, style.getReStyles);
