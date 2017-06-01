@@ -134,36 +134,31 @@ describe('Admin', () => {
       });
 
       describe('Order list collapsing', () => {
-        it('should allow collapsing single orders', () => {
-          const order = element.all(by.css('order-row')).get(2);
-          const orderData = order.element(by.css('table'));
+        it('should allow opening collapsed single orders', () => {
+          element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)')).click().then(() => {
+            expect(element(by.css('order-row:first-child .table')).isDisplayed()).toBeTruthy();
+          });
+        });
 
-          expect(orderData.isDisplayed()).toBeFalsy();
+        it('should allow collapsing open single orders', () => {
+          element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)')).click().then(() => {
+            expect(element(by.css('order-row:first-child .table')).isDisplayed()).toBeFalsy();
+          });
+        });
 
-          // Open collapsed
-          order.element(by.css('tr:nth-child(1) .col:nth-child(1)')).click();
-          expect(orderData.isDisplayed()).toBeTruthy();
-
-          // Collapse
-          order.element(by.css('tr:nth-child(1) .col:nth-child(1)')).click();
-          expect(orderData.isDisplayed()).toBeFalsy();
+        it('should allow opening all collapsed orders', () => {
+          element(by.css('orders-table > div > div:last-child > div:first-child span:first-child')).click().then(() => {
+            element.all(by.css('order-row')).each((order) => {
+              expect(order.element(by.css('table')).isDisplayed()).toBeTruthy();
+            });
+          });
         });
 
         it('should allow collapsing all orders', () => {
-          // Open all collapsed
-          element(by.css('orders-table > div > div:last-child > div:first-child span:first-child')).click();
-          element.all(by.css('order-row')).map((order) => {
-            return order.element(by.css('table')).isDisplayed();
-          }).then((orders) => {
-            expect(orders.every((order) => order === true)).toBeTruthy();
-          });
-
-          // Collapse all
-          element(by.css('orders-table > div > div:last-child > div:first-child span:last-child')).click();
-          element.all(by.css('order-row')).map((order) => {
-            return order.element(by.css('table')).isDisplayed();
-          }).then((orders) => {
-            expect(orders.every((order) => order === true)).toBeFalsy();
+          element(by.css('orders-table > div > div:last-child > div:first-child span:last-child')).click().then(() => {
+            element.all(by.css('order-row')).each((order) => {
+              expect(order.element(by.css('table')).isDisplayed()).toBeFalsy();
+            });
           });
         });
       });
@@ -172,7 +167,7 @@ describe('Admin', () => {
         // Clear filters
         afterEach(() => {
           element(by.css('orders-controls .card-block:nth-child(2) span.row small a')).click();
-          element(by.css('orders-controls .card-block:nth-child(3) span.row small a')).click();
+          element(by.css('orders-controls .card-block:nth-child(3) span.row small b')).click();
         });
 
         it('should be able to search for orders by id', () => {
@@ -182,16 +177,15 @@ describe('Admin', () => {
 
           element.all(by.css('order-row')).then((orders) => {
             expect(orders.length).toBeGreaterThan(1);
-          });
-          idField.sendKeys(targetId);
 
-          // Wait for debounce
-          browser.driver.sleep(500);
-
-          element.all(by.css('order-row')).then((orders) => {
-            const order = orders[0].element(by.css('tr:nth-child(1) .col:nth-child(1)'));
-            expect(orders.length).toBe(1);
-            expect(order.getText()).toEqual(targetId);
+            idField.sendKeys(targetId);
+            // Wait for debounce
+            browser.driver.sleep(500);
+            element.all(by.css('order-row')).then((filteredOrders) => {
+              const order = filteredOrders[0].element(by.css('tr:nth-child(1) .col:nth-child(1)'));
+              expect(filteredOrders.length).toBe(1);
+              expect(order.getText()).toEqual(targetId);
+            });
           });
         });
 
@@ -199,8 +193,8 @@ describe('Admin', () => {
           const targetStatus = ['Paid in Full', 'Pending'];
           const orderControls = element(by.css('orders-controls'));
           const statusFilters = orderControls.element(by.css('fieldset:last-child'));
-          statusFilters.element(by.css('li:nth-child(1) label')).click();
           statusFilters.element(by.css('li:nth-child(2) label')).click();
+          statusFilters.element(by.css('li:nth-child(3) label')).click();
 
           // Wait for debounce
           browser.driver.sleep(500);
