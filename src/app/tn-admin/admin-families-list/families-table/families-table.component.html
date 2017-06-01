@@ -1,0 +1,45 @@
+<div class="row text-info pb-2">
+  <div class="d-flex col justify-content-start align-items-end">
+    <h4 style="margin-bottom: 0;">Families</h4>
+    <span class="px-2 small text-uppercase">1-50 of 999 results</span>
+  </div>
+  <div class="d-flex col justify-content-end align-items-end text-right">
+    <div class="text-uppercase small px-3">
+      <span style="cursor: pointer;" class="px-1" (click)="expandAll()">Expand all</span>
+      <span> | </span>
+      <span style="cursor: pointer;" class="px-1" (click)="collapseAll()">Collapse all</span>
+    </div>
+    <div>
+      <tn-pagination [collectionSize]="120" [(page)]="page" [maxSize]="1" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
+    </div>
+  </div>
+</div>
+<table class="table table-sortable">
+  <thead>
+    <tr class="row">
+      <!--
+      <th class="col sortable" (click)="sortBy('id')" [ngClass]="{'sort-asc': sortKey === '+id', 'sort-desc': sortKey === '-id'}">Family number</th>
+      <th class="col sortable" (click)="sortBy('licensee_last_name')" [ngClass]="{'sort-asc': sortKey === '+licensee_last_name', 'sort-desc': sortKey === '-licensee_last_name'}">Customer</th>
+      <th class="col sortable" (click)="sortBy('total')" [ngClass]="{'sort-asc': sortKey === '+total', 'sort-desc': sortKey === '-total'}">Amount</th>
+      <th class="col sortable" (click)="sortBy('created')"  [ngClass]="{'sort-asc': sortKey === '+created', 'sort-desc': sortKey === '-created'}">Date</th>
+      <th class="col sortable" (click)="sortBy('status')" [ngClass]="{'sort-asc': sortKey === '+status', 'sort-desc': sortKey === '-status'}">Status</th>
+      <th class="col">&nbsp;</th>
+      -->
+      <th class="col sortable">Name</th>
+      <th class="col sortable">Visible</th>
+      <th class="col sortable">Foundry</th>
+      <th class="col sortable">Designers</th>
+      <th class="col sortable">Styles</th>
+      <th class="col sortable">Min Size</th>
+      <th class="col sortable">Categories</th>
+      <th class="col sortable">Moods</th>
+      <th class="col sortable">Release Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <family-row *ngFor='let family of families' [family]=family [collapseSubject]="collapseState$"></family-row>
+  <!--
+    <family-row *ngFor='let family of families | orderBy: [sortKey]' [family]=family [collapseSubject]="collapseState$"></family-row>
+    -->
+  </tbody>
+</table>

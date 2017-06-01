@@ -1,0 +1,15 @@
+<tr class="row">
+  <td class="col">{{family.name}}</td>
+  <td class="col">{{family.visible}}</td>
+  <td class="col">{{family.foundry}}</td>
+  <td class="col">
+    <ul>
+      <li *ngFor='let designer of family.designer'>{{designer}}</li>
+    </ul>
+  </td>  
+  <td class="col">{{family.style.length}}</td>
+  <td class="col">{{family.recommended_size}}</td> <!-- Pipe to get min -->
+  <td class="col">{{family.category}}</td>
+  <td class="col">{{family.mood}}</td>
+  <td class="col">{{family.released | date:"MM/dd/yyyy"}}</td>
+</tr>
