@@ -7,7 +7,7 @@ import { AuthActions, ANONYMOUS_AUTHORIZATION as ANONYMOUS } from '../../tn-comm
 
 import { PlaceholderComponent } from './placeholder.component';
 
-fdescribe('PlaceholderComponent', () => {
+describe('PlaceholderComponent', () => {
   let component: PlaceholderComponent;
   let fixture: ComponentFixture<PlaceholderComponent>;
   let storeSubject: BehaviorSubject<object>;
