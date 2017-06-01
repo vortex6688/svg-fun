@@ -18,11 +18,12 @@ import { LoginComponent } from './login';
 import { OrderRowComponent, OrderStatusPipe, LicenseTypePipe } from './admin-orders-list/orders-table/order-row';
 import { OrdersTableComponent } from './admin-orders-list/orders-table';
 import { OrdersControlsComponent } from './admin-orders-list/orders-controls';
+import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
-      { path: '', redirectTo: 'orders/list', pathMatch: 'full' },
+      { path: '', component: PlaceholderComponent, data: { title: 'TN Admin | Login '} },
       { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
       { path: 'orders/list', component: AdminOrdersListComponent,
         data: { title: 'TN Admin | Orders List'}
@@ -42,7 +43,8 @@ export const routes: Routes = [
     OrdersTableComponent,
     OrderStatusPipe,
     LicenseTypePipe,
-    OrdersControlsComponent
+    OrdersControlsComponent,
+    PlaceholderComponent,
   ],
   imports: [
     BrowserModule,
