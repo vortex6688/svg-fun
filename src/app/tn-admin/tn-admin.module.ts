@@ -21,7 +21,7 @@ import { OrdersTableComponent } from './admin-orders-list/orders-table';
 import { OrdersControlsComponent } from './admin-orders-list/orders-controls';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AdminOrderDetailsComponent } from './admin-order-details';
-import { FamilyRowComponent } from './admin-families-list/families-table/family-row';
+import { FamilyRowComponent, FamilySizePipe } from './admin-families-list/families-table/family-row';
 import { FamiliesControlsComponent } from './admin-families-list/families-controls';
 import { FamiliesTableComponent } from './admin-families-list/families-table';
 
@@ -59,6 +59,7 @@ export const routes: Routes = [
     FamilyRowComponent,
     FamiliesControlsComponent,
     FamiliesTableComponent,
+    FamilySizePipe,
   ],
   imports: [
     BrowserModule,

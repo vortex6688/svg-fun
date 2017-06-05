@@ -8,7 +8,8 @@
     </ul>
   </td>  
   <td class="col">{{family.style.length}}</td>
-  <td class="col">{{family.recommended_size}}</td> <!-- Pipe to get min -->
+  <td class="col">{{family.recommended_size | myFamilySize:false}}</td>
+  <td class="col">{{family.recommended_size | myFamilySize:true}}</td>
   <td class="col">{{family.category}}</td>
   <td class="col">{{family.mood}}</td>
   <td class="col">{{family.released | date:"MM/dd/yyyy"}}</td>

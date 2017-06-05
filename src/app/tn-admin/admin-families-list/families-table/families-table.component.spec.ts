@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FamilyRowComponent } from './family-row';
+import { FamilyRowComponent, FamilySizePipe } from './family-row';
 import { FamiliesTableComponent } from './families-table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -11,7 +11,7 @@ describe('OrdersTableComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
-      declarations: [ FamilyRowComponent, FamiliesTableComponent ],
+      declarations: [ FamilyRowComponent, FamiliesTableComponent, FamilySizePipe ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
