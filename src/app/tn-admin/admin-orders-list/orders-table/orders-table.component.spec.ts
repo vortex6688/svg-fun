@@ -3,6 +3,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderRowComponent, OrderStatusPipe, LicenseTypePipe } from './order-row';
 import { OrdersTableComponent } from './orders-table.component';
 import { OrderByPipe } from '../../../tn-common/pipes/';
+import { Order } from '../../../tn-common/orders';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('OrdersTableComponent', () => {
@@ -45,5 +46,11 @@ describe('OrdersTableComponent', () => {
     expect(component.collapseState$.getValue()).toEqual(false);
     component.collapseAll();
     expect(component.collapseState$.getValue()).toEqual(true);
+  });
+
+  it('should update page items on page update event', () => {
+    const eventPayload = [1, 111];
+    component.updatePageItems(eventPayload);
+    expect(component.pageItems).toEqual(eventPayload, 'Expected event dat.');
   });
 });

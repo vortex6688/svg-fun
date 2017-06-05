@@ -34,6 +34,8 @@ export class TnPaginationComponent extends NgbPagination implements OnChanges {
   public pageChange: EventEmitter<number>;
   public size: 'sm' | 'lg';
 
+  @Output() public pageItems = new EventEmitter<number[]>();
+
   constructor(config: TnPaginationConfig) {
     super(config);
   }
@@ -51,6 +53,10 @@ export class TnPaginationComponent extends NgbPagination implements OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
+    const firstItem = (this.page - 1) * this.pageSize;
+    const lastItem = Math.min((firstItem + this.pageSize), this.collectionSize);
+    this.pageItems.emit([firstItem, lastItem]);
+
     return super.ngOnChanges(changes);
   }
 }
