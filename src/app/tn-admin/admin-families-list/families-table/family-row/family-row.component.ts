@@ -5,19 +5,6 @@ import { BehaviorSubject } from 'rxjs/Rx';
   selector: 'family-row',
   templateUrl: './family-row.component.html'
 })
-export class FamilyRowComponent implements OnInit, OnDestroy {
+export class FamilyRowComponent {
   @Input() public family;
-  @Input() public collapseSubject: BehaviorSubject<boolean>;
-  public isCollapsed = true;
-  private collapseSubscription;
-
-  public ngOnInit() {
-    this.collapseSubscription = this.collapseSubject.subscribe((collapse) => {
-      this.isCollapsed = collapse;
-    });
-  }
-
-  public ngOnDestroy() {
-    this.collapseSubscription.unsubscribe();
-  }
 }

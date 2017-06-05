@@ -27,24 +27,11 @@ describe('FamilyRowComponent', () => {
     fixture = TestBed.createComponent(FamilyRowComponent);
     component = fixture.componentInstance;
     component.family = {id: 1, style: [1]};
-    component.collapseSubject = collapseSubject;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should toggle collapse on collapse events', () => {
-    expect(component.isCollapsed).toBeTruthy('Should have been collapsed initially');
-    collapseSubject.next(false);
-    expect(component.isCollapsed).toBeFalsy('Should have been expanded after event');
-  });
-
-  it('should unsubscribe on destroy', () => {
-    expect(collapseSubject.observers.length).toEqual(1, 'Should subscribe initially');
-    fixture.destroy();
-    expect(collapseSubject.observers.length).toEqual(0, 'Should unsubscribe after destruction');
   });
 
   describe('FamilyCategoryPipe', () => {

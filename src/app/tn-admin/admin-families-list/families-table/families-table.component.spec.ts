@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderByPipe } from '../../../tn-common/pipes/';
 import { FamilyRowComponent,
          FamilyCategoryPipe,
          FamilyMoodPipe,
@@ -20,7 +21,8 @@ describe('OrdersTableComponent', () => {
                       FamilyCategoryPipe,
                       FamilyMoodPipe,
                       FamilySizePipe,
-                      FamilyVisibilityPipe ],
+                      FamilyVisibilityPipe,
+                      OrderByPipe, ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
@@ -45,13 +47,5 @@ describe('OrdersTableComponent', () => {
     expect(component.sortKey).toEqual(`+${testKey}`, 'Expected ascending key');
     component.sortBy(nextKey);
     expect(component.sortKey).toEqual(`-${nextKey}`, 'Expected next key');
-  });
-
-  it('should manage collapseState', () => {
-    expect(component.collapseState$.getValue()).toEqual(true);
-    component.expandAll();
-    expect(component.collapseState$.getValue()).toEqual(false);
-    component.collapseAll();
-    expect(component.collapseState$.getValue()).toEqual(true);
   });
 });
