@@ -7,4 +7,10 @@ import { BehaviorSubject } from 'rxjs/Rx';
 })
 export class FamilyRowComponent {
   @Input() public family;
+
+  public isChecked = false;
+
+  public selectFamily() {
+    this.isChecked = !this.isChecked;
+  }
 }

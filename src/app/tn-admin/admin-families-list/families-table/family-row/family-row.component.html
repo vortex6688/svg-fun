@@ -1,5 +1,10 @@
-<tr class="row">
-  <td class="col"><input type="checkbox" value='{{family.id}}'></td>
+<tr class="row" [ngClass]="{'row-selected': isChecked}">
+  <td class="col align-self-center" style="max-width: 2rem;">
+    <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value='{{family.id}}' (click)='selectFamily()' />
+      <span class="custom-control-indicator"></span>
+    </label>
+  </td>
   <td class="col">{{family.name}}</td>
   <td class="col">{{family.visible | myFamilyVisibility}}</td>
   <td class="col">{{family.foundry}}</td>
