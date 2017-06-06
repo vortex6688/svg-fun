@@ -285,6 +285,13 @@ describe('StyleReducer', () => {
       expect(selectedStyles).toEqual([styleMock]);
     });
 
+    it('getStylesByPosture should return all styles with the provided posture', () => {
+      let selectedStyles = getStylesByPosture(addedState, 123);
+      expect(selectedStyles).toEqual([]);
+      selectedStyles = getStylesByPosture(addedState, 1);
+      expect(selectedStyles).toEqual([styleMock]);
+    });
+
     it('getStylesByVisibility should return all styles with the provided visibility', () => {
       let selectedStyles = getStylesByVisibility(addedState, 123);
       expect(selectedStyles).toEqual([]);
