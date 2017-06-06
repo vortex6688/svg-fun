@@ -9,8 +9,8 @@
       <span> | </span>
       <span style="cursor: pointer;" class="px-1" (click)="collapseAll()">Collapse all</span>
     </div>
-    <div>
-      <tn-pagination [collectionSize]="orders.length" [pageSize]="pageSize" (pageItems)="updatePageItems($event)" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
+    <div *ngIf="orders.length">
+      <tn-pagination [collectionSize]="orders.length" [pageSize]="pageSize" (pageItemsChanges)="updatePageItems($event)" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
       <th class="col">&nbsp;</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="orders.length">
     <order-row *ngFor='let order of orders | orderBy: [sortKey] | slice:pageItems[0]:pageItems[1]' [order]=order [collapseSubject]="collapseState$"></order-row>
   </tbody>
 </table>

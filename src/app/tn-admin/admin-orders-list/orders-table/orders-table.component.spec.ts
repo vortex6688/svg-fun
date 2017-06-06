@@ -51,6 +51,6 @@ describe('OrdersTableComponent', () => {
   it('should update page items on page update event', () => {
     const eventPayload = [1, 111];
     component.updatePageItems(eventPayload);
-    expect(component.pageItems).toEqual(eventPayload, 'Expected event dat.');
+    expect(component.pageItems).toEqual(eventPayload, 'Expected event data.');
   });
 });

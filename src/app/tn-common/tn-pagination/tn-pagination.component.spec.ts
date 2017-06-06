@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement, Component } from '@angular/core';
 
+import { Router, ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TnPaginationComponent } from './tn-pagination.component';
@@ -39,14 +40,28 @@ function expectSameValues(pagination: TnPaginationComponent, config: TnPaginatio
   expect(pagination.size).toBe(config.size);
 }
 
+let queryParams = {};
+class MockRouter {
+  public navigate = jasmine.createSpy('navigate');
+}
+class MockActiveRoute {
+  public get snapshot() {
+    return { queryParams };
+  }
+}
+
 describe('TnPaginationComponent', () => {
-  let pagination: TnPaginationComponent;
+  let component: TnPaginationComponent;
   let fixture: ComponentFixture<TnPaginationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ NgbModule, RouterTestingModule.withRoutes([])],
-      providers:    [ TnPaginationConfig ],
+      imports: [ NgbModule ],
+      providers: [
+        TnPaginationConfig,
+        { provide: Router, useClass: MockRouter, },
+        { provide: ActivatedRoute, useClass: MockActiveRoute, },
+      ],
       declarations: [ TnPaginationComponent ]
     })
     .compileComponents();
@@ -54,27 +69,80 @@ describe('TnPaginationComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TnPaginationComponent);
-    pagination = fixture.componentInstance;
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(pagination).toBeTruthy();
+    expect(component).toBeTruthy();
   });
-});
 
-describe('TnPaginationComponent', () => {
-  describe('business logic', () => {
+  it('should update page items on changes', () => {
+    spyOn(component, 'updatePageItems');
+    component.ngOnChanges({});
+    expect(component.updatePageItems).toHaveBeenCalled();
+  });
 
-    let pagination: TnPaginationComponent;
+  it('should initialize inputs with default values', () => {
+    const defaultConfig = new TnPaginationConfig();
+    expectSameValues(component, defaultConfig);
+  });
 
-    beforeEach(() => { pagination = new TnPaginationComponent(new TnPaginationConfig()); });
+  it('should emit page item events', () => {
+    component.collectionSize = 6;
+    component.pageSize = 4;
+    component.page = 1;
+    const emitSpy = jasmine.createSpy('emit');
+    component.pageItemsChanges.emit = emitSpy;
 
-    it('should initialize inputs with default values', () => {
-      const defaultConfig = new TnPaginationConfig();
-      expectSameValues(pagination, defaultConfig);
+    // First page
+    component.updatePageItems();
+    let pageItems = [0, component.pageSize];
+    expect(component.pageItems).toEqual(pageItems);
+    expect(emitSpy).toHaveBeenCalledWith(pageItems);
+
+    // Same items
+    emitSpy.calls.reset();
+    component.updatePageItems();
+    expect(component.pageItemsChanges.emit).not.toHaveBeenCalled();
+
+    // Last page
+    emitSpy.calls.reset();
+    component.page = 2;
+    component.updatePageItems();
+    pageItems = [component.pageSize, component.collectionSize];
+    expect(component.pageItems).toEqual(pageItems);
+    expect(emitSpy).toHaveBeenCalledWith(pageItems);
+  });
+
+  describe('query params', () => {
+    let route: MockActiveRoute;
+    let router: MockRouter;
+
+    beforeEach(() => {
+      route = TestBed.get(ActivatedRoute);
+      router = TestBed.get(Router);
     });
 
+    it('should select query param page on init', () => {
+      spyOn(component, 'selectPage');
+      const page = 5;
+
+      // No query param
+      component.ngOnInit();
+      expect(component.selectPage).not.toHaveBeenCalled();
+
+      // With param
+      queryParams = { page };
+      component.ngOnInit();
+      expect(component.selectPage).toHaveBeenCalledWith(page);
+    });
+
+    it('should update query param on page select', () => {
+      const page = 3;
+      component.selectPage(page);
+      expect(router.navigate).toHaveBeenCalledWith([], { queryParams: { page }});
+    });
   });
 });
 
