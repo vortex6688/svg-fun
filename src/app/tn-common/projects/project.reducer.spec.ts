@@ -3,6 +3,7 @@ import {
   async,
 } from '@angular/core/testing';
 
+import { License } from '../licenses/license.model';
 import { Project } from './project.model';
 import { ProjectReducer } from './project.reducer';
 import { ProjectActions } from './project.actions';
@@ -16,13 +17,27 @@ import {
   getProjectById
  } from './project.selectors';
 
+const licenseMock: License = {
+  id: 123,
+  order: 1,
+  price: '22.0000',
+  price_paid: '22.0000',
+  qty: 2,
+  start: null,
+  end: null,
+  style: 286,
+  years: null,
+  active: true,
+  license_type: 'app'
+};
+
 const projectMock: Project = {
   id: 123,
   name: 'Project 1',
   user: 1,
   domains: '["project1.com"]',
   created: '2017-03-05T18:16:50Z',
-  licenses: [1],
+  licenses: [licenseMock],
   family_count: 1,
   style_count: 1,
 };

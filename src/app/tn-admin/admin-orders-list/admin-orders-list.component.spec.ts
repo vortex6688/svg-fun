@@ -11,6 +11,7 @@ import { Order, OrderActions, OrderSearch, initialOrderState } from '../../tn-co
 import { License, LicenseActions } from '../../tn-common/licenses';
 import { Style, StyleActions } from '../../tn-common/styles';
 import { Family, FamilyActions } from '../../tn-common/families';
+import { Project, ProjectActions } from '../../tn-common/projects';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule, storeAssets, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -134,6 +135,16 @@ describe('AdminOrdersListComponent', () => {
     series: [ 27, 28 ],
     visible: 2,
   };
+  const mockProject: Project = {
+    id: 123,
+    name: 'Project 1',
+    user: 1,
+    domains: '["project1.com"]',
+    created: '2017-03-05T18:16:50Z',
+    licenses: [mockLicense],
+    family_count: 1,
+    style_count: 1,
+  };
   const mockStyleList: Style[] = [
     { ...mockStyle, id: 2, family: 1, name: 'Non existant' },
     { ...mockStyle, id: 3, family: 1, name: 'Style light' },
@@ -158,6 +169,11 @@ describe('AdminOrdersListComponent', () => {
     { ...mockLicense, id: 2, order: 1, style: 3, license_type: 'epub' },
     { ...mockLicense, id: 3, order: 2, style: 4, license_type: 'web' },
     { ...mockLicense, id: 4, order: 11, style: 5, license_type: 'web', self_hosted: true },
+  ];
+  const mockProjectList: Project[] = [
+    { ...mockProject, id: 2, name: 'p1', licenses: [mockLicenseList[3]]},
+    { ...mockProject, id: 3, name: 'p2', licenses: [mockLicenseList[2]], domains: '["p2.com"]'},
+    { ...mockProject, id: 4, name: 'p3', licenses: [mockLicenseList[1]] },
   ];
 
   class MockOrderActions {
@@ -222,7 +238,14 @@ describe('AdminOrdersListComponent', () => {
     }));
     const licensedOrders = mockOrderList.map((order) => ({
       ...order,
-      licenses: licensesStyles.filter((license) => license.order === order.id)
+      licenses: licensesStyles.filter((license) => license.order === order.id),
+    }));
+    const licensesOrdersProjects = licensedOrders.map((order) => ({
+      ...order,
+      projects: mockProjectList.filter((project) =>
+                                       project.licenses.some((projectLicense) =>
+                                                              order.licenses.map((license) => license.id)
+                                                              .indexOf(projectLicense.id) !== -1)),
     }));
 
     beforeEach(() => {
@@ -230,6 +253,7 @@ describe('AdminOrdersListComponent', () => {
       store.dispatch({ type: LicenseActions.ADD_LICENSES, payload: mockLicenseList });
       store.dispatch({ type: FamilyActions.ADD_FAMILIES, payload: mockFamilyList });
       store.dispatch({ type: StyleActions.ADD_STYLES, payload: mockStyleList });
+      store.dispatch({ type: ProjectActions.ADD_PROJECTS, payload: mockProjectList });
     });
 
     it('should assign matching families to styles', () => {
@@ -251,7 +275,7 @@ describe('AdminOrdersListComponent', () => {
     });
 
     it('should filter orders by id', () => {
-      const target = licensedOrders[0];
+      const target = licensesOrdersProjects[0];
       const searchQuery = {
         ...initialOrderState.search,
         id: target.id,
@@ -268,7 +292,7 @@ describe('AdminOrdersListComponent', () => {
         ...initialOrderState.search,
         status,
       };
-      const expected = licensedOrders.filter((order) => status.indexOf(order.status) !== -1);
+      const expected = licensesOrdersProjects.filter((order) => status.indexOf(order.status) !== -1);
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual(expected);
@@ -283,7 +307,7 @@ describe('AdminOrdersListComponent', () => {
         from,
         to,
       };
-      const expected = licensedOrders.filter((order) =>
+      const expected = licensesOrdersProjects.filter((order) =>
         new Date(order.created) >= from &&
         new Date(order.created) <= to
       );
@@ -299,7 +323,7 @@ describe('AdminOrdersListComponent', () => {
         ...initialOrderState.search,
         font,
       };
-      const expected = licensedOrders.filter((order) =>
+      const expected = licensesOrdersProjects.filter((order) =>
         order.licenses.some((license) => new RegExp(font, 'i').test(license.style.name)));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
@@ -317,7 +341,7 @@ describe('AdminOrdersListComponent', () => {
         ...initialOrderState.search,
         licenses,
       };
-      const expected = licensedOrders.filter((order) => licenses.some((licenseType) =>
+      const expected = licensesOrdersProjects.filter((order) => licenses.some((licenseType) =>
         Object.entries(licenseType).every(([key, value]) =>
           order.licenses.some((license) => license[key] === value))));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
@@ -325,5 +349,30 @@ describe('AdminOrdersListComponent', () => {
         expect(orders).toEqual(expected);
       });
     });
+
+    it('should filter orders by project name', () => {
+      const target = licensesOrdersProjects[0];
+      const searchQuery = {
+        ...initialOrderState.search,
+        project: 'p1',
+      };
+      store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredOrdersLicenses$.subscribe((orders) => {
+        expect(orders).toEqual([target]);
+      });
+    });
+
+    it('should filter orders by project domain', () => {
+      const target = licensesOrdersProjects[2];
+      const searchQuery = {
+        ...initialOrderState.search,
+        project: 'p2.com',
+      };
+      store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredOrdersLicenses$.subscribe((orders) => {
+        expect(orders).toEqual([target]);
+      });
+    });
+
   });
 });

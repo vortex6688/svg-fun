@@ -12,7 +12,7 @@ export class Order {
   public total: number;
   public status: number;
   public created: string;
-  public licenses?: number[] | License[];
+  public licenses?: License[];
   public licensee_first_name: string;
   public licensee_last_name: string;
   public licensee_street1: string;
@@ -24,9 +24,12 @@ export class Order {
   public licensee_company?: string;
   public licensee_vat: string;
   public payments: Payments[];
-  public projects?: Project[];
   public order_token: string;
   public coupon?: string;
   public coupon_discount?: number;
   public upgrade_price_adjustment: number;
+}
+
+export class OrderFull extends Order {
+  public projects?: Project[];
 }

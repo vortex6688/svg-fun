@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { Order, OrderActions, OrderSearch } from '../../tn-common/orders';
+import { Order, OrderFull, OrderActions, OrderSearch } from '../../tn-common/orders';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { Family, FamilyState } from '../../tn-common/families';
@@ -122,9 +122,12 @@ export class AdminOrdersListComponent {
   public ordersLicensesProjects$ = Observable.combineLatest(
     this.ordersLicenses$,
     this.projects$,
-    (orders: Order[], projects: Project[]): Order[] => orders.map((order) => ({
+    (orders: Order[], projects: Project[]) => orders.map((order) => ({
       ...order,
-      projects: projects.filter((project) => project.user === order.user),
+      projects: projects.filter((project) =>
+                                project.licenses.some((projectLicense) =>
+                                                      order.licenses.map((license) => license.id)
+                                                      .indexOf(projectLicense.id) !== -1)),
     })));
 
   /**
@@ -134,7 +137,7 @@ export class AdminOrdersListComponent {
    * @memberof AdminOrdersListComponent
    */
   public filteredOrdersLicenses$ = Observable.combineLatest(
-    this.ordersLicenses$,
+    this.ordersLicensesProjects$,
     this.orderQuery$,
     (orders, orderQuery: OrderSearch) => orders.filter((order) => {
       if (orderQuery.id && order.id !== +orderQuery.id) {
@@ -153,6 +156,12 @@ export class AdminOrdersListComponent {
         const testName = new RegExp(orderQuery.font, 'i');
         const hasName = order.licenses.some((license) => testName.test((license.style as Style).name));
         if (!hasName) { return false; }
+      }
+      if (orderQuery.project && order.projects) {
+        const testName = new RegExp(orderQuery.project, 'i');
+        const hasName = order.projects.some((project) => testName.test((project as Project).name));
+        const hasDomain = order.projects.some((project) => testName.test((project as Project).domains));
+        if (!hasName && !hasDomain) { return false; }
       }
       return !orderQuery.licenses.length || orderQuery.licenses.some((licenseType) =>
         Object.entries(licenseType).every(([key, value]) =>
