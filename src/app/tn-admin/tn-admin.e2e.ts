@@ -14,7 +14,7 @@ describe('Admin', () => {
 
   it('should have a title', () => {
     return browser.getTitle().then((subject) => {
-      const result  = 'TN Admin | Orders List';
+      const result  = 'TN Admin | Login';
       expect(subject).toEqual(result);
     });
   });
@@ -69,7 +69,7 @@ describe('Admin', () => {
       });
     });
 
-    it('logging in with valid credentials closes the login dialog', () => {
+    it('logging in with valid credentials redirects to order page', () => {
       const loginModal = element(by.css('app-login'));
       const username = loginModal.element(by.name('username'));
       username.clear().then(() => {
@@ -84,8 +84,9 @@ describe('Admin', () => {
       // there has to be a better way to wait on the http response.
       browser.driver.sleep(1000);
 
-      element(by.css('app-login')).isPresent().then((present) => {
-        expect(present).toBeFalsy();
+      expect(element(by.css('app-login')).isPresent()).toBeFalsy();
+      browser.getCurrentUrl().then((url) => {
+        expect(url.indexOf('admin/orders/list')).toBeGreaterThan(-1);
       });
     });
 
