@@ -28,6 +28,24 @@ export class AdminFamiliesListComponent {
    */
   public familyQuery$ = this.store.select(getFamilySearchQuery);
 
+  /**
+   *  Orders collection for display, filtered against search query.
+   *
+   * @type {Observable<Order[]>}
+   * @memberof AdminOrdersListComponent
+   */
+  public filteredFamilies$ = Observable.combineLatest(
+    this.families$,
+    this.familyQuery$,
+    (families, familyQuery: FamilySearch) => families.filter((family) => {
+      if (familyQuery.name) {
+        const testName = new RegExp(familyQuery.name, 'i');
+        const hasName = testName.test(family.name);
+        if (!hasName) { return false; }
+      }
+      return this.families$;
+    }));
+
   constructor(private store: Store<any>, private familyActions: FamilyActions) {}
 
   /**
