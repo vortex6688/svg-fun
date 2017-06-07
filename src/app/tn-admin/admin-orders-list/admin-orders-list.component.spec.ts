@@ -8,6 +8,8 @@ import { StoreModule, Store } from '@ngrx/store';
 
 import { Order, OrderActions, OrderSearch, initialOrderState } from '../../tn-common/orders';
 import { License, LicenseActions } from '../../tn-common/licenses';
+import { Style, StyleActions } from '../../tn-common/styles';
+import { Family, FamilyActions } from '../../tn-common/families';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule, storeAssets, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -69,6 +71,81 @@ describe('AdminOrdersListComponent', () => {
     license_type: 'app',
     self_hosted: false
   };
+  const mockStyle: Style = {
+    id: 1,
+    name: 'Style bolder',
+    style_name: 'Bold',
+    family: 1,
+    base_price: '22.0000',
+    specimen_text: 'Text for specimen',
+    support: {
+      'supported language': [
+        'uppercase',
+        'lowercase',
+      ],
+    },
+    default_style: false,
+    foundry: 2,
+    designer: 3,
+    posture: 1,
+    visible: 3,
+    optical: 500,
+    grade: 11,
+    weight: 400,
+    width: 500,
+    tn_size: [],
+    released: new Date().toString(),
+    tn_weight: 300,
+    tn_width: 600,
+    min_recommended_size: 24,
+    max_recommended_size: 100,
+    isRE: false,
+    recommended_function: [0, 1, 2],
+    recommended_size: [400, 500],
+  };
+  const mockFamily: Family = {
+    id: 1,
+    name: 'Mock family',
+    slug: 'mock-family',
+    description: '2 real 2 describe',
+    descripion_link: [{
+      text: 'link text',
+      url: 'link url',
+    }],
+    more: 'don\'t hurt me',
+    category: [ 1, 2 ],
+    mood: [ 3, 4 ],
+    designer: [ 5, 6 ],
+    foundry: [ 7, 8 ],
+    posture: [ 9, 10 ],
+    recommended_function: [ 11, 12 ],
+    recommended_size: [ 13, 14 ],
+    width: [ 15, 16 ],
+    weight: [ 17, 18 ],
+    tn_width: [ 19, 20 ],
+    tn_weight: [ 21, 22 ],
+    released: '2017-01-01',
+    style: [],
+    default_style: 111,
+    link_only_styles: [ 25, 26 ],
+    canonical: 234,
+    canonical_series: 234,
+    series: [ 27, 28 ],
+    visible: 2,
+  };
+  const mockStyleList: Style[] = [
+    { ...mockStyle, id: 2, family: 1, name: 'Non existant' },
+    { ...mockStyle, id: 3, family: 1, name: 'Style light' },
+    { ...mockStyle, id: 4, family: 2, name: 'Placeholder' },
+    { ...mockStyle, id: 5, family: 3, name: 'Stylish' },
+    { ...mockStyle, id: 6, family: 4, name: 'Stylish' },
+  ];
+  const mockFamilyList: Family[] = [
+    { ...mockFamily, id: 1, styles: [2, 3], },
+    { ...mockFamily, id: 2, styles: [4], },
+    { ...mockFamily, id: 3, styles: [5], },
+    { ...mockFamily, id: 4, styles: [6], },
+  ];
   const mockOrderList: Order[] = [
     { ...mockOrder, id: 11, status: 1, created: new Date(orderDate).toString() },
     { ... mockOrder, id: 1, status: 2, created: new Date(orderDate - 5000).toString() },
@@ -76,10 +153,10 @@ describe('AdminOrdersListComponent', () => {
     { ... mockOrder, id: 23456, status: 2, created: new Date(orderDate + 5000).toString() },
   ];
   const mockLicenseList: License[] = [
-    { ...mockLicense, id: 1, order: 1, license_type: 'app' },
-    { ...mockLicense, id: 2, order: 1, license_type: 'epub' },
-    { ...mockLicense, id: 3, order: 2, license_type: 'web' },
-    { ...mockLicense, id: 4, order: 11, license_type: 'web', self_hosted: true },
+    { ...mockLicense, id: 1, order: 1, style: 2, license_type: 'app' },
+    { ...mockLicense, id: 2, order: 1, style: 3, license_type: 'epub' },
+    { ...mockLicense, id: 3, order: 2, style: 4, license_type: 'web' },
+    { ...mockLicense, id: 4, order: 11, style: 5, license_type: 'web', self_hosted: true },
   ];
 
   class MockOrderActions {
@@ -87,19 +164,15 @@ describe('AdminOrdersListComponent', () => {
   }
 
   beforeEach(async(() => {
-    // storeSubject = new BehaviorSubject([]);
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        // TnCommonModule,
-        // TnAdminStoreModule,
         StoreModule.provideStore(productionReducer),
       ],
       declarations: [
         AdminOrdersListComponent,
       ],
       providers: [
-        // { provide: Store, useClass: MockStore },
         { provide: OrderActions, useClass: MockOrderActions },
       ],
       schemas: [NO_ERRORS_SCHEMA],
@@ -137,14 +210,36 @@ describe('AdminOrdersListComponent', () => {
   });
 
   describe('order combining', () => {
+    const styleFamilies = mockStyleList.map((style) => ({
+      ...style,
+      family: mockFamilyList.find((family) => family.id === style.family),
+    }));
+    const licensesStyles = mockLicenseList.map((license) => ({
+      ...license,
+      style: styleFamilies.find((style) => style.id === license.style),
+    }));
     const licensedOrders = mockOrderList.map((order) => ({
       ...order,
-      licenses: mockLicenseList.filter((license) => license.order === order.id),
+      licenses: licensesStyles.filter((license) => license.order === order.id)
     }));
 
     beforeEach(() => {
       store.dispatch({ type: OrderActions.ADD_ORDERS, payload: mockOrderList });
       store.dispatch({ type: LicenseActions.ADD_LICENSES, payload: mockLicenseList });
+      store.dispatch({ type: FamilyActions.ADD_FAMILIES, payload: mockFamilyList });
+      store.dispatch({ type: StyleActions.ADD_STYLES, payload: mockStyleList });
+    });
+
+    it('should assign matching families to styles', () => {
+      component.styleFamilies$.subscribe((styles) => {
+        expect(styles).toEqual(styleFamilies);
+      });
+    });
+
+    it('should assign matching styles to licenses', () => {
+      component.licensesStyles$.subscribe((licenses) => {
+        expect(licenses).toEqual(licensesStyles);
+      });
     });
 
     it('should assign matching licenses to orders', () => {
@@ -160,7 +255,7 @@ describe('AdminOrdersListComponent', () => {
         id: target.id,
       };
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
-      component.filteredOrdersLicenses$.subscribe((orders) => {
+      component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual([target]);
       });
     });
@@ -173,7 +268,7 @@ describe('AdminOrdersListComponent', () => {
       };
       const expected = licensedOrders.filter((order) => status.indexOf(order.status) !== -1);
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
-      component.filteredOrdersLicenses$.subscribe((orders) => {
+      component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual(expected);
       });
     });
@@ -191,7 +286,21 @@ describe('AdminOrdersListComponent', () => {
         new Date(order.created) <= to
       );
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
-      component.filteredOrdersLicenses$.subscribe((orders) => {
+      component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
+        expect(orders).toEqual(expected);
+      });
+    });
+
+    it('should filter orders by font name', () => {
+      const font = 'style';
+      const searchQuery = {
+        ...initialOrderState.search,
+        font,
+      };
+      const expected = licensedOrders.filter((order) =>
+        order.licenses.some((license) => new RegExp(font, 'i').test(license.style.name)));
+      store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual(expected);
       });
     });
@@ -210,7 +319,7 @@ describe('AdminOrdersListComponent', () => {
         Object.entries(licenseType).every(([key, value]) =>
           order.licenses.some((license) => license[key] === value))));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
-      component.filteredOrdersLicenses$.subscribe((orders) => {
+      component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual(expected);
       });
     });

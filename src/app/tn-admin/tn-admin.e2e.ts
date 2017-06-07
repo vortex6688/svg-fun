@@ -108,6 +108,8 @@ describe('Admin', () => {
           submit.click();
           browser.driver.sleep(1000);
           browser.refresh();
+          // Wait for data to load
+          browser.driver.sleep(1000);
         });
       });
 
@@ -129,21 +131,19 @@ describe('Admin', () => {
       });
 
       it('should display orders when logged in', () => {
-        element(by.css('order-row')).isPresent().then((present) => {
-          expect(present).toBeTruthy();
-        });
+        expect(element(by.css('order-row')).isPresent()).toBeTruthy();
       });
 
       describe('Order list collapsing', () => {
         it('should allow opening collapsed single orders', () => {
           element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)')).click().then(() => {
-            expect(element(by.css('order-row:first-child .table')).isDisplayed()).toBeTruthy();
+            expect(element(by.css('order-row:first-child table')).isDisplayed()).toBeTruthy();
           });
         });
 
         it('should allow collapsing open single orders', () => {
           element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)')).click().then(() => {
-            expect(element(by.css('order-row:first-child .table')).isDisplayed()).toBeFalsy();
+            expect(element(by.css('order-row:first-child table')).isDisplayed()).toBeFalsy();
           });
         });
 
@@ -210,6 +210,18 @@ describe('Admin', () => {
             });
           }).then(() => {
             expect(valid).toBeTruthy();
+          });
+        });
+
+        it('should be able to search for orders by family', () => {
+          const family = 'Zócalo';
+          const orderControls = element(by.css('orders-controls'));
+          const fontField = orderControls.element(by.css('input[formcontrolname=font]'));
+          fontField.sendKeys(family);
+          // Wait for debounce
+          browser.driver.sleep(500);
+          element.all(by.css('order-row')).each((order) => {
+            expect(order.element(by.cssContainingText('tr:last-child tbody td:first-child li', family))).toBeTruthy();
           });
         });
       });
