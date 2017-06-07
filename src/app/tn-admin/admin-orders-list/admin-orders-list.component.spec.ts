@@ -21,6 +21,13 @@ describe('AdminOrdersListComponent', () => {
   let fixture: ComponentFixture<AdminOrdersListComponent>;
   let store: Store<any>;
   const orderDate = Date.now();
+  const STATUSES = [
+    'Pending',          // 0
+    'Partially Paid',   // 1
+    'Paid in Full',     // 2
+    'Cancelled',        // 3
+    'Approved, Unpaid', // 4
+  ];
   const mockOrder: Order = {
     id: 1,
     user: 1,
@@ -238,6 +245,7 @@ describe('AdminOrdersListComponent', () => {
     }));
     const licensedOrders = mockOrderList.map((order) => ({
       ...order,
+      statusName: STATUSES[order.status],
       licenses: licensesStyles.filter((license) => license.order === order.id),
     }));
     const licensesOrdersProjects = licensedOrders.map((order) => ({

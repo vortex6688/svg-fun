@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OrderRowComponent, OrderStatusPipe, LicenseTypePipe } from './order-row';
+import { OrderRowComponent, LicenseTypePipe } from './order-row';
 import { OrdersTableComponent } from './orders-table.component';
 import { OrderByPipe } from '../../../tn-common/pipes/';
 import { Order } from '../../../tn-common/orders';
@@ -13,7 +13,7 @@ describe('OrdersTableComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
-      declarations: [ OrderRowComponent, OrdersTableComponent, OrderStatusPipe, OrderByPipe, LicenseTypePipe ],
+      declarations: [ OrderRowComponent, OrdersTableComponent, OrderByPipe, LicenseTypePipe ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();

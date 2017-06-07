@@ -15,6 +15,14 @@ import { getAllOrders,
   getAllProjects,
 } from '../store/reducers';
 
+const STATUSES = [
+  'Pending',          // 0
+  'Partially Paid',   // 1
+  'Paid in Full',     // 2
+  'Cancelled',        // 3
+  'Approved, Unpaid', // 4
+];
+
 @Component({
   selector: 'admin-orders-list',
   templateUrl: './admin-orders-list.component.html',
@@ -110,6 +118,7 @@ export class AdminOrdersListComponent {
     this.licensesStyles$,
     (orders: Order[], licenses: License[]) => orders.map((order) => ({
       ...order,
+      statusName: STATUSES[order.status],
       licenses: licenses.filter((license) => license.order === order.id),
     })));
 

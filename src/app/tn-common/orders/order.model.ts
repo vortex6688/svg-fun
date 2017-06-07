@@ -11,6 +11,7 @@ export class Order {
   public tax: number;
   public total: number;
   public status: number;
+  public statusName?: string;
   public created: string;
   public licenses?: License[];
   public licensee_first_name: string;

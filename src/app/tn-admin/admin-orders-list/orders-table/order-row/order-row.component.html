@@ -10,7 +10,7 @@
   <td class="col">{{order.licensee_last_name}}, {{order.licensee_first_name}}</td>
   <td class="col">{{order.total | currency:'USD':true:'1.2-2'}}</td>
   <td class="col">{{order.created | date:"MM/dd/yyyy"}}</td>
-  <td class="col">{{order.status | myOrderStatus}}</td>
+  <td class="col">{{order.statusName}}</td>
   <td class="col"><button class="btn rounded btn-sm btn-outline-info">IMPERSONATE</button></td>
 </tr>
 
