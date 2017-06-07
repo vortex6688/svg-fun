@@ -9,6 +9,7 @@ a.btn.disabled {
   // update button defaults to match TN editorial mockups
   min-width: 10rem;
   font-size: $font-size-sm;
+  cursor: pointer;
 
   &.rounded {
     border-radius: 0.2rem;
