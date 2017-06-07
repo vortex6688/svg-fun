@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FamilySearch } from '../../../tn-common/families';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class FamiliesControlsComponent implements OnInit {
   @Input() public initialQuery;
+  @Output() public queryUpdate = new EventEmitter<FamilySearch>();
 
   public visibilityData = [
     { name: 'Inactive', value: 2 },
@@ -51,25 +53,44 @@ export class FamiliesControlsComponent implements OnInit {
       visibility: this.fb.array(visibilityControls),
       categories: this.fb.array(categoryControls),
     });
+
+    const searchFormChanges = this.searchForm.valueChanges.startWith(this.searchForm.value);
+    const filterFormChanges = this.filterForm.valueChanges
+      .startWith(this.filterForm.value)
+      .map(({visibility, categories}) => {
+        const activeVisibility = visibility.reduce((result, item, i) => {
+          if (item) { result.push(this.visibilityData[i].value); }
+          return result;
+        }, []);
+        const activeCategories = categories.reduce((result, item, i) => {
+          if (item) { result.push(this.categoriesData[i].value); }
+          return result;
+        }, []);
+
+        return {
+          visibility: activeVisibility,
+          categories: activeCategories,
+        };
+      });
+
+    searchFormChanges.combineLatest(filterFormChanges)
+      .debounceTime(500)
+      .subscribe(([search, filter]) => {
+        this.queryUpdate.emit({
+          ...search,
+          ...filter,
+        });
+      });
   }
 
   /**
-   * Clear search form group.
-   *
-   * @public
-   * @memberOf FamiliesControlsComponent
-   */
-  public clearSearch() {
-    this.searchForm.reset();
-  }
-
-  /**
-   * Clear filter form group.
+   * Clear search and filter form group.
    *
    * @public
    * @memberOf FamiliesControlsComponent
    */
   public clearFilters() {
+    this.searchForm.reset();
     this.filterForm.reset();
   }
 }

@@ -35,4 +35,30 @@ describe('FamiliesControlComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should clear all the filters', () => {
+    const searchValues = {
+      name: 'John',
+      foundry: 'all of em',
+      designer: 'one of em',
+    };
+    const filterValues = {
+      visibility: component.visibilityData.map(() => true),
+      categories: component.categoriesData.map((data) => data.value),
+    };
+    component.searchForm.setValue(searchValues);
+    expect(component.searchForm.value).toEqual(searchValues);
+    component.filterForm.setValue(filterValues);
+    expect(component.filterForm.value).toEqual(filterValues);
+    component.clearFilters();
+    expect(component.searchForm.value).toEqual({
+      name: null,
+      foundry: null,
+      designer: null,
+    });
+    expect(component.filterForm.value).toEqual({
+      visibility: component.visibilityData.map(() => null),
+      categories: component.categoriesData.map(() => null),
+    });
+  });
+
 });

@@ -35,7 +35,7 @@ export class AdminFamiliesListComponent {
    *
    * @public
    * @type {FamilySearch} query
-   * @memberof AdminOrdersListComponent
+   * @memberof AdminFamiliesListComponent
    */
   public searchFamilies(query: FamilySearch) {
     this.store.dispatch(this.familyActions.searchQuery(query));

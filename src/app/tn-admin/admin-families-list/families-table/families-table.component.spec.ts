@@ -9,7 +9,7 @@ import { FamilyRowComponent,
 import { FamiliesTableComponent } from './families-table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('OrdersTableComponent', () => {
+describe('FamiliesTableComponent', () => {
   let component: FamiliesTableComponent;
   let fixture: ComponentFixture<FamiliesTableComponent>;
 
