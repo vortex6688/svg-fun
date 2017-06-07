@@ -27,4 +27,8 @@ export class ComponentsModalComponent {
   public openModalSmall(modalSmall) {
     this.modalService.open(modalSmall, { windowClass: 'modal-sm modal-dialog' });
   }
+
+  public openModalFullSize(modalFullSize) {
+    this.modalService.open(modalFullSize, { windowClass: 'full-size' });
+  }
 }
