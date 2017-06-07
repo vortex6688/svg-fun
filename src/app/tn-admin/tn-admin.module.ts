@@ -28,6 +28,7 @@ import { FamilyRowComponent,
          FamilyVisibilityPipe } from './admin-families-list/families-table/family-row';
 import { FamiliesControlsComponent } from './admin-families-list/families-controls';
 import { FamiliesTableComponent } from './admin-families-list/families-table';
+import { DataGuard } from '../tn-common/data.guard';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
@@ -35,11 +36,12 @@ export const routes: Routes = [
       { path: '', component: PlaceholderComponent, data: { title: 'TN Admin | Login '} },
       { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
       { path: 'orders/list', component: AdminOrdersListComponent,
-        data: { title: 'TN Admin | Orders List'}
+        data: { title: 'TN Admin | Orders List'},
+        canActivate: [DataGuard]
       },
       { path: 'products', redirectTo: 'products/families', pathMatch: 'full' },
       { path: 'products/families', component: AdminFamiliesListComponent,
-        data: { title: 'TN Admin | Families List'}
+        data: { title: 'TN Admin | Families List'},
       }
     ]
   }
