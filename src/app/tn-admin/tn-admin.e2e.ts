@@ -81,8 +81,6 @@ describe('Admin', () => {
       });
       const submit = loginModal.element(by.css('.btn.login'));
       submit.click();
-      // there has to be a better way to wait on the http response.
-      browser.driver.sleep(1000);
 
       expect(element(by.css('app-login')).isPresent()).toBeFalsy();
       browser.getCurrentUrl().then((url) => {
@@ -106,10 +104,7 @@ describe('Admin', () => {
           });
           const submit = loginModal.element(by.css('.btn.login'));
           submit.click();
-          browser.driver.sleep(1000);
           browser.refresh();
-          // Wait for data to load
-          browser.driver.sleep(1000);
         });
       });
 
