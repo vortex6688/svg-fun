@@ -15,9 +15,11 @@ import { Family } from './family.model';
 @Injectable()
 export class FamilyEffects {
   @Effect()
-  public loadData$: Observable<any> = defer(() => this.familyService.getAllPages()
-    .map((families) => this.familyActions.addFamilies(families))
-    .catch(() => of())
+  public loadFamilies$: Observable<Action> = this.actions$
+    .ofType(FamilyActions.LOAD_FAMILIES)
+    .switchMap(() => this.familyService.getAllPages())
+      .map((families) => this.familyActions.loadFamiliesSuccess(families))
+      .catch((error) => of(this.familyActions.loadFamiliesFail(error))
   );
 
   @Effect()

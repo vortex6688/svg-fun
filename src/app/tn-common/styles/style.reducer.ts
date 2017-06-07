@@ -60,19 +60,13 @@ export const StyleReducer: ActionReducer<StyleState> = (state = initialStyleStat
       };
     }
 
-    case StyleActions.CREATE_STYLE_FAIL:
-    case StyleActions.UPDATE_STYLE_FAIL:
-    case StyleActions.REMOVE_STYLE_FAIL: {
-      return state;
-    }
-
     case StyleActions.SEARCH_QUERY: {
       const search = action.payload;
 
       return { ...state, search };
     }
 
-    case StyleActions.ADD_STYLES: {
+    case StyleActions.LOAD_STYLES_SUCCESS: {
       const styles: Style[] = action.payload;
       const { styleEntities, styleIds } = styles.reduce((result, style) => {
         result.styleEntities[style.id] = style;
@@ -87,6 +81,10 @@ export const StyleReducer: ActionReducer<StyleState> = (state = initialStyleStat
       };
     }
 
+    case StyleActions.CREATE_STYLE_FAIL:
+    case StyleActions.UPDATE_STYLE_FAIL:
+    case StyleActions.REMOVE_STYLE_FAIL:
+    case StyleActions.LOAD_STYLES_FAIL:
     default: {
       return state;
     }

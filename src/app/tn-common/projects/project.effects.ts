@@ -6,7 +6,6 @@ import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { defer } from 'rxjs/observable/defer';
 
 import { ProjectService } from './project.service';
 import { ProjectActions } from './project.actions';
@@ -16,9 +15,11 @@ import { Project } from './project.model';
 export class ProjectEffects {
 
   @Effect()
-  public loadData$: Observable<any> = defer(() => this.projectService.find({})
-    .map((projects) => this.projectActions.addProjects(projects))
-    .catch(() => of())
+  public loadProjects$: Observable<Action> = this.actions$
+    .ofType(ProjectActions.LOAD_PROJECTS)
+    .switchMap(() => this.projectService.find({}))
+      .map((projects) => this.projectActions.loadProjectsSuccess(projects))
+      .catch((error) => of(this.projectActions.loadProjectsFail(error))
   );
 
   @Effect()

@@ -132,11 +132,11 @@ describe('SeriesReducer', () => {
     expect(actual).toEqual(state);
   });
 
-  it('should ADD_SERIES add a new series', () => {
+  it('should LOAD_SERIES_SUCCESS add a new series', () => {
     const state = mockedState();
-    const actual = SeriesReducer(state, seriesActions.addSeries(addItems));
+    const actual = SeriesReducer(state, seriesActions.loadSeriesSuccess(addItems));
     const expected: SeriesState = nonEmptyState;
-    expect(actual).toEqual(expected, 'Didn\'t add new orders');
+    expect(actual).toEqual(expected, 'Didn\'t add new series');
   });
 
   it('should GET_ALL_SERIES when there is no Series on the state', () => {

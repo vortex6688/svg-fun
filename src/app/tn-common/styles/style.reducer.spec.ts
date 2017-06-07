@@ -125,7 +125,7 @@ describe('StyleReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should be able to ADD_STYLE_SUCCESS', () => {
+  it('should be able to CREATE_STYLE_SUCCESS', () => {
     const state = mockedState();
     const actual = StyleReducer(state, styleActions.createStyleSuccess(styleMock));
     const expected = {
@@ -137,7 +137,7 @@ describe('StyleReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should be NOT add a style on ADD_STYLE_FAIL', () => {
+  it('should be NOT add a style on CREATE_STYLE_FAIL', () => {
     const state = mockedState();
     const actual = StyleReducer(state, styleActions.createStyleFail(styleMock));
     expect(actual).toEqual(state);
@@ -163,11 +163,11 @@ describe('StyleReducer', () => {
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
   });
 
-  it('should add search results on ADD_STYLES', () => {
+  it('should add items on LOAD_STYLES_SUCCESS', () => {
     const state = mockedState();
-    const actual = StyleReducer(state, styleActions.addStyles(addItems));
+    const actual = StyleReducer(state, styleActions.loadStylesSuccess(addItems));
     const expected: StyleState = nonEmptyState;
-    expect(actual).toEqual(expected, 'Didn\'t add search items');
+    expect(actual).toEqual(expected, 'Didn\'t add items');
   });
 
   describe('when a Style already exists in the state', () => {
@@ -175,7 +175,7 @@ describe('StyleReducer', () => {
     let addedState = initialStyleState;
 
     beforeEach(() => {
-      addedState = StyleReducer(state, styleActions.addStyles([...addItems, styleMock]));
+      addedState = StyleReducer(state, styleActions.loadStylesSuccess([...addItems, styleMock]));
     });
 
     it('should GET_STYLES when there already exists a Style on the state', () => {

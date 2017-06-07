@@ -247,11 +247,11 @@ describe('AdminOrdersListComponent', () => {
     }));
 
     beforeEach(() => {
-      store.dispatch({ type: OrderActions.ADD_ORDERS, payload: mockOrderList });
-      store.dispatch({ type: LicenseActions.ADD_LICENSES, payload: mockLicenseList });
-      store.dispatch({ type: FamilyActions.ADD_FAMILIES, payload: mockFamilyList });
-      store.dispatch({ type: StyleActions.ADD_STYLES, payload: mockStyleList });
-      store.dispatch({ type: ProjectActions.ADD_PROJECTS, payload: mockProjectList });
+      store.dispatch({ type: OrderActions.LOAD_ORDERS_SUCCESS, payload: mockOrderList });
+      store.dispatch({ type: LicenseActions.LOAD_LICENSES_SUCCESS, payload: mockLicenseList });
+      store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
+      store.dispatch({ type: StyleActions.LOAD_STYLES_SUCCESS, payload: mockStyleList });
+      store.dispatch({ type: ProjectActions.LOAD_PROJECTS_SUCCESS, payload: mockProjectList });
     });
 
     it('should assign matching families to styles', () => {

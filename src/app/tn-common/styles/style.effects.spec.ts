@@ -84,22 +84,23 @@ describe('StyleEffects', () => {
     styleEffects = TestBed.get(StyleEffects);
   });
 
-  describe('loadData$', () => {
-    it('should call stylerService.getAllPages on inital subscription', () => {
-      const expectedResult = styleActions.addStyles(mockStyles);
-      runner.queue(styleActions.searchQuery({}));
+  describe('loadStyles$', () => {
+    it('should return loadStylesSuccess on load success', () => {
+      const expectedResult = styleActions.loadStylesSuccess(mockStyles);
+      runner.queue(styleActions.loadStyles());
 
       let result = null;
-      styleEffects.loadData$.subscribe((data) => result = data);
+      styleEffects.loadStyles$.subscribe((data) => result = data);
       expect(result).toEqual(expectedResult);
     });
 
-    it('should catch styleService error', () => {
-      spyOn(styleService, 'getAllPages').and.returnValue(Observable.throw('error'));
-      runner.queue(styleActions.searchQuery({}));
-
-      const subscription = styleEffects.loadData$.subscribe();
-      expect(subscription).toBeTruthy();
+    it('should return loadStylesFail on load failure', () => {
+      const errorValue = 'error';
+      spyOn(styleService, 'getAllPages').and.returnValue(Observable.throw(errorValue));
+      runner.queue(styleActions.loadStyles());
+      styleEffects.loadStyles$.subscribe((result) => {
+        expect(result).toEqual(styleActions.loadStylesFail(errorValue));
+      });
     });
   });
 

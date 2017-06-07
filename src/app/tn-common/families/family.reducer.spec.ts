@@ -240,9 +240,9 @@ describe('FamilyReducer', () => {
     expect(foundryDesignerSearch).toEqual(foundryDesignerExpected, 'Should have an active foundry and designer search');
   });
 
-  it('should add families on ADD_FAMILIES', () => {
+  it('should add families on LOAD_FAMILIES_SUCCESS', () => {
     const state = mockedState();
-    const actual = FamilyReducer(state, familyActions.addFamilies(addItems));
+    const actual = FamilyReducer(state, familyActions.loadFamiliesSuccess(addItems));
     const expected: FamilyState = nonEmptyState;
     expect(actual).toEqual(expected, 'Didn\'t add new families');
   });
@@ -252,7 +252,7 @@ describe('FamilyReducer', () => {
     let addedState = initialFamilyState;
 
     beforeEach(() => {
-      addedState = FamilyReducer(state, familyActions.addFamilies([FamilyMock]));
+      addedState = FamilyReducer(state, familyActions.loadFamiliesSuccess([FamilyMock]));
     });
 
     it('should update family on UPDATE_FAMILY_SUCCESS', () => {

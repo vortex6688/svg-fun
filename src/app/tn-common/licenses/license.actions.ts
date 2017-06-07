@@ -17,7 +17,9 @@ export class LicenseActions {
   public static GET_LICENSES: string = '[License] GET_LICENSES';
   public static GET_LICENSE: string = '[License] GET_LICENSE';
   public static SEARCH_QUERY: string = '[License] SEARCH_QUERY';
-  public static ADD_LICENSES: string = '[License] ADD_LICENSES';
+  public static LOAD_LICENSES: string = '[License] LOAD_LICENSES';
+  public static LOAD_LICENSES_SUCCESS: string = '[License] LOAD_LICENSES_SUCCESS';
+  public static LOAD_LICENSES_FAIL: string = '[License] LOAD_LICENSES_FAIL';
 
   public createLicense = ActionCreatorFactory.create(LicenseActions.CREATE_LICENSE);
   public createLicenseSuccess = ActionCreatorFactory.create(LicenseActions.CREATE_LICENSE_SUCCESS);
@@ -32,5 +34,7 @@ export class LicenseActions {
   public getLicenses = ActionCreatorFactory.create(LicenseActions.GET_LICENSES);
   public getLicense = ActionCreatorFactory.create(LicenseActions.GET_LICENSE);
   public searchQuery = ActionCreatorFactory.create(LicenseActions.SEARCH_QUERY);
-  public addLicenses = ActionCreatorFactory.create(LicenseActions.ADD_LICENSES);
+  public loadLicenses = ActionCreatorFactory.create(LicenseActions.LOAD_LICENSES);
+  public loadLicensesSuccess = ActionCreatorFactory.create(LicenseActions.LOAD_LICENSES_SUCCESS);
+  public loadLicensesFail = ActionCreatorFactory.create(LicenseActions.LOAD_LICENSES_FAIL);
 }

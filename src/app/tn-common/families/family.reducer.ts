@@ -101,7 +101,7 @@ export const FamilyReducer: ActionReducer<FamilyState> = (state = initialFamilyS
       return { ...state, search };
     }
 
-    case FamilyActions.ADD_FAMILIES: {
+    case FamilyActions.LOAD_FAMILIES_SUCCESS: {
       const families: Family[] = action.payload;
       const { familyEntities, familyIds } = families.reduce((result, family) => {
         result.familyEntities[family.id] = family;
@@ -116,6 +116,7 @@ export const FamilyReducer: ActionReducer<FamilyState> = (state = initialFamilyS
       };
     }
 
+    case FamilyActions.LOAD_FAMILIES_FAIL:
     default: {
       return state;
     }

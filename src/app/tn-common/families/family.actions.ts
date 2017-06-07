@@ -17,7 +17,9 @@ export class FamilyActions {
   public static GET_FAMILIES: string = '[Family] GET_FAMILIES';
   public static GET_FAMILY: string = '[Family] GET_FAMILY';
   public static SEARCH_QUERY: string = '[Family] SEARCH_QUERY';
-  public static ADD_FAMILIES: string = '[Family] ADD_FAMILIES';
+  public static LOAD_FAMILIES: string = '[Family] LOAD_FAMILIES';
+  public static LOAD_FAMILIES_SUCCESS: string = '[Family] LOAD_FAMILIES_SUCCESS';
+  public static LOAD_FAMILIES_FAIL: string = '[Family] LOAD_FAMILIES_FAIL';
 
   public createFamily = ActionCreatorFactory.create(FamilyActions.CREATE_FAMILY);
   public createFamilySuccess = ActionCreatorFactory.create(FamilyActions.CREATE_FAMILY_SUCCESS);
@@ -32,5 +34,7 @@ export class FamilyActions {
   public getFamilies = ActionCreatorFactory.create(FamilyActions.GET_FAMILIES);
   public getFamily = ActionCreatorFactory.create(FamilyActions.GET_FAMILY);
   public searchQuery = ActionCreatorFactory.create(FamilyActions.SEARCH_QUERY);
-  public addFamilies = ActionCreatorFactory.create(FamilyActions.ADD_FAMILIES);
+  public loadFamilies = ActionCreatorFactory.create(FamilyActions.LOAD_FAMILIES);
+  public loadFamiliesSuccess = ActionCreatorFactory.create(FamilyActions.LOAD_FAMILIES_SUCCESS);
+  public loadFamiliesFail = ActionCreatorFactory.create(FamilyActions.LOAD_FAMILIES_FAIL);
 }

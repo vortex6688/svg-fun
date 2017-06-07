@@ -17,11 +17,12 @@ import { License } from './license.model';
 
 @Injectable()
 export class LicenseEffects {
-
   @Effect()
-  public loadData$: Observable<any> = defer(() => this.licenseService.find({})
-    .map((licenses) => this.licenseActions.addLicenses(licenses))
-    .catch(() => of())
+  public loadLicenses$: Observable<Action> = this.actions$
+    .ofType(LicenseActions.LOAD_LICENSES)
+    .switchMap(() => this.licenseService.find({}))
+      .map((licenses) => this.licenseActions.loadLicensesSuccess(licenses))
+      .catch((error) => of(this.licenseActions.loadLicensesFail(error))
   );
 
   @Effect()
