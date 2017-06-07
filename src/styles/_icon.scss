@@ -1,0 +1,12 @@
+@import './variables';
+
+.icon svg {
+    height: 1em;
+    line-height: 0;
+}
+
+.icon.icon-sm svg {
+    height: 0.85em;
+    width: 0.85em;
+    line-height: 0;
+}

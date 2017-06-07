@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
    style="transform: inherit;">
 <path d="m 6,3 5,5 -5,5 z" fill="#000"/>
 </svg>
-`,
-  styleUrls: ['./icons.scss']
+`
 })
 export class IconRightArrowComponent  {}
