@@ -4,7 +4,13 @@
   icon-select {
     position: absolute;
     right: 0.5rem;
-    top: 0.725rem;
+    top: 30%;
+  }
+
+  .btn-sm {
+    icon-select {
+      top: auto;
+    }
   }
 
   icon-close {
@@ -16,6 +22,7 @@
   }
 
   .dropdown-menu {
+    min-width: auto;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -32,7 +39,6 @@
 
     &.btn,
     &.custom-select {
-      min-width: 15rem;
       cursor: pointer;
 
       &:hover,
@@ -44,7 +50,11 @@
   }
 
   .list-group-flush {
-    border-top: 0;
+    border-top: none;
+    border-left: 1px lighten($gray-lightest, 10%) solid;
+    border-right: 1px lighten($gray-lightest, 10%) solid;
+    border-bottom: 1px lighten($gray-lightest, 10%) solid;
+    
     &:first-child {
       border-top: 0;
     }
