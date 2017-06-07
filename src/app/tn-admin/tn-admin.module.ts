@@ -37,8 +37,8 @@ export const routes: Routes = [
       { path: 'orders/list', component: AdminOrdersListComponent,
         data: { title: 'TN Admin | Orders List'}
       },
-      { path: 'families', redirectTo: 'families/list', pathMatch: 'full' },
-      { path: 'families/list', component: AdminFamiliesListComponent,
+      { path: 'products', redirectTo: 'products/families', pathMatch: 'full' },
+      { path: 'products/families', component: AdminFamiliesListComponent,
         data: { title: 'TN Admin | Families List'}
       }
     ]
