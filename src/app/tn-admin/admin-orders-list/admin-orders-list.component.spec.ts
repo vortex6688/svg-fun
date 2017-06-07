@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { StoreModule, Store } from '@ngrx/store';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Order, OrderActions, OrderSearch, initialOrderState } from '../../tn-common/orders';
 import { License, LicenseActions } from '../../tn-common/licenses';
@@ -173,6 +174,7 @@ describe('AdminOrdersListComponent', () => {
         AdminOrdersListComponent,
       ],
       providers: [
+        { provide: NgbModal },
         { provide: OrderActions, useClass: MockOrderActions },
       ],
       schemas: [NO_ERRORS_SCHEMA],

@@ -13,6 +13,7 @@ import { OrderService } from './orders';
 import { LicenseService } from './licenses';
 import { SeriesService } from './series';
 import { User, UserService } from './user';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({ template: '', })
 class TnCommonModuleProvidersTestComponent {
@@ -34,6 +35,7 @@ describe('TnCommonModule', () => {
     TestBed.configureTestingModule({
       imports:   [ TnCommonModule, RouterTestingModule.withRoutes([]) ],
       declarations: [ TnCommonModuleProvidersTestComponent ],
+      schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [
         // must provide TnApiBaseUrl in order for the TnApiHttpService to build.
         { provide: TnApiBaseUrl, useValue: 'http://localhost:2222/' },
