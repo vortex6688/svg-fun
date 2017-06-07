@@ -9,11 +9,16 @@ import { Order } from '../../../tn-common/orders/';
   styleUrls: ['./orders-table.component.scss']
 })
 export class OrdersTableComponent {
-  public page: number;
+  public pageSize: number = 25;
+  public pageItems: number[] = [];
 
   @Input() public orders: Order[] = [];
   public sortKey = '-created';
   public collapseState$ = new BehaviorSubject(true);
+
+  public updatePageItems($event) {
+    this.pageItems = $event;
+  }
 
   public sortBy(key) {
     const sortSide = this.sortKey.endsWith(key) && this.sortKey.startsWith('-') ? '+' : '-';

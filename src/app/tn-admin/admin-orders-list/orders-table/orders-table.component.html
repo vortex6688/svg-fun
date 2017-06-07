@@ -1,7 +1,7 @@
 <div class="row text-info pb-2">
   <div class="d-flex col justify-content-start align-items-end">
     <h4 style="margin-bottom: 0;">Orders</h4>
-    <span class="px-2 small text-uppercase">1-50 of 999 results</span>
+    <span class="px-2 small text-uppercase">{{pageItems[0]+1}}-{{pageItems[1]}} of {{orders.length}} results</span>
   </div>
   <div class="d-flex col justify-content-end align-items-end text-right">
     <div class="text-uppercase small px-3">
@@ -9,8 +9,8 @@
       <span> | </span>
       <span style="cursor: pointer;" class="px-1" (click)="collapseAll()">Collapse all</span>
     </div>
-    <div>
-      <tn-pagination [collectionSize]="120" [(page)]="page" [maxSize]="1" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
+    <div *ngIf="orders.length">
+      <tn-pagination [collectionSize]="orders.length" [pageSize]="pageSize" (pageItemsChanges)="updatePageItems($event)" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
       <th class="col">&nbsp;</th>
     </tr>
   </thead>
-  <tbody>
-    <order-row *ngFor='let order of orders | orderBy: [sortKey]' [order]=order [collapseSubject]="collapseState$"></order-row>
+  <tbody *ngIf="orders.length">
+    <order-row *ngFor='let order of orders | orderBy: [sortKey] | slice:pageItems[0]:pageItems[1]' [order]=order [collapseSubject]="collapseState$"></order-row>
   </tbody>
 </table>

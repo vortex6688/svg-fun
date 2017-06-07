@@ -2,12 +2,14 @@ import { Component,
          EventEmitter,
          Input,
          Output,
+         OnInit,
          OnChanges,
          ChangeDetectionStrategy,
          SimpleChanges } from '@angular/core';
 import { getValueInRange, isNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { TnPaginationConfig } from './pagination-config';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
 
 /**
  * A directive that will take care of visualising a pagination bar and enable / disable buttons
@@ -18,7 +20,7 @@ import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './tn-pagination.component.html'
 })
-export class TnPaginationComponent extends NgbPagination implements OnChanges {
+export class TnPaginationComponent extends NgbPagination implements OnInit, OnChanges {
   // TODO: Proxy properties to parent class. Codelyzer doesn't pick up the inherited properties.
   public pageCount: number;
   public pages: number[];
@@ -34,7 +36,10 @@ export class TnPaginationComponent extends NgbPagination implements OnChanges {
   public pageChange: EventEmitter<number>;
   public size: 'sm' | 'lg';
 
-  constructor(config: TnPaginationConfig) {
+  public pageItems: number[] = [];
+  @Output() public pageItemsChanges = new EventEmitter<number[]>();
+
+  constructor(config: TnPaginationConfig, private route: ActivatedRoute,  private router: Router) {
     super(config);
   }
 
@@ -47,10 +52,31 @@ export class TnPaginationComponent extends NgbPagination implements OnChanges {
   }
 
   public selectPage(pageNumber: number): void {
-    return super.selectPage(pageNumber);
+    this.router.navigate([], {
+      queryParams: { page: pageNumber }
+    });
+    super.selectPage(pageNumber);
+    this.updatePageItems();
+  }
+
+  public ngOnInit() {
+    const queryParams = this.route.snapshot.queryParams;
+    if (queryParams && queryParams.page) {
+      this.selectPage(queryParams.page);
+    }
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    return super.ngOnChanges(changes);
+    super.ngOnChanges(changes);
+    this.updatePageItems();
+  }
+
+  public updatePageItems() {
+    const firstItem = (this.page - 1) * this.pageSize;
+    const lastItem = Math.min((firstItem + this.pageSize), this.collectionSize);
+    if (this.pageItems[0] !== firstItem || this.pageItems[1] !== lastItem) {
+      this.pageItems = [firstItem, lastItem];
+      this.pageItemsChanges.emit(this.pageItems);
+    }
   }
 }
