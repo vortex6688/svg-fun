@@ -19,6 +19,7 @@ import { OrderRowComponent, OrderStatusPipe, LicenseTypePipe } from './admin-ord
 import { OrdersTableComponent } from './admin-orders-list/orders-table';
 import { OrdersControlsComponent } from './admin-orders-list/orders-controls';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
+import { AdminOrderDetailsComponent } from './admin-order-details';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
@@ -38,6 +39,7 @@ export const routes: Routes = [
     AdminComponent,
     AdminNavbarComponent,
     AdminOrdersListComponent,
+    AdminOrderDetailsComponent,
     LoginComponent,
     OrderRowComponent,
     OrdersTableComponent,
@@ -56,7 +58,7 @@ export const routes: Routes = [
     TnCommonModule,
     TnAdminStoreModule,
   ],
-  entryComponents: [ LoginComponent ],
+  entryComponents: [ LoginComponent, AdminOrderDetailsComponent ],
   providers: []
 })
 export class TnAdminModule {}

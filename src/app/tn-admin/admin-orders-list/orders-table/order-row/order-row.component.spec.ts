@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderRowComponent } from './order-row.component';
 import { OrderStatusPipe } from './order-status.pipe';
 import { LicenseTypePipe } from './license-type.pipe';
 import { License } from '../../../../tn-common/licenses/';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 describe('OrderRowComponent', () => {
   let component: OrderRowComponent;
@@ -16,7 +17,8 @@ describe('OrderRowComponent', () => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
       declarations: [ OrderRowComponent, OrderStatusPipe, LicenseTypePipe ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ NgbModalStack, NgbActiveModal ]
     })
     .compileComponents();
   }));

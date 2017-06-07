@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { AdminOrderDetailsComponent } from '../../../admin-order-details';
 
 @Component({
   selector: 'order-row',
@@ -11,6 +14,8 @@ export class OrderRowComponent implements OnInit, OnDestroy {
   @Input() public collapseSubject: BehaviorSubject<boolean>;
   public isCollapsed = true;
   private collapseSubscription;
+
+  constructor(private modalService: NgbModal) {}
 
   get families() {
     if (!this.order || !this.order.licenses) {
@@ -33,5 +38,9 @@ export class OrderRowComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
     this.collapseSubscription.unsubscribe();
+  }
+
+  public openOrderDetails() {
+    const orderModal = this.modalService.open(AdminOrderDetailsComponent, { windowClass: 'full-size'});
   }
 }
