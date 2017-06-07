@@ -134,6 +134,10 @@ $spacers: (
   5: (
     x: ($spacer-x * 3),
     y: ($spacer-y * 3)
+  ),
+  6: (
+    x: ($spacer-x * 6),
+    y: ($spacer-y * 6)
   )
 );
 $border-width: 1px;
@@ -402,7 +406,7 @@ $input-border-focus:             rgba($blue,.7);
 $input-box-shadow-focus:         $input-box-shadow, rgba($input-border-focus, .6);
 $input-color-focus:              $input-color;
 
-$input-color-placeholder:        $gray-light;
+$input-color-placeholder:        $gray-lightest;
 
 $input-padding-x-sm:             .5rem;
 $input-padding-y-sm:             .25rem;
@@ -760,7 +764,7 @@ $modal-title-line-height:     $line-height-base;
 
 $modal-content-bg:               $white;
 $modal-content-border-color:     $gray-lightest;
-$modal-content-border-width:     $border-width;
+$modal-content-border-width:     0;
 $modal-content-xs-box-shadow:    0 3px 9px rgba($black,.5);
 $modal-content-sm-up-box-shadow: 0 5px 15px rgba($black,.5);
 

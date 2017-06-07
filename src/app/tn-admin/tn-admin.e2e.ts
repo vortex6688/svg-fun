@@ -262,6 +262,29 @@ describe('Admin', () => {
           });
         });
       });
+
+      describe('Opening order details modal', () => {
+        beforeAll(() => {
+          const expandOrderDetailsIcon = element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)'));
+          expandOrderDetailsIcon.click();
+          const expandOrderDetailsEditButton = element(by.css('order-row .table thead:first-child button'));
+          expandOrderDetailsEditButton.click();
+        });
+
+        it('order details modal should be revealed after clicking on the expanded row with the order details', () => {
+          expect(element(by.css('app-admin-order-details')).isDisplayed()).toBeTruthy();
+        });
+
+        it('order details modal should have a cancel button that closes the modal', () => {
+          const closeButton = element(by.css('app-admin-order-details .modal-action-bar .btn-info'));
+          closeButton.getText().then((text) => {
+            expect(text).toEqual('Cancel');
+          });
+          closeButton.click().then(() => {
+            expect(element(by.css('app-admin-order-details')).isPresent()).toBeFalsy();
+          });
+        });
+      });
     });
   }
 });

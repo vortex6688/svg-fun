@@ -11,13 +11,20 @@
   <td class="col">{{order.total | currency:'USD':true:'1.2-2'}}</td>
   <td class="col">{{order.created | date:"MM/dd/yyyy"}}</td>
   <td class="col">{{order.status | myOrderStatus}}</td>
-  <td class="col"><button class="btn btn-sm btn-outline-info">IMPERSONATE</button></td>
+  <td class="col"><button class="btn rounded btn-sm btn-outline-info">IMPERSONATE</button></td>
 </tr>
 
 <tr class="row border-0">
   <table class="table no-borders col" [attr.id]='order' [ngbCollapse]='isCollapsed'>
     <thead class="row table-active">
-      <th class="col"><b>Order Summary</b></th>
+      <th class="col">
+        <div>
+          <b>Order Summary</b>
+        </div>
+        <div class="my-2">
+          <button class="btn btn-sm btn-info w-50" (click)="openOrderDetails()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
+        </div>
+      </th>
       <th class="col">Families purchased:</th>
       <th class="col">License types:</th>
       <th class="col">Total styles:</th>

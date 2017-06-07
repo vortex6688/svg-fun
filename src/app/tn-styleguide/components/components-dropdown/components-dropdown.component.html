@@ -11,15 +11,15 @@
     <div class="row">
       <div class="col">
         <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+          <button style="min-width: 15rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
               <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
               <span class="h6">Toggle dropdown</span>
-              <icon-select></icon-select>
+              <icon-select class="icon"></icon-select>
           </button>
           <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
             <li class="list-group-item pl-4 selected">
               <!-- icon close shoul show when item is selected -->
-              <icon-close></icon-close>
+              <icon-close class="icon"></icon-close>
               <span>
                 Item 1
               </span>
@@ -42,13 +42,13 @@
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">row</span><span class="nt">"</span><span class="nt">&gt;</span></span>
   <span class="nt">&lt;div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">col</span><span class="nt">"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">ngbDropdown</span> <span class="na">class</span><span class="nt">="</span><span class="token s">d-inline-block</span><span class="nt">"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;button</span> <span class="na">class</span><span class="nt">="</span><span class="token s">btn-secondary text-left</span><span class="nt">"</span> <span class="na">id</span><span class="nt">="</span><span class="token s">dropdownSingleOption</span><span class="nt">"</span> <span class="na">ngbDropdownToggle</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;button <span class="na">style</span><span class="nt">="</span><span class="token s">min-width: 15rem;</span><span class="nt">"</span></span> <span class="na">class</span><span class="nt">="</span><span class="token s">btn-secondary text-left</span><span class="nt">"</span> <span class="na">id</span><span class="nt">="</span><span class="token s">dropdownSingleOption</span><span class="nt">"</span> <span class="na">ngbDropdownToggle</span><span class="nt">&gt;</span>
         <span class="nt">&lt;span</span> <span class="na">class</span><span class="nt">="</span><span class="token s">h6</span><span class="nt">"&gt;</span>Toggle Dropdown<span class="nt">&lt;/span</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;icon-select&gt;</span><span class="nt">&lt;/icon-select&gt;</span>
+        <span class="nt">&lt;icon-select <span class="na">class</span><span class="nt">="</span><span class="token s">icon</span><span class="nt">"</span>&gt;</span><span class="nt">&lt;/icon-select&gt;</span>
       <span class="nt">&lt;/button&gt;</span>
       <span class="nt">&lt;ul</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-menu list-group-flush</span><span class="nt">"</span> <span class="na">aria-labelledby</span><span class="nt">="</span><span class="token s">dropdownSingleOption</span><span class="nt">"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;li</span> <span class="na">class</span><span class="nt">="</span><span class="token s">list-group-item pl-4</span><span class="nt">"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;icon-close&gt;</span><span class="nt">&lt;/icon-close&gt;</span>
+          <span class="nt">&lt;icon-close <span class="na">class</span><span class="nt">="</span><span class="token s">icon</span><span class="nt">"</span>&gt;</span><span class="nt">&lt;/icon-close&gt;</span>
           <span class="nt">&lt;span&gt;</span>Item 1<span class="nt">&lt;/span&gt;</span>
         <span class="nt">&lt;/li&gt;</span>
         <span class="nt">&lt;li</span> <span class="na">class</span><span class="nt">="</span><span class="token s">list-group-item pl-4</span><span class="nt">"</span><span class="nt">&gt;</span>
@@ -70,7 +70,7 @@
   <div class="row">
     <div class="col">
       <div ngbDropdown [autoClose]="false" class="d-inline-block">
-        <input class="custom-select" id="dropdownInput" placeholder="Default option" ngbDropdownToggle>
+        <input style="min-width: 15rem;" class="custom-select" id="dropdownInput" placeholder="Default option" ngbDropdownToggle>
         <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownInput">
           <li class="list-group-item">
             <label class="custom-control custom-checkbox mb-sm-0">
@@ -101,7 +101,7 @@
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt"><span class="nt"><span class="nt">&lt;</span>div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">row</span><span class="nt">"</span><span class="nt">&gt;</span></span>
   <span class="nt">&lt;div</span> <span class="na">class</span><span class="nt">="</span><span class="token s">col</span><span class="nt">"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">ngbDropdown</span> <span class="na">class</span><span class="nt">="</span><span class="token s">d-inline-block</span><span class="nt">"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;input</span> <span class="na">class</span><span class="nt">="</span><span class="token s">custom-select</span><span class="nt">"</span> <span class="na">id</span><span class="nt">="</span><span class="token s">dropdownInput</span><span class="nt">"</span> <span class="na">placeholder</span><span class="nt">="</span><span class="token s">Default Option</span><span class="nt">"</span> <span class="na">ngbDropdownToggle</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input <span class="na">style</span><span class="nt">="</span><span class="token s">min-width: 15rem;</span><span class="nt">"</span></span> <span class="na">class</span><span class="nt">="</span><span class="token s">custom-select</span><span class="nt">"</span> <span class="na">id</span><span class="nt">="</span><span class="token s">dropdownInput</span><span class="nt">"</span> <span class="na">placeholder</span><span class="nt">="</span><span class="token s">Default Option</span><span class="nt">"</span> <span class="na">ngbDropdownToggle</span><span class="nt">&gt;</span>
       <span class="nt">&lt;ul</span> <span class="na">class</span><span class="nt">="</span><span class="token s">dropdown-menu list-group-flush</span><span class="nt">"</span> <span class="na">aria-labelledby</span><span class="nt">="</span><span class="token s">dropdownInput</span><span class="nt">"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;li</span> <span class="na">class</span><span class="nt">="</span><span class="token s">list-group-item pl-4</span><span class="nt">"</span><span class="nt">&gt;</span>
           <span class="nt">&lt;label</span> <span class="na">class</span><span class="nt">="</span><span class="token s">custom-control custom-checkbox mb-sm-0</span><span class="nt">"&gt;</span>

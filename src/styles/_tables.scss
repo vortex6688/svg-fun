@@ -8,6 +8,33 @@
   margin-bottom: $spacer;
   background-color: $table-bg; // Reset for nesting within parents with `background-color`.
 
+  &.table-bordered {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #b7b4b0;
+    border-top: 0;
+
+    thead,
+    tbody,
+    tr {
+      border-color: #b7b4b0;
+    }
+
+    td,
+    th {
+      border-left: 1px solid #b7b4b0;
+      border-right: 0;
+      border-bottom: 0;
+      border-top: 0;
+      padding: 0.5rem;
+
+      &:first-child {
+        border-left: 0;
+        padding-left: 0;
+      }
+    }
+  }
+
   // sorting arrow icon
   &.table-sortable {
     .sortable {
@@ -36,7 +63,6 @@
 
 // applying border top on the table row instead of the table cell to center the content not depending on it's type 
   tr {
-    align-items: baseline;
     border-top: $table-border-width solid $table-border-color;
     margin: 0;
   }
@@ -74,20 +100,20 @@
       text-indent: (1 * $table-cell-padding);
       color: $black;
     }
-  }
 
-// update list style type for list elements in a table
-  ul {
-    list-style-type: none;
-  }
+    // update list style type for list elements in a table
+    ul {
+      list-style-type: none;
+    }
 
-  ul li {
-    margin-left: -20px;
-
-    &:before {
-      content: '\2014';
-      position: absolute;
+    ul li {
       margin-left: -20px;
+
+      &:before {
+        content: '\2014';
+        position: absolute;
+        margin-left: -20px;
+      }
     }
   }
 }

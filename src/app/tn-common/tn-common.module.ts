@@ -10,10 +10,10 @@ import { TnNavbarComponent } from './tn-navbar/tn-navbar.component';
 import { UserService } from './user';
 import { AuthService } from './auth';
 import { TnApiHttpService } from './tn-api-http';
+import { LicenseService } from './licenses';
 import { TnTitleService } from './tn-title';
 import { TnAutoscrollService } from './tn-autoscroll';
 import { OrderService } from './orders';
-import { LicenseService } from './licenses';
 import { SeriesService } from './series';
 import { FamilyService } from './families';
 import { StyleService } from './styles';
@@ -30,7 +30,17 @@ import { IconCheckComponent,
          IconDownloadComponent,
          IconRevertComponent,
          IconRightArrowComponent,
-         IconSelectComponent } from './tn-icons';
+         IconSelectComponent,
+         IconWebComponent,
+         IconAddComponent,
+         IconCopyComponent,
+         IconFontComponent,
+         IconAddLicenseComponent,
+         IconDesktopComponent,
+         IconAppComponent,
+         IconTooltipComponent,
+         IconSearchComponent,
+         IconPencilComponent } from './tn-icons';
 import { OrderByPipe } from './pipes';
 
 @NgModule({
@@ -55,14 +65,19 @@ import { OrderByPipe } from './pipes';
                   TnPaginationComponent,
                   IconCheckComponent, IconCloseComponent, IconCreateComponent,
                   IconDeleteComponent, IconDownloadComponent, IconRevertComponent,
-                  IconRightArrowComponent, IconSelectComponent,
-                  OrderByPipe,
+                  IconRightArrowComponent, IconSelectComponent, IconWebComponent,
+                  IconAddComponent, IconCopyComponent, IconFontComponent, IconAddLicenseComponent,
+                  IconDesktopComponent, IconAppComponent, IconTooltipComponent,
+                  IconSearchComponent, IconPencilComponent, OrderByPipe
                 ],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
   exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent, TnPaginationComponent,
                   IconCheckComponent, IconCloseComponent, IconCreateComponent,
                   IconDeleteComponent, IconDownloadComponent, IconRevertComponent,
-                  IconRightArrowComponent, IconSelectComponent, OrderByPipe ]
+                  IconRightArrowComponent, IconSelectComponent, IconWebComponent, IconAddComponent,
+                  IconCopyComponent, IconFontComponent, IconAddLicenseComponent, IconDesktopComponent,
+                  IconAppComponent, IconTooltipComponent, IconSearchComponent, IconPencilComponent,
+                  OrderByPipe ]
 
 })
 export class TnCommonModule {
