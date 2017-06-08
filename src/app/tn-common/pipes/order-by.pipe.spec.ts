@@ -13,6 +13,18 @@ describe('OrderByPipe', () => {
     expect(pipe.transform(basicArray)).toEqual(expected);
   });
 
+  it('should sort an array of sorted string arrays ascending by default (empty arrays first)', () => {
+    const basicArray = [['s', 'h', 'z'], ['b'], ['as', 'h', 'z'], ['b', 'h'], []];
+    const expected = [[], ['as', 'h', 'z'], ['b'], ['b', 'h'], ['s', 'h', 'z']];
+    expect(pipe.transform(basicArray)).toEqual(expected);
+  });
+
+  it('should sort an array of sorted number arrays ascending by default (empty arrays first)', () => {
+    const basicArray = [[1, 2, 6], [4, 7, 11], [1, 3], [1, 2, 6, 8], []];
+    const expected = [[], [1, 2, 6], [1, 2, 6, 8], [1, 3], [4, 7, 11]];
+    expect(pipe.transform(basicArray)).toEqual(expected);
+  });
+
   it('should sort multidimensional number array by single provided key', () => {
     const multiArray = [
       { key: 12 },
