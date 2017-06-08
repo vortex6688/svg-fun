@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="sidebar border-right-gradient-inset">
+      <series-controls [initialQuery]="seriesQuery$ | async" (queryUpdate)="searchSeries($event)"></series-controls>
+    </div>
+    <div class="main w-100">
+      <h2>Series</h2>
+      <series-table [series]="filteredSeries$ | async"></series-table>
+    </div>
+  </div>
+</div>
