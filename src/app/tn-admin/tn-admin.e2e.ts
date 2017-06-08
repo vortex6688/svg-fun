@@ -288,7 +288,7 @@ describe('Admin', () => {
 
       describe('Family list sorting', () => {
         beforeAll(() => {
-          browser.get('/admin/products');
+          browser.get('/admin/products/families');
         });
         it('should be able to sort families descendingly', () => {
           const amountHeader = element(by.css('.table-sortable .col.sortable:nth-child(3)'));
@@ -316,9 +316,54 @@ describe('Admin', () => {
           expect(amountHeader.getAttribute('class')).toContain('sort-asc');
           let highest = 0;
           let sorted = true;
-          element.all(by.css('order-row')).each((order) => {
+          element.all(by.css('family-row')).each((order) => {
             return order.element(by.css('tr:nth-child(1) .col:nth-child(3)')).getText().then((amount) => {
               const amountNo = +amount.slice(1).replace(',', '');
+              if (highest >  amountNo) {
+                sorted = false;
+                return;
+              }
+              highest = amountNo;
+            });
+          }).then(() => {
+            expect(sorted).toBeTruthy();
+          });
+        });
+      });
+
+      describe('Series list sorting', () => {
+        beforeAll(() => {
+          browser.get('/admin/products/series');
+        });
+        it('should be able to sort series descendingly', () => {
+          const amountHeader = element(by.css('.table-sortable .col.sortable:nth-child(5)'));
+          amountHeader.click();
+          expect(amountHeader.getAttribute('class')).toContain('sort-desc');
+          let highest = Infinity;
+          let sorted = true;
+          element.all(by.css('series-row')).each((order) => {
+            return order.element(by.css('tr:nth-child(1) .col:nth-child(5)')).getText().then((amount) => {
+              const amountNo = +amount;
+              if (highest < amountNo) {
+                sorted = false;
+                return;
+              }
+              highest = amountNo;
+            });
+          }).then(() => {
+            expect(sorted).toBeTruthy();
+          });
+        });
+
+        it('should be able to sort series ascendingly', () => {
+          const amountHeader = element(by.css('.table-sortable .col.sortable:nth-child(5)'));
+          amountHeader.click();
+          expect(amountHeader.getAttribute('class')).toContain('sort-asc');
+          let highest = 0;
+          let sorted = true;
+          element.all(by.css('order-row')).each((order) => {
+            return order.element(by.css('tr:nth-child(1) .col:nth-child(5)')).getText().then((amount) => {
+              const amountNo = +amount;
               if (highest >  amountNo) {
                 sorted = false;
                 return;
