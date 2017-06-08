@@ -19,14 +19,14 @@
         </label>
       </th>
       <th class="col sortable" (click)="sortBy('name')" [ngClass]="{'sort-asc': sortKey === '+name', 'sort-desc': sortKey === '-name'}">Name</th>
-      <th class="col sortable" (click)="sortBy('visible')" [ngClass]="{'sort-asc': sortKey === '+visible', 'sort-desc': sortKey === '-visible'}">Visible</th>
+      <th class="col sortable" (click)="sortBy('visibleName')" [ngClass]="{'sort-asc': sortKey === '+visibleName', 'sort-desc': sortKey === '-visibleName'}">Visible</th>
       <th class="col sortable" (click)="sortBy('foundry')" [ngClass]="{'sort-asc': sortKey === '+foundry', 'sort-desc': sortKey === '-foundry'}">Foundry</th>
       <th class="col sortable" (click)="sortBy('designer')" [ngClass]="{'sort-asc': sortKey === '+designer', 'sort-desc': sortKey === '-designer'}">Designers</th>
       <th class="col sortable" (click)="sortBy('style')" [ngClass]="{'sort-asc': sortKey === '+style', 'sort-desc': sortKey === '-style'}">Styles</th>
       <th class="col sortable" (click)="sortBy('recommended_size')" [ngClass]="{'sort-asc': sortKey === '+recommended_size', 'sort-desc': sortKey === '-recommended_size'}">Min Size</th>
       <th class="col sortable" (click)="sortBy('recommended_size')" [ngClass]="{'sort-asc': sortKey === '+recommended_size', 'sort-desc': sortKey === '-recommended_size'}">Max Size</th>
-      <th class="col sortable" (click)="sortBy('category')" [ngClass]="{'sort-asc': sortKey === '+category', 'sort-desc': sortKey === '-category'}">Categories</th>
-      <th class="col sortable" (click)="sortBy('mood')" [ngClass]="{'sort-asc': sortKey === '+mood', 'sort-desc': sortKey === '-mood'}">Moods</th>
+      <th class="col sortable" (click)="sortBy('categoryName')" [ngClass]="{'sort-asc': sortKey === '+categoryName', 'sort-desc': sortKey === '-categoryName'}">Categories</th>
+      <th class="col sortable" (click)="sortBy('moodName')" [ngClass]="{'sort-asc': sortKey === '+moodName', 'sort-desc': sortKey === '-moodName'}">Moods</th>
       <th class="col sortable" (click)="sortBy('released')" [ngClass]="{'sort-asc': sortKey === '+released', 'sort-desc': sortKey === '-released'}">Release Date</th>
     </tr>
   </thead>
