@@ -74,7 +74,7 @@ export const SeriesReducer: ActionReducer<SeriesState> = (state = initialSeriesS
         if (query.designer && series.designers.indexOf(query.designer) === -1) {
           return false;
         }
-        if (query.family && series.family.indexOf(query.family) === -1) {
+        if (query.family && (series.family as number[]).indexOf(query.family) === -1) {
           return false;
         }
         return true;

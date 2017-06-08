@@ -129,7 +129,7 @@ export const getSeriesByFamily = (state: SeriesState, family: number) => {
   return state.ids.reduce((series, id) => {
     const seriesInstance = state.entities[id];
 
-    if (seriesInstance.family.indexOf(family) !== -1) {
+    if ((seriesInstance.family as number[]).indexOf(family) !== -1) {
       series.push(seriesInstance);
     }
     return series;

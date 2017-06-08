@@ -1,12 +1,14 @@
 /* tslint:disable:variable-name */
 
+import { Family } from '../families/';
+
 export class Series {
   public id?: number;
   public name: string;
   public slug: string;
   public released: string;
   // public family: Family[];
-  public family: number[];
+  public family: number[] | Family[];
   // public designers: Designer[];
   public designers: number[];
   // public foundry: Foundry[];

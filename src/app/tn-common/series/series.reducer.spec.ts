@@ -187,7 +187,7 @@ describe('SeriesReducer', () => {
           const series = nonEmptyState.entities[id];
           return (
             multiQuery.visibility === series.visible &&
-            series.family.some((family) => multiQuery.families.indexOf(family) !== -1)
+            (series.family as number[]).some((family) => multiQuery.families.indexOf(family) !== -1)
           );
         }),
         active: false,
@@ -339,7 +339,7 @@ describe('SeriesReducer', () => {
     });
 
     it('getSeriesByFamily should return a list of series with the provided family', () => {
-      const selectedSeries = getSeriesByFamily(addedState, SeriesMock.family[0]);
+      const selectedSeries = getSeriesByFamily(addedState, SeriesMock.family[0] as number);
       expect(selectedSeries).toEqual([SeriesMock]);
     });
   });
