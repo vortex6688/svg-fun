@@ -285,6 +285,51 @@ describe('Admin', () => {
           });
         });
       });
+
+      describe('Family list sorting', () => {
+        beforeAll(() => {
+          browser.get('/admin/products');
+        });
+        it('should be able to sort families descendingly', () => {
+          const amountHeader = element(by.css('.table-sortable .col.sortable:nth-child(3)'));
+          amountHeader.click();
+          expect(amountHeader.getAttribute('class')).toContain('sort-desc');
+          let highest = Infinity;
+          let sorted = true;
+          element.all(by.css('order-row')).each((order) => {
+            return order.element(by.css('tr:nth-child(1) .col:nth-child(3)')).getText().then((amount) => {
+              const amountNo = +amount.slice(1).replace(',', '');
+              if (highest < amountNo) {
+                sorted = false;
+                return;
+              }
+              highest = amountNo;
+            });
+          }).then(() => {
+            expect(sorted).toBeTruthy();
+          });
+        });
+
+        it('should be able to sort families ascendingly', () => {
+          const amountHeader = element(by.css('.table-sortable .col.sortable:nth-child(3)'));
+          amountHeader.click();
+          expect(amountHeader.getAttribute('class')).toContain('sort-asc');
+          let highest = 0;
+          let sorted = true;
+          element.all(by.css('order-row')).each((order) => {
+            return order.element(by.css('tr:nth-child(1) .col:nth-child(3)')).getText().then((amount) => {
+              const amountNo = +amount.slice(1).replace(',', '');
+              if (highest >  amountNo) {
+                sorted = false;
+                return;
+              }
+              highest = amountNo;
+            });
+          }).then(() => {
+            expect(sorted).toBeTruthy();
+          });
+        });
+      });
     });
   }
 });

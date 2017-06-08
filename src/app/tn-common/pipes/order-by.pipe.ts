@@ -20,11 +20,16 @@ export class OrderByPipe implements PipeTransform {
    */
   private static _orderByComparator(a: any, b: any): number {
     if ((isNaN(+(a)) || !isFinite(a)) || (isNaN(+(b)) || !isFinite(b))) {
+      // Check if it's an array
+      // @TODO: Make a real Array comparison inside this if block
+      if (Object.prototype.toString.call(a) === '[object Array]') {
+        return 0;
+      }
       // Isn't a number so lowercase the string to properly compare
       if (a.toLowerCase() < b.toLowerCase()) { return -1; }
       if (a.toLowerCase() > b.toLowerCase()) { return 1; }
     } else {
-      // Parse strings as num bers to compare properly
+      // Parse strings as numbers to compare properly
       if (+(a) < +(b)) { return -1; }
       if (+(a) > +(b)) { return 1; }
     }

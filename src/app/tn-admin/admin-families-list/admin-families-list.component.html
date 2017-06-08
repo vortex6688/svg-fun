@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="sidebar border-right-gradient-inset">
+      <families-controls [initialQuery]="familyQuery$ | async" (queryUpdate)="searchFamilies($event)"></families-controls>
+    </div>
+    <div class="main w-100">
+      <h2>Families</h2>
+      <families-table [families]="filteredFamilies$ | async"></families-table>
+    </div>
+  </div>
+</div>

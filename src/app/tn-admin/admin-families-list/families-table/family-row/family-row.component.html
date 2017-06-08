@@ -1,0 +1,22 @@
+<tr class="row" [ngClass]="{'row-selected': isChecked}">
+  <td class="col align-self-center" style="max-width: 2rem;">
+    <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value='{{family.id}}' (click)='selectFamily()' />
+      <span class="custom-control-indicator"></span>
+    </label>
+  </td>
+  <td class="col">{{family.name}}</td>
+  <td class="col">{{family.visible | myFamilyVisibility}}</td>
+  <td class="col">{{family.foundry}}</td>
+  <td class="col">
+    <ul>
+      <li *ngFor='let designer of family.designer'>{{designer}}</li>
+    </ul>
+  </td>  
+  <td class="col">{{family.style.length}}</td>
+  <td class="col">{{family.recommended_size | myFamilySize:false}}</td>
+  <td class="col">{{family.recommended_size | myFamilySize:true}}</td>
+  <td class="col">{{family.category | myFamilyCategory}}</td>
+  <td class="col">{{family.mood | myFamilyMood}}</td>
+  <td class="col">{{family.released | date:"MM/dd/yyyy"}}</td>
+</tr>
