@@ -102,7 +102,6 @@ export const getSelectedSeriesId = createSelector(getSeriesState, series.getSele
 export const getSelectedSeries = createSelector(getSeriesState, series.getSelected);
 export const getSeriesSearchQuery = createSelector(getSeriesState, series.getSearchQuery);
 export const getAllSeries = createSelector(getSeriesState, series.getAll);
-export const getAllFoundSeries = createSelector(getSeriesState, series.getAllFound);
 export const getSeriesByDesigner = (designer: number) => {
   return (state) => series.getSeriesByDesigner(getSeriesState(state), designer);
 };
@@ -123,7 +122,6 @@ export const getSelectedFamilyId = createSelector(getFamilyState, family.getSele
 export const getSelectedFamily = createSelector(getFamilyState, family.getSelected);
 export const getFamilySearchQuery = createSelector(getFamilyState, family.getSearchQuery);
 export const getAllFamilies = createSelector(getFamilyState, family.getAll);
-export const getAllFoundFamilies = createSelector(getFamilyState, family.getAllFound);
 export const getFamilyById = (familyId: number) => {
   return (state) => family.getFamilyById(getFamilyState(state), familyId);
 };

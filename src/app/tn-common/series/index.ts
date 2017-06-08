@@ -7,11 +7,9 @@ export { SeriesEffects } from './series.effects';
 export {
   getEntities,
   getIds,
-  getFoundIds,
   getSelectedId,
   getSelected,
   getAll,
-  getAllFound,
   getSeriesById,
   getSearchQuery,
   getSeriesByDesigner,

@@ -17,13 +17,6 @@ export const getEntities = (state: SeriesState) => state.entities;
 export const getIds = (state: SeriesState) => state.ids;
 
 /**
- * Returns all the ids of the searched series.
- *
- * @param {state} SeriesState
- */
-export const getFoundIds = (state: SeriesState) => state.search.ids;
-
-/**
  * Return the id of the selected series.
  *
  * @param {state} SeriesState
@@ -44,7 +37,7 @@ export const getSelected = createSelector(getEntities, getSelectedId, (entities,
  *
  * @param {state} SeriesState
  */
-export const getSearchQuery = (state: SeriesState) => state.search.query;
+export const getSearchQuery = (state: SeriesState) => state.search;
 
 /**
  * Get all series.
@@ -52,15 +45,6 @@ export const getSearchQuery = (state: SeriesState) => state.search.query;
  * @type {Reselect.Selector}
  */
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
-  return ids.map((id) => entities[id]);
-});
-
-/**
- * Return all the series resulted from search.
- *
- * @param state SeriesState
- */
-export const getAllFound = createSelector(getEntities, getFoundIds, (entities, ids) => {
   return ids.map((id) => entities[id]);
 });
 

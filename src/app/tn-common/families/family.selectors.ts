@@ -17,13 +17,6 @@ export const getEntities = (state: FamilyState) => state.entities;
 export const getIds = (state: FamilyState) => state.ids;
 
 /**
- * Returns all the ids of the searched families.
- *
- * @param {state} FamilyState
- */
-export const getFoundIds = (state: FamilyState) => state.search.active ? state.search.ids : state.ids;
-
-/**
  * Return the id of the selected family.
  *
  * @param {state} FamilyState
@@ -44,22 +37,13 @@ export const getSelected = createSelector(getEntities, getSelectedId, (entities,
  *
  * @param {state} FamilyState
  */
-export const getSearchQuery = (state: FamilyState) => state.search.query;
+export const getSearchQuery = (state: FamilyState) => state.search;
 /**
  * Get all families.
  *
  * @type {Reselect.Selector}
  */
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
-  return ids.map((id) => entities[id]);
-});
-
-/**
- * Return all the families resulted from search.
- *
- * @param {state} FamilyState
- */
-export const getAllFound = createSelector(getEntities, getFoundIds, (entities, ids) => {
   return ids.map((id) => entities[id]);
 });
 

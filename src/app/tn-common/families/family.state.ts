@@ -12,11 +12,7 @@ export interface FamilyState {
   ids: number[];
   entities: { [id: number]: Family };
   selectedFamilyId: number | null;
-  search: {
-    ids: number[],
-    active: boolean,
-    query: FamilySearch
-  };
+  search: FamilySearch;
 }
 
 export const initialFamilyState: FamilyState = {
@@ -24,14 +20,10 @@ export const initialFamilyState: FamilyState = {
   entities: {},
   selectedFamilyId: null,
   search: {
-    ids: [],
-    active: false,
-    query: {
-      name: '',
-      foundry: null,
-      designer: null,
-      visibility: [],
-      categories: [],
-    },
+    name: '',
+    foundry: null,
+    designer: null,
+    visibility: [],
+    categories: [],
   },
 };

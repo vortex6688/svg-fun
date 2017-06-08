@@ -40,4 +40,10 @@ describe('FamiliesTableComponent', () => {
     component.sortBy(nextKey);
     expect(component.sortKey).toEqual(`-${nextKey}`, 'Expected next key');
   });
+
+  it('should update page items on page update event', () => {
+    const eventPayload = [1, 111];
+    component.updatePageItems(eventPayload);
+    expect(component.pageItems).toEqual(eventPayload, 'Expected event data.');
+  });
 });

@@ -5,9 +5,7 @@ import { SeriesState, initialSeriesState, SeriesSearch } from './series.state';
 import {
   getEntities,
   getIds,
-  getFoundIds,
   getSelectedId,
-  getAllFound,
   getSelected,
   getAll,
   getSeriesById,
@@ -53,20 +51,12 @@ const searchItems: Series[] = [
 const searchState: SeriesState = {
   ...addedData,
   selectedSeriesId: null,
-  search: {
-    ids: searchItems.map((item) => item.id),
-    active: false,
-    query: initialSeriesState.search.query,
-  }
+  search: initialSeriesState.search,
 };
 const nonEmptyState: SeriesState = {
   ...addedData,
   selectedSeriesId: null,
-  search: {
-    ids: [],
-    active: false,
-    query: initialSeriesState.search.query,
-  }
+  search: initialSeriesState.search,
 };
 
 describe('SeriesReducer', () => {
@@ -153,95 +143,16 @@ describe('SeriesReducer', () => {
 
   it('should update search object on SEARCH_QUERY', () => {
     const state = mockedState();
-    const query = {
+    const search: SeriesSearch = {
       name: 'Lorem',
-      visibility: true,
-      released: new Date(Date.now() - 50000),
-      families: [4],
-      designers: [2],
       foundry: 1,
     };
-    const actual = SeriesReducer(state, seriesActions.searchQuery(query));
+    const actual = SeriesReducer(state, seriesActions.searchQuery(search));
     const expected: SeriesState = {
       ...initialSeriesState,
-      search: {
-        ids: [],
-        active: false,
-        query,
-      },
+      search,
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
-
-    const multiQuery: SeriesSearch = {
-      name: '',
-      released: null,
-      foundry: null,
-      designers: null,
-      visibility: true,
-      families: [1, 2],
-    };
-    const searchExpected: SeriesState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => {
-          const series = nonEmptyState.entities[id];
-          return (
-            multiQuery.visibility === series.visible &&
-            (series.family as number[]).some((family) => multiQuery.families.indexOf(family) !== -1)
-          );
-        }),
-        active: false,
-        query: multiQuery,
-      }
-    };
-    const multiSearch = SeriesReducer(nonEmptyState, seriesActions.searchQuery(multiQuery));
-    expect(multiSearch).toEqual(searchExpected, 'Should have an active visibility and family search');
-
-    const targetName = 'SupaName';
-    const nameQuery: SeriesSearch = {
-      name: targetName,
-      released: null,
-      foundry: null,
-      designers: null,
-      visibility: null,
-      families: [],
-    };
-    const nameExpected: SeriesState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => nonEmptyState.entities[id].name === targetName),
-        active: true,
-        query: nameQuery,
-      }
-    };
-    const nameSearch = SeriesReducer(nonEmptyState, seriesActions.searchQuery(nameQuery));
-    expect(nameSearch).toEqual(nameExpected, 'Should have results by name');
-
-    const foundryDesignerQuery: SeriesSearch = {
-      name: '',
-      released: null,
-      foundry: 5,
-      designers: [2],
-      visibility: null,
-      families: [],
-    };
-    const foundryDesignerExpected: SeriesState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => {
-          const series = nonEmptyState.entities[id];
-          return (
-            foundryDesignerQuery.foundry === series.foundry &&
-            series.designers.some((designer) => multiQuery.designers.indexOf(designer) !== -1)
-          );
-        }),
-        active: true,
-        query: foundryDesignerQuery,
-      }
-    };
-    const foundryDesignerSearch = SeriesReducer(nonEmptyState, seriesActions.searchQuery(foundryDesignerQuery));
-    expect(foundryDesignerSearch).toEqual(foundryDesignerExpected, 'Should have an active foundry and designer search');
-
   });
 
   describe('when a Series already exists in the state', () => {
@@ -304,23 +215,6 @@ describe('SeriesReducer', () => {
     it('getSeriesById should return an specific Series with the id provided', () => {
       const selectedSeries = getSeriesById(addedState, SeriesMock.id);
       expect(selectedSeries).toEqual(SeriesMock);
-    });
-
-    it('getFoundIds should return only ids contained in search', () => {
-      const foundIds = getFoundIds(addedState);
-      expect(foundIds).toEqual([], 'Found ids should be empty');
-
-      const actualFoundIds = getFoundIds(searchState);
-      expect(actualFoundIds).toEqual(searchState.search.ids, 'Missing ids');
-    });
-
-    it('getAllFound should return only items from search ids', () => {
-      const foundItems = getAllFound(addedState);
-      expect(foundItems).toEqual([], 'No searched items present');
-
-      const actualFoundItems = getAllFound(searchState);
-      const expectedItems = searchState.search.ids.map((id) => searchState.entities[id]);
-      expect(actualFoundItems).toEqual(expectedItems, 'Missing search items');
     });
 
     it('getSeriesByDesigner should return a list of series with the provided designer', () => {

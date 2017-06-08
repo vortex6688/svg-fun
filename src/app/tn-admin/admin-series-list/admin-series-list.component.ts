@@ -47,23 +47,24 @@ export class AdminSeriesListComponent {
    * @memberof AdminSeriesListComponent
    */
   public seriesFamilies$ = Observable.combineLatest(
-     this.series$,
-     this.familyEntities$,
-     (series, families) => series.map((item) => {
-       const { family, styles } = (item.family as number[]).reduce((result, id) => {
+    this.series$,
+    this.familyEntities$,
+    (series, families) => series.map((item) => {
+      const { family, styles } = (item.family as number[]).reduce((result, id) => {
         const seriesFamily = families[id];
         if (seriesFamily) {
           result.family.push(seriesFamily);
           result.styles += seriesFamily.style.length;
         }
         return result;
-       }, { family: [], styles: 0 });
-       return {
-         ...item,
-         family,
-         styles,
-       };
-     })
+      }, { family: [], styles: 0 });
+
+      return {
+        ...item,
+        family,
+        styles,
+      };
+    })
   );
 
   /**

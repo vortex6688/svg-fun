@@ -8,7 +8,7 @@ import { FamiliesControlsComponent } from './families-controls.component';
 describe('FamiliesControlComponent', () => {
   let component: FamiliesControlsComponent;
   let fixture: ComponentFixture<FamiliesControlsComponent>;
-  const defaultQuery: FamilySearch = initialFamilyState.search.query;
+  const defaultQuery: FamilySearch = initialFamilyState.search;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

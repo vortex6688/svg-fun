@@ -10,11 +10,9 @@ import { FamilyState, FamilySearch, initialFamilyState } from './family.state';
 import {
 getEntities,
   getIds,
-  getFoundIds,
   getSelectedId,
   getSelected,
   getAll,
-  getAllFound,
   getFamilyById,
   getFamilyByName,
   getFamiliesByDesigner,
@@ -102,11 +100,7 @@ const addedData = {
 const nonEmptyState: FamilyState = {
   ...addedData,
   selectedFamilyId: null,
-  search: {
-    ids: [],
-    active: false,
-    query: initialFamilyState.search.query,
-  }
+  search: initialFamilyState.search,
 };
 
 describe('FamilyReducer', () => {
@@ -154,90 +148,19 @@ describe('FamilyReducer', () => {
 
   it('should update search object on SEARCH_QUERY', () => {
     const state = mockedState();
-    const query: FamilySearch = {
+    const search: FamilySearch = {
       name: 'fam fam',
       foundry: 1,
       designer: 2,
       visibility: [1, 2],
       categories: [2, 3],
     };
-    const actual = FamilyReducer(state, familyActions.searchQuery(query));
+    const actual = FamilyReducer(state, familyActions.searchQuery(search));
     const expected: FamilyState = {
       ...initialFamilyState,
-      search: {
-        ids: [],
-        active: false,
-        query,
-      },
+      search,
     };
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
-
-    const multiQuery: FamilySearch = {
-      name: '',
-      foundry: null,
-      designer: null,
-      visibility: [1, 2],
-      categories: [2, 3],
-    };
-    const searchExpected: FamilyState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => {
-          const family = nonEmptyState.entities[id];
-          return (
-            multiQuery.visibility.indexOf(family.visible) !== -1 &&
-            family.category.some((category) => multiQuery.categories.indexOf(category) !== -1)
-          );
-        }),
-        active: true,
-        query: multiQuery,
-      }
-    };
-    const multiSearch = FamilyReducer(nonEmptyState, familyActions.searchQuery(multiQuery));
-    expect(multiSearch).toEqual(searchExpected, 'Should have an active visibility and category search');
-
-    const targetName = 'SupaName';
-    const nameQuery: FamilySearch = {
-      name: targetName,
-      foundry: null,
-      designer: null,
-      visibility: [],
-      categories: [],
-    };
-    const nameExpected: FamilyState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => nonEmptyState.entities[id].name === targetName),
-        active: true,
-        query: nameQuery,
-      }
-    };
-    const nameSearch = FamilyReducer(nonEmptyState, familyActions.searchQuery(nameQuery));
-    expect(nameSearch).toEqual(nameExpected, 'Should have results by name');
-
-    const foundryDesignerQuery: FamilySearch = {
-      name: '',
-      foundry: 5,
-      designer: 2,
-      visibility: [],
-      categories: [],
-    };
-    const foundryDesignerExpected: FamilyState = {
-      ...nonEmptyState,
-      search: {
-        ids: nonEmptyState.ids.filter((id) => {
-          const family = nonEmptyState.entities[id];
-          return (
-            family.foundry.indexOf(foundryDesignerQuery.foundry) !== -1 &&
-            family.designer.indexOf(foundryDesignerQuery.designer) !== -1
-          );
-        }),
-        active: true,
-        query: foundryDesignerQuery,
-      }
-    };
-    const foundryDesignerSearch = FamilyReducer(nonEmptyState, familyActions.searchQuery(foundryDesignerQuery));
-    expect(foundryDesignerSearch).toEqual(foundryDesignerExpected, 'Should have an active foundry and designer search');
   });
 
   it('should add families on LOAD_FAMILIES_SUCCESS', () => {
@@ -338,41 +261,6 @@ describe('FamilyReducer', () => {
       const selectedFamily = getAll(addedState);
       const selected = addedState.ids.map((id) => addedState.entities[id]);
       expect(selectedFamily).toEqual(selected);
-    });
-
-    it('getFoundIds should return search ids or all ids if search is inactive', () => {
-      const foundIds = getFoundIds(addedState);
-      const allIds = getIds(addedState);
-      expect(foundIds).toEqual(allIds, 'Found ids should equal all ids on inactive search');
-
-      const expectedIds = [1, 2, 3];
-      const searchState = {
-        ...addedState,
-        search: {
-          ids: expectedIds,
-          active: true,
-          query: addedState.search.query
-        }
-      };
-      const actualFoundIds = getFoundIds(searchState);
-      expect(actualFoundIds).toEqual(expectedIds, 'Missing ids');
-    });
-
-    it('getAllFound should return search results or all items if search is inactive', () => {
-      const foundItems = getAllFound(addedState);
-      const allItems = getAll(addedState);
-      expect(foundItems).toEqual(allItems, 'Should return all items on non active search');
-
-      const searchState = {
-        ...addedState,
-        search: {
-          ids: [],
-          active: true,
-          query: addedState.search.query,
-        }
-      };
-      const actualFoundItems = getAllFound(searchState);
-      expect(actualFoundItems).toEqual([], 'Should be empty');
     });
 
     it('getFamilyById should return an especific Family with the id provided', () => {
