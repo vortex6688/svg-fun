@@ -9,7 +9,7 @@ export class Project {
   public created: string;
   public source?: string;
   public source_id?: string;
-  public licenses: License[];
+  public licenses: number[] | License[];
   public family_count: number;
   public style_count: number;
 }

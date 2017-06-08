@@ -141,7 +141,7 @@ describe('AdminOrdersListComponent', () => {
     user: 1,
     domains: '["project1.com"]',
     created: '2017-03-05T18:16:50Z',
-    licenses: [mockLicense],
+    licenses: [1],
     family_count: 1,
     style_count: 1,
   };
@@ -171,9 +171,9 @@ describe('AdminOrdersListComponent', () => {
     { ...mockLicense, id: 4, order: 11, style: 5, license_type: 'web', self_hosted: true },
   ];
   const mockProjectList: Project[] = [
-    { ...mockProject, id: 2, name: 'p1', licenses: [mockLicenseList[3]]},
-    { ...mockProject, id: 3, name: 'p2', licenses: [mockLicenseList[2]], domains: '["p2.com"]'},
-    { ...mockProject, id: 4, name: 'p3', licenses: [mockLicenseList[1]] },
+    { ...mockProject, id: 2, name: 'p1', licenses: [4]},
+    { ...mockProject, id: 3, name: 'p2', licenses: [3], domains: '["p2.com"]'},
+    { ...mockProject, id: 4, name: 'p3', licenses: [1]},
   ];
 
   class MockOrderActions {
@@ -240,10 +240,14 @@ describe('AdminOrdersListComponent', () => {
       ...order,
       licenses: licensesStyles.filter((license) => license.order === order.id),
     }));
+    const licensesProjects = mockProjectList.map((project) => ({
+      ...project,
+      licenses: licensesStyles.filter((license) => (project.licenses as number[]).indexOf(license.id) !== -1),
+    }));
     const licensesOrdersProjects = licensedOrders.map((order) => ({
       ...order,
-      projects: mockProjectList.filter((project) =>
-                                       project.licenses.some((projectLicense) =>
+      projects: licensesProjects.filter((project) =>
+                                        project.licenses.some((projectLicense) =>
                                                               order.licenses.map((license) => license.id)
                                                               .indexOf(projectLicense.id) !== -1)),
     }));

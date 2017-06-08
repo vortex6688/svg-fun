@@ -29,7 +29,3 @@ export class Order {
   public coupon_discount?: number;
   public upgrade_price_adjustment: number;
 }
-
-export class OrderFull extends Order {
-  public projects?: Project[];
-}
