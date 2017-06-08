@@ -35,13 +35,18 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
       { path: '', component: PlaceholderComponent, data: { title: 'TN Admin | Login '} },
       { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
-      { path: 'orders/list', component: AdminOrdersListComponent,
+      {
+        path: 'orders/list',
+        component: AdminOrdersListComponent,
         data: { title: 'TN Admin | Orders List'},
-        canActivate: [DataGuard]
+        canActivate: [DataGuard],
       },
       { path: 'products', redirectTo: 'products/families', pathMatch: 'full' },
-      { path: 'products/families', component: AdminFamiliesListComponent,
+      {
+        path: 'products/families',
+        component: AdminFamiliesListComponent,
         data: { title: 'TN Admin | Families List'},
+        canActivate: [DataGuard],
       }
     ]
   }

@@ -50,6 +50,13 @@ export class DataGuard implements CanActivate {
         this.seriesActions.loadSeries,
       ],
     },
+    '/admin/products/families': {
+      state: 'family',
+      action: this.familyActions.loadFamilies,
+      success: FamilyActions.LOAD_FAMILIES_SUCCESS,
+      fail: FamilyActions.LOAD_FAMILIES_FAIL,
+      subActions: [],
+    }
   };
 
   constructor(
