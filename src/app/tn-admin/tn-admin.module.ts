@@ -25,6 +25,10 @@ import { FamilyRowComponent } from './admin-families-list/families-table/family-
 import { FamiliesControlsComponent } from './admin-families-list/families-controls';
 import { FamiliesTableComponent } from './admin-families-list/families-table';
 import { DataGuard } from '../tn-common/data.guard';
+import { AdminSeriesListComponent } from './admin-series-list';
+import { SeriesTableComponent } from './admin-series-list/series-table';
+import { SeriesControlsComponent } from './admin-series-list/series-controls';
+import { SeriesRowComponent } from './admin-series-list/series-table/series-row';
 
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
@@ -43,6 +47,9 @@ export const routes: Routes = [
         component: AdminFamiliesListComponent,
         data: { title: 'TN Admin | Families List'},
         canActivate: [DataGuard],
+      },
+      { path: 'products/series', component: AdminSeriesListComponent,
+        data: { title: 'TN Admin | Series List'}
       }
     ]
   }
@@ -64,6 +71,10 @@ export const routes: Routes = [
     FamilyRowComponent,
     FamiliesControlsComponent,
     FamiliesTableComponent,
+    AdminSeriesListComponent,
+    SeriesTableComponent,
+    SeriesRowComponent,
+    SeriesControlsComponent,
   ],
   imports: [
     BrowserModule,
