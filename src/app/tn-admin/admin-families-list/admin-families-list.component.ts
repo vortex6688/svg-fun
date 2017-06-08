@@ -66,7 +66,7 @@ export class AdminFamiliesListComponent {
   public familyQuery$ = this.store.select(getFamilySearchQuery);
 
   /**
-   *  Family collection with populated foundries data. @todo add actual foundry
+   * Family collection with populated foundries data. @todo add actual foundry
    *
    * @type {Observable<Family[]>}
    * @memberof AdminOrdersListComponent
@@ -85,10 +85,10 @@ export class AdminFamiliesListComponent {
    );
 
   /**
-   *  Orders collection for display, filtered against search query.
+   * Family collection for display, filtered against search query.
    *
-   * @type {Observable<Order[]>}
-   * @memberof AdminOrdersListComponent
+   * @type {Observable<Family[]>}
+   * @memberof AdminFamiliesListComponent
    */
   public filteredFamilies$ = Observable.combineLatest(
     this.familyFoundries$,
@@ -99,7 +99,7 @@ export class AdminFamiliesListComponent {
         const hasName = testName.test(family.name);
         if (!hasName) { return false; }
       }
-      return this.families$;
+      return true;
     }));
 
   constructor(private store: Store<any>, private familyActions: FamilyActions) {}

@@ -7,10 +7,15 @@ import { Family } from '../../../tn-common/families/';
   templateUrl: './families-table.component.html'
 })
 export class FamiliesTableComponent {
-  public page: number;
+  public pageSize: number = 25;
+  public pageItems: number[] = [];
 
   @Input() public families: Family[] = [];
   public sortKey = '-name';
+
+  public updatePageItems($event) {
+    this.pageItems = $event;
+  }
 
   public sortBy(key) {
     const sortSide = this.sortKey.endsWith(key) && this.sortKey.startsWith('-') ? '+' : '-';
