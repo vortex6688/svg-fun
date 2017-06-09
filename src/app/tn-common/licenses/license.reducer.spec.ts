@@ -75,7 +75,7 @@ describe('LicenseReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should be able to ADD_LICENSE_SUCCESS', () => {
+  it('should be able to CREATE_LICENSE_SUCCESS', () => {
     const state = mockedState();
     const actual = LicenseReducer(state, licenseActions.createLicenseSuccess(licenseMock));
     const expected = {
@@ -87,7 +87,7 @@ describe('LicenseReducer', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('should be NOT add a license on ADD_LICENSE_FAIL', () => {
+  it('should be NOT add a license on CREATE_LICENSE_FAIL', () => {
     const state = mockedState();
     const actual = LicenseReducer(state, licenseActions.createLicenseFail(licenseMock));
     expect(actual).toEqual(state);
@@ -116,9 +116,9 @@ describe('LicenseReducer', () => {
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
   });
 
-  it('should add search results on ADD_LICENSES', () => {
+  it('should add search results on LOAD_LICENSES_SUCCESS', () => {
     const state = mockedState();
-    const actual = LicenseReducer(state, licenseActions.addLicenses(addItems));
+    const actual = LicenseReducer(state, licenseActions.loadLicensesSuccess(addItems));
     const expected: LicenseState = nonEmptyState;
     expect(actual).toEqual(expected, 'Didn\'t add search items');
   });

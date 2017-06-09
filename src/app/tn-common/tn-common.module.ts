@@ -43,6 +43,7 @@ import { IconCheckComponent,
          IconSearchComponent,
          IconPencilComponent } from './tn-icons';
 import { OrderByPipe } from './pipes';
+import { DataGuard } from './data.guard';
 
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
@@ -58,7 +59,9 @@ import { OrderByPipe } from './pipes';
                   TnPaginationConfig,
                   TnTitleService.provider(),
                   TnAutoscrollService.provider(),
-                  UserService ],
+                  UserService,
+                  DataGuard,
+                ],
   declarations: [ DatepickerComponent,
                   CalendarIconComponent,
                   CaretLeftIconComponent,

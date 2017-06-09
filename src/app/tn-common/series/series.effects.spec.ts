@@ -66,23 +66,23 @@ describe('SeriesEffects', () => {
     seriesService = TestBed.get(SeriesService);
   });
 
-  describe('loadData$', () => {
-    it('should call seriesService.getAllPages on initial subscription', () => {
-      const expectedResult = seriesActions.addSeries(mockSeries);
-      spyOn(seriesService, 'getAllPages').and.callThrough();
+  describe('loadSeries$', () => {
+    it('should return loadSeriesSuccess on load success', () => {
+      const expectedResult = seriesActions.loadSeriesSuccess(mockSeries);
+      runner.queue(seriesActions.loadSeries());
 
-      let result;
-      seriesEffects.loadData$.subscribe((data) => result = data);
-      expect(seriesService.getAllPages).toHaveBeenCalled();
+      let result = null;
+      seriesEffects.loadSeries$.subscribe((data) => result = data);
       expect(result).toEqual(expectedResult);
     });
 
-    it('should catch seriesService errors', () => {
-      spyOn(seriesService, 'getAllPages').and.returnValue(Observable.throw('error'));
-      runner.queue(seriesActions.searchQuery({}));
-
-      const subscription = seriesEffects.loadData$.subscribe();
-      expect(subscription).toBeTruthy();
+    it('should return loadSeriesFail on load failure', () => {
+      const errorValue = 'error';
+      spyOn(seriesService, 'getAllPages').and.returnValue(Observable.throw(errorValue));
+      runner.queue(seriesActions.loadSeries());
+      seriesEffects.loadSeries$.subscribe((result) => {
+        expect(result).toEqual(seriesActions.loadSeriesFail(errorValue));
+      });
     });
   });
 

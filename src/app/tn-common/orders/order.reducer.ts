@@ -42,7 +42,7 @@ export const OrderReducer: ActionReducer<OrderState> = (state = initialOrderStat
       return { ...state, search };
     }
 
-    case OrderActions.ADD_ORDERS: {
+    case OrderActions.LOAD_ORDERS_SUCCESS: {
       const orders: Order[] = action.payload;
       const { orderEntities, orderIds } = orders.reduce((result, order) => {
         result.orderEntities[order.id] = order;
@@ -57,6 +57,7 @@ export const OrderReducer: ActionReducer<OrderState> = (state = initialOrderStat
       };
     }
 
+    case OrderActions.LOAD_ORDERS_FAIL:
     default: {
       return state;
     }

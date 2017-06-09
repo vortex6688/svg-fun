@@ -81,23 +81,23 @@ describe('FamilyEffects', () => {
     familyService = TestBed.get(FamilyService);
   });
 
-  describe('loadData$', () => {
-    it('should call familyService.getAllPages on initial subscription', () => {
-      const expectedResult = familyActions.addFamilies(mockFamilies);
-      spyOn(familyService, 'getAllPages').and.callThrough();
+  describe('loadFamilies$', () => {
+    it('should return loadFamiliesSuccess on load success', () => {
+      const expectedResult = familyActions.loadFamiliesSuccess(mockFamilies);
+      runner.queue(familyActions.loadFamilies());
 
-      let result;
-      familyEffects.loadData$.subscribe((data) => result = data);
-      expect(familyService.getAllPages).toHaveBeenCalled();
+      let result = null;
+      familyEffects.loadFamilies$.subscribe((data) => result = data);
       expect(result).toEqual(expectedResult);
     });
 
-    it('should catch familyService errors', () => {
-      spyOn(familyService, 'getAllPages').and.returnValue(Observable.throw('error'));
-      runner.queue(familyActions.searchQuery({}));
-
-      const subscription = familyEffects.loadData$.subscribe();
-      expect(subscription).toBeTruthy();
+    it('should return loadFamiliesFail on load failure', () => {
+      const errorValue = 'error';
+      spyOn(familyService, 'getAllPages').and.returnValue(Observable.throw(errorValue));
+      runner.queue(familyActions.loadFamilies());
+      familyEffects.loadFamilies$.subscribe((result) => {
+        expect(result).toEqual(familyActions.loadFamiliesFail(errorValue));
+      });
     });
   });
 

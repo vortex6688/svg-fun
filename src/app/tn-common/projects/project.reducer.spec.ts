@@ -111,11 +111,11 @@ describe('ProjectReducer', () => {
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
   });
 
-  it('should add search results on ADD_PROJECTS', () => {
+  it('should add projects on LOAD_PROJECTS_SUCCESS', () => {
     const state = mockedState();
-    const actual = ProjectReducer(state, projectActions.addProjects(addItems));
+    const actual = ProjectReducer(state, projectActions.loadProjectsSuccess(addItems));
     const expected: ProjectState = nonEmptyState;
-    expect(actual).toEqual(expected, 'Didn\'t add search items');
+    expect(actual).toEqual(expected, 'Didn\'t add projects');
   });
 
   describe('when a Project already exists in the state', () => {

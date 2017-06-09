@@ -131,9 +131,9 @@ describe('OrderReducer', () => {
     expect(actual).toEqual(expected, 'Didn\'t update search query correctly');
   });
 
-  it('should add orders on ADD_ORDERS', () => {
+  it('should add orders on LOAD_ORDERS_SUCCESS', () => {
     const state = mockedState();
-    const actual = OrderReducer(state, orderActions.addOrders(addItems));
+    const actual = OrderReducer(state, orderActions.loadOrdersSuccess(addItems));
     const expected: OrderState = nonEmptyState;
     expect(actual).toEqual(expected, 'Didn\'t add new orders');
   });

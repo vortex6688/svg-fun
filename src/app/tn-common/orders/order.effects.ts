@@ -12,10 +12,13 @@ import { defer } from 'rxjs/observable/defer';
 
 @Injectable()
 export class OrderEffects {
+
   @Effect()
-  public loadData$: Observable<any> = defer(() => this.orderService.getAllPages()
-    .map((orders) => this.orderActions.addOrders(orders))
-    .catch(() => of())
+  public loadOrders$: Observable<Action> = this.actions$
+    .ofType(OrderActions.LOAD_ORDERS)
+    .switchMap(() => this.orderService.getAllPages())
+      .map((orders) => this.orderActions.loadOrdersSuccess(orders))
+      .catch((error) => of(this.orderActions.loadOrdersFail(error))
   );
 
   constructor(private actions$: Actions, private orderService: OrderService, private orderActions: OrderActions) {}

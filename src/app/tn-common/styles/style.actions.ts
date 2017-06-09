@@ -17,7 +17,9 @@ export class StyleActions {
   public static GET_STYLES: string = '[Style] GET_STYLES';
   public static GET_STYLE: string = '[Style] GET_STYLE';
   public static SEARCH_QUERY: string = '[Style] SEARCH_QUERY';
-  public static ADD_STYLES: string = '[Style] ADD_STYLES';
+  public static LOAD_STYLES: string = '[Style] LOAD_STYLES';
+  public static LOAD_STYLES_SUCCESS: string = '[Style] LOAD_STYLES_SUCCESS';
+  public static LOAD_STYLES_FAIL: string = '[Style] LOAD_STYLES_FAIL';
 
   public createStyle = ActionCreatorFactory.create(StyleActions.CREATE_STYLE);
   public createStyleSuccess = ActionCreatorFactory.create(StyleActions.CREATE_STYLE_SUCCESS);
@@ -32,5 +34,7 @@ export class StyleActions {
   public getStyles = ActionCreatorFactory.create(StyleActions.GET_STYLES);
   public getStyle = ActionCreatorFactory.create(StyleActions.GET_STYLE);
   public searchQuery = ActionCreatorFactory.create(StyleActions.SEARCH_QUERY);
-  public addStyles = ActionCreatorFactory.create(StyleActions.ADD_STYLES);
+  public loadStyles = ActionCreatorFactory.create(StyleActions.LOAD_STYLES);
+  public loadStylesSuccess = ActionCreatorFactory.create(StyleActions.LOAD_STYLES_SUCCESS);
+  public loadStylesFail = ActionCreatorFactory.create(StyleActions.LOAD_STYLES_FAIL);
 }

@@ -65,22 +65,23 @@ describe('LicenseEffects', () => {
     licenseEffects = TestBed.get(LicenseEffects);
   });
 
-  describe('loadData$', () => {
-    it('should call licenserService.find on inital subscription', () => {
-      const expectedResult = licenseActions.addLicenses(mockLicenses);
-      runner.queue(licenseActions.searchQuery({}));
+  describe('loadLicenses$', () => {
+    it('should return loadLicensesSuccess on load success', () => {
+      const expectedResult = licenseActions.loadLicensesSuccess(mockLicenses);
+      runner.queue(licenseActions.loadLicenses());
 
       let result = null;
-      licenseEffects.loadData$.subscribe((data) => result = data);
+      licenseEffects.loadLicenses$.subscribe((data) => result = data);
       expect(result).toEqual(expectedResult);
     });
 
-    it('should catch licenseService error', () => {
-      spyOn(licenseService, 'find').and.returnValue(Observable.throw('error'));
-      runner.queue(licenseActions.searchQuery({}));
-
-      const subscription = licenseEffects.loadData$.subscribe();
-      expect(subscription).toBeTruthy();
+    it('should return loadLicensesFail on load failure', () => {
+      const errorValue = 'error';
+      spyOn(licenseService, 'find').and.returnValue(Observable.throw(errorValue));
+      runner.queue(licenseActions.loadLicenses());
+      licenseEffects.loadLicenses$.subscribe((result) => {
+        expect(result).toEqual(licenseActions.loadLicensesFail(errorValue));
+      });
     });
   });
 

@@ -60,19 +60,13 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
-    case LicenseActions.CREATE_LICENSE_FAIL:
-    case LicenseActions.UPDATE_LICENSE_FAIL:
-    case LicenseActions.REMOVE_LICENSE_FAIL: {
-      return state;
-    }
-
     case LicenseActions.SEARCH_QUERY: {
       const search = action.payload;
 
       return { ...state, search };
     }
 
-    case LicenseActions.ADD_LICENSES: {
+    case LicenseActions.LOAD_LICENSES_SUCCESS: {
       const licenses: License[] = action.payload;
       const { licenseEntities, licenseIds } = licenses.reduce((result, license) => {
         result.licenseEntities[license.id] = license;
@@ -87,6 +81,10 @@ export const LicenseReducer: ActionReducer<LicenseState> = (state = initialLicen
       };
     }
 
+    case LicenseActions.CREATE_LICENSE_FAIL:
+    case LicenseActions.UPDATE_LICENSE_FAIL:
+    case LicenseActions.REMOVE_LICENSE_FAIL:
+    case LicenseActions.LOAD_LICENSES_FAIL:
     default: {
       return state;
     }

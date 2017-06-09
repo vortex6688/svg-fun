@@ -13,38 +13,40 @@ import { SeriesActions } from './series.actions';
 @Injectable()
 export class SeriesEffects {
   @Effect()
-  public loadData$: Observable<any> = defer(() => this.seriesService.getAllPages({})
-    .map((series) => this.seriesActions.addSeries(series))
-    .catch(() => of())
+  public loadSeries$: Observable<Action> = this.actions$
+    .ofType(SeriesActions.LOAD_SERIES)
+    .switchMap(() => this.seriesService.getAllPages())
+      .map((series) => this.seriesActions.loadSeriesSuccess(series))
+      .catch((error) => of(this.seriesActions.loadSeriesFail(error))
   );
 
   @Effect()
   public createSeries$: Observable<Action> = this.actions$
     .ofType(SeriesActions.CREATE_SERIES)
     .map(toPayload)
-    .switchMap((family) =>
-      this.seriesService.save(family)
+    .switchMap((series) =>
+      this.seriesService.save(series)
         .map((addedSeries) => this.seriesActions.createSeriesSuccess(addedSeries))
-        .catch(() => of(this.seriesActions.createSeriesFail(family)))
+        .catch(() => of(this.seriesActions.createSeriesFail(series)))
     );
 
   @Effect()
   public updateSeries$: Observable<Action> = this.actions$
     .ofType(SeriesActions.UPDATE_SERIES)
     .map(toPayload)
-    .switchMap((family) =>
-      this.seriesService.save(family)
+    .switchMap((series) =>
+      this.seriesService.save(series)
         .map((updatedSeries) => this.seriesActions.updateSeriesSuccess(updatedSeries))
-        .catch(() => of(this.seriesActions.updateSeriesFail(family)))
+        .catch(() => of(this.seriesActions.updateSeriesFail(series)))
     );
   @Effect()
   public removeSeries$: Observable<Action> = this.actions$
     .ofType(SeriesActions.REMOVE_SERIES)
     .map(toPayload)
-    .switchMap((family) =>
-      this.seriesService.delete(family)
-        .map(() => this.seriesActions.removeSeriesSuccess(family))
-        .catch(() => of(this.seriesActions.removeSeriesFail(family)))
+    .switchMap((series) =>
+      this.seriesService.delete(series)
+        .map(() => this.seriesActions.removeSeriesSuccess(series))
+        .catch(() => of(this.seriesActions.removeSeriesFail(series)))
     );
 
   constructor(

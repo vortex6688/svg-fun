@@ -60,11 +60,6 @@ export const SeriesReducer: ActionReducer<SeriesState> = (state = initialSeriesS
         search: state.search,
       };
     }
-    case SeriesActions.CREATE_SERIES_FAIL:
-    case SeriesActions.UPDATE_SERIES_FAIL:
-    case SeriesActions.REMOVE_SERIES_FAIL: {
-      return state;
-    }
 
     case SeriesActions.SEARCH_QUERY: {
       const query = action.payload;
@@ -95,7 +90,7 @@ export const SeriesReducer: ActionReducer<SeriesState> = (state = initialSeriesS
       return { ...state, search };
     }
 
-    case SeriesActions.ADD_SERIES: {
+    case SeriesActions.LOAD_SERIES_SUCCESS: {
       const series: Series[] = action.payload;
       const { seriesEntities, seriesIds } = series.reduce((result, singleSeries) => {
         result.seriesEntities[singleSeries.id] = singleSeries;
@@ -110,6 +105,10 @@ export const SeriesReducer: ActionReducer<SeriesState> = (state = initialSeriesS
       };
     }
 
+    case SeriesActions.CREATE_SERIES_FAIL:
+    case SeriesActions.UPDATE_SERIES_FAIL:
+    case SeriesActions.REMOVE_SERIES_FAIL:
+    case SeriesActions.LOAD_SERIES_FAIL:
     default: {
       return state;
     }

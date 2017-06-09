@@ -83,15 +83,23 @@ describe('OrderEffects', () => {
     orderService = TestBed.get(OrderService);
   });
 
-  describe('loadData$', () => {
-    it('should call orderService.getAllPages on initial subscription', () => {
-      const expectedResult = orderActions.addOrders(mockOrders);
-      spyOn(orderService, 'getAllPages').and.callThrough();
+  describe('loadOrders$', () => {
+    it('should return loadOrdersSuccess on load success', () => {
+      const expectedResult = orderActions.loadOrdersSuccess(mockOrders);
+      runner.queue(orderActions.loadOrders());
 
-      let result;
-      orderEffects.loadData$.subscribe((data) => result = data);
-      expect(orderService.getAllPages).toHaveBeenCalled();
+      let result = null;
+      orderEffects.loadOrders$.subscribe((data) => result = data);
       expect(result).toEqual(expectedResult);
+    });
+
+    it('should return loadOrdersFail on load failure', () => {
+      const errorValue = 'error';
+      spyOn(orderService, 'getAllPages').and.returnValue(Observable.throw(errorValue));
+      runner.queue(orderActions.loadOrders());
+      orderEffects.loadOrders$.subscribe((result) => {
+        expect(result).toEqual(orderActions.loadOrdersFail(errorValue));
+      });
     });
   });
 });

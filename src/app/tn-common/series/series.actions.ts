@@ -18,7 +18,9 @@ export class SeriesActions {
   public static GET_ALL_SERIES: string = '[Series] GET_ALL_SERIES';
   public static GET_SERIES: string = '[Series] GET_SERIES';
   public static SEARCH_QUERY: string = '[Series] SEARCH_QUERY';
-  public static ADD_SERIES: string = '[Series] ADD_SERIES';
+  public static LOAD_SERIES: string = '[Series] LOAD_SERIES';
+  public static LOAD_SERIES_SUCCESS: string = '[Series] LOAD_SERIES_SUCCESS';
+  public static LOAD_SERIES_FAIL: string = '[Series] LOAD_SERIES_FAIL';
 
   public createSeries = ActionCreatorFactory.create(SeriesActions.CREATE_SERIES);
   public createSeriesSuccess = ActionCreatorFactory.create(SeriesActions.CREATE_SERIES_SUCCESS);
@@ -30,8 +32,10 @@ export class SeriesActions {
   public removeSeriesSuccess = ActionCreatorFactory.create(SeriesActions.REMOVE_SERIES_SUCCESS);
   public removeSeriesFail = ActionCreatorFactory.create(SeriesActions.REMOVE_SERIES_FAIL);
 
-  public addSeries = ActionCreatorFactory.create(SeriesActions.ADD_SERIES);
   public getAllSeries = ActionCreatorFactory.create(SeriesActions.GET_ALL_SERIES);
   public getSeries = ActionCreatorFactory.create(SeriesActions.GET_SERIES);
   public searchQuery = ActionCreatorFactory.create(SeriesActions.SEARCH_QUERY);
+  public loadSeries = ActionCreatorFactory.create(SeriesActions.LOAD_SERIES);
+  public loadSeriesSuccess = ActionCreatorFactory.create(SeriesActions.LOAD_SERIES_SUCCESS);
+  public loadSeriesFail = ActionCreatorFactory.create(SeriesActions.LOAD_SERIES_FAIL);
 }

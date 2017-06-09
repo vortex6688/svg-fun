@@ -16,9 +16,11 @@ import { Style } from './style.model';
 export class StyleEffects {
 
   @Effect()
-  public loadData$: Observable<any> = defer(() => this.styleService.getAllPages({})
-    .map((styles) => this.styleActions.addStyles(styles))
-    .catch(() => of())
+  public loadStyles$: Observable<Action> = this.actions$
+    .ofType(StyleActions.LOAD_STYLES)
+    .switchMap(() => this.styleService.getAllPages())
+      .map((styles) => this.styleActions.loadStylesSuccess(styles))
+      .catch((error) => of(this.styleActions.loadStylesFail(error))
   );
 
   @Effect()

@@ -18,6 +18,9 @@ export class ProjectActions {
   public static GET_PROJECT: string = '[Project] GET_PROJECT';
   public static SEARCH_QUERY: string = '[Project] SEARCH_QUERY';
   public static ADD_PROJECTS: string = '[Project] ADD_PROJECTS';
+  public static LOAD_PROJECTS: string = '[Project] LOAD_PROJECTS';
+  public static LOAD_PROJECTS_SUCCESS: string = '[Project] LOAD_PROJECTS_SUCCESS';
+  public static LOAD_PROJECTS_FAIL: string = '[Project] LOAD_PROJECTS_FAIL';
 
   public createProject = ActionCreatorFactory.create(ProjectActions.CREATE_PROJECT);
   public createProjectSuccess = ActionCreatorFactory.create(ProjectActions.CREATE_PROJECT_SUCCESS);
@@ -32,5 +35,7 @@ export class ProjectActions {
   public getProjects = ActionCreatorFactory.create(ProjectActions.GET_PROJECTS);
   public getProject = ActionCreatorFactory.create(ProjectActions.GET_PROJECT);
   public searchQuery = ActionCreatorFactory.create(ProjectActions.SEARCH_QUERY);
-  public addProjects = ActionCreatorFactory.create(ProjectActions.ADD_PROJECTS);
+  public loadProjects = ActionCreatorFactory.create(ProjectActions.LOAD_PROJECTS);
+  public loadProjectsSuccess = ActionCreatorFactory.create(ProjectActions.LOAD_PROJECTS_SUCCESS);
+  public loadProjectsFail = ActionCreatorFactory.create(ProjectActions.LOAD_PROJECTS_FAIL);
 }
