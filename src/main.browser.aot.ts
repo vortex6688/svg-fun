@@ -15,7 +15,10 @@ import { AppModuleNgFactory } from '../compiled/src/app/app.module.ngfactory';
  */
 export function main(): Promise<any> {
   // three two one let's jam
-  enableProdMode();
+  if (process.env.ENV === 'production') {
+    enableProdMode();
+  }
+
   return platformBrowser()
     .bootstrapModuleFactory(AppModuleNgFactory)
     .catch((err) => console.error(err));
