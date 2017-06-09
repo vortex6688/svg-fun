@@ -17,6 +17,7 @@ import { OrderService } from './orders';
 import { SeriesService } from './series';
 import { FamilyService } from './families';
 import { StyleService } from './styles';
+import { ProjectService } from './projects';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
@@ -53,6 +54,7 @@ import { OrderByPipe } from './pipes';
                   SeriesService,
                   FamilyService,
                   StyleService,
+                  ProjectService,
                   TnPaginationConfig,
                   TnTitleService.provider(),
                   TnAutoscrollService.provider(),

@@ -12,6 +12,7 @@ import { AuthService, AuthActions } from './auth';
 import { OrderService } from './orders';
 import { LicenseService } from './licenses';
 import { SeriesService } from './series';
+import { ProjectService } from './projects';
 import { User, UserService } from './user';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -22,6 +23,7 @@ class TnCommonModuleProvidersTestComponent {
                 public orderService: OrderService,
                 public licenseService: LicenseService,
                 public seriesService: SeriesService,
+                public projectService: ProjectService,
                 public userService: UserService) {}
 }
 
