@@ -114,20 +114,6 @@ export class AdminOrdersListComponent {
     })));
 
   /**
-   *  Projects collections with populated license data.
-   *
-   * @type {Observable<Order[]>}
-   * @memberof AdminOrdersListComponent
-   */
-  public projectsLicenses$ = Observable.combineLatest(
-    this.projects$,
-    this.licensesStyles$,
-    (projects: Project[], licenses: License[]) => projects.map((project) => ({
-      ...project,
-      licenses: licenses.filter((license) => (project.licenses as number[]).indexOf(license.id) !== -1),
-    })));
-
-  /**
    *  Orders collections with populated license data and project data.
    *
    * @type {Observable<Order[]>}
@@ -135,13 +121,11 @@ export class AdminOrdersListComponent {
    */
   public ordersLicensesProjects$ = Observable.combineLatest(
     this.ordersLicenses$,
-    this.projectsLicenses$,
+    this.projects$,
     (orders: Order[], projects: Project[]) => orders.map((order) => ({
       ...order,
-      projects: projects.filter((project) =>
-                                (project.licenses as License[]).some((projectLicense) =>
-                                                      order.licenses.map((license) => license.id)
-                                                      .indexOf(projectLicense.id) !== -1)),
+      projects: projects.filter((project) => order.licenses.some(({ id }) =>
+        (project.licenses as number[]).indexOf(id) !== -1))
     })));
 
   /**

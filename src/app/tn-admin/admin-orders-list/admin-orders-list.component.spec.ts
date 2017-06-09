@@ -240,16 +240,10 @@ describe('AdminOrdersListComponent', () => {
       ...order,
       licenses: licensesStyles.filter((license) => license.order === order.id),
     }));
-    const licensesProjects = mockProjectList.map((project) => ({
-      ...project,
-      licenses: licensesStyles.filter((license) => (project.licenses as number[]).indexOf(license.id) !== -1),
-    }));
     const licensesOrdersProjects = licensedOrders.map((order) => ({
       ...order,
-      projects: licensesProjects.filter((project) =>
-                                        project.licenses.some((projectLicense) =>
-                                                              order.licenses.map((license) => license.id)
-                                                              .indexOf(projectLicense.id) !== -1)),
+      projects: mockProjectList.filter((project) => order.licenses.some(({ id }) =>
+        (project.licenses as number[]).indexOf(id) !== -1)),
     }));
 
     beforeEach(() => {
