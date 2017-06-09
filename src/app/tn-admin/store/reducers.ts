@@ -43,9 +43,9 @@ export const moduleReducers = [{
 }];
 
 export const moduleActions = [
-  auth.AuthActions, 
-  order.OrderActions, 
-  license.LicenseActions, 
+  auth.AuthActions,
+  order.OrderActions,
+  license.LicenseActions,
   series.SeriesActions,
   family.FamilyActions,
   style.StyleActions,
