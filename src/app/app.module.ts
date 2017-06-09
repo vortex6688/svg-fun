@@ -19,6 +19,17 @@ import '../styles/main.scss';
 
 const ROUTES: Routes = [];
 
+export function getEnvApiUrl() {
+  // this is, sadly, required.
+  // useValue in the provider below will fail in AOT mode as the
+  // angular compiler won't see process.env.TN_API_URL;
+  // replacing it with a lambda will fail to run AOT with:
+  // Error encountered resolving symbol values statically. Function calls are not supported.
+  // so we export this function to allow the AOT builder to function properly, and to
+  // allow AOT to see process.env
+  return process.env.TN_API_URL;
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -36,7 +47,7 @@ const ROUTES: Routes = [];
   providers: [
     ActionCreatorFactory,
     // provide TnApiBaseUrl, required configuration.
-    { provide: TnApiBaseUrl, useValue: process.env.TN_API_URL }
+    { provide: TnApiBaseUrl, useFactory: getEnvApiUrl }
   ],
   bootstrap: [AppComponent]
 })
