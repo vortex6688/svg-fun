@@ -6,7 +6,7 @@ import { ProjectService } from './project.service';
 import { ProjectActions } from './project.actions';
 import { ProjectEffects } from './project.effects';
 import { Project } from './project.model';
-import { License } from '../licenses/license.model';
+import { License } from '../licenses';
 import { initialProjectState } from './project.state';
 
 describe('ProjectEffects', () => {
@@ -77,22 +77,23 @@ describe('ProjectEffects', () => {
     projectEffects = TestBed.get(ProjectEffects);
   });
 
-  describe('loadData$', () => {
-    it('should call projectrService.find on inital subscription', () => {
-      const expectedResult = projectActions.addProjects(mockProjects);
-      runner.queue(projectActions.searchQuery({}));
+  describe('loadProjects$', () => {
+    it('should return loadProjectsSuccess on load success', () => {
+      const expectedResult = projectActions.loadProjectsSuccess(mockProjects);
+      runner.queue(projectActions.loadProjects());
 
       let result = null;
-      projectEffects.loadData$.subscribe((data) => result = data);
+      projectEffects.loadProjects$.subscribe((data) => result = data);
       expect(result).toEqual(expectedResult);
     });
 
-    it('should catch projectService error', () => {
-      spyOn(projectService, 'find').and.returnValue(Observable.throw('error'));
-      runner.queue(projectActions.searchQuery({}));
-
-      const subscription = projectEffects.loadData$.subscribe();
-      expect(subscription).toBeTruthy();
+    it('should return loadProjectsFail on load failure', () => {
+      const errorValue = 'error';
+      spyOn(projectService, 'find').and.returnValue(Observable.throw(errorValue));
+      runner.queue(projectActions.loadProjects());
+      projectEffects.loadProjects$.subscribe((result) => {
+        expect(result).toEqual(projectActions.loadProjectsFail(errorValue));
+      });
     });
   });
 

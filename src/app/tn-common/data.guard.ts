@@ -10,6 +10,7 @@ import { LicenseActions } from './licenses';
 import { FamilyActions } from './families';
 import { StyleActions } from './styles';
 import { SeriesActions } from './series';
+import { ProjectActions } from './projects';
 
 /**
  * DataGuard checks targetPaths for current path and performs
@@ -48,6 +49,7 @@ export class DataGuard implements CanActivate {
         this.styleActions.loadStyles,
         this.licenseActions.loadLicenses,
         this.seriesActions.loadSeries,
+        this.projectActions.loadProjects,
       ],
     },
     '/admin/products/families': {
@@ -67,6 +69,7 @@ export class DataGuard implements CanActivate {
     private styleActions: StyleActions,
     private familyActions: FamilyActions,
     private seriesActions: SeriesActions,
+    private projectActions: ProjectActions,
   ) {}
 
   /**
