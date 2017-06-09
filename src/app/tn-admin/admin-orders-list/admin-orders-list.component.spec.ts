@@ -13,7 +13,7 @@ import { Style, StyleActions } from '../../tn-common/styles';
 import { Family, FamilyActions } from '../../tn-common/families';
 import { Project, ProjectActions } from '../../tn-common/projects';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
-import { TnAdminStoreModule, storeAssets, productionReducer } from '../store';
+import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
 
 describe('AdminOrdersListComponent', () => {

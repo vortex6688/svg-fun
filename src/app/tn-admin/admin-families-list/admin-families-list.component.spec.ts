@@ -8,7 +8,7 @@ import { StoreModule, Store } from '@ngrx/store';
 
 import { Family, FamilyActions, FamilySearch, initialFamilyState } from '../../tn-common/families';
 import { AdminFamiliesListComponent } from './admin-families-list.component';
-import { TnAdminStoreModule, storeAssets, productionReducer } from '../store';
+import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
 
 describe('AdminFamiliesListComponent', () => {
