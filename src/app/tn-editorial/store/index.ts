@@ -10,8 +10,8 @@ export function productionReducer(state: any, action: any) {
     return combineReducers(storeAssets.reducers)(state, action);
 }
 
-const devTools = process.env.ENABLE_STORE_DEVTOOLS ? 
-                    [StoreDevtoolsModule.instrumentOnlyWithExtension()] : 
+const devTools = process.env.ENABLE_STORE_DEVTOOLS ?
+                    [StoreDevtoolsModule.instrumentOnlyWithExtension()] :
                     [];
 
 @NgModule({
