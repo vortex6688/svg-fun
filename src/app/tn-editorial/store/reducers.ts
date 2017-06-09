@@ -8,8 +8,12 @@ export interface EditorialState {
 
 export const moduleReducers = [{
   reducer: { order: order.OrderReducer },
-  actions: order.OrderActions ,
+  actions: order.OrderActions,
 }];
+
+export const moduleActions = [
+  order.OrderActions,
+];
 
 /**
  * Function mapping the state tree into a specific state

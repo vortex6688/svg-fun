@@ -42,6 +42,15 @@ export const moduleReducers = [{
   actions: project.ProjectActions,
 }];
 
+export const moduleActions = [
+  auth.AuthActions, 
+  order.OrderActions, 
+  license.LicenseActions, 
+  series.SeriesActions,
+  family.FamilyActions,
+  style.StyleActions,
+];
+
 export const moduleEffects = [
   EffectsModule.run(auth.AuthEffects),
   EffectsModule.run(order.OrderEffects),

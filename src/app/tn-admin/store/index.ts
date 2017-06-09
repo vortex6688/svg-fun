@@ -3,10 +3,12 @@ import { StoreModule, combineReducers } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { StoreRegistry } from '../../tn-common/store/store.registry';
-import { moduleReducers, moduleEffects } from './reducers';
+import { moduleReducers, moduleActions, moduleEffects } from './reducers';
 
-export const storeAssets = StoreRegistry.registerReducers(moduleReducers);
-export const productionReducer = combineReducers(storeAssets.reducers);
+const storeAssets = StoreRegistry.registerReducers(moduleReducers);
+export function productionReducer(state: any, action: any) {
+    return combineReducers(storeAssets.reducers)(state, action);
+}
 
 const devTools = [];
 if (process.env.ENABLE_STORE_DEVTOOLS) {
@@ -19,6 +21,6 @@ if (process.env.ENABLE_STORE_DEVTOOLS) {
     moduleEffects,
     ...devTools,
   ],
-  providers: [ ...storeAssets.actions ]
+  providers: [ ...moduleActions ]
 })
 export class TnAdminStoreModule {}
