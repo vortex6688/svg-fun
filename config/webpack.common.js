@@ -226,7 +226,7 @@ module.exports = {
        */
       // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
       new webpack.EnvironmentPlugin({
-        'ENV': '',
+        'ENV': 'development',
         'TN_API_URL': 'http://localhost:8000',
         'ENABLE_STORE_DEVTOOLS': true,
       }),
