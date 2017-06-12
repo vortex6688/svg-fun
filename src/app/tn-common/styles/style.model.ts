@@ -13,8 +13,8 @@ export class Style {
   public character_set?: string;
   public support?: object;
   public default_style: boolean;
-  public foundry: number;
-  public designer: number;
+  public foundry: number[];
+  public designer: number[];
   public posture: number;
   public sku?: string;
   public visible: number;

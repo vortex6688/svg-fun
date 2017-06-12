@@ -98,7 +98,7 @@ export const getDefaultStyles = (state: StyleState) => {
 export const getStylesByFoundry = (state: StyleState, foundryId: number) => {
   return state.ids.reduce((result, id) => {
     const style = state.entities[id];
-    if (style.foundry === foundryId) {
+    if (style.foundry.indexOf(foundryId) !== -1) {
       result.push(style);
     }
     return result;
@@ -114,7 +114,7 @@ export const getStylesByFoundry = (state: StyleState, foundryId: number) => {
 export const getStylesByDesigner = (state: StyleState, designerId: number) => {
   return state.ids.reduce((result, id) => {
     const style = state.entities[id];
-    if (style.designer === designerId) {
+    if (style.designer.indexOf(designerId) !== -1) {
       result.push(style);
     }
     return result;

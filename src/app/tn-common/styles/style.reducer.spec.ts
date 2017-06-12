@@ -48,8 +48,8 @@ const styleMock: Style = {
     ],
   },
   default_style: false,
-  foundry: 2,
-  designer: 3,
+  foundry: [2],
+  designer: [3],
   posture: 1,
   visible: 3,
   optical: 500,
@@ -73,10 +73,10 @@ const addItems: Style[] = [
     id: 2,
     style_name: 'Italic',
     family: 2,
-    designer: 1,
+    designer: [1],
     posture: 2,
     default_style: true,
-    foundry: 5,
+    foundry: [5],
     visible: 4,
     optical: 100,
     grade: 9,
@@ -146,7 +146,7 @@ describe('StyleReducer', () => {
   it('should update search object on SEARCH_QUERY', () => {
     const state = mockedState();
     const search = {
-      style_name: 'name',
+      name: 'name',
       foundry: 1,
       designer: 2,
       visible: [1],
