@@ -8,6 +8,11 @@ export const StoreRegistry = {
     actionRegisters.forEach((actionRegistry) => this.addActions(actionRegistry));
     return this;
   },
+  registerReducer(reducer, actionsClass) {
+    this.addReducer(reducer);
+    this.addActions(actionsClass);
+    return this;
+  },
   addReducer(reducer) {
     Object.assign(this.reducers, reducer);
     return this;
