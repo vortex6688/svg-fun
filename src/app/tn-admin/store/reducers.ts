@@ -19,28 +19,15 @@ export interface AdminState {
   project: project.ProjectState;
 }
 
-export const moduleReducers = [{
-  reducer: { auth: auth.AuthReducer },
-  actions: auth.AuthActions,
-}, {
-  reducer: { order: order.OrderReducer },
-  actions: order.OrderActions,
-}, {
-  reducer: { license: license.LicenseReducer },
-  actions: license.LicenseActions,
-}, {
-  reducer: { series: series.SeriesReducer },
-  actions: series.SeriesActions,
-}, {
-  reducer: { family: family.FamilyReducer },
-  actions: family.FamilyActions,
-}, {
-  reducer: { style: style.StyleReducer },
-  actions: style.StyleActions,
-}, {
-  reducer: { project: project.ProjectReducer },
-  actions: project.ProjectActions,
-}];
+export const moduleReducers = [
+  { auth: auth.AuthReducer },
+  { order: order.OrderReducer },
+  { license: license.LicenseReducer },
+  { series: series.SeriesReducer },
+  { family: family.FamilyReducer },
+  { style: style.StyleReducer },
+  { project: project.ProjectReducer },
+];
 
 export const moduleActions = [
   auth.AuthActions,
@@ -49,6 +36,7 @@ export const moduleActions = [
   series.SeriesActions,
   family.FamilyActions,
   style.StyleActions,
+  project.ProjectActions,
 ];
 
 export const moduleEffects = [
