@@ -67,7 +67,16 @@ export class DataGuard implements CanActivate {
       subActions: [
         this.familyActions.loadFamilies,
       ]
-    }
+    },
+    '/admin/products/styles': {
+      state: 'styles',
+      action: this.styleActions.loadStyles,
+      success: StyleActions.LOAD_STYLES_SUCCESS,
+      fail: StyleActions.LOAD_STYLES_FAIL,
+      subActions: [
+        this.familyActions.loadFamilies,
+      ]
+    },
   };
 
   constructor(

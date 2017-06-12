@@ -30,6 +30,11 @@ import { SeriesTableComponent } from './admin-series-list/series-table';
 import { SeriesControlsComponent } from './admin-series-list/series-controls';
 import { SeriesRowComponent } from './admin-series-list/series-table/series-row';
 
+import { AdminStylesListComponent } from './admin-styles-list';
+import { StylesTableComponent } from './admin-styles-list/styles-table';
+import { StylesControlsComponent } from './admin-styles-list/styles-controls';
+import { StyleRowComponent } from './admin-styles-list/styles-table/style-row';
+
 // Keep routes in module files to keep definitons in a single place.
 export const routes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
@@ -47,11 +52,15 @@ export const routes: Routes = [
         component: AdminFamiliesListComponent,
         data: { title: 'TN Admin | Families List'},
         canActivate: [DataGuard],
-      },
-      {
+      }, {
         path: 'products/series',
         component: AdminSeriesListComponent,
         data: { title: 'TN Admin | Series List'},
+        canActivate: [DataGuard],
+      }, {
+        path: 'products/styles',
+        component: AdminStylesListComponent,
+        data: { title: 'TN Admin | Styles List'},
         canActivate: [DataGuard],
       }
     ]
@@ -78,6 +87,10 @@ export const routes: Routes = [
     SeriesTableComponent,
     SeriesRowComponent,
     SeriesControlsComponent,
+    AdminStylesListComponent,
+    StylesTableComponent,
+    StylesControlsComponent,
+    StyleRowComponent,
   ],
   imports: [
     BrowserModule,
