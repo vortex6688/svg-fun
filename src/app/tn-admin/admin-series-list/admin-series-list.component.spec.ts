@@ -9,7 +9,7 @@ import { StoreModule, Store } from '@ngrx/store';
 import { Series, SeriesActions, SeriesSearch, initialSeriesState } from '../../tn-common/series';
 import { Family, FamilyActions } from '../../tn-common/families';
 import { AdminSeriesListComponent } from './admin-series-list.component';
-import { TnAdminStoreModule, storeAssets, productionReducer } from '../store';
+import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
 
 describe('AdminSeriesListComponent', () => {
@@ -140,8 +140,8 @@ describe('AdminSeriesListComponent', () => {
     });
 
     beforeEach(() => {
-      store.dispatch({ type: SeriesActions.ADD_SERIES, payload: mockSeriesList });
-      store.dispatch({ type: FamilyActions.ADD_FAMILIES, payload: mockFamilyList });
+      store.dispatch({ type: SeriesActions.LOAD_SERIES_SUCCESS, payload: mockSeriesList });
+      store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
     });
 
     it('should assign matching families to series', () => {

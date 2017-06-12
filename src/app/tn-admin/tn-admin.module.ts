@@ -48,8 +48,11 @@ export const routes: Routes = [
         data: { title: 'TN Admin | Families List'},
         canActivate: [DataGuard],
       },
-      { path: 'products/series', component: AdminSeriesListComponent,
-        data: { title: 'TN Admin | Series List'}
+      {
+        path: 'products/series',
+        component: AdminSeriesListComponent,
+        data: { title: 'TN Admin | Series List'},
+        canActivate: [DataGuard],
       }
     ]
   }

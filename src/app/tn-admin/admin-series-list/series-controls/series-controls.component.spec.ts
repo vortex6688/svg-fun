@@ -8,7 +8,7 @@ import { SeriesControlsComponent } from './series-controls.component';
 describe('SeriesControlComponent', () => {
   let component: SeriesControlsComponent;
   let fixture: ComponentFixture<SeriesControlsComponent>;
-  const defaultQuery: SeriesSearch = initialSeriesState.search.query;
+  const defaultQuery: SeriesSearch = initialSeriesState.search;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -51,6 +51,41 @@ describe('AdminFamiliesListComponent', () => {
     { ...mockFamily, name: 'la famillia', id: 3, styles: [5], },
     { ...mockFamily, name: 'special', id: 4, styles: [6], },
   ];
+  const CATEGORIES = [
+    'Sans',       // 0
+    'Serif',      // 1
+    'Symbol',     // 2
+    'Slab Serif', // 3
+    'Wacky',      // 4
+    'Script',     // 5
+    'Decorative', // 6
+  ];
+  const MOODS = [
+    'Rustic',        // 0
+    'Sturdy',        // 1
+    'Mechanical',    // 2
+    'Industrial',    // 3
+    'Informal',      // 4
+    'Contemporary',  // 5
+    'High-tech',     // 6
+    'Futuristic',    // 7
+    'Lively',        // 8
+    'Delicate',      // 9
+    'Classical',     // 10
+    'Formal',        // 11
+    'Cute',          // 12
+    'Fun',           // 13
+    'Technical',     // 14
+    'Retro',         // 15
+    'Friendly',      // 16
+    'Digital',       // 17
+  ];
+  const VISIBLE_STATES = [
+    'Inactive',    // 0
+    'Staff only',  // 1
+    'With link',   // 2
+    'Everyone',    // 3
+  ];
 
   class MockFamilyActions {
     public searchQuery = jasmine.createSpy('searchQuery');
@@ -98,9 +133,17 @@ describe('AdminFamiliesListComponent', () => {
     expect(orderActions.searchQuery).toHaveBeenCalledWith(query);
   });
   describe('family combining', () => {
+    const namedFamilies = mockFamilyList.map((family) => ({
+      ...family,
+      categoryName: family.category.map((category) => CATEGORIES[category]).sort(),
+      min_size: Math.min(...family.recommended_size),
+      max_size: Math.max(...family.recommended_size),
+      moodName: family.mood.map((mood) => MOODS[mood]).sort(),
+      visibleName: VISIBLE_STATES[family.visible],
+    }));
 
     beforeEach(() => {
-      store.dispatch({ type: FamilyActions.ADD_FAMILIES, payload: mockFamilyList });
+      store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
     });
 
     it('should filter families by name', () => {
@@ -110,11 +153,11 @@ describe('AdminFamiliesListComponent', () => {
         name,
       };
       const testName = new RegExp(name, 'i');
-      const expected = mockFamilyList.filter((family) => testName.test(family.name));
+      const expected = namedFamilies.filter((family) => testName.test(family.name));
       store.dispatch({ type: FamilyActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredFamilies$.subscribe((families: Family[]) => {
         expect(families).toEqual(expected);
       });
+    });
   });
-
 });
