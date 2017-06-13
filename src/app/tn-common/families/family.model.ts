@@ -29,6 +29,8 @@ export class Family {
   public posture: number[];
   public recommended_function: number[];
   public recommended_size: number[];
+  public min_size?: number;
+  public max_size?: number;
   public width: number[];
   public weight: number[];
   public tn_width: number[];

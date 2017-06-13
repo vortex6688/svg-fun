@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderByPipe } from '../../../tn-common/pipes/';
-import { FamilyRowComponent, FamilySizePipe } from './family-row';
+import { FamilyRowComponent } from './family-row';
 import { FamiliesTableComponent } from './families-table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -14,7 +14,6 @@ describe('FamiliesTableComponent', () => {
       imports: [ NgbModule ],
       declarations: [ FamilyRowComponent,
                       FamiliesTableComponent,
-                      FamilySizePipe,
                       OrderByPipe, ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })

@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderRowComponent } from './order-row.component';
-import { LicenseTypePipe } from './license-type.pipe';
 import { License } from '../../../../tn-common/licenses/';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
@@ -15,7 +14,7 @@ describe('OrderRowComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
-      declarations: [ OrderRowComponent, LicenseTypePipe ],
+      declarations: [ OrderRowComponent ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [ NgbModalStack, NgbActiveModal ]
     })
@@ -69,63 +68,4 @@ describe('OrderRowComponent', () => {
     expect(collapseSubject.observers.length).toEqual(0, 'Should unsubscribe after destruction');
   });
 
-  describe('LicenseTypePipe', () => {
-    let pipe: LicenseTypePipe;
-
-    const licenseMock: License = {
-      id: 123,
-      order: 1,
-      price: '22.0000',
-      price_paid: '22.0000',
-      qty: 2,
-      start: null,
-      end: null,
-      style: 286,
-      years: null,
-      active: true,
-      license_type: 'app'
-    };
-
-    beforeEach(() => {
-      pipe = new LicenseTypePipe();
-    });
-
-    it('should transform license type app to Application', () => {
-      expect(pipe.transform(licenseMock)).toEqual('Application');
-    });
-
-    it('should transform license type desktop to Desktop', () => {
-      licenseMock.license_type = 'desktop';
-      expect(pipe.transform(licenseMock)).toEqual('Desktop');
-    });
-
-    it('should transform license type broadcast to Broadcast', () => {
-      licenseMock.license_type = 'broadcast';
-      expect(pipe.transform(licenseMock)).toEqual('Broadcast');
-    });
-
-    it('should transform license type epub to E-publication', () => {
-      licenseMock.license_type = 'epub';
-      expect(pipe.transform(licenseMock)).toEqual('E-publication');
-    });
-
-    it('should transform license type game to Game', () => {
-      licenseMock.license_type = 'game';
-      expect(pipe.transform(licenseMock)).toEqual('Game');
-    });
-
-    it('should transform license type server to Server', () => {
-      licenseMock.license_type = 'server';
-      expect(pipe.transform(licenseMock)).toEqual('Server');
-    });
-
-    it('should transform license type web to Web and show if it is hosted or self-hosted', () => {
-      licenseMock.license_type = 'web';
-      licenseMock.self_hosted = true;
-      expect(pipe.transform(licenseMock)).toEqual('Web (self-hosted)');
-      licenseMock.self_hosted = false;
-      expect(pipe.transform(licenseMock)).toEqual('Web (hosted)');
-    });
-
-  });
 });

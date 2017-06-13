@@ -183,6 +183,24 @@ describe('AdminOrdersListComponent', () => {
     { ...mockProject, id: 4, name: 'p3', licenses: [1]},
   ];
 
+  function capitalizeFirstLetter(word: string) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  function getLicenseTypeName(licenseType: string, selfHosted: boolean) {
+    if (licenseType === 'web' && selfHosted) {
+      return 'Web (self-hosted)';
+    } else if (licenseType === 'web' && !selfHosted) {
+      return 'Web (hosted)';
+    } else if (licenseType === 'epub') {
+      return 'E-publication';
+    } else if (licenseType === 'app') {
+      return 'Application';
+    } else {
+      return this.capitalizeFirstLetter(licenseType);
+    }
+  }
+
   class MockOrderActions {
     public searchQuery = jasmine.createSpy('searchQuery');
   }
@@ -241,6 +259,7 @@ describe('AdminOrdersListComponent', () => {
     }));
     const licensesStyles = mockLicenseList.map((license) => ({
       ...license,
+      license_type_name: getLicenseTypeName(license.license_type, license.self_hosted),
       style: styleFamilies.find((style) => style.id === license.style),
     }));
     const licensedOrders = mockOrderList.map((order) => ({

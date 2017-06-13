@@ -66,14 +66,6 @@ export class AdminFamiliesListComponent {
   public familyQuery$ = this.store.select(getFamilySearchQuery);
 
   /**
-   *  Style collection for combination.
-   *
-   * @type {Observable<Style[]>}
-   * @memberof AdminOrdersListComponent
-   */
-  public styles$ = this.store.select(getAllStyles);
-
-  /**
    *  Family collection with populated foundries data. @todo add actual foundry
    *
    * @type {Observable<Family[]>}
@@ -85,6 +77,8 @@ export class AdminFamiliesListComponent {
      (families: Family[], foundries) => families.map((family) => ({
        ...family,
        categoryName: family.category.map((category) => CATEGORIES[category]).sort(),
+       min_size: Math.min(...family.recommended_size),
+       max_size: Math.max(...family.recommended_size),
        moodName: family.mood.map((mood) => MOODS[mood]).sort(),
        visibleName: VISIBLE_STATES[family.visible],
      }))
