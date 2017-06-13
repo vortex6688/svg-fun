@@ -1,5 +1,5 @@
 <tr class="row" [ngClass]="{'row-selected': isChecked}">
-  <td class="col align-self-center" style="max-width: 2rem;">
+  <td class="col align-self-center pl-2" style="max-width: 2.5rem;">
     <label class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" value='{{style.id}}' (click)='selectStyle()' />
       <span class="custom-control-indicator"></span>
@@ -34,14 +34,30 @@
 <tr class="row border-0">
   <table class="table no-borders col" [attr.id]='style' [ngbCollapse]='isCollapsed'>
     <thead class="row table-active">
+      <th class="col" style="max-width: 2.5rem;"></th>
       <th class="col">Release data</th>
       <th class="col">Base Price</th>
       <th class="col">Default style</th>
+      <th class="col"></th>
+      <th class="col"></th>
+      <th class="col"></th>
+      <th class="col"></th>
+      <th class="col"></th>
+      <th class="col"></th>
+      <th class="col"></th>
     </thead>
     <tbody class="row table-active">
+      <td class="col" style="max-width: 2.5rem;"></td>
       <td class="col">{{style.released | date:"MM/dd/yyyy" }}</td>
       <td class="col">{{style.base_price | currency:'USD':true:'1.2-2'}}</td>
       <td class="col">{{style.default_style}}</td>
+      <td class="col"></td>
+      <td class="col"></td>
+      <td class="col"></td>
+      <td class="col"></td>
+      <td class="col"></td>
+      <td class="col"></td>
+      <td class="col"></td>
     </tbody>
   </table>
 </tr>
