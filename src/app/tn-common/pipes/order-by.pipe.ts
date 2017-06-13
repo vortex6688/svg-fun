@@ -21,13 +21,35 @@ export class OrderByPipe implements PipeTransform {
   private static _orderByComparator(a: any, b: any): number {
     if ((isNaN(+(a)) || !isFinite(a)) || (isNaN(+(b)) || !isFinite(b))) {
       // Check if it's an array
-      // @TODO: Make a real Array comparison inside this if block
       if (Object.prototype.toString.call(a) === '[object Array]') {
-        return 0;
-      }
+        // Let the empty array be first
+        if (a.length === 0) {
+          return -1;
+        } else if (b.length === 0) {
+          return 1;
+        }
+        const min = Math.min(a.length, b.length);
+        let partialResult = 0;
+        for (let i = 0; i < min; i++) {
+          partialResult = this._orderByComparator(a[i], b[i]);
+          if (partialResult === 0) {
+            continue;
+          } else {
+            return partialResult;
+          }
+        }
+        // They have the same elements, so let the shortest array be first
+        if (a.length > b.length) {
+          return 1;
+        } else {
+          return -1;
+        }
       // Isn't a number so lowercase the string to properly compare
-      if (a.toLowerCase() < b.toLowerCase()) { return -1; }
-      if (a.toLowerCase() > b.toLowerCase()) { return 1; }
+      } else if (a.toLowerCase() < b.toLowerCase()) {
+        return -1;
+      } else if (a.toLowerCase() > b.toLowerCase()) {
+        return 1;
+      }
     } else {
       // Parse strings as numbers to compare properly
       if (+(a) < +(b)) { return -1; }

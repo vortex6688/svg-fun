@@ -16,16 +16,12 @@ import { AdminNavbarComponent } from './admin-navbar';
 import { AdminOrdersListComponent } from './admin-orders-list';
 import { AdminFamiliesListComponent } from './admin-families-list';
 import { LoginComponent } from './login';
-import { OrderRowComponent, OrderStatusPipe, LicenseTypePipe } from './admin-orders-list/orders-table/order-row';
+import { OrderRowComponent } from './admin-orders-list/orders-table/order-row';
 import { OrdersTableComponent } from './admin-orders-list/orders-table';
 import { OrdersControlsComponent } from './admin-orders-list/orders-controls';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AdminOrderDetailsComponent } from './admin-order-details';
-import { FamilyRowComponent,
-         FamilyCategoryPipe,
-         FamilyMoodPipe,
-         FamilySizePipe,
-         FamilyVisibilityPipe } from './admin-families-list/families-table/family-row';
+import { FamilyRowComponent } from './admin-families-list/families-table/family-row';
 import { FamiliesControlsComponent } from './admin-families-list/families-controls';
 import { FamiliesTableComponent } from './admin-families-list/families-table';
 import { DataGuard } from '../tn-common/data.guard';
@@ -63,17 +59,11 @@ export const routes: Routes = [
     LoginComponent,
     OrderRowComponent,
     OrdersTableComponent,
-    OrderStatusPipe,
-    LicenseTypePipe,
     OrdersControlsComponent,
     PlaceholderComponent,
     FamilyRowComponent,
     FamiliesControlsComponent,
     FamiliesTableComponent,
-    FamilyCategoryPipe,
-    FamilyMoodPipe,
-    FamilySizePipe,
-    FamilyVisibilityPipe,
   ],
   imports: [
     BrowserModule,

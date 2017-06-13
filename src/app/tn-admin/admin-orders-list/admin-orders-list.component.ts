@@ -15,6 +15,14 @@ import { getAllOrders,
   getAllProjects,
 } from '../store/reducers';
 
+const STATUSES = [
+  'Pending',          // 0
+  'Partially Paid',   // 1
+  'Paid in Full',     // 2
+  'Cancelled',        // 3
+  'Approved, Unpaid', // 4
+];
+
 @Component({
   selector: 'admin-orders-list',
   templateUrl: './admin-orders-list.component.html',
@@ -95,6 +103,7 @@ export class AdminOrdersListComponent {
      this.styleFamilies$,
      (licenses, styles) => licenses.map((license) => ({
        ...license,
+       license_type_name: this.getLicenseTypeName(license.license_type, license.self_hosted),
        style: styles.find((style) => style.id === license.style),
      }))
    );
@@ -110,6 +119,7 @@ export class AdminOrdersListComponent {
     this.licensesStyles$,
     (orders: Order[], licenses: License[]) => orders.map((order) => ({
       ...order,
+      statusName: STATUSES[order.status],
       licenses: licenses.filter((license) => license.order === order.id),
     })));
 
@@ -177,5 +187,37 @@ export class AdminOrdersListComponent {
    */
   public searchOrders(query: OrderSearch) {
     this.store.dispatch(this.orderActions.searchQuery(query));
+  }
+
+  /**
+   * Capitalize first letter of a string
+   *
+   * @public
+   * @type {string} word
+   * @memberof AdminOrdersListComponent
+   */
+  private capitalizeFirstLetter(word: string) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  /**
+   * Gets the license_type string and returns a string in prettier format
+   *
+   * @public
+   * @type {string, boolean} licenseType, selfHosted
+   * @memberof AdminOrdersListComponent
+   */
+  private getLicenseTypeName(licenseType: string, selfHosted: boolean) {
+    if (licenseType === 'web' && selfHosted) {
+      return 'Web (self-hosted)';
+    } else if (licenseType === 'web' && !selfHosted) {
+      return 'Web (hosted)';
+    } else if (licenseType === 'epub') {
+      return 'E-publication';
+    } else if (licenseType === 'app') {
+      return 'Application';
+    } else {
+      return this.capitalizeFirstLetter(licenseType);
+    }
   }
 }

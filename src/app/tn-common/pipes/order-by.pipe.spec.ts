@@ -13,6 +13,22 @@ describe('OrderByPipe', () => {
     expect(pipe.transform(basicArray)).toEqual(expected);
   });
 
+  it(`should sort an array of Objects by a named sorted string array attribute in ascending order
+     (empty arrays first)`, () => {
+    const basicArray = [{name: ['s', 'w', 'z']}, {name: ['b']}, {name: ['as', 'h', 'z']}, {name: ['b', 'h']},
+                        {name: []}];
+    const expected = [{name: []}, {name: ['as', 'h', 'z']}, {name: ['b']}, {name: ['b', 'h']},
+                      {name: ['s', 'w', 'z']}];
+    expect(pipe.transform(basicArray, ['+name'])).toEqual(expected);
+  });
+
+  it(`should sort an array of Objects by a named sorted string array attribute in ascending order
+     (empty arrays first)`, () => {
+    const basicArray = [{name: []}, {name: [1, 2, 6, 8]}, {name: [4, 7, 11]}, {name: [1, 3]}, {name: [1, 2, 6]}];
+    const expected = [{name: []}, {name: [1, 2, 6]}, {name: [1, 2, 6, 8]}, {name: [1, 3]}, {name: [4, 7, 11]}];
+    expect(pipe.transform(basicArray, ['+name'])).toEqual(expected);
+  });
+
   it('should sort multidimensional number array by single provided key', () => {
     const multiArray = [
       { key: 12 },
@@ -101,5 +117,16 @@ describe('OrderByPipe', () => {
       multiArray[0],
     ];
     expect(pipe.transform(multiArray.slice(0), descKeys)).toEqual(expectedDesc, '-no, -key, -date');
+  });
+
+  it('should sort multidimensional array by multiple provided keys when the array is already sorted', () => {
+    const date = Date.now();
+    const multiArray = [
+      { key: 'va', no: 2, date: new Date(date), },
+      { key: 'va', no: 2, date: new Date(date - 500000) },
+    ];
+    const ascKeys = ['no', 'key'];
+    expect(pipe.transform(multiArray.slice(0), ascKeys)).toEqual(multiArray, '+no, +key');
+
   });
 });

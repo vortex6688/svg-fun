@@ -1,9 +1,12 @@
 /* tslint:disable:variable-name */
+import { Style } from '../styles';
+
 export class Family {
   public id?: number;
   public name: string;
   public slug: string;
   public visible: number;
+  public visibleName?: string;
   public description?: string;
   public descripion_link: [{
     text: string;
@@ -14,6 +17,7 @@ export class Family {
   public designer: number[];
   public released: string;
   public category: number[];
+  public categoryName?: string[];
   public canonical: number;
   public pangram?: number[];
   public specimen_text?: string;
@@ -21,9 +25,12 @@ export class Family {
   public character_set?: string;
   public notes?: string;
   public mood: number[];
+  public moodName?: string[];
   public posture: number[];
   public recommended_function: number[];
   public recommended_size: number[];
+  public min_size?: number;
+  public max_size?: number;
   public width: number[];
   public weight: number[];
   public tn_width: number[];

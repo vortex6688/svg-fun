@@ -10,6 +10,7 @@ export class License {
   public style: number | Style;
   public active: boolean;
   public license_type: string;
+  public license_type_name?: string;
   public years?: number;
   public start?: string;
   public end?: string;
