@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 @Injectable()
 export class TnAutoscrollService  {
 
-  public static factory(route: ActivatedRoute, doc: Document) {
+  public static factory(route: ActivatedRoute, doc: any) {
     return new TnAutoscrollService(route, doc);
   }
 
@@ -30,7 +30,7 @@ export class TnAutoscrollService  {
    *
    * @memberOf TnAutoscrollService
    */
-  constructor(route: ActivatedRoute, doc: Document) {
+  constructor(route: ActivatedRoute, doc: any) {
     route.fragment.subscribe((fragment) => {
       if (!fragment) {
         return;

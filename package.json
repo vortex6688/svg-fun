@@ -12,8 +12,10 @@
   "homepage": "https://github.com/TypeNetwork/tn-admin-editorial",
   "license": "Proprietary",
   "scripts": {
-    "build": "webpack --config config/webpack.prod.js --bail",
-    "build:verbose": "webpack --config config/webpack.prod.js  --progress --profile --bail",
+    "build:aot": "node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js --config config/webpack.prod.js --bail",
+    "build": "npm run build:aot",
+    "build:verbose:aot": "node --max_old_space_size=4096 ./node_modules/webpack/bin/webpack.js --config config/webpack.prod.js  --progress --profile --bail",
+    "build:verbose": "npm run build:verbose:aot",
     "build:docker": "npm run build && docker build -t angular2-webpack-start:latest .",
     "ci": "npm run clean:build && npm run lint && npm run test && npm run build && npm run e2e",
     "clean:build": "npm-run-all --parallel clean:dist clean:aot",

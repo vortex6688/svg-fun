@@ -6,10 +6,13 @@ export interface EditorialState {
   order: order.OrderState;
 }
 
-export const moduleReducers = [{
-  reducer: { order: order.OrderReducer },
-  actions: order.OrderActions ,
-}];
+export const moduleReducers = [
+  { order: order.OrderReducer },
+];
+
+export const moduleActions = [
+  order.OrderActions,
+];
 
 /**
  * Function mapping the state tree into a specific state

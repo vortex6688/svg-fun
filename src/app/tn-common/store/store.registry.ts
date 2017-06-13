@@ -1,19 +1,16 @@
-interface StoreReducerPackage {
-  reducer: {};
-  actions: any;
-}
 
 export const StoreRegistry = {
   reducers: {},
   actions: [],
 
-  registerReducers(reducersRegisters: StoreReducerPackage[]) {
-    reducersRegisters.forEach((reducerRegistry) => this.registerReducer(reducerRegistry));
+  registerReducers(reducersRegisters: any[], actionRegisters: any[]) {
+    reducersRegisters.forEach((reducerRegistry) => this.addReducer(reducerRegistry));
+    actionRegisters.forEach((actionRegistry) => this.addActions(actionRegistry));
     return this;
   },
-  registerReducer(reducerPackage: StoreReducerPackage) {
-    this.addReducer(reducerPackage.reducer);
-    this.addActions(reducerPackage.actions);
+  registerReducer(reducer, actionsClass) {
+    this.addReducer(reducer);
+    this.addActions(actionsClass);
     return this;
   },
   addReducer(reducer) {

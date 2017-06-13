@@ -1,13 +1,15 @@
 import { StoreRegistry } from './store.registry';
 
 describe('StoreRegistry', () => {
-  const reducerData = [{
-    reducer: { test: true },
-    actions: 'none',
-  }, {
-    reducer: { realBoy: false },
-    actions: ['eat', 'kebab'],
-  }];
+  const reducers = [
+    { test: true },
+    { realBoy: false }
+  ];
+
+  const actions = [
+    'none',
+    ['eat', 'kebab'],
+  ];
 
   beforeEach(() => {
     StoreRegistry.reducers = {};
@@ -15,25 +17,31 @@ describe('StoreRegistry', () => {
   });
 
   it('should call register for each reducer item', () => {
-    const reducerRegistrarSpy = spyOn(StoreRegistry, 'registerReducer');
+    const addReducerSpy = spyOn(StoreRegistry, 'addReducer');
+    const addActionsSpy = spyOn(StoreRegistry, 'addActions');
 
-    StoreRegistry.registerReducers(reducerData);
+    StoreRegistry.registerReducers(reducers, actions);
 
-    expect(reducerRegistrarSpy).toHaveBeenCalledTimes(reducerData.length);
-    expect(reducerRegistrarSpy.calls.first().args)
-      .toEqual([reducerData[0]]);
-    expect(reducerRegistrarSpy.calls.mostRecent().args)
-      .toEqual([reducerData[reducerData.length - 1]]);
+    expect(addReducerSpy).toHaveBeenCalledTimes(reducers.length);
+    expect(addReducerSpy.calls.first().args)
+      .toEqual([reducers[0]]);
+    expect(addReducerSpy.calls.mostRecent().args)
+      .toEqual([reducers[reducers.length - 1]]);
+
+    expect(addActionsSpy).toHaveBeenCalledTimes(actions.length);
+    expect(addActionsSpy.calls.first().args)
+      .toEqual([actions[0]]);
+    expect(addActionsSpy.calls.mostRecent().args)
+      .toEqual([actions[actions.length - 1]]);
   });
 
   it('should call methods for adding reducers and actions when registering', () => {
-    const testReducer = reducerData[0];
     const reducerSpy = spyOn(StoreRegistry, 'addReducer');
     const actionsSpy = spyOn(StoreRegistry, 'addActions');
 
-    StoreRegistry.registerReducer(testReducer);
-    expect(reducerSpy).toHaveBeenCalledWith(testReducer.reducer);
-    expect(actionsSpy).toHaveBeenCalledWith(testReducer.actions);
+    StoreRegistry.registerReducer(reducers[0], actions[0]);
+    expect(reducerSpy).toHaveBeenCalledWith(reducers[0]);
+    expect(actionsSpy).toHaveBeenCalledWith(actions[0]);
   });
 
   it('should add reducers to list', () => {
@@ -50,11 +58,11 @@ describe('StoreRegistry', () => {
     reducersAfterAdition = Object.assign(
       {},
       reducersAfterAdition,
-      reducerData[0].reducer,
+      reducers[0],
       replacedReducer
     );
     StoreRegistry
-      .addReducer(reducerData[0].reducer)
+      .addReducer(reducers[0])
       .addReducer(replacedReducer);
     expect(StoreRegistry.reducers)
       .toEqual(reducersAfterAdition, 'List didn\'t update reducers correctly');
@@ -78,10 +86,12 @@ describe('StoreRegistry', () => {
   });
 
   it('should have all chainable methods', () => {
-    // Add minimal params to prevent functions from throwing
+    // Add minimal params to prevent functions from throwing XXX
     const testParams = {
-      registerReducers: [],
-      registerReducer: {},
+      registerReducers: [[], []],
+      registerReducer: [{}, null],
+      addReducer: [{}],
+      addActions: [null],
     };
     const storeRegistryKeys = Object.keys(StoreRegistry);
 
@@ -91,7 +101,7 @@ describe('StoreRegistry', () => {
       if (typeof target !== 'function') {
         return true;
       }
-      const callResult = target.call(StoreRegistry, testParams[key]);
+      const callResult = target.apply(StoreRegistry, testParams[key]);
       return callResult === StoreRegistry;
     });
     expect(allChainable).toBeTruthy('Not all methods are chainable');
