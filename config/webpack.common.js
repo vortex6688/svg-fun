@@ -4,6 +4,7 @@
  * @author: @AngularClass
  */
 
+const path = require('path');
 const webpack = require('webpack');
 const helpers = require('./helpers');
 
@@ -32,8 +33,8 @@ const AOT = helpers.hasNpmFlag('aot');
 
 const TSCONFIG_NAME = AOT ? 'tsconfig.aot.json' : 'tsconfig.json';
 
-const NODE_MATCHER = /node_modules\//;
-const COMMON_MATCHER = /src\/tn-common\//;
+const NODE_MATCHER = new RegExp(`node_modules\\${path.sep}`);
+const COMMON_MATCHER = new RegExp(`src\\${path.sep}tn-common\\${path.sep}`);
 /*
  * Webpack configuration
  *
