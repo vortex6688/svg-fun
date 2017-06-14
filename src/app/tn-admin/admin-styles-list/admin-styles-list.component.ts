@@ -10,6 +10,80 @@ import {
   getFamilyEntities,
 } from '../store/reducers';
 
+const OPTICAL = {
+  100: 'Micro',
+  200: 'Agate',
+  250: 'RE',
+  300: 'Caption',
+  400: 'Text',
+  500: 'Multipurpose',
+  600: 'Deck',
+  690: 'Headline',
+  700: 'Display',
+  750: 'Titling',
+  800: 'Banner',
+  900: 'Big',
+};
+const MOODS = [
+  'Rustic',        // 0
+  'Sturdy',        // 1
+  'Mechanical',    // 2
+  'Industrial',    // 3
+  'Informal',      // 4
+  'Contemporary',  // 5
+  'High-tech',     // 6
+  'Futuristic',    // 7
+  'Lively',        // 8
+  'Delicate',      // 9
+  'Classical',     // 10
+  'Formal',        // 11
+  'Cute',          // 12
+  'Fun',           // 13
+  'Technical',     // 14
+  'Retro',         // 15
+  'Friendly',      // 16
+  'Digital',       // 17
+];
+const WEIGHTS = {
+  900: 'Ultra Black',
+  850: 'Extra Black',
+  800: 'Black',
+  750: 'Extra Bold',
+  700: 'Bold',
+  600: 'Semi Bold',
+  500: 'Medium',
+  450: 'Standard',
+  400: 'Regular',
+  390: 'Book',
+  350: 'Semi Light',
+  300: 'Light',
+  200: 'Extra Light',
+  150: 'Thin',
+  100: 'Hairline',
+};
+const WIDTHS = {
+  100: 'Skyline',
+  140: 'Extra Compressed',
+  200: 'Compressed',
+  300: 'Extra Condensed',
+  400: 'Condensed',
+  440: 'Narrow',
+  500: 'Normal',
+  600: 'Wide',
+  700: 'Extended',
+  800: 'Extra Extended',
+  900: 'Ultra Extended',
+};
+const POSTURES = [
+  'Roman',  // 0
+  'Italic', // 1
+];
+const VISIBLE_STATES = [
+  'Inactive',    // 0
+  'Staff only',  // 1
+  'With link',   // 2
+  'Everyone',    // 3
+];
 @Component({
   selector: 'admin-styles-list',
   templateUrl: './admin-styles-list.component.html',
@@ -80,7 +154,14 @@ export class AdminStylesListComponent {
       }
 
       return true;
-    }));
+    }).map((style) => ({
+      ...style,
+      visibleName: VISIBLE_STATES[style.visible],
+      opticalName: OPTICAL[style.optical],
+      postureName: POSTURES[style.posture],
+      widthName: WIDTHS[style.width],
+      weightName: WEIGHTS[style.weight],
+    })));
 
   constructor(private store: Store<any>, private stylesActions: StyleActions) {}
 

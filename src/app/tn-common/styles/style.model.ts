@@ -16,12 +16,17 @@ export class Style {
   public foundry: number[];
   public designer: number[];
   public posture: number;
+  public postureName?: string;
   public sku?: string;
   public visible: number;
+  public visibleName?: string;
   public optical: number;
+  public opticalName?: string;
   public grade?: number;
   public weight: number;
+  public weightName?: string;
   public width: number;
+  public widthName?: string;
   public tn_size: number[];
   public tn_weight?: number;
   public tn_width?: number;
