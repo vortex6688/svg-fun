@@ -8,6 +8,7 @@ import * as series from '../../tn-common/series';
 import * as family from '../../tn-common/families';
 import * as style from '../../tn-common/styles';
 import * as project from '../../tn-common/projects';
+import * as foundry from '../../tn-common/foundries';
 
 export interface AdminState {
   auth: auth.AuthState;
@@ -17,6 +18,7 @@ export interface AdminState {
   family: family.FamilyState;
   style: style.StyleState;
   project: project.ProjectState;
+  foundry: foundry.FoundryState;
 }
 
 export const moduleReducers = [
@@ -27,6 +29,7 @@ export const moduleReducers = [
   { family: family.FamilyReducer },
   { style: style.StyleReducer },
   { project: project.ProjectReducer },
+  { foundry: foundry.FoundryReducer },
 ];
 
 export const moduleActions = [
@@ -37,6 +40,7 @@ export const moduleActions = [
   family.FamilyActions,
   style.StyleActions,
   project.ProjectActions,
+  foundry.FoundryActions,
 ];
 
 export const moduleEffects = [
@@ -47,6 +51,7 @@ export const moduleEffects = [
   EffectsModule.run(family.FamilyEffects),
   EffectsModule.run(style.StyleEffects),
   EffectsModule.run(project.ProjectEffects),
+  EffectsModule.run(foundry.FoundryEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
@@ -224,3 +229,15 @@ export const getAllProjects = createSelector(getProjectState, project.getAll);
 export const getProjectById = (projectId) => {
   return (state) => project.getProjectById(state.project, projectId);
 };
+
+// FOUNDRY
+export const getFoundryState = (state: AdminState): foundry.FoundryState => state.foundry;
+export const getFoundryEntities = createSelector(getFoundryState, foundry.getEntities);
+export const getFoundryIds = createSelector(getFoundryState, foundry.getIds);
+export const getSelectedFoundryId = createSelector(getFoundryState, foundry.getSelectedId);
+export const getSelectedFoundry = createSelector(getFoundryState, foundry.getSelected);
+export const getAllFoundrys = createSelector(getFoundryState, foundry.getAll);
+export const getFoundryById = (foundryId) => {
+  return (state) => foundry.getFoundryById(state.foundry, foundryId);
+};
+// export const getFoundryEnities = createSelector(getFo)

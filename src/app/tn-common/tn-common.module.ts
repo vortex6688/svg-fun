@@ -18,6 +18,7 @@ import { SeriesService } from './series';
 import { FamilyService } from './families';
 import { StyleService } from './styles';
 import { ProjectService } from './projects';
+import { FoundryService } from './foundries';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
@@ -56,6 +57,7 @@ import { DataGuard } from './data.guard';
                   FamilyService,
                   StyleService,
                   ProjectService,
+                  FoundryService,
                   TnPaginationConfig,
                   TnTitleService.provider(),
                   TnAutoscrollService.provider(),

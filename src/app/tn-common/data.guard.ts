@@ -11,6 +11,7 @@ import { FamilyActions } from './families';
 import { StyleActions } from './styles';
 import { SeriesActions } from './series';
 import { ProjectActions } from './projects';
+import { FoundryActions } from './foundries';
 
 /**
  * DataGuard checks targetPaths for current path and performs
@@ -50,6 +51,7 @@ export class DataGuard implements CanActivate {
         this.licenseActions.loadLicenses,
         this.seriesActions.loadSeries,
         this.projectActions.loadProjects,
+        this.foundryActions.loadFoundries,
       ],
     },
     '/admin/products/families': {
@@ -57,7 +59,9 @@ export class DataGuard implements CanActivate {
       action: this.familyActions.loadFamilies,
       success: FamilyActions.LOAD_FAMILIES_SUCCESS,
       fail: FamilyActions.LOAD_FAMILIES_FAIL,
-      subActions: [],
+      subActions: [
+        this.foundryActions.loadFoundries,
+      ],
     },
     '/admin/products/series': {
       state: 'series',
@@ -88,6 +92,7 @@ export class DataGuard implements CanActivate {
     private familyActions: FamilyActions,
     private seriesActions: SeriesActions,
     private projectActions: ProjectActions,
+    private foundryActions: FoundryActions,
   ) {}
 
   /**
