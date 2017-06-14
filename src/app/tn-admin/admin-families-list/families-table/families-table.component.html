@@ -1,11 +1,11 @@
 <div class="row text-info pb-2">
   <div class="d-flex col justify-content-start align-items-end">
     <h4 style="margin-bottom: 0;">Families</h4>
-    <span class="px-2 small text-uppercase">1-50 of 999 results</span>
+    <span class="px-2 small text-uppercase">{{pageItems[0]+1}}-{{pageItems[1]}} of {{families.length}} results</span>
   </div>
   <div class="d-flex col justify-content-end align-items-end text-right">
     <div>
-      <tn-pagination [collectionSize]="120" [(page)]="page" [maxSize]="1" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
+      <tn-pagination [collectionSize]="families.length" [pageSize]="pageSize" (pageItemsChanges)="updatePageItems($event)" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
     </div>
   </div>
 </div>
@@ -31,6 +31,6 @@
     </tr>
   </thead>
   <tbody>
-    <family-row *ngFor='let family of families | orderBy: [sortKey]' [family]=family></family-row>
+    <family-row *ngFor='let family of families | orderBy: [sortKey] | slice:pageItems[0]:pageItems[1]' [family]=family></family-row>
   </tbody>
 </table>

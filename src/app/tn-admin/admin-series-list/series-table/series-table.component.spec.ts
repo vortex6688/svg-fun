@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderByPipe } from '../../../tn-common/pipes/';
-import { FamilyRowComponent } from './family-row';
-import { FamiliesTableComponent } from './families-table.component';
+import { SeriesRowComponent } from './series-row';
+import { SeriesTableComponent } from './series-table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('FamiliesTableComponent', () => {
-  let component: FamiliesTableComponent;
-  let fixture: ComponentFixture<FamiliesTableComponent>;
+describe('SeriesTableComponent', () => {
+  let component: SeriesTableComponent;
+  let fixture: ComponentFixture<SeriesTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
-      declarations: [ FamilyRowComponent,
-                      FamiliesTableComponent,
+      declarations: [ SeriesRowComponent,
+                      SeriesTableComponent,
                       OrderByPipe, ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
@@ -21,7 +21,7 @@ describe('FamiliesTableComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FamiliesTableComponent);
+    fixture = TestBed.createComponent(SeriesTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

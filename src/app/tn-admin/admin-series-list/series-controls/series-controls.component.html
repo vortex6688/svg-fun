@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-block card-header card-footer">
+    <button class="btn btn-info col my-1"><icon-download class="text-white icon icon-sm"></icon-download> Download All TTFs</button>
+    <button class="btn btn-info col my-1"><icon-download class="text-white icon icon-sm"></icon-download> Download All OTFs</button>
+    <button class="btn btn-success col my-1"><icon-check class="text-white icon icon-sm"></icon-check> Batch Edit</button>
+    <button class="btn btn-danger col my-1"><icon-delete class="text-white icon icon-sm"></icon-delete> Delete</button>
+  </div>
+  <div class="card-block card-header">
+    <form [formGroup]="searchForm" novalidate>
+      <span class="row justify-content-between">
+        <small><b class="col">SEARCH BY:</b></small>
+        <small><a (click)="clearFilters()" class="col text-right">Clear filters</a></small>
+      </span>
+      <div class="form-group">
+        <label for="searchSeriesName">Name</label>
+        <input class="form-control" formControlName="name" />
+      </div>
+      <div class="form-group">
+        <label for="searchSeriesFoundry">Foundry</label>
+        <input class="form-control" formControlName="foundry" />
+      </div>
+    </form>
+  </div>
+</div>

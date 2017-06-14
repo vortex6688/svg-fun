@@ -67,36 +67,7 @@ export const FamilyReducer: ActionReducer<FamilyState> = (state = initialFamilyS
     }
 
     case FamilyActions.SEARCH_QUERY: {
-      const query = action.payload;
-      const ids = state.ids.filter((id) => {
-        const family = state.entities[id];
-        if (query.name && family.name !== query.name) {
-          return false;
-        }
-        if (query.foundry && family.foundry.indexOf(query.foundry) === -1) {
-          return false;
-        }
-        if (query.designer && family.designer.indexOf(query.designer) === -1) {
-          return false;
-        }
-        if (query.visibility.length && !query.visibility.includes(family.visible)) {
-          return false;
-        }
-        if (
-          query.categories.length &&
-          !family.category.some((category) => query.categories.includes(category))
-        ) {
-          return false;
-        }
-        return true;
-      });
-      // If search didn't filter out any data consider it inactive
-      const active = state.ids.length !== ids.length;
-      const search = {
-        ids,
-        active,
-        query,
-      };
+      const search = action.payload;
 
       return { ...state, search };
     }

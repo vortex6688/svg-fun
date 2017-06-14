@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
 
-import { Family } from '../../../tn-common/families/';
+import { Series } from '../../../tn-common/series/';
 
 @Component({
-  selector: 'families-table',
-  templateUrl: './families-table.component.html'
+  selector: 'series-table',
+  templateUrl: './series-table.component.html'
 })
-export class FamiliesTableComponent {
+export class SeriesTableComponent {
   public pageSize: number = 25;
   public pageItems: number[] = [];
 
-  @Input() public families: Family[] = [];
+  @Input() public series: Series[] = [];
   public sortKey = '-name';
 
   public updatePageItems($event) {

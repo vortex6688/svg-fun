@@ -1,0 +1,17 @@
+<tr class="row" [ngClass]="{'row-selected': isChecked}">
+  <td class="col align-self-center" style="max-width: 2rem;">
+    <label class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" value='{{series.id}}' (click)='selectSeries()' />
+      <span class="custom-control-indicator"></span>
+    </label>
+  </td>
+  <td class="col">{{series.name}}</td>
+  <td class="col">{{series.foundry}}</td>
+  <td class="col">
+    <ul>
+      <li *ngFor='let family of series.family'>{{family.name}}</li>
+    </ul>
+  </td>
+  <td class="col">{{series.styles}}</td>
+  <td class="col">{{series.released | date:"MM/dd/yyyy"}}</td>
+</tr>

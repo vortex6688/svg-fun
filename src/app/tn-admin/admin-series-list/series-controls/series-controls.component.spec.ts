@@ -2,17 +2,17 @@ import { async, fakeAsync, ComponentFixture, TestBed, tick } from '@angular/core
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { FamilySearch, initialFamilyState } from '../../../tn-common/families';
-import { FamiliesControlsComponent } from './families-controls.component';
+import { SeriesSearch, initialSeriesState } from '../../../tn-common/series';
+import { SeriesControlsComponent } from './series-controls.component';
 
-describe('FamiliesControlComponent', () => {
-  let component: FamiliesControlsComponent;
-  let fixture: ComponentFixture<FamiliesControlsComponent>;
-  const defaultQuery: FamilySearch = initialFamilyState.search;
+describe('SeriesControlComponent', () => {
+  let component: SeriesControlsComponent;
+  let fixture: ComponentFixture<SeriesControlsComponent>;
+  const defaultQuery: SeriesSearch = initialSeriesState.search;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FamiliesControlsComponent ],
+      declarations: [ SeriesControlsComponent ],
       schemas: [ NO_ERRORS_SCHEMA ],
       imports: [
         ReactiveFormsModule,
@@ -22,7 +22,7 @@ describe('FamiliesControlComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FamiliesControlsComponent);
+    fixture = TestBed.createComponent(SeriesControlsComponent);
     component = fixture.componentInstance;
     component.initialQuery = {
       ...defaultQuery,
@@ -39,25 +39,13 @@ describe('FamiliesControlComponent', () => {
     const searchValues = {
       name: 'John',
       foundry: 'all of em',
-      designer: 'one of em',
-    };
-    const filterValues = {
-      visibility: component.visibilityData.map(() => true),
-      categories: component.categoriesData.map((data) => data.value),
     };
     component.searchForm.setValue(searchValues);
     expect(component.searchForm.value).toEqual(searchValues);
-    component.filterForm.setValue(filterValues);
-    expect(component.filterForm.value).toEqual(filterValues);
     component.clearFilters();
     expect(component.searchForm.value).toEqual({
       name: null,
       foundry: null,
-      designer: null,
-    });
-    expect(component.filterForm.value).toEqual({
-      visibility: component.visibilityData.map(() => null),
-      categories: component.categoriesData.map(() => null),
     });
   });
 

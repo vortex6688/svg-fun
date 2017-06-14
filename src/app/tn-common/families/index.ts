@@ -7,12 +7,10 @@ export { FamilyState, initialFamilyState, FamilySearch } from './family.state';
 export {
   getEntities,
   getIds,
-  getFoundIds,
   getSelectedId,
   getSelected,
   getSearchQuery,
   getAll,
-  getAllFound,
   getFamilyById,
   getFamilyByName,
   getFamiliesByDesigner,
