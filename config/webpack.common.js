@@ -30,6 +30,8 @@ const ngcWebpack = require('ngc-webpack');
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
 
+const TSCONFIG_NAME = AOT ? 'tsconfig.aot.json' : 'tsconfig.json';
+
 const NODE_MATCHER = /node_modules\//;
 const COMMON_MATCHER = /src\/tn-common\//;
 /*
@@ -83,9 +85,7 @@ module.exports = {
       // https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
       plugins: [
         new TsConfigPathsPlugin({
-          tsconfig: AOT ?
-                      helpers.root('tsconfig.webpack.json') :
-                      helpers.root('tsconfig.json')
+          tsconfig: helpers.root(TSCONFIG_NAME)
         })
       ]
     },
@@ -112,7 +112,7 @@ module.exports = {
             // see: https://github.com/AngularClass/angular2-hmr/blob/master/src/helpers.ts#L2
             // see: https://github.com/AngularClass/angular2-hmr-loader/blob/master/index.js#L21
             '@angularclass/hmr-loader?prod='+ !HMR,
-            'awesome-typescript-loader?{configFileName: "tsconfig.webpack.json"}',
+            `awesome-typescript-loader?{configFileName: "${TSCONFIG_NAME}"}`,
             'angular2-template-loader',
             {
               loader: 'ng-router-loader',
@@ -393,7 +393,7 @@ module.exports = {
 
       new ngcWebpack.NgcWebpackPlugin({
         disabled: !AOT,
-        tsConfig: helpers.root('tsconfig.webpack.json'),
+        tsConfig: helpers.root(TSCONFIG_NAME),
         resourceOverride: helpers.root('config/resource-override.js')
       })
     ],
