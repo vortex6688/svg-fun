@@ -12,6 +12,7 @@ import { License, LicenseActions } from '../../tn-common/licenses';
 import { Style, StyleActions } from '../../tn-common/styles';
 import { Family, FamilyActions } from '../../tn-common/families';
 import { Project, ProjectActions } from '../../tn-common/projects';
+import { Foundry, FoundryActions } from '../../tn-common/foundries';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -152,12 +153,34 @@ describe('AdminOrdersListComponent', () => {
     family_count: 1,
     style_count: 1,
   };
+  const mockFoundry: Foundry = {
+    id: 1,
+    name: 'da real foundrier',
+    slug: 'da-real-foundrier',
+    logo: 'logo string',
+    site_url: '',
+    url: 'foundry url',
+    bio: 'foundry bio',
+    designers: [1, 2],
+    ee_subdomain: 'eyeyeo',
+    eula: 'eula contract',
+    eula_title: 'realest contract',
+    eula_subtitle: 'subbed eula',
+    eula_web: 'eula for web',
+    eula_epub: 'eula for epub',
+    eula_app: 'eula for app',
+    eula_desktop: 'eula for desktop',
+    eula_web_self_hosted: 'eula for webeula_web_self_hosted',
+    preface: '',
+    postface: 'eula postface',
+    eula_default: true,
+  };
   const mockStyleList: Style[] = [
-    { ...mockStyle, id: 2, family: 1, name: 'Non existant' },
-    { ...mockStyle, id: 3, family: 1, name: 'Style light' },
-    { ...mockStyle, id: 4, family: 2, name: 'Placeholder' },
-    { ...mockStyle, id: 5, family: 3, name: 'Stylish' },
-    { ...mockStyle, id: 6, family: 4, name: 'Stylish' },
+    { ...mockStyle, id: 2, family: 1, foundry: [1], name: 'Non existant' },
+    { ...mockStyle, id: 3, family: 1, foundry: [2, 3], name: 'Style light' },
+    { ...mockStyle, id: 4, family: 2, foundry: [2], name: 'Placeholder' },
+    { ...mockStyle, id: 5, family: 3, foundry: [4], name: 'Stylish' },
+    { ...mockStyle, id: 6, family: 4, foundry: [5], name: 'Stylish' },
   ];
   const mockFamilyList: Family[] = [
     { ...mockFamily, id: 1, styles: [2, 3], },
@@ -181,6 +204,11 @@ describe('AdminOrdersListComponent', () => {
     { ...mockProject, id: 2, name: 'p1', licenses: [4]},
     { ...mockProject, id: 3, name: 'p2', licenses: [3], domains: '["p2.com"]'},
     { ...mockProject, id: 4, name: 'p3', licenses: [1]},
+  ];
+  const mockFoundryList: Foundry[] = [
+    { ...mockFoundry, id: 2, name: 'foundr' },
+    { ...mockFoundry, id: 3, name: 'supa' },
+    { ...mockFoundry, id: 4, name: 'dupa' },
   ];
 
   function capitalizeFirstLetter(word: string) {
@@ -257,10 +285,15 @@ describe('AdminOrdersListComponent', () => {
       ...style,
       family: mockFamilyList.find((family) => family.id === style.family),
     }));
+    const styleFamiliesFoundries = styleFamilies.map((style) => ({
+      ...style,
+      foundry: (style.foundry as number[]).map((id) =>
+        mockFoundryList.find((foundry) => foundry.id === id)),
+    }));
     const licensesStyles = mockLicenseList.map((license) => ({
       ...license,
       license_type_name: getLicenseTypeName(license.license_type, license.self_hosted),
-      style: styleFamilies.find((style) => style.id === license.style),
+      style: styleFamiliesFoundries.find((style) => style.id === license.style),
     }));
     const licensedOrders = mockOrderList.map((order) => ({
       ...order,
@@ -279,11 +312,18 @@ describe('AdminOrdersListComponent', () => {
       store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
       store.dispatch({ type: StyleActions.LOAD_STYLES_SUCCESS, payload: mockStyleList });
       store.dispatch({ type: ProjectActions.LOAD_PROJECTS_SUCCESS, payload: mockProjectList });
+      store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
     });
 
     it('should assign matching families to styles', () => {
       component.styleFamilies$.subscribe((styles) => {
         expect(styles).toEqual(styleFamilies);
+      });
+    });
+
+    it('should assign matching foundries to styles', () => {
+      component.styleFamiliesFoundries$.subscribe((styles) => {
+        expect(styles).toEqual(styleFamiliesFoundries);
       });
     });
 

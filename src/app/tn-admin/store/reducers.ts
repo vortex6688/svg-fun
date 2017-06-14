@@ -236,7 +236,7 @@ export const getFoundryEntities = createSelector(getFoundryState, foundry.getEnt
 export const getFoundryIds = createSelector(getFoundryState, foundry.getIds);
 export const getSelectedFoundryId = createSelector(getFoundryState, foundry.getSelectedId);
 export const getSelectedFoundry = createSelector(getFoundryState, foundry.getSelected);
-export const getAllFoundrys = createSelector(getFoundryState, foundry.getAll);
+export const getAllFoundries = createSelector(getFoundryState, foundry.getAll);
 export const getFoundryById = (foundryId) => {
   return (state) => foundry.getFoundryById(state.foundry, foundryId);
 };

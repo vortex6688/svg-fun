@@ -1,6 +1,6 @@
 /* tslint:disable:variable-name */
-
 import { Family } from '../families';
+import { Foundry } from '../foundries';
 
 export class Style {
   public id?: number;
@@ -13,7 +13,7 @@ export class Style {
   public character_set?: string;
   public support?: object;
   public default_style: boolean;
-  public foundry: number[];
+  public foundry: number[] | Foundry[];
   public designer: number[];
   public posture: number;
   public postureName?: string;

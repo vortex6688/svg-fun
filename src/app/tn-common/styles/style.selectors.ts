@@ -98,7 +98,7 @@ export const getDefaultStyles = (state: StyleState) => {
 export const getStylesByFoundry = (state: StyleState, foundryId: number) => {
   return state.ids.reduce((result, id) => {
     const style = state.entities[id];
-    if (style.foundry.indexOf(foundryId) !== -1) {
+    if ((style.foundry as number[]).indexOf(foundryId) !== -1) {
       result.push(style);
     }
     return result;
