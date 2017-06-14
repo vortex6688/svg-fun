@@ -111,7 +111,7 @@ export const getFamiliesByFoundry = (state: FamilyState, foundry: number) => {
   return state.ids.reduce((families, id) => {
     const family = state.entities[id];
 
-    if (family.foundry.indexOf(foundry) !== -1) {
+    if ((family.foundry as number[]).indexOf(foundry) !== -1) {
       families.push(family);
     }
     return families;

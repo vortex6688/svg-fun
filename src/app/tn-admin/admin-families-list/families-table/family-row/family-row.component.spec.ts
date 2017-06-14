@@ -22,7 +22,7 @@ describe('FamilyRowComponent', () => {
     collapseSubject = new BehaviorSubject(true);
     fixture = TestBed.createComponent(FamilyRowComponent);
     component = fixture.componentInstance;
-    component.family = {id: 1, style: [1]};
+    component.family = {id: 1, style: [1], foundry: []};
     fixture.detectChanges();
   });
 

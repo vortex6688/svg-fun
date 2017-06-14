@@ -284,7 +284,7 @@ describe('FamilyReducer', () => {
     });
 
     it('getFamiliesByFoundry should return a list of families with the provided foundry', () => {
-      const selectedFamilies = getFamiliesByFoundry(addedState, FamilyMock.foundry[0]);
+      const selectedFamilies = getFamiliesByFoundry(addedState, (FamilyMock.foundry as number[])[0]);
       expect(selectedFamilies).toEqual([FamilyMock]);
     });
 

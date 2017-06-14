@@ -1,5 +1,6 @@
 /* tslint:disable:variable-name */
 import { Style } from '../styles';
+import { Foundry } from '../foundries';
 
 export class Family {
   public id?: number;
@@ -13,7 +14,7 @@ export class Family {
     url: string;
   }];
   public more?: string;
-  public foundry: number[];
+  public foundry: number[] | Foundry[];
   public designer: number[];
   public released: string;
   public category: number[];
@@ -35,7 +36,7 @@ export class Family {
   public weight: number[];
   public tn_width: number[];
   public tn_weight: number[];
-  public style: number[];
+  public style: number[] | Style[];
   public default_style: number;
   public link_only_styles;
   public series: number[];
