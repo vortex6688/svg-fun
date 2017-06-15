@@ -1,7 +1,8 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { OrderSearch } from '../../../tn-common/orders';
 import { Observable } from 'rxjs/Observable';
+
+import { OrderSearch } from '../../../tn-common/orders';
 import { DropdownOption } from '../../../tn-common/dropdown-input/';
 import { Foundry } from '../../../tn-common/foundries';
 
@@ -53,6 +54,7 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
   public searchForm: FormGroup = this.fb.group({});
   public filterForm: FormGroup = this.fb.group({});
   public foundryList: DropdownOption[] = [];
+
   get statusControls(): FormArray { return this.filterForm.get('status') as FormArray; }
   get licenseControls(): FormArray { return this.filterForm.get('licenses') as FormArray; }
 

@@ -15,7 +15,7 @@ import { getAllOrders,
   getFamilyEntities,
   getAllProjects,
   getFoundryEntities,
-  getAllFoundries
+  getAllFoundries,
 } from '../store/reducers';
 
 const STATUSES = [
@@ -209,6 +209,13 @@ export class AdminOrdersListComponent {
         const hasName = order.projects.some((project) => testName.test((project as Project).name));
         const hasDomain = order.projects.some((project) => testName.test((project as Project).domains));
         if (!hasName && !hasDomain) { return false; }
+      }
+      if (orderQuery.foundry.length) {
+        const hasFoundry = order.licenses.some((license) =>
+          ((license.style as Style).foundry as Foundry[]).some((foundry) =>
+            orderQuery.foundry.indexOf(foundry.id) !== -1)
+        );
+        if (!hasFoundry) { return false; }
       }
       return !orderQuery.licenses.length || orderQuery.licenses.some((licenseType) =>
         Object.entries(licenseType).every(([key, value]) =>
