@@ -3,6 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { Family, FamilyActions, FamilySearch } from '../../tn-common/families';
+import { Foundry } from '../../tn-common/foundries';
+import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { Foundry } from '../../tn-common/foundries';
 import {
