@@ -7,7 +7,7 @@ export interface OrderSearch {
   customer: string;
   project: string;
   font: string;
-  foundry: string;
+  foundry: number[];
   status: number[];
   licenses: number[];
 }
@@ -30,7 +30,7 @@ export const initialOrderState: OrderState = {
     customer: '',
     project: '',
     font: '',
-    foundry: '',
+    foundry: [],
     status: [],
     licenses: [],
   },

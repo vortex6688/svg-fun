@@ -1,15 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { OrderSearch } from '../../../tn-common/orders';
 import { Observable } from 'rxjs/Observable';
+import { DropdownOption } from '../../../tn-common/dropdown-input/';
+import { Foundry } from '../../../tn-common/foundries';
 
 @Component({
   selector: 'orders-controls',
   templateUrl: './orders-controls.component.html',
   styleUrls: ['./orders-controls.component.scss']
 })
-export class OrdersControlsComponent implements OnInit {
+export class OrdersControlsComponent implements OnInit, OnChanges {
   @Input() public initialQuery;
+  @Input() public foundries: Foundry[];
   @Output() public queryUpdate = new EventEmitter<OrderSearch>();
 
   public statusData = [
@@ -47,13 +50,23 @@ export class OrdersControlsComponent implements OnInit {
       license_type: 'epub',
     }
   }];
-  public searchForm: FormGroup;
-  public filterForm: FormGroup;
-
+  public searchForm: FormGroup = this.fb.group({});
+  public filterForm: FormGroup = this.fb.group({});
+  public foundryList: DropdownOption[] = [];
   get statusControls(): FormArray { return this.filterForm.get('status') as FormArray; }
   get licenseControls(): FormArray { return this.filterForm.get('licenses') as FormArray; }
 
   constructor(private fb: FormBuilder) {
+  }
+
+  public ngOnChanges(changes) {
+    if (changes.foundries) {
+      const queryFoundries = this.searchForm.get('foundry');
+      this.foundryList = this.foundries.map((foundry) => ({
+        name: foundry.name,
+        value: foundry.id,
+        selected: !!this.initialQuery ? this.initialQuery.foundry.indexOf(foundry.id) !== -1 : false})) || [];
+    }
   }
 
   public ngOnInit() {
@@ -69,7 +82,7 @@ export class OrdersControlsComponent implements OnInit {
       customer: this.initialQuery.customer,
       project: this.initialQuery.project,
       font: this.initialQuery.font,
-      foundry: this.initialQuery.foundry,
+      foundry: this.fb.array(this.initialQuery.foundry),
     });
 
     this.filterForm = this.fb.group({
@@ -97,6 +110,7 @@ export class OrdersControlsComponent implements OnInit {
       });
 
     searchFormChanges.combineLatest(filterFormChanges)
+      .skip(1)
       .debounceTime(500)
       .subscribe(([search, filter]) => {
         this.queryUpdate.emit({
@@ -104,6 +118,16 @@ export class OrdersControlsComponent implements OnInit {
           ...filter,
         });
       });
+  }
+
+  public updateFoundry(options: DropdownOption[]) {
+    const selectedFoundries = options.reduce((result, option) => {
+      if (option.selected) {
+        result.push(option.value);
+      }
+      return result;
+    }, []);
+    this.searchForm.setControl('foundry', this.fb.array(selectedFoundries));
   }
 
   /**
@@ -114,6 +138,8 @@ export class OrdersControlsComponent implements OnInit {
    */
   public clearSearch() {
     this.searchForm.reset();
+    this.searchForm.setControl('foundry', this.fb.array([]));
+    this.foundryList = this.foundryList.map((foundry) => ({ ...foundry, selected: false }));
   }
 
   /**

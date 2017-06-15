@@ -6,6 +6,7 @@ import { Order, OrderActions, OrderSearch } from '../../tn-common/orders';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { Family, FamilyState } from '../../tn-common/families';
+import { Foundry } from '../../tn-common/foundries';
 import { Project, ProjectActions } from '../../tn-common/projects';
 import { getAllOrders,
   getOrderSearchQuery,
@@ -14,6 +15,7 @@ import { getAllOrders,
   getFamilyEntities,
   getAllProjects,
   getFoundryEntities,
+  getAllFoundries
 } from '../store/reducers';
 
 const STATUSES = [
@@ -91,6 +93,14 @@ export class AdminOrdersListComponent {
   public foundryEntities$ = this.store.select(getFoundryEntities);
 
   /**
+   *  Foundry collection list for selection.
+   *
+   * @type {Observable<Foundry[]}
+   * @memberof AdminOrdersListComponent
+   */
+  public foundries$ = this.store.select(getAllFoundries);
+
+  /**
    *  Style collection with populated family data.
    *
    * @type {Observable<Style[]>}
@@ -106,7 +116,7 @@ export class AdminOrdersListComponent {
    );
 
   /**
-   *  Style collection with populated foundty data.
+   *  Style collection with populated foundry data.
    *
    * @type {Observable<Style[]>}
    * @memberof AdminOrdersListComponent
