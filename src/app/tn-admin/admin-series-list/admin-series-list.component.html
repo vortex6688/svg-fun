@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="sidebar border-right-gradient-inset">
-      <series-controls [initialQuery]="seriesQuery$ | async" (queryUpdate)="searchSeries($event)"></series-controls>
+      <series-controls [initialQuery]="seriesQuery$ | async" [foundries]="foundries$ | async" (queryUpdate)="searchSeries($event)"></series-controls>
     </div>
     <div class="main w-100">
       <h2>Series</h2>

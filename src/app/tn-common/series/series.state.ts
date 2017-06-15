@@ -2,7 +2,7 @@ import { Series } from './series.model';
 
 export interface SeriesSearch {
   name: string;
-  foundry: number;
+  foundry: number[];
 }
 
 export interface SeriesState {
@@ -18,6 +18,6 @@ export const initialSeriesState: SeriesState = {
   selectedSeriesId: null,
   search: {
     name: '',
-    foundry: null,
+    foundry: [],
   },
 };

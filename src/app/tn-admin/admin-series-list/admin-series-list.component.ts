@@ -4,11 +4,13 @@ import { Observable } from 'rxjs/Observable';
 
 import { Series, SeriesActions, SeriesSearch } from '../../tn-common/series';
 import { License } from '../../tn-common/licenses';
+import { Foundry } from '../../tn-common/foundries';
 import {
   getAllSeries,
   getSeriesSearchQuery,
   getFamilyEntities,
   getFoundryEntities,
+  getAllFoundries,
 } from '../store/reducers';
 
 @Component({
@@ -40,6 +42,14 @@ export class AdminSeriesListComponent {
    * @memberof AdminSeriesListComponent
    */
   public familyEntities$ = this.store.select(getFamilyEntities);
+
+  /**
+   *  Foundry collection list for selection.
+   *
+   * @type {Observable<Foundry[]}
+   * @memberof AdminFamiliesListComponent
+   */
+  public foundries$ = this.store.select(getAllFoundries);
 
   /**
    *  Foundry entity collection for combination.
@@ -103,6 +113,9 @@ export class AdminSeriesListComponent {
         const testName = new RegExp(seriesQuery.name, 'i');
         const hasName = testName.test(item.name);
         if (!hasName) { return false; }
+      }
+      if (seriesQuery.foundry.length && seriesQuery.foundry.indexOf(item.foundry.id) === -1) {
+        return false;
       }
       return true;
     }));
