@@ -3,7 +3,8 @@ import { BehaviorSubject } from 'rxjs/Rx';
 
 @Component({
   selector: 'style-row',
-  templateUrl: './style-row.component.html'
+  templateUrl: './style-row.component.html',
+  styleUrls: ['./style-row.component.scss']
 })
 export class StyleRowComponent implements OnInit, OnDestroy {
   @Input() public style;

@@ -150,10 +150,7 @@ describe('StyleReducer', () => {
       foundry: 1,
       designer: 2,
       visible: [1],
-      posture: [2],
-      optical: [1, 23],
-      width: [1, 1],
-      weight: [],
+      categories: [2]
     };
     const actual = StyleReducer(state, styleActions.searchQuery(search));
     const expected: StyleState = {
