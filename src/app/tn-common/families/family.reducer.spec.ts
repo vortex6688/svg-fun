@@ -150,7 +150,7 @@ describe('FamilyReducer', () => {
     const state = mockedState();
     const search: FamilySearch = {
       name: 'fam fam',
-      foundry: 1,
+      foundry: [1],
       designer: 2,
       visibility: [1, 2],
       categories: [2, 3],

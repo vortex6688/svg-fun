@@ -279,7 +279,7 @@ describe('AdminOrdersListComponent', () => {
       customer: 'custom',
       project: 'typenetwork',
       font: 'best font',
-      foundry: 'all of dem',
+      foundry: [2],
       status: [],
       licenses: [],
     };
@@ -448,5 +448,19 @@ describe('AdminOrdersListComponent', () => {
       });
     });
 
+    it('should filter orders by foundries', () => {
+      const targets = [2, 3];
+      const searchQuery = {
+        ...initialOrderState.search,
+        foundry: targets,
+      };
+
+      const expected = licensesOrdersProjects.filter((order) => order.licenses.some((license) =>
+        license.style.foundry.some((foundry) => foundry && targets.indexOf(foundry.id) !== -1)));
+      store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
+        expect(orders).toEqual(expected);
+      });
+    });
   });
 });

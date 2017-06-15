@@ -114,8 +114,8 @@ export class AdminSeriesListComponent {
         const hasName = testName.test(item.name);
         if (!hasName) { return false; }
       }
-      if (seriesQuery.foundry.length && seriesQuery.foundry.indexOf(item.foundry.id) === -1) {
-        return false;
+      if (seriesQuery.foundry.length) {
+        if (!item.foundry || seriesQuery.foundry.indexOf(item.foundry.id) === -1) { return false; }
       }
       return true;
     }));

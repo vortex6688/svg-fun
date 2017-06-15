@@ -213,7 +213,7 @@ export class AdminOrdersListComponent {
       if (orderQuery.foundry.length) {
         const hasFoundry = order.licenses.some((license) =>
           ((license.style as Style).foundry as Foundry[]).some((foundry) =>
-            orderQuery.foundry.indexOf(foundry.id) !== -1)
+            foundry && orderQuery.foundry.indexOf(foundry.id) !== -1)
         );
         if (!hasFoundry) { return false; }
       }

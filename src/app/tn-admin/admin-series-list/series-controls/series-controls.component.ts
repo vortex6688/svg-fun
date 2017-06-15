@@ -24,7 +24,6 @@ export class SeriesControlsComponent implements OnInit, OnChanges {
   public ngOnChanges(changes) {
     if (changes.foundries) {
       const queryFoundries = this.searchForm.get('foundry');
-      console.log('wat', this.foundries, changes)
       this.foundryList = this.foundries.map((foundry) => ({
         name: foundry.name,
         value: foundry.id,
@@ -48,6 +47,13 @@ export class SeriesControlsComponent implements OnInit, OnChanges {
       });
   }
 
+  /**
+   * Update foundry form with selected foundries
+   *
+   * @public
+   * @param {DropdownOption[]} options
+   * @memberof SeriesControlsComponent
+   */
   public updateFoundry(options: DropdownOption[]) {
     const selectedFoundries = options.reduce((result, option) => {
       if (option.selected) {

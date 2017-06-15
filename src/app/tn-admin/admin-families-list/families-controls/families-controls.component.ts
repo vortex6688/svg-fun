@@ -99,6 +99,13 @@ export class FamiliesControlsComponent implements OnInit, OnChanges {
       });
   }
 
+  /**
+   * Update foundry form with selected foundries
+   *
+   * @public
+   * @param {DropdownOption[]} options
+   * @memberof FamiliesControlsComponent
+   */
   public updateFoundry(options: DropdownOption[]) {
     const selectedFoundries = options.reduce((result, option) => {
       if (option.selected) {

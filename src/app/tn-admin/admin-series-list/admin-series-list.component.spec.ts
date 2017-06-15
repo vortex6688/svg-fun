@@ -143,7 +143,7 @@ describe('AdminSeriesListComponent', () => {
     const seriesActions = fixture.debugElement.injector.get(SeriesActions);
     const query = {
       name: 'serie name',
-      foundry: 2,
+      foundry: [2],
     };
     spyOn(store, 'dispatch');
     component.searchSeries(query);
@@ -201,5 +201,18 @@ describe('AdminSeriesListComponent', () => {
       });
     });
 
+    it('should filter series by foundries', () => {
+      const targets = [2, 3];
+      const searchQuery = {
+        ...initialSeriesState.search,
+        foundry: targets,
+      };
+
+      const expected = seriesFamilies.filter((series) => series.foundry && targets.indexOf(series.foundry.id) !== -1);
+      store.dispatch({ type: SeriesActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredSeries$.subscribe((series: Series[]) => {
+        expect(series).toEqual(expected);
+      });
+    });
   });
 });

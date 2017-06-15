@@ -122,6 +122,13 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
       });
   }
 
+  /**
+   * Update foundry form with selected foundries
+   *
+   * @public
+   * @param {DropdownOption[]} options
+   * @memberof OrdersControlsComponent
+   */
   public updateFoundry(options: DropdownOption[]) {
     const selectedFoundries = options.reduce((result, option) => {
       if (option.selected) {
@@ -136,7 +143,7 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
    * Clear search form group.
    *
    * @public
-   * @memberOf OrdersControlsComponent
+   * @memberof OrdersControlsComponent
    */
   public clearSearch() {
     this.searchForm.reset();
@@ -148,7 +155,7 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
    * Clear filter form group.
    *
    * @public
-   * @memberOf OrdersControlsComponent
+   * @memberof OrdersControlsComponent
    */
   public clearFilters() {
     this.filterForm.reset();
@@ -160,7 +167,7 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
    * @public
    * @type {Date} event
    * @type {string} type - target form control
-   * @memberOf OrdersControlsComponent
+   * @memberof OrdersControlsComponent
    */
   public updateDate(event, type) {
     this.searchForm.controls[type].setValue(event);

@@ -127,7 +127,7 @@ export class AdminFamiliesListComponent {
       }
       if (familyQuery.foundry.length) {
         const hasFoundry = (family.foundry as Foundry[]).some((foundry) =>
-          familyQuery.foundry.indexOf(foundry.id) !== -1);
+          foundry && familyQuery.foundry.indexOf(foundry.id) !== -1);
         if (!hasFoundry) { return false; }
       }
       return true;

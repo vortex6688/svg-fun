@@ -103,10 +103,10 @@ describe('AdminFamiliesListComponent', () => {
   };
 
   const mockFamilyList: Family[] = [
-    { ...mockFamily, name: 'fake', id: 1, styles: [2, 3], },
-    { ...mockFamily, name: 'famo', id: 2, styles: [4], },
-    { ...mockFamily, name: 'la famillia', id: 3, styles: [5], },
-    { ...mockFamily, name: 'special', id: 4, styles: [6], },
+    { ...mockFamily, name: 'fake', id: 1, styles: [2, 3], foundry: [2] },
+    { ...mockFamily, name: 'famo', id: 2, styles: [4], foundry: [2, 3] },
+    { ...mockFamily, name: 'la famillia', id: 3, styles: [5], foundry: [4] },
+    { ...mockFamily, name: 'special', id: 4, styles: [6], foundry: [5] },
   ];
   const mockFoundryList: Foundry[] = [
     { ...mockFoundry, id: 2, name: 'foundr' },
@@ -191,7 +191,7 @@ describe('AdminFamiliesListComponent', () => {
     const orderActions = fixture.debugElement.injector.get(FamilyActions);
     const query: FamilySearch = {
       name: 'fam name',
-      foundry: 2,
+      foundry: [2],
       designer: 4,
       visibility: [1, 2],
       categories: [1],
@@ -236,6 +236,21 @@ describe('AdminFamiliesListComponent', () => {
       };
       const testName = new RegExp(name, 'i');
       const expected = namedFamilies.filter((family) => testName.test(family.name));
+      store.dispatch({ type: FamilyActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredFamilies$.subscribe((families: Family[]) => {
+        expect(families).toEqual(expected);
+      });
+    });
+
+    it('should filter families by foundries', () => {
+      const targets = [2, 3];
+      const searchQuery = {
+        ...initialFamilyState.search,
+        foundry: targets,
+      };
+
+      const expected = namedFamilies.filter((family) =>
+        family.foundry.some((foundry) => foundry && targets.indexOf(foundry.id) !== -1));
       store.dispatch({ type: FamilyActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredFamilies$.subscribe((families: Family[]) => {
         expect(families).toEqual(expected);
