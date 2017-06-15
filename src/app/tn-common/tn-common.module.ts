@@ -45,6 +45,7 @@ import { IconCheckComponent,
          IconPencilComponent } from './tn-icons';
 import { OrderByPipe } from './pipes';
 import { DataGuard } from './data.guard';
+import { DropdownInputComponent } from './dropdown-input/dropdown-input.component';
 
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
@@ -75,16 +76,34 @@ import { DataGuard } from './data.guard';
                   IconRightArrowComponent, IconSelectComponent, IconWebComponent,
                   IconAddComponent, IconCopyComponent, IconFontComponent, IconAddLicenseComponent,
                   IconDesktopComponent, IconAppComponent, IconTooltipComponent,
-                  IconSearchComponent, IconPencilComponent, OrderByPipe
+                  IconSearchComponent, IconPencilComponent, OrderByPipe, DropdownInputComponent
                 ],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
-  exports:      [ DatepickerComponent, CommonModule, TnNavbarComponent, TnPaginationComponent,
-                  IconCheckComponent, IconCloseComponent, IconCreateComponent,
-                  IconDeleteComponent, IconDownloadComponent, IconRevertComponent,
-                  IconRightArrowComponent, IconSelectComponent, IconWebComponent, IconAddComponent,
-                  IconCopyComponent, IconFontComponent, IconAddLicenseComponent, IconDesktopComponent,
-                  IconAppComponent, IconTooltipComponent, IconSearchComponent, IconPencilComponent,
-                  OrderByPipe ]
+  exports:      [ DatepickerComponent,
+                  CommonModule,
+                  TnNavbarComponent,
+                  TnPaginationComponent,
+                  IconCheckComponent,
+                  IconCloseComponent,
+                  IconCreateComponent,
+                  IconDeleteComponent,
+                  IconDownloadComponent,
+                  IconRevertComponent,
+                  IconRightArrowComponent,
+                  IconSelectComponent,
+                  IconWebComponent,
+                  IconAddComponent,
+                  IconCopyComponent,
+                  IconFontComponent,
+                  IconAddLicenseComponent,
+                  IconDesktopComponent,
+                  IconAppComponent,
+                  IconTooltipComponent,
+                  IconSearchComponent,
+                  IconPencilComponent,
+                  OrderByPipe,
+                  DropdownInputComponent,
+                ]
 
 })
 export class TnCommonModule {
