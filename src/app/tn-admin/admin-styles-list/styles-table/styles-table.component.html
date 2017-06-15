@@ -1,0 +1,41 @@
+<div class="row text-info pb-2">
+  <div class="d-flex col justify-content-start align-items-end">
+    <h4 style="margin-bottom: 0;">Styles</h4>
+    <span class="px-2 small text-uppercase">{{pageItems[0]+1}}-{{pageItems[1]}} of {{styles.length}} results</span>
+  </div>
+  <div class="d-flex col justify-content-end align-items-end text-right">
+    <div class="text-uppercase small px-3">
+      <span style="cursor: pointer;" class="px-1" (click)="expandAll()">Expand all</span>
+      <span> | </span>
+      <span style="cursor: pointer;" class="px-1" (click)="collapseAll()">Collapse all</span>
+    </div>
+    <div>
+      <tn-pagination [collectionSize]="styles.length" [pageSize]="pageSize" (pageItemsChanges)="updatePageItems($event)" [ellipses]="false" size="sm" directionLinksPrevious="&lt;" directionLinksNext="&gt;"></tn-pagination>
+    </div>
+  </div>
+</div>
+<table class="table table-sortable">
+  <thead>
+    <tr class="row">
+      <th class="col pl-2" style="max-width: 2.5rem;">
+        <label style="min-height: 0.7rem;" class="custom-control custom-checkbox mb-0">
+          <input type="checkbox" class="custom-control-input" />
+          <span class="custom-control-indicator"></span>
+        </label>
+      </th>
+      <th class="col sortable" (click)="sortBy('name')" [ngClass]="{'sort-asc': sortKey === '+name', 'sort-desc': sortKey === '-name'}">Name</th>
+      <th class="col sortable" (click)="sortBy('visibleName')" [ngClass]="{'sort-asc': sortKey === '+visibleName', 'sort-desc': sortKey === '-visibleName'}">Visible</th>
+      <th class="col sortable" (click)="sortBy('foundry')" [ngClass]="{'sort-asc': sortKey === '+foundry', 'sort-desc': sortKey === '-foundry'}">Foundries</th>
+      <th class="col sortable" (click)="sortBy('designer')" [ngClass]="{'sort-asc': sortKey === '+designer', 'sort-desc': sortKey === '-designer'}">Designers</th>
+      <th class="col sortable" (click)="sortBy('opticalName')" [ngClass]="{'sort-asc': sortKey === '+opticalName', 'sort-desc': sortKey === '-opticalName'}">Optical</th>
+      <th class="col sortable" (click)="sortBy('weightName')" [ngClass]="{'sort-asc': sortKey === '+weightName', 'sort-desc': sortKey === '-weightName'}">Weight</th>
+      <th class="col sortable" (click)="sortBy('widthName')" [ngClass]="{'sort-asc': sortKey === '+widthName', 'sort-desc': sortKey === '-widthName'}">Width</th>
+      <th class="col sortable" (click)="sortBy('postureName')" [ngClass]="{'sort-asc': sortKey === '+postureName', 'sort-desc': sortKey === '-postureName'}">Posture</th>
+      <th class="col sortable" (click)="sortBy('min_recommended_size')" [ngClass]="{'sort-asc': sortKey === '+min_recommended_size', 'sort-desc': sortKey === '-min_recommended_size'}">Min size</th>
+      <th class="col sortable" (click)="sortBy('max_recommended_size')" [ngClass]="{'sort-asc': sortKey === '+max_recommended_size', 'sort-desc': sortKey === '-max_recommended_size'}">Max size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <style-row *ngFor='let style of styles | orderBy: [sortKey] | slice:pageItems[0]:pageItems[1]'  [style]=style [collapseSubject]="collapseState$"></style-row>
+  </tbody>
+</table>

@@ -1,14 +1,11 @@
 import { Style } from './style.model';
 
 export interface StyleSearch {
-  style_name: string;
+  name: string;
   foundry: number;
   designer: number;
   visible: number[];
-  posture: number[];
-  optical: number[];
-  width: number[];
-  weight: number[];
+  categories: number[];
 }
 
 export interface StyleState {
@@ -23,13 +20,10 @@ export const initialStyleState: StyleState = {
   entities: {},
   selectedStyleId: null,
   search: {
-    style_name: '',
+    name: '',
     foundry: null,
     designer: null,
     visible: [],
-    posture: [],
-    optical: [],
-    width: [],
-    weight: [],
+    categories: [],
   },
 };

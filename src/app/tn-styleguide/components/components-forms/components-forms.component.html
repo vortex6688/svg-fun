@@ -1347,6 +1347,24 @@
   <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"custom-control-description"</span><span class="nt">&gt;</span>Check this custom checkbox<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/label&gt;</span></code></pre></div>
 
+<div class="bd-example" data-example-id="">
+  <label>Click on me to switch</label>
+  <div class="switch-checkbox">
+    <input class="switch-input" type="checkbox" id="switch">
+    <label class="switch-paddle" for="switch">
+      <span class="switch-yes">Yes</span>
+    </label>
+  </div>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html">
+  <span class="nt">&lt;label</span><span class="nt">&gt;</span>Click on me to switch<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"switch-checkbox ml-2"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"switch-input"</span> <span class="na">id=</span><span class="s">"switch"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"switch-paddle mb-0"</span> <span class="na">for=</span><span class="s">"switch"</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"switch-yes"</span><span class="nt">&gt;</span>YES<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
+
 <p>Custom checkboxes can also utilize the <code class="highlighter-rouge">:indeterminate</code> pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it).</p>
 
 <div class="bd-example bd-example-indeterminate">

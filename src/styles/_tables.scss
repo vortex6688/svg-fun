@@ -114,7 +114,8 @@
   .table {
     background-color: $body-bg;
 
-    th:first-child {
+    th:first-child,
+    td:first-child {
       // using text-indent instead of padding because padding pushes away other cells in the row
       text-indent: (1 * $table-cell-padding);
       color: $black;

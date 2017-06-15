@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="sidebar border-right-gradient-inset">
+      <styles-controls [initialQuery]="stylesQuery$ | async" (queryUpdate)="searchStyles($event)"></styles-controls>
+    </div>
+    <div class="main w-100">
+      <h2>Styles</h2>
+      <styles-table [styles]="filteredStyles$ | async"></styles-table>
+    </div>
+  </div>
+</div>
