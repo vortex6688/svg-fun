@@ -74,7 +74,7 @@ export class AdminFamiliesListComponent {
   public foundryEntities$ = this.store.select(getFoundryEntities);
 
   /**
-   *  Family collection with populated foundries data.    *
+   *  Family collection with populated foundries data.
    * @type {Observable<Family[]>}
    * @memberof AdminFamiliesListComponent
    */

@@ -1,6 +1,6 @@
 /* tslint:disable:variable-name */
-
 import { Family } from '../families/';
+import { Foundry } from '../foundries/';
 
 export class Series {
   public id?: number;
@@ -11,8 +11,7 @@ export class Series {
   public family: number[] | Family[];
   // public designers: Designer[];
   public designers: number[];
-  // public foundry: Foundry[];
-  public foundry?: number;
+  public foundry: number | Foundry;
   public description?: string;
   public description_link: string[];
   public pangram?: string[];

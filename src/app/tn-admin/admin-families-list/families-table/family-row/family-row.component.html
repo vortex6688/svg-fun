@@ -9,7 +9,7 @@
   <td class="col">{{family.visibleName}}</td>
   <td class="col">
     <ul>
-      <li *ngFor='let foundry of family.foundry'>{{foundry.name}}</li>
+      <li *ngFor='let foundry of family.foundry'>{{foundry ? foundry.name : ''}}</li>
     </ul>
   </td>  
   <td class="col">

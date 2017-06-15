@@ -6,7 +6,7 @@
     </label>
   </td>
   <td class="col">{{series.name}}</td>
-  <td class="col">{{series.foundry}}</td>
+  <td class="col">{{series.foundry ? series.foundry.name : ''}}</td>
   <td class="col">
     <ul>
       <li *ngFor='let family of series.family'>{{family.name}}</li>

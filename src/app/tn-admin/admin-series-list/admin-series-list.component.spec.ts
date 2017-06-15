@@ -8,6 +8,7 @@ import { StoreModule, Store } from '@ngrx/store';
 
 import { Series, SeriesActions, SeriesSearch, initialSeriesState } from '../../tn-common/series';
 import { Family, FamilyActions } from '../../tn-common/families';
+import { Foundry, FoundryActions } from '../../tn-common/foundries';
 import { AdminSeriesListComponent } from './admin-series-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -65,18 +66,45 @@ describe('AdminSeriesListComponent', () => {
     series: [ 27, 28 ],
     visible: 2,
   };
+  const mockFoundry: Foundry = {
+    id: 1,
+    name: 'da real foundrier',
+    slug: 'da-real-foundrier',
+    logo: 'logo string',
+    site_url: '',
+    url: 'foundry url',
+    bio: 'foundry bio',
+    designers: [1, 2],
+    ee_subdomain: 'eyeyeo',
+    eula: 'eula contract',
+    eula_title: 'realest contract',
+    eula_subtitle: 'subbed eula',
+    eula_web: 'eula for web',
+    eula_epub: 'eula for epub',
+    eula_app: 'eula for app',
+    eula_desktop: 'eula for desktop',
+    eula_web_self_hosted: 'eula for webeula_web_self_hosted',
+    preface: '',
+    postface: 'eula postface',
+    eula_default: true,
+  };
 
   const mockSeriesList: Series[] = [
-    { ...mockSeries, id: 2, name: 'Sers', family: [1, 2] },
-    { ...mockSeries, id: 3, name: 'GOT', family: [] },
-    { ...mockSeries, id: 4, name: 'IASIP', family: [4] },
-    { ...mockSeries, id: 5, name: 'Fernando', family: [3] },
+    { ...mockSeries, id: 2, name: 'Sers', foundry: 2, family: [1, 2] },
+    { ...mockSeries, id: 3, name: 'GOT', foundry: 3, family: [] },
+    { ...mockSeries, id: 4, name: 'IASIP', foundry: 2, family: [4] },
+    { ...mockSeries, id: 5, name: 'Fernando', foundry: 55, family: [3] },
   ];
   const mockFamilyList: Family[] = [
     { ...mockFamily, id: 1, style: [2, 3], },
     { ...mockFamily, id: 2, style: [4], },
     { ...mockFamily, id: 3, style: [5], },
     { ...mockFamily, id: 4, style: [6], },
+  ];
+  const mockFoundryList: Foundry[] = [
+    { ...mockFoundry, id: 2, name: 'foundr' },
+    { ...mockFoundry, id: 3, name: 'supa' },
+    { ...mockFoundry, id: 4, name: 'dupa' },
   ];
 
   class MockSeriesActions {
@@ -123,7 +151,11 @@ describe('AdminSeriesListComponent', () => {
   });
 
   describe('series combining', () => {
-    const seriesFamilies = mockSeriesList.map((series) => {
+    const seriesFoundries = mockSeriesList.map((series) => ({
+      ...series,
+      foundry: mockFoundryList.find((foundry) => foundry.id === series.foundry),
+    }));
+    const seriesFamilies = seriesFoundries.map((series) => {
       const { family, styles } = (series.family as number[]).reduce((result, id) => {
         const seriesFamily = mockFamilyList.find((fam) => fam.id === id);
         if (seriesFamily) {
@@ -142,6 +174,13 @@ describe('AdminSeriesListComponent', () => {
     beforeEach(() => {
       store.dispatch({ type: SeriesActions.LOAD_SERIES_SUCCESS, payload: mockSeriesList });
       store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
+      store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
+    });
+
+    it('should assign matching foundris to series', () => {
+      component.seriesFoundries$.subscribe((series) => {
+        expect(series).toEqual(seriesFoundries);
+      });
     });
 
     it('should assign matching families to series', () => {
