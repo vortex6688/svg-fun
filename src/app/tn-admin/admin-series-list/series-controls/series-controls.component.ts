@@ -23,7 +23,6 @@ export class SeriesControlsComponent implements OnInit, OnChanges {
 
   public ngOnChanges(changes) {
     if (changes.foundries) {
-      const queryFoundries = this.searchForm.get('foundry');
       this.foundryList = this.foundries.map((foundry) => ({
         name: foundry.name,
         value: foundry.id,

@@ -9,6 +9,7 @@ import {
   getStyleSearchQuery,
   getFamilyEntities,
   getFoundryEntities,
+  getAllFoundries,
 } from '../store/reducers';
 
 const OPTICAL = {
@@ -116,12 +117,20 @@ export class AdminStylesListComponent {
   public familyEntities$ = this.store.select(getFamilyEntities);
 
   /**
-   *  Family entity collection for combination.
+   *  Foundry entity collection for combination.
    *
    * @type {Observable<FoundryState.entities}
    * @memberof AdminStylesListComponent
    */
   public foundryEntities$ = this.store.select(getFoundryEntities);
+
+  /**
+   *  Foundry list for selection.
+   *
+   * @type {Observable<Foundry[]}
+   * @memberof AdminStylesListComponent
+   */
+  public foundries$ = this.store.select(getAllFoundries);
 
   /**
    *  Style collection with populated family data.
@@ -175,6 +184,12 @@ export class AdminStylesListComponent {
         const hasFamily = stylesQuery.categories.some((category) =>
           (style.family as Family).category.indexOf(category) !== -1);
         if (!hasFamily) { return false; }
+      }
+      if (stylesQuery.foundry.length) {
+        const hasFoundry =  style.foundry.some((foundry) => foundry && stylesQuery.foundry.indexOf(foundry.id) !== -1);
+        if (!hasFoundry) {
+          return false;
+        }
       }
 
       return true;

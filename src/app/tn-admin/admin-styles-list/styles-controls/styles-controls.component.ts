@@ -1,14 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { StyleSearch } from '../../../tn-common/styles';
 import { Observable } from 'rxjs/Observable';
+import { DropdownOption } from '../../../tn-common/dropdown-input/';
+import { Foundry } from '../../../tn-common/foundries';
 
 @Component({
   selector: 'styles-controls',
   templateUrl: './styles-controls.component.html'
 })
-export class StylesControlsComponent implements OnInit {
+export class StylesControlsComponent implements OnInit, OnChanges {
   @Input() public initialQuery;
+  @Input() public foundries: Foundry[];
   @Output() public queryUpdate = new EventEmitter<StyleSearch>();
 
   public visibilityData = [
@@ -27,13 +30,23 @@ export class StylesControlsComponent implements OnInit {
     { name: 'Wacky', value: 4 },
   ];
 
-  public searchForm: FormGroup;
-  public filterForm: FormGroup;
+  public searchForm: FormGroup = this.fb.group({});
+  public filterForm: FormGroup = this.fb.group({});
+  public foundryList: DropdownOption[] = [];
 
   get visibilityControls(): FormArray { return this.filterForm.get('visible') as FormArray; }
   get categoryControls(): FormArray { return this.filterForm.get('categories') as FormArray; }
 
   constructor(private fb: FormBuilder) {
+  }
+
+  public ngOnChanges(changes) {
+    if (changes.foundries) {
+      this.foundryList = this.foundries.map((foundry) => ({
+        name: foundry.name,
+        value: foundry.id,
+        selected: !!this.initialQuery ? this.initialQuery.foundry.indexOf(foundry.id) !== -1 : false})) || [];
+    }
   }
 
   public ngOnInit() {
@@ -44,7 +57,7 @@ export class StylesControlsComponent implements OnInit {
 
     this.searchForm = this.fb.group({
       name: this.initialQuery.name,
-      foundry: this.initialQuery.foundry,
+      foundry: this.fb.array(this.initialQuery.foundry),
       designer: this.initialQuery.designer,
     });
     this.filterForm = this.fb.group({
@@ -72,6 +85,7 @@ export class StylesControlsComponent implements OnInit {
       });
 
     searchFormChanges.combineLatest(filterFormChanges)
+      .skip(1)
       .debounceTime(500)
       .subscribe(([search, filter]) => {
         this.queryUpdate.emit({
@@ -82,6 +96,23 @@ export class StylesControlsComponent implements OnInit {
   }
 
   /**
+   * Update foundry form with selected foundries
+   *
+   * @public
+   * @param {DropdownOption[]} options
+   * @memberof StylesControlsComponent
+   */
+  public updateFoundry(options: DropdownOption[]) {
+    const selectedFoundries = options.reduce((result, option) => {
+      if (option.selected) {
+        result.push(option.value);
+      }
+      return result;
+    }, []);
+    this.searchForm.setControl('foundry', this.fb.array(selectedFoundries));
+  }
+
+  /**
    * Clear search and filter form group.
    *
    * @public
@@ -89,6 +120,8 @@ export class StylesControlsComponent implements OnInit {
    */
   public clearFilters() {
     this.searchForm.reset();
+    this.searchForm.setControl('foundry', this.fb.array([]));
+    this.foundryList = this.foundryList.map((foundry) => ({ ...foundry, selected: false }));
     this.filterForm.reset();
   }
 }

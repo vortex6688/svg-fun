@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Family, FamilyActions, FamilySearch } from '../../tn-common/families';
 import { Style } from '../../tn-common/styles';
+import { Foundry } from '../../tn-common/foundries';
 import {
   getAllFamilies,
   getFamilySearchQuery,

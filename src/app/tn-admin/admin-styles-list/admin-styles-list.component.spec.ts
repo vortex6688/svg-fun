@@ -230,7 +230,7 @@ describe('AdminStylesListComponent', () => {
     const stylesActions = fixture.debugElement.injector.get(StyleActions);
     const query = {
       name: 'serie name',
-      foundry: 2,
+      foundry: [2],
       designer: 1,
       visible: [1],
       categories: [],
@@ -295,6 +295,20 @@ describe('AdminStylesListComponent', () => {
         visible,
       };
       const expected = namedStyles.filter((style) => visible.indexOf(style.visible) !== -1);
+      store.dispatch({ type: StyleActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredStyles$.subscribe((styles: Style[]) => {
+        expect(styles).toEqual(expected);
+      });
+    });
+
+    it('should filter styles by foundries', () => {
+      const targets = [1, 3];
+      const searchQuery = {
+        ...initialStyleState.search,
+        foundry: targets,
+      };
+      const expected = namedStyles.filter((style) =>
+        style.foundry.some((foundry) => foundry && targets.indexOf(foundry.id) !== -1));
       store.dispatch({ type: StyleActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredStyles$.subscribe((styles: Style[]) => {
         expect(styles).toEqual(expected);
