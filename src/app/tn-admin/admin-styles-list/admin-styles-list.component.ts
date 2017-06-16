@@ -8,6 +8,7 @@ import {
   getAllStyles,
   getStyleSearchQuery,
   getFamilyEntities,
+  getFoundryEntities,
 } from '../store/reducers';
 
 const OPTICAL = {
@@ -115,6 +116,14 @@ export class AdminStylesListComponent {
   public familyEntities$ = this.store.select(getFamilyEntities);
 
   /**
+   *  Family entity collection for combination.
+   *
+   * @type {Observable<FoundryState.entities}
+   * @memberof AdminStylesListComponent
+   */
+  public foundryEntities$ = this.store.select(getFoundryEntities);
+
+  /**
    *  Style collection with populated family data.
    *
    * @type {Observable<Style[]>}
@@ -130,13 +139,28 @@ export class AdminStylesListComponent {
    );
 
   /**
+   *  Style collection with populated foundry data.
+   *
+   * @type {Observable<Style[]>}
+   * @memberof AdminStylesListComponent
+   */
+  public styleFamiliesFoundries$ = Observable.combineLatest(
+     this.styleFamilies$,
+     this.foundryEntities$,
+     (styles, foundries) => styles.map((style) => ({
+       ...style,
+       foundry: (style.foundry as number[]).map((id) => foundries[id]),
+     }))
+   );
+
+  /**
    *  Styles collection for display, filtered against search query.
    *
    * @type {Observable<Styles[]>}
    * @memberof AdminStylesListComponent
    */
   public filteredStyles$ = Observable.combineLatest(
-    this.styleFamilies$,
+    this.styleFamiliesFoundries$,
     this.stylesQuery$,
     (styles, stylesQuery: StyleSearch) => styles.filter((style) => {
       if (stylesQuery.name) {

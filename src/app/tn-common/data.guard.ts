@@ -80,6 +80,7 @@ export class DataGuard implements CanActivate {
       fail: StyleActions.LOAD_STYLES_FAIL,
       subActions: [
         this.familyActions.loadFamilies,
+        this.foundryActions.loadFoundries,
       ]
     },
   };

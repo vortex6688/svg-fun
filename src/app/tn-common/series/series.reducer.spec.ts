@@ -223,7 +223,7 @@ describe('SeriesReducer', () => {
     });
 
     it('getSeriesByFoundry should return a list of series with the provided foundry', () => {
-      const selectedSeries = getSeriesByFoundry(addedState, SeriesMock.foundry);
+      const selectedSeries = getSeriesByFoundry(addedState, SeriesMock.foundry as number);
       expect(selectedSeries).toEqual([SeriesMock]);
     });
 
