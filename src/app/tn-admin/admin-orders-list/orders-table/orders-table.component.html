@@ -18,7 +18,7 @@
   <thead>
     <tr class="row">
       <th class="col sortable" (click)="sortBy('id')" [ngClass]="{'sort-asc': sortKey === '+id', 'sort-desc': sortKey === '-id'}">Order number</th>
-      <th class="col sortable" (click)="sortBy('licensee_last_name')" [ngClass]="{'sort-asc': sortKey === '+licensee_last_name', 'sort-desc': sortKey === '-licensee_last_name'}">Customer</th>
+      <th class="col sortable" (click)="sortBy('licensee.last_name')" [ngClass]="{'sort-asc': sortKey === '+licensee.last_name', 'sort-desc': sortKey === '-licensee.last_name'}">Customer</th>
       <th class="col sortable" (click)="sortBy('total')" [ngClass]="{'sort-asc': sortKey === '+total', 'sort-desc': sortKey === '-total'}">Amount</th>
       <th class="col sortable" (click)="sortBy('created')"  [ngClass]="{'sort-asc': sortKey === '+created', 'sort-desc': sortKey === '-created'}">Date</th>
       <th class="col sortable" (click)="sortBy('statusName')" [ngClass]="{'sort-asc': sortKey === '+statusName', 'sort-desc': sortKey === '-statusName'}">Status</th>
