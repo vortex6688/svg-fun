@@ -6,4 +6,6 @@ import { BehaviorSubject } from 'rxjs/Rx';
   templateUrl: './customers-row.component.html'
 })
 export class CustomersRowComponent {
+  public isCollapsed = true;
+  public order;
 }

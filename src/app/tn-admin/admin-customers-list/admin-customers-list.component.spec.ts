@@ -9,10 +9,9 @@ import { StoreModule, Store } from '@ngrx/store';
 import { AdminCustomersListComponent } from './admin-customers-list.component';
 import { TnCommonModule } from '../../tn-common/';
 
-describe('AdminSeriesListComponent', () => {
+describe('AdminCustomersListComponent', () => {
   let component: AdminCustomersListComponent;
   let fixture: ComponentFixture<AdminCustomersListComponent>;
-  let store: Store<any>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,7 +27,6 @@ describe('AdminSeriesListComponent', () => {
   }));
 
   beforeEach(() => {
-    store = TestBed.get(Store);
     fixture = TestBed.createComponent(AdminCustomersListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
