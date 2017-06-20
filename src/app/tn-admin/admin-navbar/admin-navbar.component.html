@@ -10,7 +10,8 @@
       <li class="nav-item dropdown" [ngClass]="{ show: currentUrl.indexOf('orders')  !== -1 }">
         <a class="nav-link dropdown-toggle" routerLink="orders" id="LayoutPrimaryMenuItem" routerLinkActive="active">Orders</a>
         <div class="dropdown-menu bg-faded col justify-content-center" aria-labelledby="LayoutPrimaryMenuItem">
-          <a class="nav-link" routerLink="orders/list" routerLinkActive="active">List</a>
+          <a class="nav-link" routerLink="orders/orders" routerLinkActive="active">Orders</a>
+          <a class="nav-link" routerLink="orders/customers" routerLinkActive="active">Customers</a>
           <div style="width: 520px"></div>
         </div>
       </li>

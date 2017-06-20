@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-block card-header card-footer">
+    <button class="btn btn-outline-success col my-1"><icon-create class="text-success icon icon-sm"></icon-create> New Person</button>
+  </div>
+  <div class="card-block card-header">
+    <form novalidate>
+      <span class="row justify-content-between">
+        <small><b class="col">SEARCH BY:</b></small>
+        <small><a (click)="clearFilters()" class="col text-right">Clear filters</a></small>
+      </span>
+      <div class="form-group">
+        <label for="searchCustomerName">Name</label>
+        <input class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="searchCustomerFoundry">Foundry</label>
+        <input class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="searchCustomerName">City</label>
+        <input class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="searchCustomerFoundry">Country</label>
+        <input class="form-control" />
+      </div>
+    </form>
+  </div>
+  <div class="card-block">
+    <form novalidate>
+      <span class="row justify-content-between">
+        <b class="col text-primary">FILTER BY:</b>
+        <span (click)="clearFilters()" class="col text-right text-info" style="cursor: pointer;"><small><b>Clear filters</b></small></span>
+      </span>
+      <fieldset class="card-header">
+        <ul class="list-unstyled m-0 small">
+          <li class="my-1"><b>Title</b></li>
+          <li class="row">
+            <input type="checkbox" class="d-none">
+            <label class="col-8">Company</label>
+            <aside class="col-4 text-right text-info">(228)</aside>
+          </li>
+          <li class="row">
+            <input type="checkbox" class="d-none">
+            <label class="col-8">City</label>
+            <aside class="col-4 text-right text-info">(228)</aside>
+          </li>
+          <li class="row">
+            <input type="checkbox" class="d-none">
+            <label class="col-8">State</label>
+            <aside class="col-4 text-right text-info">(228)</aside>
+          </li>
+          <li class="row">
+            <input type="checkbox" class="d-none">
+            <label class="col-8">Zip</label>
+            <aside class="col-4 text-right text-info">(228)</aside>
+          </li>
+          <li class="row">
+            <input type="checkbox" class="d-none">
+            <label class="col-8">Country</label>
+            <aside class="col-4 text-right text-info">(228)</aside>
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+  </div>
+</div>
