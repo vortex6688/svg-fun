@@ -12,6 +12,7 @@ import { StyleActions } from './styles';
 import { SeriesActions } from './series';
 import { ProjectActions } from './projects';
 import { FoundryActions } from './foundries';
+import { DesignerActions } from './designers';
 
 /**
  * DataGuard checks targetPaths for current path and performs
@@ -52,6 +53,7 @@ export class DataGuard implements CanActivate {
         this.seriesActions.loadSeries,
         this.projectActions.loadProjects,
         this.foundryActions.loadFoundries,
+        this.designerActions.loadDesigners,
       ],
     },
     '/admin/products/families': {
@@ -62,6 +64,7 @@ export class DataGuard implements CanActivate {
       subActions: [
         this.styleActions.loadStyles,
         this.foundryActions.loadFoundries,
+        this.designerActions.loadDesigners,
       ],
     },
     '/admin/products/series': {
@@ -82,6 +85,7 @@ export class DataGuard implements CanActivate {
       subActions: [
         this.familyActions.loadFamilies,
         this.foundryActions.loadFoundries,
+        this.designerActions.loadDesigners,
       ]
     },
   };
@@ -96,6 +100,7 @@ export class DataGuard implements CanActivate {
     private seriesActions: SeriesActions,
     private projectActions: ProjectActions,
     private foundryActions: FoundryActions,
+    private designerActions: DesignerActions,
   ) {}
 
   /**

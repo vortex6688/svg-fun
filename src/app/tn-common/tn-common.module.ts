@@ -19,6 +19,7 @@ import { FamilyService } from './families';
 import { StyleService } from './styles';
 import { ProjectService } from './projects';
 import { FoundryService } from './foundries';
+import { DesignerService } from './designers';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
@@ -59,6 +60,7 @@ import { DropdownInputComponent } from './dropdown-input/dropdown-input.componen
                   StyleService,
                   ProjectService,
                   FoundryService,
+                  DesignerService,
                   TnPaginationConfig,
                   TnTitleService.provider(),
                   TnAutoscrollService.provider(),
