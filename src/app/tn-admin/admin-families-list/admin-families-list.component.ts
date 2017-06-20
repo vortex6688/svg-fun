@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Family, FamilyActions, FamilySearch } from '../../tn-common/families';
 import { Foundry } from '../../tn-common/foundries';
+import { Designer } from '../../tn-common/designers';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { Foundry } from '../../tn-common/foundries';
@@ -13,6 +14,8 @@ import {
   getStyleEntities,
   getFoundryEntities,
   getAllFoundries,
+  getDesignerEntities,
+  getAllDesigners
 } from '../store/reducers';
 
 const CATEGORIES = [
@@ -99,6 +102,22 @@ export class AdminFamiliesListComponent {
   public foundries$ = this.store.select(getAllFoundries);
 
   /**
+   *  Designer entity collection for combination.
+   *
+   * @type {Observable<DesignerState.entities}
+   * @memberof AdminFamiliesListComponent
+   */
+  public designerEntities$ = this.store.select(getDesignerEntities);
+
+  /**
+   *  Designer collection list for selection.
+   *
+   * @type {Observable<Designer[]}
+   * @memberof AdminFamiliesListComponent
+   */
+  public designers$ = this.store.select(getAllDesigners);
+
+  /**
    *  Family collection with populated data.
    * @type {Observable<Family[]>}
    * @memberof AdminFamiliesListComponent
@@ -107,10 +126,12 @@ export class AdminFamiliesListComponent {
      this.families$,
      this.foundryEntities$,
      this.styleEntities$,
-     (families, foundries, styles) => families.map((family) => ({
+     this.designerEntities$,
+     (families, foundries, styles, designers) => families.map((family) => ({
        ...family,
        foundry: (family.foundry as number[]).map((id) => foundries[id]),
        style: (family.style as number[]).map((id) => styles[id]),
+       designer: (family.designer as number[]).map((id) => designers[id]),
      })));
 
   /**
@@ -132,6 +153,11 @@ export class AdminFamiliesListComponent {
         const hasFoundry = (family.foundry as Foundry[]).some((foundry) =>
           foundry && familyQuery.foundry.indexOf(foundry.id) !== -1);
         if (!hasFoundry) { return false; }
+      }
+      if (familyQuery.designer.length) {
+        const hasDesigner = (family.designer as Designer[]).some((designer) =>
+          designer && familyQuery.designer.indexOf(designer.id) !== -1);
+        if (!hasDesigner) { return false; }
       }
       return true;
     }).map((family) => ({

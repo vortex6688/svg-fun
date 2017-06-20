@@ -7,6 +7,7 @@ import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { Family, FamilyState } from '../../tn-common/families';
 import { Foundry } from '../../tn-common/foundries';
+import { Designer } from '../../tn-common/designers';
 import { Project, ProjectActions } from '../../tn-common/projects';
 import { getAllOrders,
   getOrderSearchQuery,
@@ -16,6 +17,8 @@ import { getAllOrders,
   getAllProjects,
   getFoundryEntities,
   getAllFoundries,
+  getDesignerEntities,
+  getAllDesigners,
 } from '../store/reducers';
 
 const STATUSES = [
@@ -101,32 +104,37 @@ export class AdminOrdersListComponent {
   public foundries$ = this.store.select(getAllFoundries);
 
   /**
-   *  Style collection with populated family data.
+   *  Designer entity collection for combination.
    *
-   * @type {Observable<Style[]>}
+   * @type {Observable<DesignerState.entities}
    * @memberof AdminOrdersListComponent
    */
-  public styleFamilies$ = Observable.combineLatest(
-     this.styles$,
-     this.familyEntities$,
-     (styles, families) => styles.map((style) => ({
-       ...style,
-       family: families[style.family as number],
-     }))
-   );
+  public designerEntities$ = this.store.select(getDesignerEntities);
 
   /**
-   *  Style collection with populated foundry data.
+   *  Designer collection list for selection.
+   *
+   * @type {Observable<Designer[]>}
+   * @memberof AdminOrdersListComponent
+   */
+  public designers$ = this.store.select(getAllDesigners);
+
+  /**
+   *  Style collection with populated data.
    *
    * @type {Observable<Style[]>}
    * @memberof AdminOrdersListComponent
    */
-  public styleFamiliesFoundries$ = Observable.combineLatest(
-     this.styleFamilies$,
+  public stylesPopulated$ = Observable.combineLatest(
+     this.styles$,
+     this.familyEntities$,
      this.foundryEntities$,
-     (styles, foundries) => styles.map((style) => ({
+     this.designerEntities$,
+     (styles, families, foundries, designers) => styles.map((style) => ({
        ...style,
+       family: families[style.family as number],
        foundry: (style.foundry as number[]).map((id) => foundries[id]),
+       designer: (style.designer as number[]).map((id) => designers[id]),
      }))
    );
 
@@ -138,7 +146,7 @@ export class AdminOrdersListComponent {
    */
   public licensesStyles$ = Observable.combineLatest(
      this.licenses$,
-     this.styleFamiliesFoundries$,
+     this.stylesPopulated$,
      (licenses, styles) => licenses.map((license) => ({
        ...license,
        license_type_name: this.getLicenseTypeName(license.license_type, license.self_hosted),
@@ -216,6 +224,13 @@ export class AdminOrdersListComponent {
             foundry && orderQuery.foundry.indexOf(foundry.id) !== -1)
         );
         if (!hasFoundry) { return false; }
+      }
+      if (orderQuery.designer.length) {
+        const hasDesigner = order.licenses.some((license) =>
+          ((license.style as Style).designer as Designer[]).some((designer) =>
+            designer && orderQuery.designer.indexOf(designer.id) !== -1)
+        );
+        if (!hasDesigner) { return false; }
       }
       return !orderQuery.licenses.length || orderQuery.licenses.some((licenseType) =>
         Object.entries(licenseType).every(([key, value]) =>

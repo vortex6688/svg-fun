@@ -47,20 +47,21 @@ export class SeriesControlsComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Update foundry form with selected foundries
+   * Update specified form with selected items
    *
    * @public
    * @param {DropdownOption[]} options
+   * @param {string} item
    * @memberof SeriesControlsComponent
    */
-  public updateFoundry(options: DropdownOption[]) {
-    const selectedFoundries = options.reduce((result, option) => {
+  public updateList(options: DropdownOption[], item: string) {
+    const selectedItems = options.reduce((result, option) => {
       if (option.selected) {
         result.push(option.value);
       }
       return result;
     }, []);
-    this.searchForm.setControl('foundry', this.fb.array(selectedFoundries));
+    this.searchForm.setControl(item, this.fb.array(selectedItems));
   }
 
   /**

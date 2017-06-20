@@ -1,6 +1,7 @@
 /* tslint:disable:variable-name */
 import { Family } from '../families';
 import { Foundry } from '../foundries';
+import { Designer } from '../designers';
 
 export class Style {
   public id?: number;
@@ -14,7 +15,7 @@ export class Style {
   public support?: object;
   public default_style: boolean;
   public foundry: number[] | Foundry[];
-  public designer: number[];
+  public designer: number[] | Designer[];
   public posture: number;
   public postureName?: string;
   public sku?: string;

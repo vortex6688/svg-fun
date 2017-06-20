@@ -114,7 +114,7 @@ export const getStylesByFoundry = (state: StyleState, foundryId: number) => {
 export const getStylesByDesigner = (state: StyleState, designerId: number) => {
   return state.ids.reduce((result, id) => {
     const style = state.entities[id];
-    if (style.designer.indexOf(designerId) !== -1) {
+    if ((style.designer as number[]).indexOf(designerId) !== -1) {
       result.push(style);
     }
     return result;
