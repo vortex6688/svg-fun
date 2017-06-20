@@ -13,6 +13,7 @@ import { Style, StyleActions } from '../../tn-common/styles';
 import { Family, FamilyActions } from '../../tn-common/families';
 import { Project, ProjectActions } from '../../tn-common/projects';
 import { Foundry, FoundryActions } from '../../tn-common/foundries';
+import { Designer, DesignerActions } from '../../tn-common/designers';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -183,6 +184,17 @@ describe('AdminOrdersListComponent', () => {
     postface: 'eula postface',
     eula_default: true,
   };
+  const mockDesigner: Designer = {
+    id: 1,
+    name: 'mega designer',
+    slug: 'mega-designer',
+    description: 'loves design',
+    birth_date: '1999/11/30',
+    death_date: '1999/12/30',
+    foundry: [2],
+    title: [1],
+  };
+
   const mockStyleList: Style[] = [
     { ...mockStyle, id: 2, family: 1, foundry: [1], name: 'Non existant' },
     { ...mockStyle, id: 3, family: 1, foundry: [2, 3], name: 'Style light' },
@@ -217,6 +229,11 @@ describe('AdminOrdersListComponent', () => {
     { ...mockFoundry, id: 2, name: 'foundr' },
     { ...mockFoundry, id: 3, name: 'supa' },
     { ...mockFoundry, id: 4, name: 'dupa' },
+  ];
+  const mockDesignerList: Designer[] = [
+    { ...mockDesigner, id: 2, name: 'foundr' },
+    { ...mockDesigner, id: 3, name: 'supa' },
+    { ...mockDesigner, id: 4, name: 'dupa' },
   ];
 
   function capitalizeFirstLetter(word: string) {
@@ -280,6 +297,7 @@ describe('AdminOrdersListComponent', () => {
       project: 'typenetwork',
       font: 'best font',
       foundry: [2],
+      designer: [3],
       status: [],
       licenses: [],
     };
@@ -289,19 +307,18 @@ describe('AdminOrdersListComponent', () => {
   });
 
   describe('order combining', () => {
-    const styleFamilies = mockStyleList.map((style) => ({
+    const stylesPopulated = mockStyleList.map((style) => ({
       ...style,
       family: mockFamilyList.find((family) => family.id === style.family),
-    }));
-    const styleFamiliesFoundries = styleFamilies.map((style) => ({
-      ...style,
       foundry: (style.foundry as number[]).map((id) =>
         mockFoundryList.find((foundry) => foundry.id === id)),
+      designer: (style.designer as number[]).map((id) =>
+        mockDesignerList.find((designer) => designer.id === id)),
     }));
     const licensesStyles = mockLicenseList.map((license) => ({
       ...license,
       license_type_name: getLicenseTypeName(license.license_type, license.self_hosted),
-      style: styleFamiliesFoundries.find((style) => style.id === license.style),
+      style: stylesPopulated.find((style) => style.id === license.style),
     }));
     const licensedOrders = mockOrderList.map((order) => ({
       ...order,
@@ -322,17 +339,12 @@ describe('AdminOrdersListComponent', () => {
       store.dispatch({ type: StyleActions.LOAD_STYLES_SUCCESS, payload: mockStyleList });
       store.dispatch({ type: ProjectActions.LOAD_PROJECTS_SUCCESS, payload: mockProjectList });
       store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
+      store.dispatch({ type: DesignerActions.LOAD_DESIGNERS_SUCCESS, payload: mockDesignerList });
     });
 
-    it('should assign matching families to styles', () => {
-      component.styleFamilies$.subscribe((styles) => {
-        expect(styles).toEqual(styleFamilies);
-      });
-    });
-
-    it('should assign matching foundries to styles', () => {
-      component.styleFamiliesFoundries$.subscribe((styles) => {
-        expect(styles).toEqual(styleFamiliesFoundries);
+    it('should populate style data', () => {
+      component.stylesPopulated$.subscribe((styles) => {
+        expect(styles).toEqual(stylesPopulated);
       });
     });
 

@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { StyleSearch, initialStyleState } from '../../../tn-common/styles';
 import { StylesControlsComponent } from './styles-controls.component';
 import { Foundry } from '../../../tn-common/foundries';
+import { Designer } from '../../../tn-common/designers';
 import { DropdownOption } from '../../../tn-common/dropdown-input';
 
 describe('StylesControlComponent', () => {
@@ -34,10 +35,25 @@ describe('StylesControlComponent', () => {
     postface: 'eula postface',
     eula_default: true,
   };
+  const mockDesigner: Designer = {
+    id: 1,
+    name: 'mega designer',
+    slug: 'mega-designer',
+    description: 'loves design',
+    birth_date: '1999/11/30',
+    death_date: '1999/12/30',
+    foundry: [2],
+    title: [1],
+  };
   const mockFoundryList: Foundry[] = [
     { ...mockFoundry, id: 2, name: 'foundr' },
     { ...mockFoundry, id: 3, name: 'supa' },
     { ...mockFoundry, id: 4, name: 'dupa' },
+  ];
+  const mockDesignerList: Designer[] = [
+    { ...mockDesigner, id: 2, name: 'foundr' },
+    { ...mockDesigner, id: 3, name: 'supa' },
+    { ...mockDesigner, id: 4, name: 'dupa' },
   ];
 
   beforeEach(async(() => {
@@ -54,10 +70,12 @@ describe('StylesControlComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(StylesControlsComponent);
     component = fixture.componentInstance;
+
     component.initialQuery = {
       ...defaultQuery,
     };
     component.foundries = mockFoundryList;
+    component.designers = mockDesignerList;
     formBuilder = TestBed.get(FormBuilder);
 
     fixture.detectChanges();
@@ -71,7 +89,7 @@ describe('StylesControlComponent', () => {
     component.searchForm = formBuilder.group({
       name: 'John',
       foundry: formBuilder.array([2]),
-      designer: 3,
+      designer: formBuilder.array([3]),
     });
     component.filterForm = formBuilder.group({
       visible: formBuilder.array(component.visibilityData.map((data) => data.value)),
@@ -81,7 +99,7 @@ describe('StylesControlComponent', () => {
     expect(component.searchForm.value).toEqual({
       name: null,
       foundry: [],
-      designer: null,
+      designer: [],
     });
     expect(component.filterForm.value).toEqual({
       visible: component.visibilityData.map(() => null),
@@ -89,35 +107,54 @@ describe('StylesControlComponent', () => {
     });
   });
 
-  it('should update foundry list on changes', () => {
+  it('should update item lists on changes', () => {
     const initialFoundryList: DropdownOption[] = mockFoundryList.map((foundry) => ({
       name: foundry.name,
       value: foundry.id,
       selected: false,
     }));
-    const foundryQuery = {
+    const initialDesignerList: DropdownOption[] = mockDesignerList.map((designer) => ({
+      name: designer.name,
+      value: designer.id,
+      selected: false,
+    }));
+    const query = {
       ...initialStyleState.search,
       foundry: [mockFoundryList[0].id, mockFoundryList[1].id],
+      designer: [mockDesignerList[0].id, mockDesignerList[1].id],
     };
     const moddedFoundries = [
       ...mockFoundryList,
       { ...mockFoundry, name: 'new', id: 22 }
     ];
-    const moddedList = moddedFoundries.map((foundry) => ({
+    const moddedDesigners = [
+      ...mockDesignerList,
+      { ...mockDesigner, name: 'new', id: 22 }
+    ];
+    const foundryList = moddedFoundries.map((foundry) => ({
       name: foundry.name,
       value: foundry.id,
-      selected: foundryQuery.foundry.indexOf(foundry.id) !== -1,
+      selected: query.foundry.indexOf(foundry.id) !== -1,
     }));
-    component.ngOnChanges({ foundries: initialFoundryList });
+    const designerList = moddedDesigners.map((designer) => ({
+      name: designer.name,
+      value: designer.id,
+      selected: query.designer.indexOf(designer.id) !== -1,
+    }));
+    component.ngOnChanges({ foundries: initialFoundryList, designers: initialDesignerList });
     expect(component.foundryList).toEqual(initialFoundryList);
+    expect(component.designerList).toEqual(initialDesignerList);
 
     component.foundries = moddedFoundries;
-    component.initialQuery = foundryQuery;
-    component.ngOnChanges({ foundries: moddedFoundries });
-    expect(component.foundryList).toEqual(moddedList);
+    component.designers = moddedDesigners;
+    component.initialQuery = query;
+    component.ngOnChanges({ foundries: moddedFoundries, designers: moddedDesigners });
+    expect(component.foundryList).toEqual(foundryList);
+    expect(component.designerList).toEqual(designerList);
+    expect(component.designerList).toEqual(designerList);
   });
 
-  it('should update foundry selection', () => {
+  it('should update item selection', () => {
     const foundryOptions: DropdownOption[] = [
       { name: 'empty', selected: true, value: 2 },
       { name: 'empty', selected: false, value: 222 },
@@ -127,7 +164,7 @@ describe('StylesControlComponent', () => {
       ...component.searchForm.value,
       foundry: foundryOptions.filter((foundry) => foundry.selected).map((foundry) => foundry.value),
     };
-    component.updateFoundry(foundryOptions);
+    component.updateList(foundryOptions, 'foundry');
     expect(component.searchForm.value).toEqual(expected);
   });
 

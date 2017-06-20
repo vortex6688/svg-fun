@@ -9,6 +9,7 @@ import { StoreModule, Store } from '@ngrx/store';
 import { Family, FamilyActions, FamilySearch, initialFamilyState } from '../../tn-common/families';
 import { Foundry, FoundryActions } from '../../tn-common/foundries';
 import { Style, StyleActions } from '../../tn-common/styles';
+import { Designer, DesignerActions } from '../../tn-common/designers';
 import { AdminFamiliesListComponent } from './admin-families-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -101,6 +102,16 @@ describe('AdminFamiliesListComponent', () => {
     recommended_function: [0, 1, 2],
     recommended_size: [400, 500],
   };
+  const mockDesigner: Designer = {
+    id: 1,
+    name: 'mega designer',
+    slug: 'mega-designer',
+    description: 'loves design',
+    birth_date: '1999/11/30',
+    death_date: '1999/12/30',
+    foundry: [2],
+    title: [1],
+  };
 
   const mockFamilyList: Family[] = [
     { ...mockFamily, name: 'fake', id: 1, styles: [2, 3], foundry: [2] },
@@ -117,6 +128,11 @@ describe('AdminFamiliesListComponent', () => {
     { ...mockStyle, id: 2, name: 'foundr' },
     { ...mockStyle, id: 3, name: 'supa' },
     { ...mockStyle, id: 4, name: 'dupa' },
+  ];
+  const mockDesignerList: Designer[] = [
+    { ...mockDesigner, id: 2, name: 'foundr' },
+    { ...mockDesigner, id: 3, name: 'supa' },
+    { ...mockDesigner, id: 4, name: 'dupa' },
   ];
 
   const CATEGORIES = [
@@ -192,7 +208,7 @@ describe('AdminFamiliesListComponent', () => {
     const query: FamilySearch = {
       name: 'fam name',
       foundry: [2],
-      designer: 4,
+      designer: [4],
       visibility: [1, 2],
       categories: [1],
     };
@@ -203,9 +219,9 @@ describe('AdminFamiliesListComponent', () => {
   describe('family combining', () => {
     const familiesPopulated = mockFamilyList.map((family) => ({
       ...family,
-      foundry: (family.foundry as number[]).map((id) =>
-        mockFoundryList.find((foundry) => foundry.id === id)),
+      foundry: (family.foundry as number[]).map((id) => mockFoundryList.find((foundry) => foundry.id === id)),
       style: (family.style as number[]).map((id) => mockStyleList.find((style) => style.id === id)),
+      designer: (family.designer as number[]).map((id) => mockDesignerList.find((designer) => designer.id === id))
     }));
     const namedFamilies = familiesPopulated.map((family) => ({
       ...family,
@@ -220,6 +236,7 @@ describe('AdminFamiliesListComponent', () => {
       store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
       store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
       store.dispatch({ type: StyleActions.LOAD_STYLES_SUCCESS, payload: mockStyleList });
+      store.dispatch({ type: DesignerActions.LOAD_DESIGNERS_SUCCESS, payload: mockDesignerList });
     });
 
     it('should populate families with data', () => {

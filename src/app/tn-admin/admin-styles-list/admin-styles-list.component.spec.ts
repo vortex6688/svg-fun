@@ -9,6 +9,7 @@ import { StoreModule, Store } from '@ngrx/store';
 import { Style, StyleActions, StyleSearch, initialStyleState } from '../../tn-common/styles';
 import { Family, FamilyActions } from '../../tn-common/families';
 import { Foundry, FoundryActions } from '../../tn-common/foundries';
+import { Designer, DesignerActions } from '../../tn-common/designers';
 import { AdminStylesListComponent } from './admin-styles-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -101,13 +102,46 @@ describe('AdminStylesListComponent', () => {
     postface: 'eula postface',
     eula_default: true,
   };
+  const mockDesigner: Designer = {
+    id: 1,
+    name: 'mega designer',
+    slug: 'mega-designer',
+    description: 'loves design',
+    birth_date: '1999/11/30',
+    death_date: '1999/12/30',
+    foundry: [2],
+    title: [1],
+  };
 
   const mockStyleList: Style[] = [
-    { ...mockStyle, id: 2, visible: 3, name: 'Sers', foundry: [2] },
-    { ...mockStyle, id: 3, visible: 2, name: 'GOT', foundry: [3, 5] },
-    { ...mockStyle, id: 4, visible: 1, name: 'IASIP', foundry: [4] },
-    { ...mockStyle, id: 5, visible: 3, name: 'Fernando', foundry: [2, 4] },
-  ];
+    {
+      ...mockStyle,
+      id: 2,
+      visible: 3,
+      name: 'Sers',
+      foundry: [2],
+      designer: [2],
+    }, {
+      ...mockStyle,
+      id: 3,
+      visible: 2,
+      name: 'GOT',
+      foundry: [3, 5],
+      designer: [3, 9],
+    },   { ...mockStyle,
+      id: 4,
+      visible: 1,
+      name: 'IASIP',
+      foundry: [4],
+      designer: [3, 6],
+    }, {
+      ...mockStyle,
+      id: 5,
+      visible: 3,
+      name: 'Fernando',
+      designer: [4],
+      foundry: [2, 4],
+    }];
   const mockFamilyList: Family[] = [
     { ...mockFamily, id: 1, styles: [2, 3], category: [0, 1] },
     { ...mockFamily, id: 2, styles: [4], category: [1, 2, 3] },
@@ -118,6 +152,11 @@ describe('AdminStylesListComponent', () => {
     { ...mockFoundry, id: 2, name: 'foundr' },
     { ...mockFoundry, id: 3, name: 'supa' },
     { ...mockFoundry, id: 4, name: 'dupa' },
+  ];
+  const mockDesignerList: Designer[] = [
+    { ...mockDesigner, id: 2, name: 'foundr' },
+    { ...mockDesigner, id: 3, name: 'supa' },
+    { ...mockDesigner, id: 4, name: 'dupa' },
   ];
   const OPTICAL = {
     100: 'Micro',
@@ -231,7 +270,7 @@ describe('AdminStylesListComponent', () => {
     const query = {
       name: 'serie name',
       foundry: [2],
-      designer: 1,
+      designer: [1],
       visible: [1],
       categories: [],
     };
@@ -241,15 +280,13 @@ describe('AdminStylesListComponent', () => {
   });
 
   describe('styles combining', () => {
-    const styleFamilies = mockStyleList.map((style) => ({
+    const stylesPopulated = mockStyleList.map((style) => ({
       ...style,
       family: mockFamilyList.find((family) => family.id === style.family),
+      foundry: (style.foundry as number[]).map((id) => mockFoundryList.find((foundry) => foundry.id === id)),
+      designer: (style.designer as number[]).map((id) => mockDesignerList.find((designer) => designer.id === id)),
     }));
-    const styleFamiliesFoundries = styleFamilies.map((style) => ({
-      ...style,
-      foundry: (style.foundry as number[]).map((id) => mockFoundryList.find((foundry) => foundry.id === id))
-    }));
-    const namedStyles = styleFamiliesFoundries.map((style) => ({
+    const namedStyles = stylesPopulated.map((style) => ({
       ...style,
       visibleName: VISIBLE_STATES[style.visible],
       opticalName: OPTICAL[style.optical],
@@ -262,17 +299,12 @@ describe('AdminStylesListComponent', () => {
       store.dispatch({ type: StyleActions.LOAD_STYLES_SUCCESS, payload: mockStyleList });
       store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
       store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
+      store.dispatch({ type: DesignerActions.LOAD_DESIGNERS_SUCCESS, payload: mockDesignerList });
     });
 
-    it('should assign matching families to styles', () => {
-      component.styleFamilies$.subscribe((styles) => {
-        expect(styles).toEqual(styleFamilies);
-      });
-    });
-
-    it('should assign matching foundries to styles', () => {
-      component.styleFamiliesFoundries$.subscribe((styles) => {
-        expect(styles).toEqual(styleFamiliesFoundries);
+    it('should populate style data', () => {
+      component.stylesPopulated$.subscribe((styles) => {
+        expect(styles).toEqual(stylesPopulated);
       });
     });
 
@@ -323,6 +355,20 @@ describe('AdminStylesListComponent', () => {
       };
       const expected = namedStyles.filter((style) =>
         style.family.category.some((category) => categories.indexOf(category) !== -1));
+      store.dispatch({ type: StyleActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredStyles$.subscribe((styles: Style[]) => {
+        expect(styles).toEqual(expected);
+      });
+    });
+
+    it('should filter styles by designers', () => {
+      const designer = [3, 4];
+      const searchQuery = {
+        ...initialStyleState.search,
+        designer,
+      };
+      const expected = namedStyles.filter((style) =>
+        style.designer.some((item) => item && designer.indexOf(item.id) !== -1));
       store.dispatch({ type: StyleActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredStyles$.subscribe((styles: Style[]) => {
         expect(styles).toEqual(expected);
