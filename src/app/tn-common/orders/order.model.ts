@@ -35,4 +35,5 @@ export class Order {
   public upgrade_price_adjustment: number;
   public families?: number[] | Family[];
   public new_customer?: boolean;
+  public new_customer_name?: string;
 }

@@ -29,6 +29,11 @@ describe('AdminOrdersListComponent', () => {
     'Cancelled',        // 3
     'Approved, Unpaid', // 4
   ];
+  const CUSTOMERSTATUS = [
+    'New customer',       // 0
+    'Returning customer', // 1
+  ];
+
   const mockOrder: Order = {
     id: 1,
     user: 1,
@@ -302,6 +307,7 @@ describe('AdminOrdersListComponent', () => {
       ...order,
       statusName: STATUSES[order.status],
       licenses: licensesStyles.filter((license) => license.order === order.id),
+      new_customer_name: CUSTOMERSTATUS[+order.new_customer],
     }));
     const licensesOrdersProjects = licensedOrders.map((order) => ({
       ...order,
