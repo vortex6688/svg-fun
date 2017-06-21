@@ -40,6 +40,7 @@
     &.btn,
     &.custom-select {
       cursor: pointer;
+      font-weight: $font-weight-bold;
 
       &:hover,
       &:active,

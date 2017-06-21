@@ -19,6 +19,13 @@
   }
 }
 
+.marked {
+  &:before {
+    content: '*';
+    color: $red;
+  }
+}
+
 // TN switch checkbox
 
 .switch-checkbox {
@@ -85,6 +92,7 @@
     top: 0;
   }
   .custom-control-input:checked ~ .custom-control-indicator {
+    background: lighten($gray-lightest, 20%);
     background-size: 0;
     &:after {
       content: '';
@@ -100,5 +108,20 @@
       color: $gray;
     }
   }
-}
 
+  // in some cases TN is using smaller size custom checkboxes
+  &.checkbox-sm {
+    .custom-control-indicator {
+      width: 0.8rem;
+      height: 0.8rem;
+      top: 0.12rem;
+    }
+
+    .custom-control-input:checked ~ .custom-control-indicator {
+      &:after {
+        width: 0.8rem;
+        bottom: 0.5rem;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { AdminOrderDetailsComponent } from '../../../admin-order-details';
+import { AdminOrderEditComponent } from '../../../admin-order-edit';
 
 @Component({
   selector: 'order-row',
@@ -41,6 +41,6 @@ export class OrderRowComponent implements OnInit, OnDestroy {
   }
 
   public openOrderDetails() {
-    const orderModal = this.modalService.open(AdminOrderDetailsComponent, { windowClass: 'full-size'});
+    const orderModal = this.modalService.open(AdminOrderEditComponent, { windowClass: 'full-size'});
   }
 }

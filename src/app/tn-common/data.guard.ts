@@ -60,6 +60,7 @@ export class DataGuard implements CanActivate {
       success: FamilyActions.LOAD_FAMILIES_SUCCESS,
       fail: FamilyActions.LOAD_FAMILIES_FAIL,
       subActions: [
+        this.styleActions.loadStyles,
         this.foundryActions.loadFoundries,
       ],
     },

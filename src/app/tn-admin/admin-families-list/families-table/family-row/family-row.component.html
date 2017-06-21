@@ -1,22 +1,29 @@
 <tr class="row" [ngClass]="{'row-selected': isChecked}">
-  <td class="col align-self-center" style="max-width: 2rem;">
-    <label class="custom-control custom-checkbox">
+  <td class="col" style="max-width: 2rem;">
+    <label class="custom-control custom-checkbox checkbox-sm">
       <input type="checkbox" class="custom-control-input" value='{{family.id}}' (click)='selectFamily()' />
       <span class="custom-control-indicator"></span>
     </label>
   </td>
-  <td class="col">{{family.name}}</td>
+  <td class="col">
+    <div>
+      {{family.name}}
+    </div>
+    <div>
+      <button class="btn btn-sm btn-info w-75" (click)="openFamilyDetails()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
+    </div>
+  </td>
   <td class="col">{{family.visibleName}}</td>
   <td class="col">
     <ul>
       <li *ngFor='let foundry of family.foundry'>{{foundry ? foundry.name : ''}}</li>
     </ul>
-  </td>  
+  </td>
   <td class="col">
     <ul>
       <li *ngFor='let designer of family.designer'>{{designer}}</li>
     </ul>
-  </td>  
+  </td>
   <td class="col">{{family.style.length}}</td>
   <td class="col">{{family.min_size}}</td>
   <td class="col">{{family.max_size}}</td>

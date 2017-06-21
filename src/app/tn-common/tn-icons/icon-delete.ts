@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
   selector: 'icon-delete',
   template: `<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-299 391 13 11"
-  xml:space="preserve"><g><path class="st0"
+  xml:space="preserve">
+  <g>
+  <path
   d="M-296.2,394.5v6.7c0,0.4,0.3,0.7,0.7,0.7h6c0.4,0,0.7-0.3,0.7-0.7v-6.7H-296.2z M-294.2,
   400.5h-0.6v-4.7h0.7v4.7H-294.2z M-292.8,400.5h-0.7v-4.7h0.7V400.5z M-291.5,
   400.5h-0.7v-4.7h0.7V400.5z M-290.2,400.5h-0.6v-4.7h0.7v4.7H-290.2z"/>

@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FamilyRowComponent } from './family-row.component';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 describe('FamilyRowComponent', () => {
   let component: FamilyRowComponent;
@@ -13,7 +14,8 @@ describe('FamilyRowComponent', () => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
       declarations: [ FamilyRowComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ NgbModalStack, NgbActiveModal ]
     })
     .compileComponents();
   }));

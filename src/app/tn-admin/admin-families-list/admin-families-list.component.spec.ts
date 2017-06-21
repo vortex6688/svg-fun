@@ -8,6 +8,7 @@ import { StoreModule, Store } from '@ngrx/store';
 
 import { Family, FamilyActions, FamilySearch, initialFamilyState } from '../../tn-common/families';
 import { Foundry, FoundryActions } from '../../tn-common/foundries';
+import { Style, StyleActions } from '../../tn-common/styles';
 import { AdminFamiliesListComponent } from './admin-families-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -68,6 +69,38 @@ describe('AdminFamiliesListComponent', () => {
     postface: 'eula postface',
     eula_default: true,
   };
+  const mockStyle: Style = {
+    id: 1,
+    name: 'Style bolder',
+    style_name: 'Bold',
+    family: 1,
+    base_price: '22.0000',
+    specimen_text: 'Text for specimen',
+    support: {
+      'supported language': [
+        'uppercase',
+        'lowercase',
+      ],
+    },
+    default_style: false,
+    foundry: [2],
+    designer: [3],
+    posture: 1,
+    visible: 3,
+    optical: 500,
+    grade: 11,
+    weight: 400,
+    width: 500,
+    tn_size: [],
+    released: new Date().toString(),
+    tn_weight: 300,
+    tn_width: 600,
+    min_recommended_size: 24,
+    max_recommended_size: 100,
+    isRE: false,
+    recommended_function: [0, 1, 2],
+    recommended_size: [400, 500],
+  };
 
   const mockFamilyList: Family[] = [
     { ...mockFamily, name: 'fake', id: 1, styles: [2, 3], },
@@ -79,6 +112,11 @@ describe('AdminFamiliesListComponent', () => {
     { ...mockFoundry, id: 2, name: 'foundr' },
     { ...mockFoundry, id: 3, name: 'supa' },
     { ...mockFoundry, id: 4, name: 'dupa' },
+  ];
+  const mockStyleList: Style[] = [
+    { ...mockStyle, id: 2, name: 'foundr' },
+    { ...mockStyle, id: 3, name: 'supa' },
+    { ...mockStyle, id: 4, name: 'dupa' },
   ];
 
   const CATEGORIES = [
@@ -163,12 +201,13 @@ describe('AdminFamiliesListComponent', () => {
     expect(orderActions.searchQuery).toHaveBeenCalledWith(query);
   });
   describe('family combining', () => {
-    const familyFoundries = mockFamilyList.map((family) => ({
+    const familiesPopulated = mockFamilyList.map((family) => ({
       ...family,
       foundry: (family.foundry as number[]).map((id) =>
-        mockFoundryList.find((foundry) => foundry.id === id))
+        mockFoundryList.find((foundry) => foundry.id === id)),
+      style: (family.style as number[]).map((id) => mockStyleList.find((style) => style.id === id)),
     }));
-    const namedFamilies = familyFoundries.map((family) => ({
+    const namedFamilies = familiesPopulated.map((family) => ({
       ...family,
       categoryName: family.category.map((category) => CATEGORIES[category]).sort(),
       min_size: Math.min(...family.recommended_size),
@@ -180,11 +219,12 @@ describe('AdminFamiliesListComponent', () => {
     beforeEach(() => {
       store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
       store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
+      store.dispatch({ type: StyleActions.LOAD_STYLES_SUCCESS, payload: mockStyleList });
     });
 
-    it('should assign matching foundries to families', () => {
-      component.familyFoundries$.subscribe((styles) => {
-        expect(styles).toEqual(familyFoundries);
+    it('should populate families with data', () => {
+      component.familiesPopulated$.subscribe((styles) => {
+        expect(styles).toEqual(familiesPopulated);
       });
     });
 

@@ -136,6 +136,10 @@ $spacers: (
     y: ($spacer-y * 3)
   ),
   6: (
+    x: ($spacer-x * 4.5),
+    y: ($spacer-y * 4.5)
+  ),
+  7: (
     x: ($spacer-x * 6),
     y: ($spacer-y * 6)
   )
@@ -268,8 +272,8 @@ $blockquote-font-size:    ($font-size-base * 1.25);
 $blockquote-border-color: $gray-lighter;
 $blockquote-border-width: .25rem;
 
-$hr-border-color: rgba($black,.1);
-$hr-border-width: $border-width;
+$hr-border-color: rgba($black,.15);
+$hr-border-width: 2px;
 
 $mark-padding: .2em;
 
@@ -347,7 +351,7 @@ $btn-primary-border:             $btn-primary-bg;
 
 $btn-secondary-color:            $gray-dark;
 $btn-secondary-bg:               $white;
-$btn-secondary-border:           #ccc;
+$btn-secondary-border:           rgba($black,.15);
 
 $btn-info-color:                 $white;
 $btn-info-bg:                    $gray-lightest;
@@ -414,7 +418,8 @@ $input-padding-y-sm:             .25rem;
 $input-padding-x-lg:             1.5rem;
 $input-padding-y-lg:             .75rem;
 
-$input-height:                   (($font-size-base * $input-line-height) + ($input-padding-y * 2));
+$input-height:                   auto; // set input height to auto to make input's height consistent
+                                       // default value: (($font-size-base * $input-line-height) + ($input-padding-y * 2));
 $input-height-lg:                (($font-size-lg * $line-height-lg) + ($input-padding-y-lg * 2));
 $input-height-sm:                (($font-size-sm * $line-height-sm) + ($input-padding-y-sm * 2));
 
@@ -471,8 +476,8 @@ $custom-checkbox-indeterminate-box-shadow: none;
 $custom-radio-radius: 50%;
 $custom-radio-checked-icon: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='#{$custom-control-checked-indicator-color}'/%3E%3C/svg%3E"), "#", "%23");
 
-$custom-select-padding-x:          .6rem ;
-$custom-select-padding-y:          .375rem;
+$custom-select-padding-x:          .5rem ;
+$custom-select-padding-y:          .5rem;
 $custom-select-indicator-padding:   1rem; // Extra padding to account for the presence of the background-image based indicator
 $custom-select-line-height:         $input-line-height;
 $custom-select-color:               $input-color;
