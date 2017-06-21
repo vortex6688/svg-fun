@@ -12,12 +12,12 @@ export class FamiliesTableComponent {
   @Input() public family;
   @Input() public families: Family[] = [];
 
+  public sortKey = '-name';
+
   public pageSize: number = 25;
   public pageItems: number[] = [];
 
   constructor(private modalService: NgbModal) {}
-
-  public sortKey = '-name';
 
   public updatePageItems($event) {
     this.pageItems = $event;

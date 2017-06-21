@@ -9,7 +9,6 @@ import { Family } from '../../tn-common/families';
   styleUrls: ['./admin-family-batch-edit.component.scss'],
 })
 export class AdminFamilyBatchEditComponent {
-  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal) {}
 
   public tags = [
     'High Contrast', 'Flared', 'Inline', 'Rectangular', 'Realist',
@@ -17,4 +16,6 @@ export class AdminFamilyBatchEditComponent {
     'Sharp', 'Experimental', 'Inscriptional', 'Initials', 'Ball Terminals',
     'Pothooks', 'Roundhandle'
   ];
+
+  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal) {}
 }

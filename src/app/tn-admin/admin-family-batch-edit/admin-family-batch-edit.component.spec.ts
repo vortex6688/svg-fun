@@ -21,6 +21,12 @@ describe('AdminOrderDetailsComponent', () => {
     .compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AdminFamilyBatchEditComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });

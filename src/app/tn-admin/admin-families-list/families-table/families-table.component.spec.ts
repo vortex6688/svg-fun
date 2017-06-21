@@ -4,6 +4,7 @@ import { OrderByPipe } from '../../../tn-common/pipes/';
 import { FamilyRowComponent } from './family-row';
 import { FamiliesTableComponent } from './families-table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 describe('FamiliesTableComponent', () => {
   let component: FamiliesTableComponent;
@@ -15,7 +16,8 @@ describe('FamiliesTableComponent', () => {
       declarations: [ FamilyRowComponent,
                       FamiliesTableComponent,
                       OrderByPipe, ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ NgbModalStack ]
     })
     .compileComponents();
   }));
