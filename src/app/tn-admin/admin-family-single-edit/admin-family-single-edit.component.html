@@ -3,8 +3,12 @@
     You are editing this item. Click the "Save" button to commit your changes or click "Discard" to remove changes and exit edit mode.
   </span>
   <div class="d-flex flex-xl-row flex-column text-right">
-    <button type="button" class="btn btn-danger mr-xl-5" (click)="activeModal.close('Cross click')"><icon-delete class="text-white icon icon-sm"></icon-delete> Discard</button>
-    <button class="btn btn-success mr-xl-5" type="button"><icon-check class="text-white icon icon-sm"></icon-check> Save</button>
+    <button class="btn btn-danger mr-xl-5" type="button" (click)="activeModal.close('Cross click')">
+      <icon-delete class="text-white icon icon-sm"></icon-delete> Discard
+    </button>
+    <button class="btn btn-success mr-xl-5" type="button">
+      <icon-check class="text-white icon icon-sm"></icon-check> Save
+    </button>
   </div>
 </div>
 

@@ -92,6 +92,7 @@
     top: 0;
   }
   .custom-control-input:checked ~ .custom-control-indicator {
+    background: lighten($gray-lightest, 20%);
     background-size: 0;
     &:after {
       content: '';
@@ -117,7 +118,6 @@
     }
 
     .custom-control-input:checked ~ .custom-control-indicator {
-      background: lighten($gray-lightest, 20%);
       &:after {
         width: 0.8rem;
         bottom: 0.5rem;

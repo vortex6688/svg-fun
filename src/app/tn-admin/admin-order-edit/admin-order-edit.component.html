@@ -1,10 +1,12 @@
-<div class="d-flex justify-content-between align-items-center modal-action-bar">
-  <div class="ml-5 small text-primary">You are editing this item.</div>
-  <div>
-    <button class="btn btn-info mr-5" type="button" (click)="activeModal.close('Cross click')">
+<div class="d-flex justify-content-between modal-action-bar">
+  <span class="mx-2 ml-lg-5 small text-primary align-self-center">
+    You are editing this item.
+  </span>
+  <div class="d-flex flex-xl-row flex-column text-right">
+    <button class="btn btn-info mr-xl-5" type="button" (click)="activeModal.close('Cross click')">
       <icon-close class="icon icon-sm text-white"></icon-close> Cancel
     </button>
-    <button class="btn btn-success mr-5" type="button">
+    <button class="btn btn-success mr-xl-5" type="button">
       <icon-check class="icon icon-sm text-white"></icon-check> Save
     </button>
   </div>
