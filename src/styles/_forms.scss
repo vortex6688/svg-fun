@@ -19,6 +19,10 @@
   }
 }
 
+.custom-select {
+  cursor: pointer;
+}
+
 .marked {
   &:before {
     content: '*';
@@ -109,8 +113,19 @@
     }
   }
 
+  .custom-control-input:disabled ~ .custom-control-indicator {
+    background: none;
+    border-color: lighten($gray-lightest, 20%);
+  }
+
+  .custom-control-input:disabled ~ .custom-control-description {
+    color: lighten($gray-lightest, 20%);
+  }
+
   // in some cases TN is using smaller size custom checkboxes
   &.checkbox-sm {
+    padding-left: 1.25rem;
+
     .custom-control-indicator {
       width: 0.8rem;
       height: 0.8rem;
