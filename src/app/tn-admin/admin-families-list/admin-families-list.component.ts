@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { Family, FamilyActions, FamilySearch } from '../../tn-common/families';
-import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { getAllFamilies, getFamilySearchQuery, getAllStyles, getFoundryEntities } from '../store/reducers';
 
@@ -81,7 +80,7 @@ export class AdminFamiliesListComponent {
   public familyFoundries$ = Observable.combineLatest(
      this.families$,
      this.foundryEntities$,
-     (families: Family[], foundries) => families.map((family) => ({
+     (families, styles) => families.map((family) => ({
        ...family,
        foundry: (family.foundry as number[]).map((id) => foundries[id]),
      })));
@@ -93,7 +92,7 @@ export class AdminFamiliesListComponent {
    * @memberof AdminFamiliesListComponent
    */
   public filteredFamilies$ = Observable.combineLatest(
-    this.familyFoundries$,
+    this.familyStyles$,
     this.familyQuery$,
     (families: Family[], familyQuery: FamilySearch) => families.filter((family) => {
       if (familyQuery.name) {

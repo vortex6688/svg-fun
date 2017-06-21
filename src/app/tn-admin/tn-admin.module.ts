@@ -20,11 +20,13 @@ import { OrderRowComponent } from './admin-orders-list/orders-table/order-row';
 import { OrdersTableComponent } from './admin-orders-list/orders-table';
 import { OrdersControlsComponent } from './admin-orders-list/orders-controls';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
-import { AdminOrderDetailsComponent } from './admin-order-details';
+import { AdminOrderEditComponent } from './admin-order-edit';
 import { FamilyRowComponent } from './admin-families-list/families-table/family-row';
+import { AdminFamilySingleEditComponent } from './admin-family-single-edit';
 import { FamiliesControlsComponent } from './admin-families-list/families-controls';
 import { FamiliesTableComponent } from './admin-families-list/families-table';
 import { DataGuard } from '../tn-common/data.guard';
+import { FamilyStyleRowComponent } from './admin-family-single-edit/family-style-row/family-style-row.component';
 import { AdminSeriesListComponent } from './admin-series-list';
 import { SeriesTableComponent } from './admin-series-list/series-table';
 import { SeriesControlsComponent } from './admin-series-list/series-controls';
@@ -73,16 +75,18 @@ export const routes: Routes = [
     AdminComponent,
     AdminNavbarComponent,
     AdminOrdersListComponent,
-    AdminOrderDetailsComponent,
+    AdminOrderEditComponent,
     AdminFamiliesListComponent,
     LoginComponent,
     OrderRowComponent,
     OrdersTableComponent,
     OrdersControlsComponent,
     PlaceholderComponent,
+    AdminFamilySingleEditComponent,
     FamilyRowComponent,
     FamiliesControlsComponent,
     FamiliesTableComponent,
+    FamilyStyleRowComponent,
     AdminSeriesListComponent,
     SeriesTableComponent,
     SeriesRowComponent,
@@ -102,7 +106,7 @@ export const routes: Routes = [
     TnCommonModule,
     TnAdminStoreModule,
   ],
-  entryComponents: [ LoginComponent, AdminOrderDetailsComponent ],
+  entryComponents: [ LoginComponent, AdminOrderEditComponent, AdminFamilySingleEditComponent ],
   providers: []
 })
 export class TnAdminModule {}
