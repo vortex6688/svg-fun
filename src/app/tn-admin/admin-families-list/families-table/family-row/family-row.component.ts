@@ -19,8 +19,8 @@ export class FamilyRowComponent {
     this.isChecked = !this.isChecked;
   }
 
-  public openFamilyDetails() {
-    const familyModal = this.modalService.open(AdminFamilySingleEditComponent, { windowClass: 'full-size'});
-    familyModal.componentInstance.family = this.family;
+  public openFamilySingleEdit() {
+    const familySingleModal = this.modalService.open(AdminFamilySingleEditComponent, { windowClass: 'full-size'});
+    familySingleModal.componentInstance.family = this.family;
   }
 }
