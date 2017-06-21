@@ -63,6 +63,11 @@
       background: $white;
     }
   }
+  @include media-breakpoint-down(md) {
+    .modal-dialog {
+      max-width: 96%;
+    }
+  }
 }
 
 @include media-breakpoint-up(md) {

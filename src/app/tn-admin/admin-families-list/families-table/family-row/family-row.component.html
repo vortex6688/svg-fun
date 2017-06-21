@@ -7,17 +7,19 @@
   </td>
   <td class="col">
     <div>
-  <td class="col">
-    <ul>
-      <li *ngFor='let foundry of family.foundry'>{{foundry ? foundry.name : ''}}</li>
-    </ul>
-  </td>  
+      {{family.name}}
+    </div>
+    <div>
+      <button class="btn btn-sm btn-info w-75" (click)="openFamilyDetails()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
+    </div>
   </td>
+  <td class="col">{{family.visibleName}}</td>
+  <td class="col">{{family.foundry}}</td>
   <td class="col">
     <ul>
       <li *ngFor='let designer of family.designer'>{{designer}}</li>
     </ul>
-  </td>  
+  </td>
   <td class="col">{{family.style.length}}</td>
   <td class="col">{{family.min_size}}</td>
   <td class="col">{{family.max_size}}</td>

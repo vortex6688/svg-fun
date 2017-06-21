@@ -1,14 +1,14 @@
-<div class="d-flex justify-content-between modal-action-bar" style="height: 2.1rem;">
-  <span class="ml-5 small text-primary align-self-center">
+<div class="d-flex justify-content-between modal-action-bar">
+  <span class="mx-2 ml-lg-5 small text-primary align-self-center">
     You are editing this item. Click the "Save" button to commit your changes or click "Discard" to remove changes and exit edit mode.
   </span>
-  <div class="d-flex text-right">
-    <button type="button" class="btn btn-danger mr-5" (click)="activeModal.close('Cross click')"><icon-delete class="text-white icon icon-sm"></icon-delete> Discard</button>
-    <button class="btn btn-success mr-5" type="button"><icon-check class="text-white icon icon-sm"></icon-check> Save</button>
+  <div class="d-flex flex-xl-row flex-column text-right">
+    <button type="button" class="btn btn-danger mr-xl-5" (click)="activeModal.close('Cross click')"><icon-delete class="text-white icon icon-sm"></icon-delete> Discard</button>
+    <button class="btn btn-success mr-xl-5" type="button"><icon-check class="text-white icon icon-sm"></icon-check> Save</button>
   </div>
 </div>
 
-<div class="mx-7">
+<div class="mx-lg-7 mx-4">
   <div class="modal-body">
 
     <div class="row text-info mt-4">
@@ -18,7 +18,7 @@
     </div>
 
     <form class="row mb-5">
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="marked my-3">
           NAME
         </label>
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="marked my-3">
           VISIBLE
         </label>
@@ -89,7 +89,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="marked my-3">
           RELEASE DATE
         </label>
@@ -97,7 +97,7 @@
           <datepicker></datepicker>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="mx-2 my-3">
           BASE PRICE
         </label>
@@ -105,7 +105,7 @@
           <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="$65.00" />
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="mx-2 my-3">
           CONONICAL SERIES
         </label>
@@ -141,7 +141,7 @@
     </div>
 
     <form class="row mb-5">
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="marked my-3">
           FOUNDRY
         </label>
@@ -169,13 +169,13 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="mx-2 my-3">
           FOUNDRY ROYALTIES
         </label>
         <icon-tooltip class="icon ml-1 pt-1" placement="top" ngbTooltip="Tooltip"></icon-tooltip>
         <div>
-          <div ngbDropdown class="d-inline-block">
+          <div ngbDropdown class="d-inline-block mr-2">
             <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
                 <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
                 <b>Mooncop</b>
@@ -196,7 +196,7 @@
               </li>
             </ul>
           </div>
-          <div ngbDropdown class="d-inline-block ml-2">
+          <div ngbDropdown class="d-inline-block">
             <button style="min-width: 6rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
                 <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
                 <b>5%</b>
@@ -217,12 +217,12 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div>
-          <small class="text-info">+ Add Royalties</small>
+          <div>
+            <small class="text-info">+ Add Royalties</small>
+          </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="mx-2 my-3">
           COLONICAL FOUNDRY
         </label>
@@ -258,13 +258,13 @@
     </div>
 
     <form class="row mb-5">
-      <div class="col-4 form-group">
+      <div class="col-md-4 col-sm-6 form-group">
         <label class="marked my-3">
           DESIGNER/ROYALTIES
         </label>
         <icon-tooltip class="icon ml-1 pt-1" placement="top" ngbTooltip="Tooltip"></icon-tooltip>
         <div>
-          <div ngbDropdown class="d-inline-block">
+          <div ngbDropdown class="d-inline-block mr-2">
             <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
                 <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
                 <b>Tom Gauld</b>
@@ -290,7 +290,7 @@
               </li>
             </ul>
           </div>
-          <div ngbDropdown class="d-inline-block ml-2">
+          <div ngbDropdown class="d-inline-block">
             <button style="min-width: 6rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
                 <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
                 <b>5%</b>
@@ -324,7 +324,7 @@
     </div>
     
     <form class="row mb-5">
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           DEFAULT STYLE
         </label>
@@ -357,7 +357,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           MIN SIZE
         </label>
@@ -385,7 +385,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           MAX SIZE
         </label>
@@ -413,13 +413,13 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           TN SIZES
         </label>
         <div>
           <div ngbDropdown [autoClose]="false" class="d-inline-block">
-            <input style="min-width: 18rem;" class="custom-select" id="familyNameInput" value="100, 300, 600" ngbDropdownToggle>
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="100, 300, 600" ngbDropdownToggle>
             <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
               <li class="list-group-item">
                 <label class="custom-control custom-checkbox mb-sm-0">
@@ -446,13 +446,13 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           RECOMMENDED SIZES
         </label>
         <div>
           <div ngbDropdown [autoClose]="false" class="d-inline-block">
-            <input style="min-width: 18rem;" class="custom-select" id="familyNameInput" value="Extra Small" ngbDropdownToggle>
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="Extra Small" ngbDropdownToggle>
             <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
               <li class="list-group-item">
                 <label class="custom-control custom-checkbox mb-sm-0">
@@ -479,7 +479,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           WEIGHT
         </label>
@@ -507,13 +507,13 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           TN WEIGHT
         </label>
         <div>
           <div ngbDropdown [autoClose]="false" class="d-inline-block">
-            <input style="min-width: 18rem;" class="custom-select" id="familyNameInput" value="100, 200, 400, 600" ngbDropdownToggle>
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="100, 200, 400, 600" ngbDropdownToggle>
             <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
               <li class="list-group-item">
                 <label class="custom-control custom-checkbox mb-sm-0">
@@ -547,7 +547,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="marked my-3">
           WIDTH
         </label>
@@ -575,13 +575,13 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           TN WIDTH
         </label>
         <div>
           <div ngbDropdown [autoClose]="false" class="d-inline-block">
-            <input style="min-width: 18rem;" class="custom-select" id="familyNameInput" value="100, 200, 600, 700" ngbDropdownToggle>
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="100, 200, 600, 700" ngbDropdownToggle>
             <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
               <li class="list-group-item">
                 <label class="custom-control custom-checkbox mb-sm-0">
@@ -615,7 +615,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           CATEGORY
         </label>
@@ -643,13 +643,13 @@
           </div>
         </div>
       </div>
-       <div class="col-4 form-group">
+       <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           RECOMMENDED FUNCTIONS
         </label>
         <div>
           <div ngbDropdown [autoClose]="false" class="d-inline-block">
-            <input style="min-width: 18rem;" class="custom-select" id="familyNameInput" value="Display, Poster, Captions, Code" ngbDropdownToggle>
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="Display, Poster, Captions, Code" ngbDropdownToggle>
             <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
               <li class="list-group-item">
                 <label class="custom-control custom-checkbox mb-sm-0">
@@ -683,13 +683,13 @@
           </div>
         </div>
       </div>
-      <div class="col-4 form-group">
+      <div class="col-xl-4 col-md-6 form-group">
         <label class="mx-2 my-3">
           MOOD
         </label>
         <div>
           <div ngbDropdown [autoClose]="false" class="d-inline-block">
-            <input style="min-width: 18rem;" class="custom-select" id="familyNameInput" value="Rustic, Sturdy, Lively, Retro" ngbDropdownToggle>
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="Rustic, Sturdy, Lively, Retro" ngbDropdownToggle>
             <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
               <li class="list-group-item">
                 <label class="custom-control custom-checkbox mb-sm-0">
@@ -731,7 +731,7 @@
     </div>
 
     <div class="row mb-5">
-      <div class="col">
+      <div class="col-md-6">
         <label class="my-3">
           CATALOG URL
         </label>
@@ -742,7 +742,7 @@
     </div>
 
     <div class="row mb-5">
-      <div class="col">
+      <div class="col-md-6">
         <label class="my-3">
           INFO
         </label>
@@ -787,7 +787,7 @@
     </div>
 
     <div class="d-flex flex-wrap">
-      <label *ngFor='let tag of tags' class="custom-control custom-checkbox checkbox-sm" style="width: 14.28%;">
+      <label *ngFor='let tag of tags' class="custom-control custom-checkbox checkbox-sm col-xl-2 col-sm-3">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <b class="custom-control-description text-capitalize text-primary">{{tag}}</b>
@@ -795,7 +795,7 @@
     </div>
   </div>
 </div>
-<div class="mx-6">
+<div class="mx-lg-6 mx-4">
   <div class="modal-body">
     <div class="row text-info pb-2">
       <h5 class="col" style="margin-bottom: 0;">Styles ({{family.style.length}})</h5>
