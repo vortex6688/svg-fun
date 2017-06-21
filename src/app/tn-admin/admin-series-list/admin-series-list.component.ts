@@ -8,6 +8,7 @@ import {
   getAllSeries,
   getSeriesSearchQuery,
   getFamilyEntities,
+  getFoundryEntities,
 } from '../store/reducers';
 
 @Component({
@@ -41,13 +42,34 @@ export class AdminSeriesListComponent {
   public familyEntities$ = this.store.select(getFamilyEntities);
 
   /**
+   *  Foundry entity collection for combination.
+   *
+   * @type {Observable<FoundryState.entities}
+   * @memberof AdmineriesListComponent
+   */
+  public foundryEntities$ = this.store.select(getFoundryEntities);
+
+  /**
+   *  Series collection with populated foundry data.
+   * @type {Observable<Family[]>}
+   * @memberof AdminFamiliesListComponent
+   */
+  public seriesFoundries$ = Observable.combineLatest(
+     this.series$,
+     this.foundryEntities$,
+     (series: Series[], foundries) => series.map((item) => ({
+       ...item,
+       foundry: foundries[item.foundry as number],
+     })));
+
+  /**
    *  Series collection with populated family data.
    *
    * @type {Observable<Series[]>}
    * @memberof AdminSeriesListComponent
    */
   public seriesFamilies$ = Observable.combineLatest(
-    this.series$,
+    this.seriesFoundries$,
     this.familyEntities$,
     (series, families) => series.map((item) => {
       const { family, styles } = (item.family as number[]).reduce((result, id) => {

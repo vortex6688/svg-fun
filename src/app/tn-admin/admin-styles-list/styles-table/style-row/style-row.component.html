@@ -16,7 +16,7 @@
   <td class="col">{{style.visibleName}}</td>
   <td class="col">
     <ul>
-      <li *ngFor='let foundry of style.foundry'>{{foundry}}</li>
+      <li *ngFor='let foundry of style.foundry'>{{foundry ? foundry.name : ''}}</li>
     </ul>
   </td>
   <td class="col">

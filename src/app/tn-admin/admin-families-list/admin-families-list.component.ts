@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Family, FamilyActions, FamilySearch } from '../../tn-common/families';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
-import { getAllFamilies, getFamilySearchQuery, getAllStyles } from '../store/reducers';
+import { getAllFamilies, getFamilySearchQuery, getAllStyles, getFoundryEntities } from '../store/reducers';
 
 const CATEGORIES = [
   'Sans',       // 0
@@ -66,23 +66,25 @@ export class AdminFamiliesListComponent {
   public familyQuery$ = this.store.select(getFamilySearchQuery);
 
   /**
-   * Family collection with populated foundries data. @todo add actual foundry
+   *  Foundry entity collection for combination.
    *
+   * @type {Observable<FoundryState.entities}
+   * @memberof AdminFamiliesListComponent
+   */
+  public foundryEntities$ = this.store.select(getFoundryEntities);
+
+  /**
+   *  Family collection with populated foundries data.
    * @type {Observable<Family[]>}
-   * @memberof AdminOrdersListComponent
+   * @memberof AdminFamiliesListComponent
    */
   public familyFoundries$ = Observable.combineLatest(
      this.families$,
-     this.families$, // @todo change this to combine with the actual foundry
+     this.foundryEntities$,
      (families: Family[], foundries) => families.map((family) => ({
        ...family,
-       categoryName: family.category.map((category) => CATEGORIES[category]).sort(),
-       min_size: Math.min(...family.recommended_size),
-       max_size: Math.max(...family.recommended_size),
-       moodName: family.mood.map((mood) => MOODS[mood]).sort(),
-       visibleName: VISIBLE_STATES[family.visible],
-     }))
-   );
+       foundry: (family.foundry as number[]).map((id) => foundries[id]),
+     })));
 
   /**
    * Family collection for display, filtered against search query.
@@ -100,7 +102,14 @@ export class AdminFamiliesListComponent {
         if (!hasName) { return false; }
       }
       return true;
-    }));
+    }).map((family) => ({
+      ...family,
+       categoryName: family.category.map((category) => CATEGORIES[category]).sort(),
+       min_size: Math.min(...family.recommended_size),
+       max_size: Math.max(...family.recommended_size),
+       moodName: family.mood.map((mood) => MOODS[mood]).sort(),
+       visibleName: VISIBLE_STATES[family.visible],
+    })));
 
   constructor(private store: Store<any>, private familyActions: FamilyActions) {}
 

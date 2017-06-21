@@ -22,7 +22,7 @@ describe('SeriesRowComponent', () => {
     collapseSubject = new BehaviorSubject(true);
     fixture = TestBed.createComponent(SeriesRowComponent);
     component = fixture.componentInstance;
-    component.series = {id: 1, family: [1]};
+    component.series = {id: 1, family: [1], foundry: { name: 'test' }};
     fixture.detectChanges();
   });
 

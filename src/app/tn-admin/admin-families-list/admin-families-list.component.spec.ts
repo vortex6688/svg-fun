@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { StoreModule, Store } from '@ngrx/store';
 
 import { Family, FamilyActions, FamilySearch, initialFamilyState } from '../../tn-common/families';
+import { Foundry, FoundryActions } from '../../tn-common/foundries';
 import { AdminFamiliesListComponent } from './admin-families-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -45,12 +46,41 @@ describe('AdminFamiliesListComponent', () => {
     series: [ 27, 28 ],
     visible: 2,
   };
+  const mockFoundry: Foundry = {
+    id: 1,
+    name: 'da real foundrier',
+    slug: 'da-real-foundrier',
+    logo: 'logo string',
+    site_url: '',
+    url: 'foundry url',
+    bio: 'foundry bio',
+    designers: [1, 2],
+    ee_subdomain: 'eyeyeo',
+    eula: 'eula contract',
+    eula_title: 'realest contract',
+    eula_subtitle: 'subbed eula',
+    eula_web: 'eula for web',
+    eula_epub: 'eula for epub',
+    eula_app: 'eula for app',
+    eula_desktop: 'eula for desktop',
+    eula_web_self_hosted: 'eula for webeula_web_self_hosted',
+    preface: '',
+    postface: 'eula postface',
+    eula_default: true,
+  };
+
   const mockFamilyList: Family[] = [
     { ...mockFamily, name: 'fake', id: 1, styles: [2, 3], },
     { ...mockFamily, name: 'famo', id: 2, styles: [4], },
     { ...mockFamily, name: 'la famillia', id: 3, styles: [5], },
     { ...mockFamily, name: 'special', id: 4, styles: [6], },
   ];
+  const mockFoundryList: Foundry[] = [
+    { ...mockFoundry, id: 2, name: 'foundr' },
+    { ...mockFoundry, id: 3, name: 'supa' },
+    { ...mockFoundry, id: 4, name: 'dupa' },
+  ];
+
   const CATEGORIES = [
     'Sans',       // 0
     'Serif',      // 1
@@ -133,7 +163,12 @@ describe('AdminFamiliesListComponent', () => {
     expect(orderActions.searchQuery).toHaveBeenCalledWith(query);
   });
   describe('family combining', () => {
-    const namedFamilies = mockFamilyList.map((family) => ({
+    const familyFoundries = mockFamilyList.map((family) => ({
+      ...family,
+      foundry: (family.foundry as number[]).map((id) =>
+        mockFoundryList.find((foundry) => foundry.id === id))
+    }));
+    const namedFamilies = familyFoundries.map((family) => ({
       ...family,
       categoryName: family.category.map((category) => CATEGORIES[category]).sort(),
       min_size: Math.min(...family.recommended_size),
@@ -144,6 +179,13 @@ describe('AdminFamiliesListComponent', () => {
 
     beforeEach(() => {
       store.dispatch({ type: FamilyActions.LOAD_FAMILIES_SUCCESS, payload: mockFamilyList });
+      store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
+    });
+
+    it('should assign matching foundries to families', () => {
+      component.familyFoundries$.subscribe((styles) => {
+        expect(styles).toEqual(familyFoundries);
+      });
     });
 
     it('should filter families by name', () => {

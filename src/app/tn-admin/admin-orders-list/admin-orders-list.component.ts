@@ -13,6 +13,7 @@ import { getAllOrders,
   getAllStyles,
   getFamilyEntities,
   getAllProjects,
+  getFoundryEntities,
 } from '../store/reducers';
 
 const STATUSES = [
@@ -78,6 +79,14 @@ export class AdminOrdersListComponent {
   public familyEntities$ = this.store.select(getFamilyEntities);
 
   /**
+   *  Foundry entity collection for combination.
+   *
+   * @type {Observable<FoundryState.entities}
+   * @memberof AdminOrdersListComponent
+   */
+  public foundryEntities$ = this.store.select(getFoundryEntities);
+
+  /**
    *  Style collection with populated family data.
    *
    * @type {Observable<Style[]>}
@@ -93,6 +102,21 @@ export class AdminOrdersListComponent {
    );
 
   /**
+   *  Style collection with populated foundty data.
+   *
+   * @type {Observable<Style[]>}
+   * @memberof AdminOrdersListComponent
+   */
+  public styleFamiliesFoundries$ = Observable.combineLatest(
+     this.styleFamilies$,
+     this.foundryEntities$,
+     (styles, foundries) => styles.map((style) => ({
+       ...style,
+       foundry: (style.foundry as number[]).map((id) => foundries[id]),
+     }))
+   );
+
+  /**
    *  License collection with populated style data.
    *
    * @type {Observable<License[]>}
@@ -100,7 +124,7 @@ export class AdminOrdersListComponent {
    */
   public licensesStyles$ = Observable.combineLatest(
      this.licenses$,
-     this.styleFamilies$,
+     this.styleFamiliesFoundries$,
      (licenses, styles) => licenses.map((license) => ({
        ...license,
        license_type_name: this.getLicenseTypeName(license.license_type, license.self_hosted),
