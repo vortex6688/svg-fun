@@ -92,21 +92,6 @@
     background: lighten($gray-lightest, 20%);
   }
 
-  .custom-checkbox {
-    .custom-control-indicator {
-      width: 0.8rem;
-      height: 0.85rem;
-    }
-
-    .custom-control-input:checked ~ .custom-control-indicator {
-      background: lighten($gray-lightest, 20%);
-      &:after {
-        width: 0.8rem;
-        bottom: 0.5rem;
-      }
-    }
-  }
-
   tbody + tbody {
     border-top: (1 * $table-border-width) solid $table-border-color;
   }
