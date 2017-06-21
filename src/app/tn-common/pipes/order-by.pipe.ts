@@ -23,6 +23,7 @@ export class OrderByPipe implements PipeTransform {
    * @returns {number}
    */
   private static _orderByComparator(a: any, b: any): number {
+    if (typeof a === 'undefined' || typeof b === 'undefined') { return 0; }
     if ((isNaN(+(a)) || !isFinite(a)) || (isNaN(+(b)) || !isFinite(b))) {
       // Check if it's an array
       if (Object.prototype.toString.call(a) === '[object Array]') {
@@ -98,13 +99,11 @@ export class OrderByPipe implements PipeTransform {
       if (target && typeof target[key] !== 'undefined') {
         target = target[key];
         if (Array.isArray(target) && keys.length > 0) {
-          target = OrderByPipe._extractArray(target, keys);
-          break;
+          return OrderByPipe._extractArray(target, keys);
         }
         continue;
       }
-      target = undefined;
-      break;
+      return undefined;
     }
     return target;
   }

@@ -161,9 +161,21 @@ describe('OrderByPipe', () => {
     const expected = [
       multiArray[1],
       multiArray[0],
-    ].reverse();
+    ];
 
-    const ascKeys = ['-key.result.deep'];
-    expect(pipe.transform(multiArray, ascKeys)).toEqual(expected, '-key.result.deep');
+    const ascKeys = ['+key.result.deep'];
+    expect(pipe.transform(multiArray, ascKeys)).toEqual(expected, '+key.result.deep');
+  });
+
+  it('should not crash with undefined keys', () => {
+    const multiArray = [
+      { item: true },
+      { item: false },
+      { item: 'wat' },
+    ];
+
+    const expected = [...multiArray];
+    const ascKeys = ['+key.item.nest.property'];
+    expect(pipe.transform(multiArray, ascKeys)).toEqual(expected, '+key.item.nest.property');
   });
 });
