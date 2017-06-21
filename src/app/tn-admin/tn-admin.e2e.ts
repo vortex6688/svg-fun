@@ -265,23 +265,23 @@ describe('Admin', () => {
 
       describe('Opening order details modal', () => {
         beforeAll(() => {
-          const expandOrderDetailsIcon = element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)'));
-          expandOrderDetailsIcon.click();
-          const expandOrderDetailsEditButton = element(by.css('order-row .table thead:first-child button'));
-          expandOrderDetailsEditButton.click();
+          const expandOrderEditIcon = element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)'));
+          expandOrderEditIcon.click();
+          const expandOrderEditButton = element(by.css('order-row .table thead:first-child button'));
+          expandOrderEditButton.click();
         });
 
-        it('order details modal should be revealed after clicking on the expanded row with the order details', () => {
-          expect(element(by.css('app-admin-order-details')).isDisplayed()).toBeTruthy();
+        it('order edit modal should be revealed after clicking on the expanded row with the order details', () => {
+          expect(element(by.css('app-admin-order-edit')).isDisplayed()).toBeTruthy();
         });
 
-        it('order details modal should have a cancel button that closes the modal', () => {
-          const closeButton = element(by.css('app-admin-order-details .modal-action-bar .btn-info'));
+        it('order edit modal should have a cancel button that closes the modal', () => {
+          const closeButton = element(by.css('app-admin-order-edit .modal-action-bar .btn-info'));
           closeButton.getText().then((text) => {
             expect(text).toEqual('Cancel');
           });
           closeButton.click().then(() => {
-            expect(element(by.css('app-admin-order-details')).isPresent()).toBeFalsy();
+            expect(element(by.css('app-admin-order-edit')).isPresent()).toBeFalsy();
           });
         });
       });
@@ -290,6 +290,7 @@ describe('Admin', () => {
         beforeAll(() => {
           browser.get('/admin/products/families');
         });
+
         it('should be able to sort families descendingly', () => {
           const amountHeader = element(by.css('.table-sortable .col.sortable:nth-child(3)'));
           amountHeader.click();
@@ -372,6 +373,27 @@ describe('Admin', () => {
             });
           }).then(() => {
             expect(sorted).toBeTruthy();
+          });
+        });
+      });
+
+      describe('Opening single family edit modal', () => {
+        beforeAll(() => {
+          const familySingleEditButton = element(by.css('.table-sortable tbody  button'));
+          familySingleEditButton.click();
+        });
+
+        it('single family edit modal should be revealed after clicking the edit botton', () => {
+          expect(element(by.css('app-admin-family-single-edit')).isDisplayed()).toBeTruthy();
+        });
+
+        it('single family edit modal should have a discard button that closes the modal', () => {
+          const closeButton = element(by.css('app-admin-family-single-edit .modal-action-bar .btn-danger'));
+          closeButton.getText().then((text) => {
+            expect(text).toEqual('Discard');
+          });
+          closeButton.click().then(() => {
+            expect(element(by.css('app-admin-family-single-edit')).isPresent()).toBeFalsy();
           });
         });
       });
