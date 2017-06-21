@@ -1,12 +1,16 @@
 <div class="d-flex justify-content-between align-items-center modal-action-bar">
   <div class="ml-5 small text-primary">You are editing this item.</div>
   <div>
-    <button class="btn btn-info mr-5" type="button" (click)="activeModal.close('Cross click')">Cancel</button>
-    <button class="btn btn-success mr-5" type="button">Save</button>
+    <button class="btn btn-info mr-5" type="button" (click)="activeModal.close('Cross click')">
+      <icon-close class="icon icon-sm text-white"></icon-close> Cancel
+    </button>
+    <button class="btn btn-success mr-5" type="button">
+      <icon-check class="icon icon-sm text-white"></icon-check> Save
+    </button>
   </div>
 </div>
 
-<div class="mx-6">
+<div class="mx-7">
   <div class="modal-header">
     <h4 class="modal-title text-info">Order details: <span class="text-primary">#22</span></h4>
     <span class="font-weight-bold">October 20, 2016</span>
@@ -24,8 +28,8 @@
   </div>
   <div class="modal-body">
     <div class="row text-info">
-      <div class="col col-2 align-self-center">ORDER INFORMATION</div>
-      <div class="col"><hr></div>
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">ORDER INFORMATION</b>
+      <hr class="col mr-2">
     </div>
     <div class="row mb-5">
       <ul class="col-4 list-unstyled">
@@ -307,7 +311,7 @@
               </div>
               <div class="row mt-2">
                 <div class="col-5 pr-0 align-items-center d-flex">
-                  <icon-close style="fill: #b7b4b0;" class="icon icon-sm mr-2"></icon-close>
+                  <icon-close class="icon icon-sm mr-2"></icon-close>
                   <div ngbDropdown class="d-inline-block w-100">
                     <button class="btn btn-sm btn-secondary text-left w-100 d-flex" id="dropdownSingleOption" ngbDropdownToggle>
                       <icon-web class="icon pr-1"></icon-web>
