@@ -1,7 +1,7 @@
 <tr class="row">
   <td class="col" [ngClass]="{'toggled': !isCollapsed }" style="cursor: pointer;"
     (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]='!isCollapsed' 
-    [attr.aria-controls]='order'>
+    [attr.aria-controls]='customer'>
     <i>
       <icon-right-arrow></icon-right-arrow>
     </i>
@@ -25,7 +25,7 @@
 </tr>
 
 <tr class="row border-0">
-  <table class="table table-active no-borders col pb-5" [attr.id]='order' [ngbCollapse]='isCollapsed'>
+  <table class="table table-active no-borders col" [attr.id]='customer' [ngbCollapse]='isCollapsed'>
     <thead class="row">
       <th class="col">Contact Info</th>
       <th class="col">Website</th>
@@ -48,7 +48,7 @@
 <tr class="row">
   <td class="col" [ngClass]="{'toggled': !isCollapsed }" style="cursor: pointer;"
     (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]='!isCollapsed' 
-    [attr.aria-controls]='order'>
+    [attr.aria-controls]='customer'>
     <i>
       <icon-right-arrow></icon-right-arrow>
     </i>
@@ -72,7 +72,7 @@
 </tr>
 
 <tr class="row border-0">
-  <table class="table table-active no-borders col pb-5" [attr.id]='order' [ngbCollapse]='isCollapsed'>
+  <table class="table table-active no-borders col" [attr.id]='customer' [ngbCollapse]='isCollapsed'>
     <thead class="row">
       <th class="col">Contact Info</th>
       <th class="col">Website</th>

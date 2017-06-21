@@ -4,7 +4,6 @@
       <orders-controls [initialQuery]="orderQuery$ | async" [foundries]="foundries$ | async" [designers]="designers$ | async" (queryUpdate)="searchOrders($event)"></orders-controls>
     </div>
     <div class="main w-100">
-      <h2>Orders</h2>
       <orders-table [orders]="filteredOrdersLicenses$ | async"></orders-table>
     </div>
   </div>

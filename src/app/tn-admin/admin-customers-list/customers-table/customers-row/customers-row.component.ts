@@ -7,5 +7,5 @@ import { BehaviorSubject } from 'rxjs/Rx';
 })
 export class CustomersRowComponent {
   public isCollapsed = true;
-  public order;
+  public customer;
 }

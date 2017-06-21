@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersRowComponent } from './customers-row.component';
 import { BehaviorSubject } from 'rxjs/Rx';
 
-describe('SeriesRowComponent', () => {
+describe('CustomersRowComponent', () => {
   let component: CustomersRowComponent;
   let fixture: ComponentFixture<CustomersRowComponent>;
   let collapseSubject: BehaviorSubject<boolean>;
