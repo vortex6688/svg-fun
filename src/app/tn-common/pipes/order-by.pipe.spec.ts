@@ -129,4 +129,41 @@ describe('OrderByPipe', () => {
     expect(pipe.transform(multiArray.slice(0), ascKeys)).toEqual(multiArray, '+no, +key');
 
   });
+
+  it('should sort nested objects', () => {
+    const multiArray = [
+      { key: { result: { deep: 12 } } },
+      { key: { result: { deep: 1 } } },
+      { key: { result: { deep: 99 } } },
+      { key: { result: { deep: 0 } } },
+      { key: { result: { deep: 5 } } },
+    ];
+    const expected = [...multiArray].sort((a, b) => a.key.result.deep - b.key.result.deep);
+    const ascKeys = ['key.result.deep'];
+    expect(pipe.transform(multiArray, ascKeys)).toEqual(expected, '+key.result.deep');
+  });
+
+  it('should sort nested arrays', () => {
+    const multiArray = [
+      {
+        key: [
+          { result: [{ deep: 22 }, { deep: 2 }] },
+          { result: [{ deep: 11 }, { deep: 259 }] },
+        ]
+      }, {
+        key: [
+          { result: [{ deep: 19 }, { deep: 1 }] },
+          { result: [{ deep: 84 }, { deep: 72 }] },
+        ]
+      },
+    ];
+
+    const expected = [
+      multiArray[1],
+      multiArray[0],
+    ].reverse();
+
+    const ascKeys = ['-key.result.deep'];
+    expect(pipe.transform(multiArray, ascKeys)).toEqual(expected, '-key.result.deep');
+  });
 });
