@@ -5,10 +5,6 @@ import { Component } from '@angular/core';
   template: `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	viewBox="0 0 13 13" style="enable-background:new 0 0 13 13;" xml:space="preserve">
-<style type="text/css">
-	.st0{opacity:0.6;fill:#807E7C;}
-	.st2{fill:#FFFFFF;}
-</style>
 <g>
 	<path class="st0" d="M2.5,2.5c1.1-1.1,2.4-1.6,4-1.7c1.6,0,2.9,0.6,
 	4,1.7s1.6,2.4,1.7,4c0,1.6-0.6,2.9-1.7,4s-2.4,1.6-4,1.7
@@ -28,6 +24,12 @@ import { Component } from '@angular/core';
 			0.3-0.7c0.2-0.2,0.4-0.3,0.8-0.3h0.2v0C6.6,8.7,6.8,8.8,6.9,9z"/>
 	</g>
 </g>
-</svg>`
+</svg>`,
+  styles: [
+  `.st0{opacity:0.6;fill:#807E7C;}
+  .st2{fill:#FFFFFF;}
+  :host{vertical-align: text-top;}`
+	// vertical-align: text-top; helps to keep the icon align with the text next to it`
+  ]
 })
 export class IconTooltipComponent {}
