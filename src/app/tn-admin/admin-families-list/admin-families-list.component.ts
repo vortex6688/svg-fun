@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Family, FamilyActions, FamilySearch } from '../../tn-common/families';
 import { Style } from '../../tn-common/styles';
-import { getAllFamilies, getFamilySearchQuery, getAllStyles, getFoundryEntities } from '../store/reducers';
+import { getAllFamilies, getFamilySearchQuery, getStyleEntities, getFoundryEntities } from '../store/reducers';
 
 const CATEGORIES = [
   'Sans',       // 0
@@ -73,16 +73,26 @@ export class AdminFamiliesListComponent {
   public foundryEntities$ = this.store.select(getFoundryEntities);
 
   /**
-   *  Family collection with populated foundries data.
+   *  Style entity collection for combination.
+   *
+   * @type {Observable<StyleState.entities}
+   * @memberof AdminFamiliesListComponent
+   */
+  public styleEntities$ = this.store.select(getStyleEntities);
+
+  /**
+   *  Family collection with populated data.
    * @type {Observable<Family[]>}
    * @memberof AdminFamiliesListComponent
    */
-  public familyFoundries$ = Observable.combineLatest(
+  public familiesPopulated$ = Observable.combineLatest(
      this.families$,
      this.foundryEntities$,
-     (families, styles) => families.map((family) => ({
+     this.styleEntities$,
+     (families, foundries, styles) => families.map((family) => ({
        ...family,
        foundry: (family.foundry as number[]).map((id) => foundries[id]),
+       style: (family.style as number[]).map((id) => styles[id]),
      })));
 
   /**
@@ -92,7 +102,7 @@ export class AdminFamiliesListComponent {
    * @memberof AdminFamiliesListComponent
    */
   public filteredFamilies$ = Observable.combineLatest(
-    this.familyStyles$,
+    this.familiesPopulated$,
     this.familyQuery$,
     (families: Family[], familyQuery: FamilySearch) => families.filter((family) => {
       if (familyQuery.name) {
