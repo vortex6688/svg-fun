@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { OrderByPipe } from '../../tn-common/pipes/';
 import { Style } from '../../tn-common/styles';
 
-describe('AdminOrderDetailsComponent', () => {
+describe('AdminFamilySingleEditComponent', () => {
   let component: AdminFamilySingleEditComponent;
   let fixture: ComponentFixture<AdminFamilySingleEditComponent>;
   const styleMock: Style = {
@@ -24,8 +24,8 @@ describe('AdminOrderDetailsComponent', () => {
       ],
     },
     default_style: false,
-    foundry: 2,
-    designer: 3,
+    foundry: [2],
+    designer: [3],
     posture: 1,
     visible: 3,
     optical: 500,

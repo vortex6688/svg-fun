@@ -84,9 +84,6 @@ export class AdminFamiliesListComponent {
        ...family,
        foundry: (family.foundry as number[]).map((id) => foundries[id]),
      })));
-       max_size: Math.max(...family.recommended_size),
-       moodName: family.mood.map((mood) => MOODS[mood]).sort(),
-       visibleName: VISIBLE_STATES[family.visible],
 
   /**
    * Family collection for display, filtered against search query.
