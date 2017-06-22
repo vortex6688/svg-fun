@@ -219,7 +219,7 @@ describe('OrderReducer', () => {
     });
 
     it('getOrderByCustomerId should return all the Orders of one customer that has', () => {
-      const selectedOrder = getOrderByCustomerId(addedState, OrderMock.user);
+      const selectedOrder = getOrderByCustomerId(addedState, OrderMock.user as number);
       expect(selectedOrder).toEqual([OrderMock]);
     });
 

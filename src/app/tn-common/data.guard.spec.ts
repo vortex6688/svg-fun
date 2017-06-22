@@ -14,6 +14,7 @@ import { SeriesActions } from './series';
 import { ProjectActions } from './projects';
 import { FoundryActions } from './foundries';
 import { DesignerActions } from './designers';
+import { CustomerActions } from './customers';
 
 describe('DataGuard', () => {
   let dataGuard: DataGuard;
@@ -45,6 +46,7 @@ describe('DataGuard', () => {
         ProjectActions,
         FoundryActions,
         DesignerActions,
+        CustomerActions,
         { provide: Router, useClass: MockRouter },
         { provide: Store, useClass: MockStore },
         { provide: Actions, useClass: MockActions },
