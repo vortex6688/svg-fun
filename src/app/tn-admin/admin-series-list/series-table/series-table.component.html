@@ -20,7 +20,7 @@
       </th>
       <th class="col sortable" (click)="sortBy('name')" [ngClass]="{'sort-asc': sortKey === '+name', 'sort-desc': sortKey === '-name'}">Name</th>
       <th class="col sortable" (click)="sortBy('foundry')" [ngClass]="{'sort-asc': sortKey === '+foundry', 'sort-desc': sortKey === '-foundry'}">Foundry</th>
-      <th class="col sortable" (click)="sortBy('family')" [ngClass]="{'sort-asc': sortKey === '+family', 'sort-desc': sortKey === '-family'}">Families</th>
+      <th class="col sortable" (click)="sortBy('family.name')" [ngClass]="{'sort-asc': sortKey === '+family.name', 'sort-desc': sortKey === '-family.name'}">Families</th>
       <th class="col sortable" (click)="sortBy('styles')" [ngClass]="{'sort-asc': sortKey === '+styles', 'sort-desc': sortKey === '-styles'}">Styles</th>
       <th class="col sortable" (click)="sortBy('released')" [ngClass]="{'sort-asc': sortKey === '+released', 'sort-desc': sortKey === '-released'}">Release Date</th>
     </tr>

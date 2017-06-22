@@ -1,10 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-/*
-  * Example use
-  * Basic Array of single type: *ngFor="let todo of todoService.todos | orderBy : ['-']"
-  * Multidimensional sort on single column: *ngFor="let todo of todoService.todos | orderBy : ['-status']
-  * Multidimensional sort on multiple columns: *ngFor="let todo of todoService.todos | orderBy : ['status', '-title']
+/**
+ * OrderBy pipe able to sort on given array of properties
+ * Supports nested objects and nested arrays of objects
+ *
+ * Example use
+ * Basic Array of single type: *ngFor="let todo of todoService.todos | orderBy : ['-']"
+ * Multidimensional sort on single column: *ngFor="let todo of todoService.todos | orderBy : ['-status']
+ * Multidimensional sort on multiple columns: *ngFor="let todo of todoService.todos | orderBy : ['status', '-title']
+ * Nested object sort: *ngFor="let todo of todoService.todos | orderBy : ['status.name']
  */
 
 @Pipe({
@@ -12,13 +16,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class OrderByPipe implements PipeTransform {
   /**
-   * Compares two given values and returns -1, 0 or 1 \
+   * Compares two given values and returns -1, 0 or 1
    * @static
    * @param {any} a
    * @param {any} b
    * @returns {number}
    */
   private static _orderByComparator(a: any, b: any): number {
+    if (typeof a === 'undefined' || typeof b === 'undefined') { return 0; }
     if ((isNaN(+(a)) || !isFinite(a)) || (isNaN(+(b)) || !isFinite(b))) {
       // Check if it's an array
       if (Object.prototype.toString.call(a) === '[object Array]') {
@@ -60,6 +65,50 @@ export class OrderByPipe implements PipeTransform {
   }
 
   /**
+   * Maps array to a given property
+   *
+   * @static
+   * @param {any[]} object
+   * @param {string[]} property
+   * @returns {any[]}
+   */
+  private static _extractArray(object: any[], property: string[]) {
+    if (property.length > 1) {
+      return object.map((item) => OrderByPipe._deepProperty(item, property.join('.')));
+    }
+    return object.map((item) => item[property[0]]);
+  }
+
+  /**
+   * Goes through nested properties if needed
+   *
+   * @static
+   * @param {any} object
+   * @param {string} property
+   * @returns {any}
+   */
+  private static _deepProperty(object: any, property: string) {
+    const keys = property.split('.');
+    if (keys.length === 1) {
+      return object[property];
+    }
+
+    let target = object;
+    while (keys.length) {
+      const key = keys.shift();
+      if (target && typeof target[key] !== 'undefined') {
+        target = target[key];
+        if (Array.isArray(target) && keys.length > 0) {
+          return OrderByPipe._extractArray(target, keys);
+        }
+        continue;
+      }
+      return undefined;
+    }
+    return target;
+  }
+
+  /**
    * Takes an input, config array and returns the input sorted by config keys
    * Config keys can + and - prefixes to indicate ascending, descending sort order
    * @public
@@ -82,8 +131,14 @@ export class OrderByPipe implements PipeTransform {
             : propertyToCheck;
 
         return input.sort((a: any, b: any) => (!desc
-            ? OrderByPipe._orderByComparator(a[property], b[property])
-            : -OrderByPipe._orderByComparator(a[property], b[property])
+            ? OrderByPipe._orderByComparator(
+                OrderByPipe._deepProperty(a, property),
+                OrderByPipe._deepProperty(b, property)
+              )
+            : -OrderByPipe._orderByComparator(
+              OrderByPipe._deepProperty(a, property),
+              OrderByPipe._deepProperty(b, property)
+            )
           ));
       }
     } else {
@@ -96,8 +151,14 @@ export class OrderByPipe implements PipeTransform {
             : key;
 
           const comparison = !desc
-            ? OrderByPipe._orderByComparator(a[property], b[property])
-            : -OrderByPipe._orderByComparator(a[property], b[property]);
+            ? OrderByPipe._orderByComparator(
+              OrderByPipe._deepProperty(a, property),
+              OrderByPipe._deepProperty(b, property)
+            )
+            : -OrderByPipe._orderByComparator(
+              OrderByPipe._deepProperty(a, property),
+              OrderByPipe._deepProperty(b, property)
+            );
 
           // Don't return 0 yet in case of needing to sort by next property
           if (comparison !== 0) { return comparison; }
