@@ -22,7 +22,7 @@
       <th class="col sortable" (click)="sortBy('visibleName')" [ngClass]="{'sort-asc': sortKey === '+visibleName', 'sort-desc': sortKey === '-visibleName'}">Visible</th>
       <th class="col sortable" (click)="sortBy('foundry.name')" [ngClass]="{'sort-asc': sortKey === '+foundry.name', 'sort-desc': sortKey === '-foundry.name'}">Foundries</th>
       <th class="col sortable" (click)="sortBy('designer')" [ngClass]="{'sort-asc': sortKey === '+designer', 'sort-desc': sortKey === '-designer'}">Designers</th>
-      <th class="col sortable" (click)="sortBy('style')" [ngClass]="{'sort-asc': sortKey === '+style', 'sort-desc': sortKey === '-style'}">Styles</th>
+      <th class="col sortable" (click)="sortBy('style.length')" [ngClass]="{'sort-asc': sortKey === '+style.length', 'sort-desc': sortKey === '-style.length'}">Styles</th>
       <th class="col sortable" (click)="sortBy('min_size')" [ngClass]="{'sort-asc': sortKey === '+min_size', 'sort-desc': sortKey === '-min_size'}">Min Size</th>
       <th class="col sortable" (click)="sortBy('max_size')" [ngClass]="{'sort-asc': sortKey === '+max_size', 'sort-desc': sortKey === '-max_size'}">Max Size</th>
       <th class="col sortable" (click)="sortBy('categoryName')" [ngClass]="{'sort-asc': sortKey === '+categoryName', 'sort-desc': sortKey === '-categoryName'}">Categories</th>
