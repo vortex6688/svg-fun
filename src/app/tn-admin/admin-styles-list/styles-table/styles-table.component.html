@@ -26,7 +26,7 @@
       <th class="col sortable" (click)="sortBy('name')" [ngClass]="{'sort-asc': sortKey === '+name', 'sort-desc': sortKey === '-name'}">Name</th>
       <th class="col sortable" (click)="sortBy('visibleName')" [ngClass]="{'sort-asc': sortKey === '+visibleName', 'sort-desc': sortKey === '-visibleName'}">Visible</th>
       <th class="col sortable" (click)="sortBy('foundry.name')" [ngClass]="{'sort-asc': sortKey === '+foundry.name', 'sort-desc': sortKey === '-foundry.name'}">Foundries</th>
-      <th class="col sortable" (click)="sortBy('designer')" [ngClass]="{'sort-asc': sortKey === '+designer', 'sort-desc': sortKey === '-designer'}">Designers</th>
+      <th class="col sortable" (click)="sortBy('designer.name')" [ngClass]="{'sort-asc': sortKey === '+designer.name', 'sort-desc': sortKey === '-designer.name'}">Designers</th>
       <th class="col sortable" (click)="sortBy('opticalName')" [ngClass]="{'sort-asc': sortKey === '+opticalName', 'sort-desc': sortKey === '-opticalName'}">Optical</th>
       <th class="col sortable" (click)="sortBy('weightName')" [ngClass]="{'sort-asc': sortKey === '+weightName', 'sort-desc': sortKey === '-weightName'}">Weight</th>
       <th class="col sortable" (click)="sortBy('widthName')" [ngClass]="{'sort-asc': sortKey === '+widthName', 'sort-desc': sortKey === '-widthName'}">Width</th>

@@ -7,7 +7,6 @@ import { Foundry } from '../../tn-common/foundries';
 import { Designer } from '../../tn-common/designers';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
-import { Foundry } from '../../tn-common/foundries';
 import {
   getAllFamilies,
   getFamilySearchQuery,
