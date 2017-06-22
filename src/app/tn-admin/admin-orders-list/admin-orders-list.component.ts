@@ -24,8 +24,8 @@ const STATUSES = [
   'Approved, Unpaid', // 4
 ];
 const CUSTOMERSTATUS = [
-  'New customer',       // 0
-  'Returning customer', // 1
+  'Returning customer', // 0
+  'New customer',       // 1
 ];
 
 @Component({
