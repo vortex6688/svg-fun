@@ -29,6 +29,11 @@ describe('AdminOrdersListComponent', () => {
     'Cancelled',        // 3
     'Approved, Unpaid', // 4
   ];
+  const CUSTOMERSTATUS = [
+    'Returning customer', // 0
+    'New customer',       // 1
+  ];
+
   const mockOrder: Order = {
     id: 1,
     user: 1,
@@ -36,15 +41,17 @@ describe('AdminOrdersListComponent', () => {
     tax: 0.5,
     total: 10.5,
     status: 1,
-    licensee_first_name: 'John',
-    licensee_last_name: 'Doe',
-    licensee_company: 'John Doe INC',
-    licensee_street1: '123 Unnamed Road',
+    licensee: {
+      first_name: 'John',
+      last_name: 'Doe',
+      company: 'John Doe INC',
+      address1: '123 Unnamed Road',
+      city: 'Wonderland',
+      zipcode: '33333',
+      country: 'United States',
+      vat: 'SuperVAT',
+    },
     created: '2028-06-08T18:16:50Z',
-    licensee_city: 'Wonderland',
-    licensee_zipcode: '33333',
-    licensee_country: 'United States',
-    licensee_vat: 'SuperVAT',
     payments: [
         {
             order: 128,
@@ -52,15 +59,16 @@ describe('AdminOrdersListComponent', () => {
             provider: 0,
             status: 1,
             provider_data: '{ \"source\": {\"brand\": \"Visa\"} }',
-            name: 'John Doe',
-            street1: '1234 Hollywood',
-            street2: '9876',
-            state: 'Florida',
-            city: 'Hollywood',
-            zipcode: '11221',
-            country: 'United States',
-            company: 'John Doe INC',
-            created: '2016-05-25T21:14:40.609000Z'
+            billing: {
+              name: 'John Doe',
+              address1: '1234 Hollywood',
+              address2: '9876',
+              state: 'Florida',
+              city: 'Hollywood',
+              zipcode: '11221',
+              country: 'United States',
+              company: 'John Doe INC',
+            },
         }
     ],
     order_token: 'AnOrderToken',
@@ -299,6 +307,7 @@ describe('AdminOrdersListComponent', () => {
       ...order,
       statusName: STATUSES[order.status],
       licenses: licensesStyles.filter((license) => license.order === order.id),
+      new_customer_name: CUSTOMERSTATUS[+order.new_customer],
     }));
     const licensesOrdersProjects = licensedOrders.map((order) => ({
       ...order,

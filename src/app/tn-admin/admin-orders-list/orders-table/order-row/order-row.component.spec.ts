@@ -25,7 +25,7 @@ describe('OrderRowComponent', () => {
     collapseSubject = new BehaviorSubject(true);
     fixture = TestBed.createComponent(OrderRowComponent);
     component = fixture.componentInstance;
-    component.order = {id: 1};
+    component.order = {id: 1, licensee: {}, licenses: [] };
     component.collapseSubject = collapseSubject;
     fixture.detectChanges();
   });

@@ -23,6 +23,10 @@ const STATUSES = [
   'Cancelled',        // 3
   'Approved, Unpaid', // 4
 ];
+const CUSTOMERSTATUS = [
+  'Returning customer', // 0
+  'New customer',       // 1
+];
 
 @Component({
   selector: 'admin-orders-list',
@@ -144,6 +148,7 @@ export class AdminOrdersListComponent {
     (orders: Order[], licenses: License[]) => orders.map((order) => ({
       ...order,
       statusName: STATUSES[order.status],
+      new_customer_name: CUSTOMERSTATUS[+order.new_customer],
       licenses: licenses.filter((license) => license.order === order.id),
     })));
 
