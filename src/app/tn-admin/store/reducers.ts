@@ -10,6 +10,7 @@ import * as style from '../../tn-common/styles';
 import * as project from '../../tn-common/projects';
 import * as foundry from '../../tn-common/foundries';
 import * as designer from '../../tn-common/designers';
+import * as customer from '../../tn-common/customers';
 
 export interface AdminState {
   auth: auth.AuthState;
@@ -21,6 +22,7 @@ export interface AdminState {
   project: project.ProjectState;
   foundry: foundry.FoundryState;
   designer: designer.DesignerState;
+  customer: customer.CustomerState;
 }
 
 export const moduleReducers = [
@@ -33,6 +35,7 @@ export const moduleReducers = [
   { project: project.ProjectReducer },
   { foundry: foundry.FoundryReducer },
   { designer: designer.DesignerReducer },
+  { customer: customer.CustomerReducer },
 ];
 
 export const moduleActions = [
@@ -45,6 +48,7 @@ export const moduleActions = [
   project.ProjectActions,
   foundry.FoundryActions,
   designer.DesignerActions,
+  customer.CustomerActions,
 ];
 
 export const moduleEffects = [
@@ -57,6 +61,7 @@ export const moduleEffects = [
   EffectsModule.run(project.ProjectEffects),
   EffectsModule.run(foundry.FoundryEffects),
   EffectsModule.run(designer.DesignerEffects),
+  EffectsModule.run(customer.CustomerEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
@@ -276,4 +281,30 @@ export const getDesignersByFoundry = (foundry: number) => {
 };
 export const getDesignersByTitle = (title: number) => {
   return (state) => designer.getDesignersByTitle(state.designer, title);
+};
+
+// CUSTOMER
+export const getCustomerState = (state: AdminState): customer.CustomerState => state.customer;
+export const getCustomerEntities = createSelector(getCustomerState, customer.getEntities);
+export const getCustomerIds = createSelector(getCustomerState, customer.getIds);
+export const getSelectedCustomerId = createSelector(getCustomerState, customer.getSelectedId);
+export const getSelectedCustomer = createSelector(getCustomerState, customer.getSelected);
+export const getAllCustomers = createSelector(getCustomerState, customer.getAll);
+export const getCustomerById = (customerId) => {
+  return (state) => customer.getCustomerById(state.customer, customerId);
+};
+export const getCustomerByName = (name) => {
+  return (state) => customer.getCustomerByName(state.customer, name);
+};
+export const getCustomerByEmail = (email) => {
+  return (state) => customer.getCustomerByEmail(state.customer, email);
+};
+export const getCustomersByCity = (city) => {
+  return (state) => customer.getCustomersByCity(state.customer, city);
+};
+export const getCustomersByCountry = (country) => {
+  return (state) => customer.getCustomersByCountry(state.customer, country);
+};
+export const getCustomersByActivity = (activity) => {
+  return (state) => customer.getCustomersByActivity(state.customer, activity);
 };
