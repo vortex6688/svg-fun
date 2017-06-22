@@ -84,7 +84,7 @@ describe('Admin', () => {
 
       expect(element(by.css('app-login')).isPresent()).toBeFalsy();
       browser.getCurrentUrl().then((url) => {
-        expect(url.indexOf('admin/orders/list')).toBeGreaterThan(-1);
+        expect(url.indexOf('admin/orders/orders')).toBeGreaterThan(-1);
       });
     });
 
@@ -404,6 +404,17 @@ describe('Admin', () => {
         });
       });
 
+      describe('Customers list page', () => {
+        beforeAll(() => {
+          browser.get('/admin/orders/customers');
+        });
+        it('should show customers list page', () => {
+          expect(element(by.css('admin-customers-list')).isDisplayed()).toBeTruthy();
+        });
+        it('should have a table with customers info', () => {
+          expect(element(by.css('admin-customers-list customers-table')).isDisplayed()).toBeTruthy();
+        });
+      });
     });
   }
 });
