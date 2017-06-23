@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/list-group";
+
+.list-hyphen {
+    li {
+    margin-left: 20px;
+
+    &:before {
+      content: '\2014';
+      position: absolute;
+      margin-left: -20px;
+    }
+  }
+}
