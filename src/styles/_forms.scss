@@ -30,6 +30,30 @@
   }
 }
 
+//
+// TN custom file input 
+//
+
+.custom-file-tn {
+  overflow-x: hidden;
+
+  input {
+    margin-left: -6rem;
+    font-weight: 600;
+    // make sure the text is the right size, otherwise left margin must be adjusted 
+    font-size: $font-size-sm;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+
+  label {
+    text-transform: none;
+    font-size: $font-size-xs;
+  }
+}
+
 // TN switch checkbox
 
 .switch-checkbox {
