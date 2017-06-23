@@ -21,9 +21,6 @@
         <div>
           <b class="text-primary">Order Summary</b>
         </div>
-        <div class="my-2">
-          <button class="btn btn-sm btn-info w-50" (click)="openOrderDetails()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
-        </div>
       </th>
       <th class="col">Families purchased:</th>
       <th class="col">License types:</th>
@@ -32,14 +29,16 @@
       <th class="col">Download PDF</th>
     </thead>
     <tbody class="row">
-      <th class="col"></th>
+      <th class="col">
+        <button class="btn btn-sm btn-info w-50" (click)="openOrderDetails()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
+      </th>
       <td class="col">
-        <ul>
+        <ul class="list-unstyled list-hyphen">
           <li *ngFor='let family of families'>{{family}}</li>
         </ul>
       </td>
       <td class="col">
-        <ul>
+        <ul class="list-unstyled list-hyphen">
           <li *ngFor='let license of order.licenseTypes'>{{license}}</li>
         </ul>
       </td>
