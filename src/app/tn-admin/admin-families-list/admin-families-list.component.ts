@@ -4,7 +4,14 @@ import { Observable } from 'rxjs/Observable';
 
 import { Family, FamilyActions, FamilySearch } from '../../tn-common/families';
 import { Style } from '../../tn-common/styles';
-import { getAllFamilies, getFamilySearchQuery, getStyleEntities, getFoundryEntities } from '../store/reducers';
+import { Foundry } from '../../tn-common/foundries';
+import {
+  getAllFamilies,
+  getFamilySearchQuery,
+  getStyleEntities,
+  getFoundryEntities,
+  getAllFoundries,
+} from '../store/reducers';
 
 const CATEGORIES = [
   'Sans',       // 0
@@ -82,6 +89,15 @@ export class AdminFamiliesListComponent {
 
   /**
    *  Family collection with populated data.
+   *  Foundry collection list for selection.
+   *
+   * @type {Observable<Foundry[]}
+   * @memberof AdminFamiliesListComponent
+   */
+  public foundries$ = this.store.select(getAllFoundries);
+
+  /**
+   *  Family collection with populated data.
    * @type {Observable<Family[]>}
    * @memberof AdminFamiliesListComponent
    */
@@ -109,6 +125,11 @@ export class AdminFamiliesListComponent {
         const testName = new RegExp(familyQuery.name, 'i');
         const hasName = testName.test(family.name);
         if (!hasName) { return false; }
+      }
+      if (familyQuery.foundry.length) {
+        const hasFoundry = (family.foundry as Foundry[]).some((foundry) =>
+          foundry && familyQuery.foundry.indexOf(foundry.id) !== -1);
+        if (!hasFoundry) { return false; }
       }
       return true;
     }).map((family) => ({

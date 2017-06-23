@@ -145,7 +145,7 @@ describe('SeriesReducer', () => {
     const state = mockedState();
     const search: SeriesSearch = {
       name: 'Lorem',
-      foundry: 1,
+      foundry: [1],
     };
     const actual = SeriesReducer(state, seriesActions.searchQuery(search));
     const expected: SeriesState = {

@@ -6,6 +6,7 @@ import { Order, OrderActions, OrderSearch } from '../../tn-common/orders';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
 import { Family, FamilyState } from '../../tn-common/families';
+import { Foundry } from '../../tn-common/foundries';
 import { Project, ProjectActions } from '../../tn-common/projects';
 import { getAllOrders,
   getOrderSearchQuery,
@@ -14,6 +15,7 @@ import { getAllOrders,
   getFamilyEntities,
   getAllProjects,
   getFoundryEntities,
+  getAllFoundries,
 } from '../store/reducers';
 
 const STATUSES = [
@@ -91,6 +93,14 @@ export class AdminOrdersListComponent {
   public foundryEntities$ = this.store.select(getFoundryEntities);
 
   /**
+   *  Foundry collection list for selection.
+   *
+   * @type {Observable<Foundry[]}
+   * @memberof AdminOrdersListComponent
+   */
+  public foundries$ = this.store.select(getAllFoundries);
+
+  /**
    *  Style collection with populated family data.
    *
    * @type {Observable<Style[]>}
@@ -106,7 +116,7 @@ export class AdminOrdersListComponent {
    );
 
   /**
-   *  Style collection with populated foundty data.
+   *  Style collection with populated foundry data.
    *
    * @type {Observable<Style[]>}
    * @memberof AdminOrdersListComponent
@@ -199,6 +209,13 @@ export class AdminOrdersListComponent {
         const hasName = order.projects.some((project) => testName.test((project as Project).name));
         const hasDomain = order.projects.some((project) => testName.test((project as Project).domains));
         if (!hasName && !hasDomain) { return false; }
+      }
+      if (orderQuery.foundry.length) {
+        const hasFoundry = order.licenses.some((license) =>
+          ((license.style as Style).foundry as Foundry[]).some((foundry) =>
+            foundry && orderQuery.foundry.indexOf(foundry.id) !== -1)
+        );
+        if (!hasFoundry) { return false; }
       }
       return !orderQuery.licenses.length || orderQuery.licenses.some((licenseType) =>
         Object.entries(licenseType).every(([key, value]) =>

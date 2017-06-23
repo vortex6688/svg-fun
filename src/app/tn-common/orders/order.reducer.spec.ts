@@ -122,7 +122,7 @@ describe('OrderReducer', () => {
       customer: 'Kebab',
       project: 'Project Laif',
       font: 'Best Font',
-      foundry: 'Based',
+      foundry: [2],
       status: [23, 1],
       licenses: [1, 11],
     };
