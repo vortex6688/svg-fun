@@ -1,0 +1,799 @@
+<div class="d-flex justify-content-between modal-action-bar">
+  <span class="mx-2 ml-lg-5 small text-primary align-self-center">
+    You are editing this item. Click the "Save" button to commit your changes or click "Discard" to remove changes and exit edit mode.
+  </span>
+  <div class="d-flex flex-xl-row flex-column text-right">
+    <button type="button" class="btn btn-danger mr-xl-5" (click)="activeModal.close('Cross click')"><icon-delete class="text-white icon icon-sm"></icon-delete> Discard</button>
+    <button class="btn btn-success mr-xl-5" type="button"><icon-check class="text-white icon icon-sm"></icon-check> Save</button>
+  </div>
+</div>
+
+<div class="mx-lg-7 mx-4">
+  <div class="modal-body">
+
+    <div class="row text-info mt-4">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">FAMILY INFORMATION</b>
+      <!-- flex-grow is set to 0 to allows hr element to freely expand and shrink without giving it a certain width -->
+      <hr class="col">
+    </div>
+
+    <form class="row mb-5">
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="marked my-3">
+          FAMILY NAME
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="custom-select" id="familyNameInput" value="Family Name" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Dunbar text</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Dunbar low</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Dunbar</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="marked my-3">
+          STYLE NAME
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="custom-select" id="familyNameInput" value="Dunbar" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Dunbar text</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Dunbar low</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Dunbar</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="my-3">
+          SOURCE NAME
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="custom-select" id="familyNameInput" Value="Mooncoop" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Mooncoop</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="marked my-3">
+          VISIBLE
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Everyone</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Everyone
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Inactive
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Staff Only
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  With Link
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="marked my-3">
+          RELEASE DATE
+        </label>
+        <div style="width: 13rem;">
+          <datepicker></datepicker>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          BASE PRICE
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="$65.00" />
+        </div>
+      </div>
+    </form>
+
+    <div class="row text-info">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">FOUNDRIES / DESIGNERS</b>
+      <hr class="col mr-2">
+    </div>
+
+    <form class="row mb-5">
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          CANONICAL FOUNDRY
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Mooncop</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Mooncop
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Mooncop
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          FOUNDRY ROYALTIES
+        </label>
+        <icon-tooltip class="icon ml-1 pt-1" placement="top" ngbTooltip="Tooltip"></icon-tooltip>
+        <div>
+          <div ngbDropdown class="d-inline-block mr-2">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Mooncop</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Mooncop
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Mooncop
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 6rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>5%</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  5%
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  10%
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <small class="text-info">+ Add Royalties</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="marked my-3">
+          DESIGNER / ROYALTIES
+        </label>
+        <icon-tooltip class="icon ml-1 pt-1" placement="top" ngbTooltip="Tooltip"></icon-tooltip>
+        <div>
+          <div ngbDropdown class="d-inline-block mr-2">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Tom Gauld</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Tom Gauld
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Rick Moranis
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Stepfen Fry
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 6rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>5%</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  5%
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  10%
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <small class="text-info">+ Add Designers</small>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row text-info">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">STYLE DETAILS</b>
+      <hr class="col mr-2">
+    </div>
+
+    <form class="row mb-5">
+      <div class="col-xl-4 col-sm-6 form-group">
+        <label class="ms-2 my-3">
+          DEFAULT STYLES
+        </label>
+        <div class="switch-checkbox ml-2">
+          <input class="switch-input" type="checkbox" id="default-styles" checked>
+          <label class="switch-paddle mb-0" for="default-styles">
+            <span class="switch-yes">Yes</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          MIN SIZE
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>12px</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  12px
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  14px
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          MAX SIZE
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>120px</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  120px
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  160px
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          TN SIZES
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="100, 300, 600" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>100</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>300</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>600</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          RECOMMENDED SIZES
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="Extra Small" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Extra Small</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Small</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Large</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+       <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          RECOMMENDED FUNCTIONS
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="Display, Poster, Captions, Code" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Display</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Poster</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Captions</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Code</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          TN WEIGHT
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="100, 200, 400, 600" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>100</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>200</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>400</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>600</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="marked my-3">
+          WEIGHT
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Regular</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Regular
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Bold
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="marked my-3">
+          POSTURE
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Roman</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Roman
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          TN WIDTH
+        </label>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block">
+            <input style="min-width: 16rem;" class="custom-select" id="familyNameInput" value="100, 200, 600, 700" ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>100</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>200</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>600</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>700</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="marked my-3">
+          WIDTH
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Normal</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Normal
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Large
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="marked my-3">
+          OPTICAL
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Text</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Text
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="mx-2 my-3">
+          GRADE
+        </label>
+        <div>
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+                <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+                <b>Zero</b>
+                <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Zero
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row text-info">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">UPLOADS</b>
+      <hr class="col mr-2">
+    </div>
+
+    <form class="row mb-5">
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="my-3">
+          TFF UPLOAD
+        </label>
+        <div class="form-group custom-file-tn">
+          <input type="file" class="form-control-file" id="tff-upload">
+          <label for="tff-upload">+ Upload TTF</label>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="my-3">
+          OTF UPLOAD
+        </label>
+        <div class="form-group custom-file-tn">
+          <input type="file" class="form-control-file" id="tff-upload">
+          <label for="otf-upload">+ Upload OTF</label>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 form-group">
+        <label class="my-3">
+          OTF WEB UPLOAD
+        </label>
+        <div class="form-group custom-file-tn">
+          <input type="file" class="form-control-file" id="tff-upload">
+          <label for="otf-web-upload">+ Upload Web OTF</label>
+        </div>
+      </div>
+    </form>
+
+    <div class="row text-info">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">OTHER INFO</b>
+      <hr class="col mr-2">
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <label class="my-3">
+          CATALOG URL
+        </label>
+        <div>
+          <a href=""><b>Https://typenetwork.com/.....</b></a>
+        </div>
+      </div> 
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <label class="my-3">
+          INFO
+        </label>
+        <div>
+          <p class="p-2" style="background: rgba(0, 0, 0, 0.1);">
+            Dunbar is a geometric sans with a unique family structure, including a Tall and Low display version for large sizes and a Caption version for small sizes.
+          </p>
+        </div>
+      </div>
+      <div class="col">
+        <label class="my-3">
+          PANGRAM
+        </label>
+        <icon-tooltip class="icon ml-1 pt-1" placement="top" ngbTooltip="Tooltip"></icon-tooltip>
+        <div>
+          <div ngbDropdown [autoClose]="false" class="d-inline-block w-100">
+            <input class="w-100 custom-select" id="familyNameInput" value="Sphinx of black quarts, judge my vow." ngbDropdownToggle>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="familyNameInput">
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>Sphinx of black quarts, judge my vow.</span>
+                </label>
+              </li>
+              <li class="list-group-item">
+                <label class="custom-control custom-checkbox mb-sm-0">
+                  <input type="checkbox" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span>The five boxing wizards jump quickly.</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="row text-info">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">TAGS</b>
+      <hr class="col mr-2">
+    </div>
+
+    <div class="d-flex flex-wrap">
+      <label *ngFor='let tag of tags' class="custom-control custom-checkbox checkbox-sm col-xl-2 col-sm-3">
+        <input type="checkbox" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <b class="custom-control-description text-capitalize text-primary">{{tag}}</b>
+      </label>
+    </div>
+  </div>
+</div>

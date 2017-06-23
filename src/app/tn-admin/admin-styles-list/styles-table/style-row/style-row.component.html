@@ -24,7 +24,9 @@
       <li *ngFor='let designer of style.designer'>{{designer ? designer.name : ''}}</li>
     </ul>
   </td>
-  <td class="col">{{style.opticalName}}</td>
+  <td class="col">
+    {{style.opticalName}}
+    </td>
   <td class="col">{{style.weightName}}</td>
   <td class="col">{{style.widthName}}</td>
   <td class="col">{{style.postureName}}</td>
@@ -48,7 +50,12 @@
     </thead>
     <tbody class="row">
       <td class="col" style="max-width: 2.5rem;"></td>
-      <td class="col">{{style.released | date:"MM/dd/yyyy" }}</td>
+      <td class="col">
+        {{style.released | date:"MM/dd/yyyy" }}
+      <div>
+        <button class="btn btn-sm btn-info w-75" (click)="openStyleSingleEdit()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
+      </div>
+      </td>
       <td class="col">{{style.base_price | currency:'USD':true:'1.2-2'}}</td>
       <td class="col">{{style.default_style}}</td>
       <td class="col"></td>

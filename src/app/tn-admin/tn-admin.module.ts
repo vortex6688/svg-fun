@@ -37,8 +37,8 @@ import { AdminCustomersListComponent } from './admin-customers-list';
 import { CustomersTableComponent } from './admin-customers-list/customers-table';
 import { CustomersControlsComponent } from './admin-customers-list/customers-controls';
 import { CustomersRowComponent } from './admin-customers-list/customers-table/customers-row';
-
 import { AdminStylesListComponent } from './admin-styles-list';
+import { AdminStyleSingleEditComponent } from './admin-style-single-edit';
 import { StylesTableComponent } from './admin-styles-list/styles-table';
 import { StylesControlsComponent } from './admin-styles-list/styles-controls';
 import { StyleRowComponent } from './admin-styles-list/styles-table/style-row';
@@ -96,6 +96,7 @@ export const routes: Routes = [
     PlaceholderComponent,
     AdminFamilySingleEditComponent,
     AdminFamilyBatchEditComponent,
+    AdminStyleSingleEditComponent,
     FamilyRowComponent,
     FamiliesControlsComponent,
     FamiliesTableComponent,
