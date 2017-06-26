@@ -149,7 +149,6 @@ export class AdminOrdersListComponent {
      this.stylesPopulated$,
      (licenses, styles) => licenses.map((license) => ({
        ...license,
-       license_type_name: this.getLicenseTypeName(license.license_type, license.self_hosted),
        style: styles.find((style) => style.id === license.style),
      }))
    );
@@ -163,12 +162,22 @@ export class AdminOrdersListComponent {
   public ordersLicenses$ = Observable.combineLatest(
     this.orders$,
     this.licensesStyles$,
-    (orders: Order[], licenses: License[]) => orders.map((order) => ({
-      ...order,
-      statusName: STATUSES[order.status],
-      new_customer_name: CUSTOMERSTATUS[+order.new_customer],
-      licenses: licenses.filter((license) => license.order === order.id),
-    })));
+    (orders: Order[], licenses: License[]) => orders.map((order) => {
+      const orderLicenses = licenses.filter((license) => license.order === order.id);
+      return {
+        ...order,
+        statusName: STATUSES[order.status],
+        new_customer_name: CUSTOMERSTATUS[+order.new_customer],
+        licenses: orderLicenses,
+        licenseTypes: orderLicenses.reduce((types, license) => {
+          const name = this.getLicenseTypeName(license.license_type, license.self_hosted);
+          if (types.indexOf(name) === -1) {
+            types.push(name);
+          }
+          return types;
+        }, []),
+      };
+    }));
 
   /**
    *  Orders collections with populated license data and project data.
