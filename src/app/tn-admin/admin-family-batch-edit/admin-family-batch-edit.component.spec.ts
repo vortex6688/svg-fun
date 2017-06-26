@@ -4,17 +4,15 @@ import { AdminFamilyBatchEditComponent } from './admin-family-batch-edit.compone
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
-import { OrderByPipe } from '../../tn-common/pipes/';
-import { Style } from '../../tn-common/styles';
 
-describe('AdminOrderDetailsComponent', () => {
+describe('AdminFamilyBatchComponent', () => {
   let component: AdminFamilyBatchEditComponent;
   let fixture: ComponentFixture<AdminFamilyBatchEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ NgbModule.forRoot(), RouterTestingModule.withRoutes([]) ],
-      declarations: [ AdminFamilyBatchEditComponent, OrderByPipe ],
+      declarations: [ AdminFamilyBatchEditComponent ],
       schemas:      [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
       providers: [ NgbActiveModal ]
     })

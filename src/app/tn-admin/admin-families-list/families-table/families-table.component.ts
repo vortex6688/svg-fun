@@ -9,7 +9,7 @@ import { AdminFamilyBatchEditComponent } from '../../admin-family-batch-edit';
   templateUrl: './families-table.component.html'
 })
 export class FamiliesTableComponent {
-  @Input() public family;
+  public family;
   @Input() public families: Family[] = [];
 
   public sortKey = '-name';
