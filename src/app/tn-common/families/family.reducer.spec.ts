@@ -151,7 +151,7 @@ describe('FamilyReducer', () => {
     const search: FamilySearch = {
       name: 'fam fam',
       foundry: [1],
-      designer: 2,
+      designer: [2],
       visibility: [1, 2],
       categories: [2, 3],
     };
@@ -279,7 +279,7 @@ describe('FamilyReducer', () => {
     });
 
     it('getFamiliesByDesigner should return a list of families with the provided designer', () => {
-      const selectedFamilies = getFamiliesByDesigner(addedState, FamilyMock.designer[0]);
+      const selectedFamilies = getFamiliesByDesigner(addedState, FamilyMock.designer[0] as number);
       expect(selectedFamilies).toEqual([FamilyMock]);
     });
 

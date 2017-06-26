@@ -148,7 +148,7 @@ describe('StyleReducer', () => {
     const search = {
       name: 'name',
       foundry: [1],
-      designer: 2,
+      designer: [2],
       visible: [1],
       categories: [2]
     };

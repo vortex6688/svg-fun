@@ -9,6 +9,7 @@ import * as family from '../../tn-common/families';
 import * as style from '../../tn-common/styles';
 import * as project from '../../tn-common/projects';
 import * as foundry from '../../tn-common/foundries';
+import * as designer from '../../tn-common/designers';
 
 export interface AdminState {
   auth: auth.AuthState;
@@ -19,6 +20,7 @@ export interface AdminState {
   style: style.StyleState;
   project: project.ProjectState;
   foundry: foundry.FoundryState;
+  designer: designer.DesignerState;
 }
 
 export const moduleReducers = [
@@ -30,6 +32,7 @@ export const moduleReducers = [
   { style: style.StyleReducer },
   { project: project.ProjectReducer },
   { foundry: foundry.FoundryReducer },
+  { designer: designer.DesignerReducer },
 ];
 
 export const moduleActions = [
@@ -41,6 +44,7 @@ export const moduleActions = [
   style.StyleActions,
   project.ProjectActions,
   foundry.FoundryActions,
+  designer.DesignerActions,
 ];
 
 export const moduleEffects = [
@@ -52,6 +56,7 @@ export const moduleEffects = [
   EffectsModule.run(style.StyleEffects),
   EffectsModule.run(project.ProjectEffects),
   EffectsModule.run(foundry.FoundryEffects),
+  EffectsModule.run(designer.DesignerEffects),
 ];
 /**
  * Function mapping the state tree into a specific state
@@ -240,4 +245,35 @@ export const getAllFoundries = createSelector(getFoundryState, foundry.getAll);
 export const getFoundryById = (foundryId) => {
   return (state) => foundry.getFoundryById(state.foundry, foundryId);
 };
-// export const getFoundryEnities = createSelector(getFo)
+
+// DESIGNER
+export const getDesignerState = (state: AdminState): designer.DesignerState => state.designer;
+export const getDesignerEntities = createSelector(getDesignerState, designer.getEntities);
+export const getDesignerIds = createSelector(getDesignerState, designer.getIds);
+export const getSelectedDesignerId = createSelector(getDesignerState, designer.getSelectedId);
+export const getSelectedDesigner = createSelector(getDesignerState, designer.getSelected);
+export const getAllDesigners = createSelector(getDesignerState, designer.getAll);
+export const getDesignerById = (designerId: number) => {
+  return (state) => designer.getDesignerById(state.designer, designerId);
+};
+export const getDesignerByName = (name: string) => {
+  return (state) => designer.getDesignerByName(state.designer, name);
+};
+export const getDesignerBySlug = (slug: string) => {
+  return (state) => designer.getDesignerBySlug(state.designer, slug);
+};
+export const getDesignersByBirth = (birth: Date) => {
+  return (state) => designer.getDesignersByBirth(state.designer, birth);
+};
+export const getDesignersByDeath = (death: Date) => {
+  return (state) => designer.getDesignersByDeath(state.designer, death);
+};
+export const getDesignersByDescription = (description: string) => {
+  return (state) => designer.getDesignersByDescription(state.designer, description);
+};
+export const getDesignersByFoundry = (foundry: number) => {
+  return (state) => designer.getDesignersByFoundry(state.designer, foundry);
+};
+export const getDesignersByTitle = (title: number) => {
+  return (state) => designer.getDesignersByTitle(state.designer, title);
+};

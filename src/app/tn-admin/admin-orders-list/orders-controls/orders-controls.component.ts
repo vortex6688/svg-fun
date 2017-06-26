@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { OrderSearch } from '../../../tn-common/orders';
 import { DropdownOption } from '../../../tn-common/dropdown-input/';
 import { Foundry } from '../../../tn-common/foundries';
+import { Designer } from '../../../tn-common/designers';
 
 @Component({
   selector: 'orders-controls',
@@ -14,6 +15,7 @@ import { Foundry } from '../../../tn-common/foundries';
 export class OrdersControlsComponent implements OnInit, OnChanges {
   @Input() public initialQuery;
   @Input() public foundries: Foundry[];
+  @Input() public designers: Designer[];
   @Output() public queryUpdate = new EventEmitter<OrderSearch>();
 
   public statusData = [
@@ -54,6 +56,7 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
   public searchForm: FormGroup = this.fb.group({});
   public filterForm: FormGroup = this.fb.group({});
   public foundryList: DropdownOption[] = [];
+  public designerList: DropdownOption[] = [];
 
   get statusControls(): FormArray { return this.filterForm.get('status') as FormArray; }
   get licenseControls(): FormArray { return this.filterForm.get('licenses') as FormArray; }
@@ -67,6 +70,12 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
         name: foundry.name,
         value: foundry.id,
         selected: !!this.initialQuery ? this.initialQuery.foundry.indexOf(foundry.id) !== -1 : false})) || [];
+    }
+    if (changes.designers) {
+      this.designerList = this.designers.map((designer) => ({
+        name: designer.name,
+        value: designer.id,
+        selected: !!this.initialQuery ? this.initialQuery.designer.indexOf(designer.id) !== -1 : false })) || [];
     }
   }
 
@@ -84,6 +93,7 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
       project: this.initialQuery.project,
       font: this.initialQuery.font,
       foundry: this.fb.array(this.initialQuery.foundry),
+      designer: this.fb.array(this.initialQuery.designer),
     });
 
     this.filterForm = this.fb.group({
@@ -122,20 +132,21 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Update foundry form with selected foundries
+   * Update specified form field with selected items
    *
    * @public
    * @param {DropdownOption[]} options
+   * @param {string} item
    * @memberof OrdersControlsComponent
    */
-  public updateFoundry(options: DropdownOption[]) {
-    const selectedFoundries = options.reduce((result, option) => {
+  public updateList(options: DropdownOption[], item: string) {
+    const selectedItems = options.reduce((result, option) => {
       if (option.selected) {
         result.push(option.value);
       }
       return result;
     }, []);
-    this.searchForm.setControl('foundry', this.fb.array(selectedFoundries));
+    this.searchForm.setControl(item, this.fb.array(selectedItems));
   }
 
   /**
@@ -147,7 +158,9 @@ export class OrdersControlsComponent implements OnInit, OnChanges {
   public clearSearch() {
     this.searchForm.reset();
     this.searchForm.setControl('foundry', this.fb.array([]));
+    this.searchForm.setControl('designer', this.fb.array([]));
     this.foundryList = this.foundryList.map((foundry) => ({ ...foundry, selected: false }));
+    this.designerList = this.designerList.map((designer) => ({ ...designer, selected: false }));
   }
 
   /**

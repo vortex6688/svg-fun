@@ -8,6 +8,7 @@ export interface OrderSearch {
   project: string;
   font: string;
   foundry: number[];
+  designer: number[];
   status: number[];
   licenses: number[];
 }
@@ -31,6 +32,7 @@ export const initialOrderState: OrderState = {
     project: '',
     font: '',
     foundry: [],
+    designer: [],
     status: [],
     licenses: [],
   },

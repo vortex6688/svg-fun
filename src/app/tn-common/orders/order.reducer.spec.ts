@@ -123,6 +123,7 @@ describe('OrderReducer', () => {
       project: 'Project Laif',
       font: 'Best Font',
       foundry: [2],
+      designer: [2],
       status: [23, 1],
       licenses: [1, 11],
     };

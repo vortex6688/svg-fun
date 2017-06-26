@@ -3,7 +3,7 @@ import { Style } from './style.model';
 export interface StyleSearch {
   name: string;
   foundry: number[];
-  designer: number;
+  designer: number[];
   visible: number[];
   categories: number[];
 }
@@ -22,7 +22,7 @@ export const initialStyleState: StyleState = {
   search: {
     name: '',
     foundry: [],
-    designer: null,
+    designer: [],
     visible: [],
     categories: [],
   },

@@ -10,6 +10,8 @@ import {
   getFamilyEntities,
   getFoundryEntities,
   getAllFoundries,
+  getDesignerEntities,
+  getAllDesigners,
 } from '../store/reducers';
 
 const OPTICAL = {
@@ -117,6 +119,14 @@ export class AdminStylesListComponent {
   public familyEntities$ = this.store.select(getFamilyEntities);
 
   /**
+   *  Designer entity collection for combination.
+   *
+   * @type {Observable<DesignerState.entities}
+   * @memberof AdminStylesListComponent
+   */
+  public designerEntities$ = this.store.select(getDesignerEntities);
+
+  /**
    *  Foundry entity collection for combination.
    *
    * @type {Observable<FoundryState.entities}
@@ -133,32 +143,29 @@ export class AdminStylesListComponent {
   public foundries$ = this.store.select(getAllFoundries);
 
   /**
-   *  Style collection with populated family data.
+   *  Designer list for selection.
    *
-   * @type {Observable<Style[]>}
+   * @type {Observable<Designer[]}
    * @memberof AdminStylesListComponent
    */
-  public styleFamilies$ = Observable.combineLatest(
-     this.styles$,
-     this.familyEntities$,
-     (styles, families) => styles.map((style) => ({
-       ...style,
-       family: families[style.family as number],
-     }))
-   );
+  public designers$ = this.store.select(getAllDesigners);
 
   /**
-   *  Style collection with populated foundry data.
+   *  Style collection with populated data.
    *
    * @type {Observable<Style[]>}
    * @memberof AdminStylesListComponent
    */
-  public styleFamiliesFoundries$ = Observable.combineLatest(
-     this.styleFamilies$,
+  public stylesPopulated$ = Observable.combineLatest(
+     this.styles$,
+     this.familyEntities$,
      this.foundryEntities$,
-     (styles, foundries) => styles.map((style) => ({
+    this.designerEntities$,
+     (styles, families, foundries, designers) => styles.map((style) => ({
        ...style,
+       family: families[style.family as number],
        foundry: (style.foundry as number[]).map((id) => foundries[id]),
+      designer: (style.designer as number[]).map((id) => designers[id]),
      }))
    );
 
@@ -169,7 +176,7 @@ export class AdminStylesListComponent {
    * @memberof AdminStylesListComponent
    */
   public filteredStyles$ = Observable.combineLatest(
-    this.styleFamiliesFoundries$,
+    this.stylesPopulated$,
     this.stylesQuery$,
     (styles, stylesQuery: StyleSearch) => styles.filter((style) => {
       if (stylesQuery.name) {
@@ -186,8 +193,15 @@ export class AdminStylesListComponent {
         if (!hasFamily) { return false; }
       }
       if (stylesQuery.foundry.length) {
-        const hasFoundry =  style.foundry.some((foundry) => foundry && stylesQuery.foundry.indexOf(foundry.id) !== -1);
+        const hasFoundry = style.foundry.some((foundry) => foundry && stylesQuery.foundry.indexOf(foundry.id) !== -1);
         if (!hasFoundry) {
+          return false;
+        }
+      }
+      if (stylesQuery.designer.length) {
+        const hasDesigner = style.designer.some((designer) =>
+          designer && stylesQuery.designer.indexOf(designer.id) !== -1);
+        if (!hasDesigner) {
           return false;
         }
       }

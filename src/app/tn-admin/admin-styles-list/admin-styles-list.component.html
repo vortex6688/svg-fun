@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="sidebar border-right-gradient-inset">
-      <styles-controls [initialQuery]="stylesQuery$ | async" [foundries]="foundries$ | async" (queryUpdate)="searchStyles($event)"></styles-controls>
+      <styles-controls [initialQuery]="stylesQuery$ | async" [foundries]="foundries$ | async" [designers]="designers$ | async" (queryUpdate)="searchStyles($event)"></styles-controls>
     </div>
     <div class="main w-100">
       <h2>Styles</h2>

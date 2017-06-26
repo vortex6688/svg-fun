@@ -94,7 +94,7 @@ export const getFamiliesByDesigner = (state: FamilyState, designer: number) => {
   return state.ids.reduce((families, id) => {
     const family = state.entities[id];
 
-    if (family.designer.indexOf(designer) !== -1) {
+    if ((family.designer as number[]).indexOf(designer) !== -1) {
       families.push(family);
     }
     return families;

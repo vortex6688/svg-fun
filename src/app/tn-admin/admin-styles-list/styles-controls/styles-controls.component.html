@@ -17,11 +17,11 @@
       </div>
       <div class="form-group">
         <label for="searchStylesFoundry">Foundry</label>
-        <dropdown-input [options]="foundryList" (optionsChange)="updateFoundry($event)"></dropdown-input>
+        <dropdown-input [options]="foundryList" (optionsChange)="updateList($event, 'foundry')"></dropdown-input>
       </div>
       <div class="form-group">
         <label for="searchStylesDesigner">Designer</label>
-        <input class="form-control" formControlName="designer" />
+        <dropdown-input [options]="designerList" (optionsChange)="updateList($event, 'designer')"></dropdown-input>
       </div>
     </form>
   </div>

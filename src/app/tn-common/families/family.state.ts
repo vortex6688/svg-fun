@@ -3,7 +3,7 @@ import { Family } from './family.model';
 export interface FamilySearch {
   name: string;
   foundry: number[];
-  designer: number;
+  designer: number[];
   visibility: number[];
   categories: number[];
 }
@@ -22,7 +22,7 @@ export const initialFamilyState: FamilyState = {
   search: {
     name: '',
     foundry: [],
-    designer: null,
+    designer: [],
     visibility: [],
     categories: [],
   },

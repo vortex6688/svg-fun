@@ -107,7 +107,7 @@ describe('SeriesControlComponent', () => {
     expect(component.foundryList).toEqual(moddedList);
   });
 
-  it('should update foundry selection', () => {
+  it('should update item selection', () => {
     const foundryOptions: DropdownOption[] = [
       { name: 'empty', selected: true, value: 2 },
       { name: 'empty', selected: false, value: 222 },
@@ -117,7 +117,7 @@ describe('SeriesControlComponent', () => {
       ...component.searchForm.value,
       foundry: foundryOptions.filter((foundry) => foundry.selected).map((foundry) => foundry.value),
     };
-    component.updateFoundry(foundryOptions);
+    component.updateList(foundryOptions, 'foundry');
     expect(component.searchForm.value).toEqual(expected);
   });
 

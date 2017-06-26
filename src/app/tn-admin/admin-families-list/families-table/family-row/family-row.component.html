@@ -21,7 +21,7 @@
   </td>
   <td class="col">
     <ul>
-      <li *ngFor='let designer of family.designer'>{{designer}}</li>
+      <li *ngFor='let designer of family.designer'>{{designer ? designer.name : ''}}</li>
     </ul>
   </td>
   <td class="col">{{family.style.length}}</td>

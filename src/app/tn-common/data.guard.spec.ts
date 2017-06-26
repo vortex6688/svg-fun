@@ -13,18 +13,12 @@ import { StyleActions } from './styles';
 import { SeriesActions } from './series';
 import { ProjectActions } from './projects';
 import { FoundryActions } from './foundries';
+import { DesignerActions } from './designers';
 
 describe('DataGuard', () => {
   let dataGuard: DataGuard;
   let router: MockRouter;
   let store: MockStore;
-  let orderActions: OrderActions;
-  let licenseActions: LicenseActions;
-  let familyActions: FamilyActions;
-  let styleActions: StyleActions;
-  let seriesActions: SeriesActions;
-  let projectActions: ProjectActions;
-  let foundryActions: FoundryActions;
   let actionSubject: Subject<any>;
 
   class MockRouter {
@@ -50,6 +44,7 @@ describe('DataGuard', () => {
         SeriesActions,
         ProjectActions,
         FoundryActions,
+        DesignerActions,
         { provide: Router, useClass: MockRouter },
         { provide: Store, useClass: MockStore },
         { provide: Actions, useClass: MockActions },
@@ -63,13 +58,6 @@ describe('DataGuard', () => {
     dataGuard = TestBed.get(DataGuard);
     router = TestBed.get(Router);
     store = TestBed.get(Store);
-    orderActions = TestBed.get(OrderActions);
-    licenseActions = TestBed.get(LicenseActions);
-    familyActions = TestBed.get(FamilyActions);
-    styleActions = TestBed.get(StyleActions);
-    seriesActions = TestBed.get(SeriesActions);
-    projectActions = TestBed.get(ProjectActions);
-    foundryActions = TestBed.get(FoundryActions);
   });
 
   it('should return false on non existant target', () => {
