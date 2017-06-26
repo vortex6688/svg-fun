@@ -48,6 +48,7 @@ import { IconCheckComponent,
 import { OrderByPipe } from './pipes';
 import { DataGuard } from './data.guard';
 import { DropdownInputComponent } from './dropdown-input/dropdown-input.component';
+import { FileInputComponent } from './file-input/file-input.component';
 
 @NgModule({
   imports:      [ CommonModule, FormsModule, HttpModule,
@@ -80,7 +81,7 @@ import { DropdownInputComponent } from './dropdown-input/dropdown-input.componen
                   IconRightArrowComponent, IconSelectComponent, IconWebComponent,
                   IconAddComponent, IconCopyComponent, IconFontComponent, IconAddLicenseComponent,
                   IconDesktopComponent, IconAppComponent, IconTooltipComponent,
-                  IconSearchComponent, IconPencilComponent, OrderByPipe, DropdownInputComponent
+                  IconSearchComponent, IconPencilComponent, OrderByPipe, DropdownInputComponent, FileInputComponent,
                 ],
   schemas:      [ CUSTOM_ELEMENTS_SCHEMA ],
   exports:      [ DatepickerComponent,
@@ -107,6 +108,7 @@ import { DropdownInputComponent } from './dropdown-input/dropdown-input.componen
                   IconPencilComponent,
                   OrderByPipe,
                   DropdownInputComponent,
+                  FileInputComponent,
                 ]
 
 })
