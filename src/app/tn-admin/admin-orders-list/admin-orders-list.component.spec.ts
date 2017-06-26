@@ -196,11 +196,11 @@ describe('AdminOrdersListComponent', () => {
   };
 
   const mockStyleList: Style[] = [
-    { ...mockStyle, id: 2, family: 1, foundry: [1], name: 'Non existant' },
-    { ...mockStyle, id: 3, family: 1, foundry: [2, 3], name: 'Style light' },
-    { ...mockStyle, id: 4, family: 2, foundry: [2], name: 'Placeholder' },
-    { ...mockStyle, id: 5, family: 3, foundry: [4], name: 'Stylish' },
-    { ...mockStyle, id: 6, family: 4, foundry: [5], name: 'Stylish' },
+    { ...mockStyle, id: 2, family: 1, foundry: [1], designer: [2], name: 'Non existant' },
+    { ...mockStyle, id: 3, family: 1, foundry: [2, 3], designer: [1], name: 'Style light' },
+    { ...mockStyle, id: 4, family: 2, foundry: [2], designer: [3, 2], name: 'Placeholder' },
+    { ...mockStyle, id: 5, family: 3, foundry: [4], designer: [4], name: 'Stylish' },
+    { ...mockStyle, id: 6, family: 4, foundry: [5], designer: [5, 4], name: 'Stylish' },
   ];
   const mockFamilyList: Family[] = [
     { ...mockFamily, id: 1, styles: [2, 3], },
@@ -469,6 +469,21 @@ describe('AdminOrdersListComponent', () => {
 
       const expected = licensesOrdersProjects.filter((order) => order.licenses.some((license) =>
         license.style.foundry.some((foundry) => foundry && targets.indexOf(foundry.id) !== -1)));
+      store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
+        expect(orders).toEqual(expected);
+      });
+    });
+
+    it('should filter orders by designers', () => {
+      const targets = [2, 3];
+      const searchQuery = {
+        ...initialOrderState.search,
+        designer: targets,
+      };
+
+      const expected = licensesOrdersProjects.filter((order) => order.licenses.some((license) =>
+        license.style.designer.some((designer) => designer && targets.indexOf(designer.id) !== -1)));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual(expected);
