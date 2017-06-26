@@ -1,5 +1,5 @@
 <label class="custom-file-tn">
-  <input type="file" class="form-control-file" (change)="fileUpdate($event)" [(ngModel)]="file">
-  <div class="file-message">{{ file ? file.fileName : 'No file choosen' }}</div>
+  <input type="file" class="form-control-file" (change)="fileUpdate($event)">
+  <div class="file-message">{{ file ? file.name : 'No file choosen' }}</div>
   <ng-content></ng-content>
 </label>
