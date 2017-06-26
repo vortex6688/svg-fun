@@ -37,7 +37,12 @@
   <table class="table no-borders col table-active" [attr.id]='style' [ngbCollapse]='isCollapsed'>
     <thead class="row">
       <th class="col" style="max-width: 2.5rem;"></th>
-      <th class="col">Release Date</th>
+      <th class="col">
+        Release Date
+        <div>
+          <button class="btn btn-sm btn-info w-75" (click)="openStyleSingleEdit()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
+        </div>     
+      </th>
       <th class="col">Base Price</th>
       <th class="col">Default Style</th>
       <th class="col"></th>
@@ -52,9 +57,6 @@
       <td class="col" style="max-width: 2.5rem;"></td>
       <td class="col">
         {{style.released | date:"MM/dd/yyyy" }}
-      <div>
-        <button class="btn btn-sm btn-info w-75" (click)="openStyleSingleEdit()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
-      </div>
       </td>
       <td class="col">{{style.base_price | currency:'USD':true:'1.2-2'}}</td>
       <td class="col">{{style.default_style}}</td>
