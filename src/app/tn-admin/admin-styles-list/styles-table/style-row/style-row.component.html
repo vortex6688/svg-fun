@@ -32,8 +32,8 @@
   <td class="col">{{style.max_recommended_size}}</td>
 </tr>
 <tr class="row border-0">
-  <table class="table no-borders col" [attr.id]='style' [ngbCollapse]='isCollapsed'>
-    <thead class="row table-active">
+  <table class="table no-borders col table-active" [attr.id]='style' [ngbCollapse]='isCollapsed'>
+    <thead class="row">
       <th class="col" style="max-width: 2.5rem;"></th>
       <th class="col">Release Date</th>
       <th class="col">Base Price</th>
@@ -46,7 +46,7 @@
       <th class="col"></th>
       <th class="col"></th>
     </thead>
-    <tbody class="row table-active">
+    <tbody class="row">
       <td class="col" style="max-width: 2.5rem;"></td>
       <td class="col">{{style.released | date:"MM/dd/yyyy" }}</td>
       <td class="col">{{style.base_price | currency:'USD':true:'1.2-2'}}</td>

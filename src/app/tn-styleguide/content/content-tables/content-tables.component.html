@@ -6,16 +6,17 @@
 <h2 id="contents">Contents</h2>
 
 <ul id="markdown-toc">
-  <li><a [routerLink]="[]" fragment="contents" id="markdown-toc-contents">Contents</a></li>
-  <li><a [routerLink]="[]" fragment="examples" id="markdown-toc-examples">Examples</a></li>
-  <li><a [routerLink]="[]" fragment="table-head-options" id="markdown-toc-table-head-options">Table head options</a></li>
-  <li><a [routerLink]="[]" fragment="sortable-table-head" id="markdown-toc-table-head-options">Sortable table head</a></li>
-  <li><a [routerLink]="[]" fragment="striped-rows" id="markdown-toc-striped-rows">Striped rows</a></li>
-  <li><a [routerLink]="[]" fragment="bordered-table" id="markdown-toc-bordered-table">Bordered table</a></li>
-  <li><a [routerLink]="[]" fragment="hoverable-rows" id="markdown-toc-hoverable-rows">Hoverable rows</a></li>
-  <li><a [routerLink]="[]" fragment="small-table" id="markdown-toc-small-table">Small table</a></li>
-  <li><a [routerLink]="[]" fragment="contextual-classes" id="markdown-toc-contextual-classes">Contextual classes</a></li>
-  <li><a [routerLink]="[]" fragment="responsive-tables" id="markdown-toc-responsive-tables">Responsive tables</a></li>
+  <li><a [routerLink]="[]" fragment="contents">Contents</a></li>
+  <li><a [routerLink]="[]" fragment="examples">Examples</a></li>
+  <li><a [routerLink]="[]" fragment="table-head-options">Table head options</a></li>
+  <li><a [routerLink]="[]" fragment="sortable-table-head">Sortable table head</a></li>
+  <li><a [routerLink]="[]" fragment="striped-rows">Striped rows</a></li>
+  <li><a [routerLink]="[]" fragment="bordered-table">Bordered table</a></li>
+  <li><a [routerLink]="[]" fragment="active-table">Active Table</a></li>
+  <li><a [routerLink]="[]" fragment="hoverable-rows">Hoverable rows</a></li>
+  <li><a [routerLink]="[]" fragment="small-table">Small table</a></li>
+  <li><a [routerLink]="[]" fragment="contextual-classes">Contextual classes</a></li>
+  <li><a [routerLink]="[]" fragment="responsive-tables">Responsive tables</a></li>
 </ul>
 
 <h2 id="examples">Examples</h2>
@@ -539,6 +540,71 @@
     <span class="nt">&lt;/tr&gt;</span>
     <span class="nt">&lt;tr&gt;</span>
       <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>4<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">"2"</span><span class="nt">&gt;</span>Larry the Bird<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>@twitter<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span></code></pre></div>
+
+<h2 id="active-table">Bordered table</h2>
+
+<p>Add <code class="highlighter-rouge">.table-active</code> for table to have light gray backgroung.</p>
+
+<div class="bd-example" data-example-id="">
+<table class="table table-active">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-active"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;thead&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th&gt;</span>#<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>First Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>Last Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>Username<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/thead&gt;</span>
+  <span class="nt">&lt;tbody&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Mark<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Otto<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>@mdo<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Jacob<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Thornton<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>@fat<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">scope=</span><span class="s">"row"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/th&gt;</span>
       <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">"2"</span><span class="nt">&gt;</span>Larry the Bird<span class="nt">&lt;/td&gt;</span>
       <span class="nt">&lt;td&gt;</span>@twitter<span class="nt">&lt;/td&gt;</span>
     <span class="nt">&lt;/tr&gt;</span>

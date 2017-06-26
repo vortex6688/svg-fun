@@ -97,13 +97,16 @@
   }
 
   .table {
-    background-color: $body-bg;
+    min-height: 6rem;
+
+    td {
+      padding: 0 0 0.35rem 0;
+    }
 
     th:first-child,
     td:first-child {
       // using text-indent instead of padding because padding pushes away other cells in the row
       text-indent: (1 * $table-cell-padding);
-      color: $black;
     }
 
     // update list style type for list elements in a table

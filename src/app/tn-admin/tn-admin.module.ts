@@ -31,6 +31,10 @@ import { AdminSeriesListComponent } from './admin-series-list';
 import { SeriesTableComponent } from './admin-series-list/series-table';
 import { SeriesControlsComponent } from './admin-series-list/series-controls';
 import { SeriesRowComponent } from './admin-series-list/series-table/series-row';
+import { AdminCustomersListComponent } from './admin-customers-list';
+import { CustomersTableComponent } from './admin-customers-list/customers-table';
+import { CustomersControlsComponent } from './admin-customers-list/customers-controls';
+import { CustomersRowComponent } from './admin-customers-list/customers-table/customers-row';
 
 import { AdminStylesListComponent } from './admin-styles-list';
 import { StylesTableComponent } from './admin-styles-list/styles-table';
@@ -41,12 +45,17 @@ import { StyleRowComponent } from './admin-styles-list/styles-table/style-row';
 export const routes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
       { path: '', component: PlaceholderComponent, data: { title: 'TN Admin | Login '} },
-      { path: 'orders', redirectTo: 'orders/list', pathMatch: 'full' },
+      { path: 'orders', redirectTo: 'orders/orders', pathMatch: 'full' },
       {
-        path: 'orders/list',
+        path: 'orders/orders',
         component: AdminOrdersListComponent,
         data: { title: 'TN Admin | Orders List'},
         canActivate: [DataGuard],
+      },
+      {
+        path: 'orders/customers',
+        component: AdminCustomersListComponent,
+        data: { title: 'TN Admin | Customers List'}
       },
       { path: 'products', redirectTo: 'products/families', pathMatch: 'full' },
       {
@@ -91,6 +100,10 @@ export const routes: Routes = [
     SeriesTableComponent,
     SeriesRowComponent,
     SeriesControlsComponent,
+    AdminCustomersListComponent,
+    CustomersTableComponent,
+    CustomersRowComponent,
+    CustomersControlsComponent,
     AdminStylesListComponent,
     StylesTableComponent,
     StylesControlsComponent,

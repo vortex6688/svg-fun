@@ -1,0 +1,93 @@
+<tr class="row">
+  <td class="col" [ngClass]="{'toggled': !isCollapsed }" style="cursor: pointer;"
+    (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]='!isCollapsed' 
+    [attr.aria-controls]='customer'>
+    <i>
+      <icon-right-arrow></icon-right-arrow>
+    </i>
+    Gauld, Tom
+  </td>
+  <td class="col">
+    gauldtom@gmail.com
+  </td>
+  <td class="col">
+    The Guardian
+  </td>
+  <td class="col">
+    New York
+  </td>
+  <td class="col">
+    The United States Of America
+  </td>
+  <td class="col">
+    $450.00
+  </td>
+</tr>
+
+<tr class="row border-0">
+  <table class="table table-active no-borders col" [attr.id]='customer' [ngbCollapse]='isCollapsed'>
+    <thead class="row">
+      <th class="col">Contact Info</th>
+      <th class="col">Website</th>
+      <th class="col">Source</th>
+      <th class="col">Source ID</th>
+      <th class="col"></th>
+      <th class="col"></th>
+    </thead>
+    <tbody class="row">
+      <td class="col">867-530-9091x121</td>
+      <td class="col">gadgetzan.wow</td>
+      <td class="col">source text</td>
+      <td class="col">source ID text</td>
+      <td class="col"></td>
+      <td class="col"></td>
+    </tbody>
+  </table>
+</tr>
+
+<tr class="row">
+  <td class="col" [ngClass]="{'toggled': !isCollapsed }" style="cursor: pointer;"
+    (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]='!isCollapsed' 
+    [attr.aria-controls]='customer'>
+    <i>
+      <icon-right-arrow></icon-right-arrow>
+    </i>
+    Richard, Jones
+  </td>
+  <td class="col">
+    rolandrich@gmail.com
+  </td>
+  <td class="col">
+    DC Comics
+  </td>
+  <td class="col">
+    Washington DC
+  </td>
+  <td class="col">
+    The United States Of America
+  </td>
+  <td class="col">
+    $2480.00
+  </td>
+</tr>
+
+<tr class="row border-0">
+  <table class="table table-active no-borders col" [attr.id]='customer' [ngbCollapse]='isCollapsed'>
+    <thead class="row">
+      <th class="col">Contact Info</th>
+      <th class="col">Website</th>
+      <th class="col">Source</th>
+      <th class="col">Source ID</th>
+      <th class="col"></th>
+      <th class="col"></th>
+    </thead>
+    <tbody class="row">
+      <td class="col">806-880-3471x156</td>
+      <td class="col">comics-wiz.net</td>
+      <td class="col">source text</td>
+      <td class="col">source ID text</td>
+      <td class="col"></td>
+      <td class="col"></td>
+    </tbody>
+  </table>
+</tr>

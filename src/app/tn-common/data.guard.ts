@@ -41,7 +41,7 @@ export class DataGuard implements CanActivate {
       subActions: Array<(payload?: any) => ActionCreator<any>>;
     };
   } = {
-    '/admin/orders/list': {
+    '/admin/orders/orders': {
       state: 'order',
       action: this.orderActions.loadOrders,
       success: OrderActions.LOAD_ORDERS_SUCCESS,
