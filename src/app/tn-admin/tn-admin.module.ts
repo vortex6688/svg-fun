@@ -27,6 +27,7 @@ import { AdminFamilyBatchEditComponent } from './admin-family-batch-edit';
 import { FamiliesControlsComponent } from './admin-families-list/families-controls';
 import { FamiliesTableComponent } from './admin-families-list/families-table';
 import { DataGuard } from '../tn-common/data.guard';
+import { AuthGuard } from './auth.guard';
 import { FamilyStyleRowComponent } from './admin-family-single-edit/family-style-row/family-style-row.component';
 import { AdminSeriesListComponent } from './admin-series-list';
 import { SeriesTableComponent } from './admin-series-list/series-table';
@@ -51,29 +52,30 @@ export const routes: Routes = [
         path: 'orders/orders',
         component: AdminOrdersListComponent,
         data: { title: 'TN Admin | Orders List'},
-        canActivate: [DataGuard],
+        canActivate: [AuthGuard, DataGuard],
       },
       {
         path: 'orders/customers',
         component: AdminCustomersListComponent,
-        data: { title: 'TN Admin | Customers List'}
+        data: { title: 'TN Admin | Customers List'},
+        canActivate: [AuthGuard],
       },
       { path: 'products', redirectTo: 'products/families', pathMatch: 'full' },
       {
         path: 'products/families',
         component: AdminFamiliesListComponent,
         data: { title: 'TN Admin | Families List'},
-        canActivate: [DataGuard],
+        canActivate: [AuthGuard, DataGuard],
       }, {
         path: 'products/series',
         component: AdminSeriesListComponent,
         data: { title: 'TN Admin | Series List'},
-        canActivate: [DataGuard],
+        canActivate: [AuthGuard, DataGuard],
       }, {
         path: 'products/styles',
         component: AdminStylesListComponent,
         data: { title: 'TN Admin | Styles List'},
-        canActivate: [DataGuard],
+        canActivate: [AuthGuard, DataGuard],
       }
     ]
   }
@@ -123,6 +125,6 @@ export const routes: Routes = [
   ],
   entryComponents: [ LoginComponent, AdminOrderEditComponent,
   AdminFamilySingleEditComponent, AdminFamilyBatchEditComponent ],
-  providers: []
+  providers: [AuthGuard]
 })
 export class TnAdminModule {}
