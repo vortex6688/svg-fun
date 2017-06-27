@@ -125,7 +125,7 @@ export const routes: Routes = [
     TnAdminStoreModule,
   ],
   entryComponents: [ LoginComponent, AdminOrderEditComponent,
-  AdminFamilySingleEditComponent, AdminFamilyBatchEditComponent ],
+  AdminFamilySingleEditComponent, AdminFamilyBatchEditComponent, AdminStyleSingleEditComponent ],
   providers: [AuthGuard]
 })
 export class TnAdminModule {}
