@@ -12,7 +12,7 @@ export const ANONYMOUS_AUTHORIZATION: Authorization = {
   is_active: false,
   is_verified: false,
   is_staff: false,
-  is_admin: false,
+  is_superuser: false,
   can_invoice: false,
   tax_exempt: false,
   created_at: Date.now(),
