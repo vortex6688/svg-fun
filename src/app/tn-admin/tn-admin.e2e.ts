@@ -266,7 +266,7 @@ describe('Admin', () => {
           });
         });
 
-        describe('Opening details modal', () => {
+        describe('Opening order edit modal', () => {
           beforeAll(() => {
             const expandOrderEditIcon = element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)'));
             expandOrderEditIcon.click();
@@ -339,7 +339,7 @@ describe('Admin', () => {
 
         describe('Opening single family edit modal', () => {
           beforeAll(() => {
-            const familySingleEditButton = element(by.css('.table-sortable tbody  button'));
+            const familySingleEditButton = element(by.css('.table-sortable tbody button'));
             familySingleEditButton.click();
           });
 
@@ -354,6 +354,27 @@ describe('Admin', () => {
             });
             closeButton.click().then(() => {
               expect(element(by.css('app-admin-family-single-edit')).isPresent()).toBeFalsy();
+            });
+          });
+        });
+
+        describe('Opening family batch edit modal', () => {
+          beforeAll(() => {
+            const familyBatchEditButton = element(by.css('families-table button'));
+            familyBatchEditButton.click();
+          });
+
+          it('batch family edit modal should be revealed after clicking the edit botton', () => {
+            expect(element(by.css('app-admin-family-batch-edit')).isDisplayed()).toBeTruthy();
+          });
+
+          it('batch family edit modal should have a discard button that closes the modal', () => {
+            const closeButton = element(by.css('app-admin-family-batch-edit .modal-action-bar .btn-danger'));
+            closeButton.getText().then((text) => {
+              expect(text).toEqual('Discard');
+            });
+            closeButton.click().then(() => {
+              expect(element(by.css('app-admin-family-batch-edit')).isPresent()).toBeFalsy();
             });
           });
         });

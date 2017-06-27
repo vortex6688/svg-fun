@@ -23,6 +23,7 @@ import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { AdminOrderEditComponent } from './admin-order-edit';
 import { FamilyRowComponent } from './admin-families-list/families-table/family-row';
 import { AdminFamilySingleEditComponent } from './admin-family-single-edit';
+import { AdminFamilyBatchEditComponent } from './admin-family-batch-edit';
 import { FamiliesControlsComponent } from './admin-families-list/families-controls';
 import { FamiliesTableComponent } from './admin-families-list/families-table';
 import { DataGuard } from '../tn-common/data.guard';
@@ -92,6 +93,7 @@ export const routes: Routes = [
     OrdersControlsComponent,
     PlaceholderComponent,
     AdminFamilySingleEditComponent,
+    AdminFamilyBatchEditComponent,
     FamilyRowComponent,
     FamiliesControlsComponent,
     FamiliesTableComponent,
@@ -119,7 +121,8 @@ export const routes: Routes = [
     TnCommonModule,
     TnAdminStoreModule,
   ],
-  entryComponents: [ LoginComponent, AdminOrderEditComponent, AdminFamilySingleEditComponent ],
+  entryComponents: [ LoginComponent, AdminOrderEditComponent,
+  AdminFamilySingleEditComponent, AdminFamilyBatchEditComponent ],
   providers: []
 })
 export class TnAdminModule {}

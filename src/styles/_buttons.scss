@@ -3,6 +3,7 @@
  // update a cursor style for disabled button links
 a.btn.disabled {
   pointer-events: auto;
+  color: lighten($gray-lightest, 20%);
 }
 
 .btn {
@@ -13,6 +14,10 @@ a.btn.disabled {
 
   &.rounded {
     border-radius: 0.2rem;
+  }
+
+  &:disabled {
+    color: lighten($gray-lightest, 20%);
   }
 }
 
