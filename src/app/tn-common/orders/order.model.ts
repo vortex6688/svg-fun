@@ -28,6 +28,7 @@ export class Order {
   public created: string;
   public licensee: Licensee;
   public licenses?: License[];
+  public licenseTypes?: string[];
   public payments: Payment[];
   public order_token: string;
   public coupon?: string;

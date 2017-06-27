@@ -219,6 +219,8 @@ describe('AdminOrdersListComponent', () => {
     { ...mockLicense, id: 2, order: 1, style: 3, license_type: 'epub' },
     { ...mockLicense, id: 3, order: 2, style: 4, license_type: 'web' },
     { ...mockLicense, id: 4, order: 11, style: 5, license_type: 'web', self_hosted: true },
+    { ...mockLicense, id: 5, order: 2, style: 4, license_type: 'web' },
+    { ...mockLicense, id: 6, order: 2, style: 4, license_type: 'nameless' },
   ];
   const mockProjectList: Project[] = [
     { ...mockProject, id: 2, name: 'p1', licenses: [4]},
@@ -250,7 +252,7 @@ describe('AdminOrdersListComponent', () => {
     } else if (licenseType === 'app') {
       return 'Application';
     } else {
-      return this.capitalizeFirstLetter(licenseType);
+      return capitalizeFirstLetter(licenseType);
     }
   }
 
@@ -317,13 +319,19 @@ describe('AdminOrdersListComponent', () => {
     }));
     const licensesStyles = mockLicenseList.map((license) => ({
       ...license,
-      license_type_name: getLicenseTypeName(license.license_type, license.self_hosted),
       style: stylesPopulated.find((style) => style.id === license.style),
     }));
     const licensedOrders = mockOrderList.map((order) => ({
       ...order,
       statusName: STATUSES[order.status],
       licenses: licensesStyles.filter((license) => license.order === order.id),
+      licenseTypes: licensesStyles.reduce((types, license) => {
+        const name = getLicenseTypeName(license.license_type, license.self_hosted);
+        if (license.order === order.id && types.indexOf(name) === -1) {
+          types.push(name);
+        }
+        return types;
+      }, []),
       new_customer_name: CUSTOMERSTATUS[+order.new_customer],
     }));
     const licensesOrdersProjects = licensedOrders.map((order) => ({
