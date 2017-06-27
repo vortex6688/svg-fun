@@ -9,7 +9,6 @@ import { AdminFamilyBatchEditComponent } from '../../admin-family-batch-edit';
   templateUrl: './families-table.component.html'
 })
 export class FamiliesTableComponent {
-  public family;
   @Input() public families: Family[] = [];
 
   public sortKey = '-name';
@@ -30,6 +29,5 @@ export class FamiliesTableComponent {
 
   public openFamilyBatchEdit() {
     const familyBatchModal = this.modalService.open(AdminFamilyBatchEditComponent, { windowClass: 'full-size'});
-    familyBatchModal.componentInstance.family = this.family;
   }
 }
