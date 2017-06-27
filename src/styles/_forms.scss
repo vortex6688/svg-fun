@@ -144,8 +144,8 @@
 
   // in some cases TN is using smaller size custom checkboxes
   &.checkbox-sm {
-    padding-left: 1.25rem;
-    min-height: 1.25rem;
+    min-height: 1rem;
+    padding-left: 1rem;
 
     .custom-control-indicator {
       width: 0.8rem;
