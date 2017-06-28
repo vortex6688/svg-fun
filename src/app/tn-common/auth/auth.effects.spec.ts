@@ -1,6 +1,7 @@
 /* tslint:disable:max-classes-per-file */
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { TestBed, inject } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -24,6 +25,7 @@ describe('AuthEffects', () => {
   let authService: MockAuthService;
   let httpService: MockHttpService;
   let logoutSubject;
+  let router: MockRouter;
   const error = 'Test error';
 
   class MockAuthService {
@@ -38,6 +40,10 @@ describe('AuthEffects', () => {
 
   class MockHttpService {
     public setAuthToken = jasmine.createSpy('setAuthToken');
+  }
+
+  class MockRouter {
+    public navigate = jasmine.createSpy('navigate').and.callThrough();
   }
 
   beforeEach(() => TestBed.configureTestingModule({
@@ -55,6 +61,10 @@ describe('AuthEffects', () => {
         provide: TnApiHttpService,
         useClass: MockHttpService,
       },
+      {
+        provide: Router,
+        useClass: MockRouter,
+      },
     ]
   }));
 
@@ -65,6 +75,7 @@ describe('AuthEffects', () => {
     runner = TestBed.get(EffectsRunner);
     authActions = TestBed.get(AuthActions);
     authEffects = TestBed.get(AuthEffects);
+    router = TestBed.get(Router);
   });
 
   describe('login$', () => {
@@ -104,6 +115,7 @@ describe('AuthEffects', () => {
 
       authEffects.logout$.subscribe((data) => {
         expect(logoutSubject.observers.length).toEqual(1);
+        expect(router.navigate).toHaveBeenCalledWith(['/admin']);
         expect(httpService.setAuthToken).toHaveBeenCalledWith();
       });
     });
@@ -113,6 +125,7 @@ describe('AuthEffects', () => {
 
       logoutSubject = Observable.throw('error');
       authEffects.logout$.subscribe((data) => {
+        expect(router.navigate).toHaveBeenCalledWith(['/admin']);
         expect(httpService.setAuthToken).toHaveBeenCalledWith();
       });
     });

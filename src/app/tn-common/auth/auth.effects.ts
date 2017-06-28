@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -32,12 +33,14 @@ export class AuthEffects {
     .ofType(AuthActions.LOGOUT)
     .switchMap(() => this.authService.logout())
       .map(() => this.httpService.setAuthToken())
-      .catch(() => of(this.httpService.setAuthToken()));
+      .catch(() => of(this.httpService.setAuthToken()))
+      .do(() => this.router.navigate(['/admin']));
 
   constructor(
     private actions$: Actions,
     private authService: AuthService,
     private authActions: AuthActions,
     private httpService: TnApiHttpService,
+    private router: Router,
   ) {}
 }

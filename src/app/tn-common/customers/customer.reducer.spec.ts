@@ -39,7 +39,7 @@ const CustomerMock: Customer = {
   phone: '1234567',
   is_active: true,
   is_verified: true,
-  is_admin: false,
+  is_superuser: false,
   is_staff: false,
   can_invoice: true,
   tax_exempt: true,

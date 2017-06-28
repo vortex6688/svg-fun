@@ -19,7 +19,7 @@ export class User {
   public is_active: boolean;
   public is_verified: boolean;
   public is_staff: boolean;
-  public is_admin: boolean;
+  public is_superuser: boolean;
   public can_invoice: boolean;
   public tax_exempt: boolean;
   public created_at: number;
