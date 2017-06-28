@@ -62,6 +62,7 @@
   }
 
   // applying border top on the table row instead of the table cell to center the content not depending on it's type 
+  
   tr {
     border-top: $table-border-width solid $table-border-color;
     margin: 0;
@@ -72,20 +73,32 @@
     padding: $table-cell-padding 0;
     vertical-align: top;
     font-size: $font-size-sm;
+    
+    &:first-child {
+      padding-left: 0.5rem;
+    }
+
+    &:last-child {
+      padding-right: 0.5rem;
+    }
   }
 
   th {
     color: $table-head-color;
   }
 
-  thead th {
-    vertical-align: bottom;
-    border-bottom: (1 * $table-border-width) solid $table-border-color;
-    padding: (0.5 * $table-cell-padding) 0;
-    font-weight: normal;
+  thead {
+    th {
+      vertical-align: bottom;
+      padding: (0.5 * $table-cell-padding) 0;
+      font-weight: normal;
+      color: $table-head-color;
+      //background-color: $table-head-bg;
+    }
 
-    color: $table-head-color;
-    //background-color: $table-head-bg;
+    tr {
+      border-bottom: (1 * $table-border-width) solid $table-border-color;
+    }
   }
 
   .row-selected {
@@ -107,6 +120,7 @@
     td:first-child {
       // using text-indent instead of padding because padding pushes away other cells in the row
       text-indent: (1 * $table-cell-padding);
+      padding-left: 0;
     }
   }
 }
