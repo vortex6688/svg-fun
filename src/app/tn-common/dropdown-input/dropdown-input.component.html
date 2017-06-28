@@ -1,6 +1,6 @@
-<div ngbDropdown [autoClose]="false">
+<div ngbDropdown>
   <input class="custom-select form-control" [value]="selected" ngbDropdownToggle>
-  <ul class="dropdown-menu list-group-flush">
+  <ul class="dropdown-menu list-group-flush" (click)="$event.stopPropagation()">
     <li class="list-group-item" *ngFor="let option of options" (click)="toggleSelect(option, $event)">
       <label class="custom-control custom-checkbox mb-sm-0">
         <input type="checkbox" class="custom-control-input" [ngModel]="option.selected">
