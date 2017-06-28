@@ -20,6 +20,7 @@ import { StyleService } from './styles';
 import { ProjectService } from './projects';
 import { FoundryService } from './foundries';
 import { DesignerService } from './designers';
+import { CustomerService } from './customers';
 import { DatepickerComponent,
          CalendarIconComponent,
          CaretLeftIconComponent,
@@ -61,6 +62,7 @@ import { DropdownInputComponent } from './dropdown-input/dropdown-input.componen
                   ProjectService,
                   FoundryService,
                   DesignerService,
+                  CustomerService,
                   TnPaginationConfig,
                   TnTitleService.provider(),
                   TnAutoscrollService.provider(),

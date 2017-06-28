@@ -3,6 +3,7 @@
 import { Payment } from '../payment/payment.model';
 import { License } from '../licenses';
 import { Family } from '../families';
+import { Customer } from '../customers';
 
 class Licensee {
   public first_name: string;
@@ -19,7 +20,7 @@ class Licensee {
 
 export class Order {
   public id?: number;
-  public user: number;
+  public user: number | Customer;
   public subtotal: number;
   public tax: number;
   public total: number;

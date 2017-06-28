@@ -14,6 +14,7 @@ import { Family, FamilyActions } from '../../tn-common/families';
 import { Project, ProjectActions } from '../../tn-common/projects';
 import { Foundry, FoundryActions } from '../../tn-common/foundries';
 import { Designer, DesignerActions } from '../../tn-common/designers';
+import { Customer, CustomerActions } from '../../tn-common/customers';
 import { AdminOrdersListComponent } from './admin-orders-list.component';
 import { TnAdminStoreModule, productionReducer } from '../store';
 import { TnCommonModule } from '../../tn-common/';
@@ -195,6 +196,30 @@ describe('AdminOrdersListComponent', () => {
     title: [1],
   };
 
+  const mockCustomer: Customer = {
+    id: 1,
+    email: 'jane@doe.com',
+    username: 'jane@doe.com',
+    first_name: 'Jane',
+    last_name: 'Doe',
+    address1: 'Address1',
+    address2: 'Address2',
+    state: 'State',
+    city: 'Towntate',
+    zipcode: 'Zippity zoopity',
+    country: 'World',
+    company: 'True company',
+    website: 'http://site.io',
+    phone: '1234567',
+    is_active: true,
+    is_verified: true,
+    is_admin: false,
+    is_staff: false,
+    can_invoice: true,
+    tax_exempt: true,
+    created_at: Date.now(),
+    updated_at: Date.now(),
+  };
   const mockStyleList: Style[] = [
     { ...mockStyle, id: 2, family: 1, foundry: [1], designer: [2], name: 'Non existant' },
     { ...mockStyle, id: 3, family: 1, foundry: [2, 3], designer: [1], name: 'Style light' },
@@ -209,10 +234,10 @@ describe('AdminOrdersListComponent', () => {
     { ...mockFamily, id: 4, styles: [6], },
   ];
   const mockOrderList: Order[] = [
-    { ...mockOrder, id: 11, status: 1, created: new Date(orderDate).toString() },
-    { ... mockOrder, id: 1, status: 2, created: new Date(orderDate - 5000).toString() },
-    { ... mockOrder, id: 2, status: 0, created: new Date(orderDate).toString() },
-    { ... mockOrder, id: 23456, status: 2, created: new Date(orderDate + 5000).toString() },
+    { ...mockOrder, id: 11, user: 2, status: 1, created: new Date(orderDate).toString() },
+    { ... mockOrder, id: 1, user: 3, status: 2, created: new Date(orderDate - 5000).toString() },
+    { ... mockOrder, id: 2, user: 2, status: 0, created: new Date(orderDate).toString() },
+    { ... mockOrder, id: 23456, user: 9, status: 2, created: new Date(orderDate + 5000).toString() },
   ];
   const mockLicenseList: License[] = [
     { ...mockLicense, id: 1, order: 1, style: 2, license_type: 'app' },
@@ -236,6 +261,11 @@ describe('AdminOrdersListComponent', () => {
     { ...mockDesigner, id: 2, name: 'foundr' },
     { ...mockDesigner, id: 3, name: 'supa' },
     { ...mockDesigner, id: 4, name: 'dupa' },
+  ];
+  const mockCustomerList: Customer[] = [
+    { ...mockCustomer, id: 2, email: 'best@mail.com' },
+    { ...mockCustomer, id: 3, email: 'realest@mail.com' },
+    { ...mockCustomer, id: 4, email: 'fake@fake.com' },
   ];
 
   function capitalizeFirstLetter(word: string) {
@@ -334,10 +364,11 @@ describe('AdminOrdersListComponent', () => {
       }, []),
       new_customer_name: CUSTOMERSTATUS[+order.new_customer],
     }));
-    const licensesOrdersProjects = licensedOrders.map((order) => ({
+    const ordersPopulated = licensedOrders.map((order) => ({
       ...order,
       projects: mockProjectList.filter((project) => order.licenses.some(({ id }) =>
         (project.licenses as number[]).indexOf(id) !== -1)),
+      user: mockCustomerList.find((customer) => customer.id === order.user),
     }));
 
     beforeEach(() => {
@@ -348,6 +379,7 @@ describe('AdminOrdersListComponent', () => {
       store.dispatch({ type: ProjectActions.LOAD_PROJECTS_SUCCESS, payload: mockProjectList });
       store.dispatch({ type: FoundryActions.LOAD_FOUNDRIES_SUCCESS, payload: mockFoundryList });
       store.dispatch({ type: DesignerActions.LOAD_DESIGNERS_SUCCESS, payload: mockDesignerList });
+      store.dispatch({ type: CustomerActions.LOAD_CUSTOMERS_SUCCESS, payload: mockCustomerList });
     });
 
     it('should populate style data', () => {
@@ -369,7 +401,7 @@ describe('AdminOrdersListComponent', () => {
     });
 
     it('should filter orders by id', () => {
-      const target = licensesOrdersProjects[0];
+      const target = ordersPopulated[0];
       const searchQuery = {
         ...initialOrderState.search,
         id: target.id,
@@ -386,7 +418,7 @@ describe('AdminOrdersListComponent', () => {
         ...initialOrderState.search,
         status,
       };
-      const expected = licensesOrdersProjects.filter((order) => status.indexOf(order.status) !== -1);
+      const expected = ordersPopulated.filter((order) => status.indexOf(order.status) !== -1);
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual(expected);
@@ -401,7 +433,7 @@ describe('AdminOrdersListComponent', () => {
         from,
         to,
       };
-      const expected = licensesOrdersProjects.filter((order) =>
+      const expected = ordersPopulated.filter((order) =>
         new Date(order.created) >= from &&
         new Date(order.created) <= to
       );
@@ -417,7 +449,7 @@ describe('AdminOrdersListComponent', () => {
         ...initialOrderState.search,
         font,
       };
-      const expected = licensesOrdersProjects.filter((order) =>
+      const expected = ordersPopulated.filter((order) =>
         order.licenses.some((license) => new RegExp(font, 'i').test(license.style.name)));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
@@ -435,7 +467,7 @@ describe('AdminOrdersListComponent', () => {
         ...initialOrderState.search,
         licenses,
       };
-      const expected = licensesOrdersProjects.filter((order) => licenses.some((licenseType) =>
+      const expected = ordersPopulated.filter((order) => licenses.some((licenseType) =>
         Object.entries(licenseType).every(([key, value]) =>
           order.licenses.some((license) => license[key] === value))));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
@@ -445,7 +477,7 @@ describe('AdminOrdersListComponent', () => {
     });
 
     it('should filter orders by project name', () => {
-      const target = licensesOrdersProjects[0];
+      const target = ordersPopulated[0];
       const searchQuery = {
         ...initialOrderState.search,
         project: 'p1',
@@ -457,7 +489,7 @@ describe('AdminOrdersListComponent', () => {
     });
 
     it('should filter orders by project domain', () => {
-      const target = licensesOrdersProjects[2];
+      const target = ordersPopulated[2];
       const searchQuery = {
         ...initialOrderState.search,
         project: 'p2.com',
@@ -475,7 +507,7 @@ describe('AdminOrdersListComponent', () => {
         foundry: targets,
       };
 
-      const expected = licensesOrdersProjects.filter((order) => order.licenses.some((license) =>
+      const expected = ordersPopulated.filter((order) => order.licenses.some((license) =>
         license.style.foundry.some((foundry) => foundry && targets.indexOf(foundry.id) !== -1)));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
@@ -490,12 +522,25 @@ describe('AdminOrdersListComponent', () => {
         designer: targets,
       };
 
-      const expected = licensesOrdersProjects.filter((order) => order.licenses.some((license) =>
+      const expected = ordersPopulated.filter((order) => order.licenses.some((license) =>
         license.style.designer.some((designer) => designer && targets.indexOf(designer.id) !== -1)));
       store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredOrdersLicenses$.subscribe((orders: Order[]) => {
         expect(orders).toEqual(expected);
       });
     });
+    it('should filter orders by customer data', () => {
+      const target = ordersPopulated[0].user.email;
+      const searchQuery = {
+        ...initialOrderState.search,
+        customer: target,
+      };
+      const expected = ordersPopulated.filter((order) => order.user && order.user.email === target);
+      store.dispatch({ type: OrderActions.SEARCH_QUERY, payload: searchQuery });
+      component.filteredOrdersLicenses$.subscribe((orders) => {
+        expect(orders).toEqual(expected);
+      });
+    });
+
   });
 });

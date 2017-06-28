@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Order, OrderActions, OrderSearch } from '../../tn-common/orders';
 import { License } from '../../tn-common/licenses';
 import { Style } from '../../tn-common/styles';
+import { Customer } from '../../tn-common/customers';
 import { Family, FamilyState } from '../../tn-common/families';
 import { Foundry } from '../../tn-common/foundries';
 import { Designer } from '../../tn-common/designers';
@@ -19,6 +20,7 @@ import { getAllOrders,
   getAllFoundries,
   getDesignerEntities,
   getAllDesigners,
+  getCustomerEntities,
 } from '../store/reducers';
 
 const STATUSES = [
@@ -112,6 +114,14 @@ export class AdminOrdersListComponent {
   public designerEntities$ = this.store.select(getDesignerEntities);
 
   /**
+   * Customer entity collection for combination.
+   *
+   * @type {Observable<CustomerState.entities}
+   * @memberof AdminOrdersListComponent
+   */
+  public customerEntities$ = this.store.select(getCustomerEntities);
+
+  /**
    *  Designer collection list for selection.
    *
    * @type {Observable<Designer[]>}
@@ -185,13 +195,15 @@ export class AdminOrdersListComponent {
    * @type {Observable<Order[]>}
    * @memberof AdminOrdersListComponent
    */
-  public ordersLicensesProjects$ = Observable.combineLatest(
+  public ordersPopulated$ = Observable.combineLatest(
     this.ordersLicenses$,
     this.projects$,
-    (orders: Order[], projects: Project[]) => orders.map((order) => ({
+    this.customerEntities$,
+    (orders: Order[], projects: Project[], customers) => orders.map((order) => ({
       ...order,
       projects: projects.filter((project) => order.licenses.some(({ id }) =>
-        (project.licenses as number[]).indexOf(id) !== -1))
+        (project.licenses as number[]).indexOf(id) !== -1)),
+      user: customers[order.user as number],
     })));
 
   /**
@@ -201,7 +213,7 @@ export class AdminOrdersListComponent {
    * @memberof AdminOrdersListComponent
    */
   public filteredOrdersLicenses$ = Observable.combineLatest(
-    this.ordersLicensesProjects$,
+    this.ordersPopulated$,
     this.orderQuery$,
     (orders, orderQuery: OrderSearch) => orders.filter((order) => {
       if (orderQuery.id && order.id !== +orderQuery.id) {
@@ -215,6 +227,27 @@ export class AdminOrdersListComponent {
       }
       if (orderQuery.to && new Date(order.created) > orderQuery.to) {
         return false;
+      }
+      if (orderQuery.customer) {
+        const testString = new RegExp(orderQuery.customer, 'i');
+        const licenseeFields = [
+          order.licensee.first_name,
+          order.licensee.last_name,
+          order.licensee.address1,
+          order.licensee.address2,
+          order.licensee.company,
+        ];
+        const customerFields = typeof order.user !== 'object' ? [] : [
+          order.user.email,
+          order.user.first_name,
+          order.user.last_name,
+          order.user.address1,
+          order.user.address2,
+          order.user.company,
+        ];
+        const fullString = [...licenseeFields, ...customerFields].join(' ');
+        const hasString = testString.test(fullString);
+        if (!hasString) { return false; }
       }
       if (orderQuery.font) {
         const testName = new RegExp(orderQuery.font, 'i');
