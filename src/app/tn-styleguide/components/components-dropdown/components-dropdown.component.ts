@@ -10,9 +10,11 @@ export class ComponentsDropdownComponent {
 // add some data to test dropdown list items
 // TO DO First item in the list should be selected by default and shown in place of
 // the button placeholder text, alternatively it can be random item in the list instead of the first one
-  public testOptions = [
-    { option: 'Item 1'},
-    { option: 'Another Item'},
-    { option: 'Some other item'}
+  public optionList = [
+    { name: 'Item 1', value: 5 },
+    { name: 'Another Item', value: 2, selected: true },
+    { name: 'Some other item', value: 1 }
   ];
+
+  public updateOptions(event) { return null; }
 }
