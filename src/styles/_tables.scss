@@ -35,6 +35,11 @@
     }
   }
 
+  // use this class to even out a cell with another cell that has a checkbox placed in
+  .cell-checkbox-width {
+    max-width: 3rem;
+  }
+
   // sorting arrow icon
   &.table-sortable {
     .sortable {
@@ -73,13 +78,10 @@
     padding: $table-cell-padding 0;
     vertical-align: top;
     font-size: $font-size-sm;
-    
+    padding-right: 0.5rem;
+
     &:first-child {
       padding-left: 0.5rem;
-    }
-
-    &:last-child {
-      padding-right: 0.5rem;
     }
   }
 
@@ -90,7 +92,7 @@
   thead {
     th {
       vertical-align: bottom;
-      padding: (0.5 * $table-cell-padding) 0;
+      padding: (0.5 * $table-cell-padding) 0.5rem (0.5 * $table-cell-padding) 0;
       font-weight: normal;
       color: $table-head-color;
       //background-color: $table-head-bg;
@@ -120,7 +122,6 @@
     td:first-child {
       // using text-indent instead of padding because padding pushes away other cells in the row
       text-indent: (1 * $table-cell-padding);
-      padding-left: 0;
     }
   }
 }
