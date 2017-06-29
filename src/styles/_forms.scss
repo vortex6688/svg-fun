@@ -30,6 +30,26 @@
   }
 }
 
+//
+// TN custom file input 
+//
+
+.custom-file-tn {
+  .file-message {
+    font-weight: 600;
+    color: $black;
+  }
+
+  span {
+    font-size: $font-size-xs;
+    text-transform: none;
+  }
+
+  input {
+    display: none;
+  }
+}
+
 // TN switch checkbox
 
 .switch-checkbox {

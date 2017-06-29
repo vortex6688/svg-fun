@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StyleRowComponent } from './style-row.component';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 describe('StyleRowComponent', () => {
   let component: StyleRowComponent;
@@ -13,7 +14,8 @@ describe('StyleRowComponent', () => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
       declarations: [ StyleRowComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ NgbModalStack ]
     })
     .compileComponents();
   }));

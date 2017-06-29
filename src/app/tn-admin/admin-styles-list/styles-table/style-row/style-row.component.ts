@@ -1,5 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { AdminStyleSingleEditComponent } from '../../../admin-style-single-edit';
 
 @Component({
   selector: 'style-row',
@@ -13,6 +16,8 @@ export class StyleRowComponent implements OnInit, OnDestroy {
   public isChecked = false;
   private collapseSubscription;
 
+  constructor(private modalService: NgbModal) {}
+
   public ngOnInit() {
     this.collapseSubscription = this.collapseSubject.subscribe((collapse) => {
       this.isCollapsed = collapse;
@@ -25,5 +30,10 @@ export class StyleRowComponent implements OnInit, OnDestroy {
 
   public selectStyle() {
     this.isChecked = !this.isChecked;
+  }
+
+  public openStyleSingleEdit() {
+    const styleModal = this.modalService.open(AdminStyleSingleEditComponent, { windowClass: 'full-size'});
+    styleModal.componentInstance.style = this.style;
   }
 }

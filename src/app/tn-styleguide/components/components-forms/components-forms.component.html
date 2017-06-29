@@ -55,7 +55,8 @@
         </ul>
       </li>
       <li><a [routerLink]="[]" fragment="select-menu">Select menu</a></li>
-      <li><a [routerLink]="[]" fragment="file-browser">File browser</a>        
+      <li><a [routerLink]="[]" fragment="file-browser">File browser</a>
+      <li><a [routerLink]="[]" fragment="tn-file-browser">TN custom file browser</a>    
         <ul>
           <li><a [routerLink]="[]" fragment="translating-or-customizing-the-strings">Translating or customizing the strings</a></li>
         </ul>
@@ -1541,6 +1542,27 @@
 <span class="p">);</span></code></pre></figure>
 
 <p>You’ll need to set the language of your document (or subtree thereof) correctly in order for the correct text to be shown. This can be done using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang">the <code class="highlighter-rouge">lang</code> attribute</a> or the <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.12"><code class="highlighter-rouge">Content-Language</code> HTTP header</a>, among other methods.</p>
+
+<h3 id="tn-file-browser">TN file browser</h3>
+<p>TypeNetwork is using it's own custom file browser to upload fonts and other files</p>
+
+<div class="bd-example" data-example-id="">
+  <label class="my-3">
+    TN file browser
+  </label>
+  <div class="form-group">
+    <file-input>
+      <span>+ Upload a document</span>
+    </file-input>
+  </div>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"my-3"</span><span class="nt">&gt;</span>TN file browser<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;file-input</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span><span class="nt">&gt;</span>+ Upload a document<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/file-input&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>
 
 <h3 id="typeahead">Typeahead</h3>
 <p>Typeaheads are implemented with  <code class="highlighter-rouge">&lt;ngbTypeahead&gt;</code> you need only specify the <code class="highlighter-rouge">[ngbTypeahead]="searchCallback"</code> to enable the typeahead lookup on each keypress. You will need to debounce in you searchCallback</p>
