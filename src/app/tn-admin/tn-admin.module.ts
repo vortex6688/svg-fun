@@ -58,7 +58,7 @@ export const routes: Routes = [
         path: 'orders/customers',
         component: AdminCustomersListComponent,
         data: { title: 'TN Admin | Customers List'},
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, DataGuard],
       },
       { path: 'products', redirectTo: 'products/families', pathMatch: 'full' },
       {

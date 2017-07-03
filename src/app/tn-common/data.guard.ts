@@ -58,6 +58,15 @@ export class DataGuard implements CanActivate {
         this.customerActions.loadCustomers,
       ],
     },
+    '/admin/orders/customers': {
+      state: 'customer',
+      action: this.customerActions.loadCustomers,
+      success: CustomerActions.LOAD_CUSTOMERS_SUCCESS,
+      fail: CustomerActions.LOAD_CUSTOMERS_FAIL,
+      subActions: [
+        this.orderActions.loadOrders,
+      ],
+    },
     '/admin/products/families': {
       state: 'family',
       action: this.familyActions.loadFamilies,
