@@ -84,6 +84,10 @@
 .modal-action-bar {
   margin: -1rem -1rem 0 -1rem;
   background: $yellow;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: $zindex-sticky;
 
   // remove shadows to prevent overlapping the toolbar's borders
   .btn {
