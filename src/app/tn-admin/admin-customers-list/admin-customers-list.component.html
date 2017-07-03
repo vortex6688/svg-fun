@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="sidebar border-right-gradient-inset">
-      <customers-controls [initialQuery]="customerQuery$ | async" (queryUpdate)="searchCustomers($event)"></customers-controls>
+      <customers-controls [initialQuery]="customerQuery$ | async" (queryUpdate)="searchCustomers($event)" [locations]="locations$ | async"></customers-controls>
     </div>
     <div class="main w-100">
       <customers-table [customers]="filteredCustomers$ | async"></customers-table>

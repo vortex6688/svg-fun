@@ -22,6 +22,11 @@ export class AdminCustomersListComponent {
    */
   public customers$ = this.store.select(getAllCustomers);
 
+  public locations$ = this.customers$.map((customers) => customers.reduce((locations, { city, country }) => {
+    if (city && locations.city.indexOf(city) === -1) { locations.city.push(city); }
+    if (country && locations.country.indexOf(country) === -1) { locations.country.push(country); }
+    return locations;
+  }, { city: [], country: [] }));
   /**
    * Customers search query to filter customers against.
    *
@@ -78,17 +83,11 @@ export class AdminCustomersListComponent {
           return false;
         }
       }
-      if (customerQuery.city) {
-        const testString = new RegExp(customerQuery.city, 'i');
-        if (!testString.test(customer.city)) {
-          return false;
-        }
+      if (customerQuery.city.length && customerQuery.city.indexOf(customer.city) === -1) {
+        return false;
       }
-      if (customerQuery.country) {
-        const testString = new RegExp(customerQuery.country, 'i');
-        if (!testString.test(customer.country)) {
-          return false;
-        }
+      if (customerQuery.country.length && customerQuery.country.indexOf(customer.country) === -1) {
+        return false;
       }
       return true;
     })

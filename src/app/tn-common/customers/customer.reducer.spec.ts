@@ -128,8 +128,8 @@ describe('CustomerReducer', () => {
     const search: CustomerSearch = {
       name: 'fam fam',
       email: 'email@mail.m',
-      city: 'town',
-      country: 'world',
+      city: ['town'],
+      country: ['world'],
     };
     const actual = CustomerReducer(state, customerActions.searchQuery(search));
     const expected: CustomerState = {
