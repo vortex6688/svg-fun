@@ -1,12 +1,13 @@
 <div ngbDropdown>
-  <input class="custom-select form-control" [value]="selected" ngbDropdownToggle>
+  <input class="custom-select form-control" ngbDropdownToggle [formControl]="selectionFilter" [value]="selected">
   <ul class="dropdown-menu list-group-flush" (click)="$event.stopPropagation()">
-    <li class="list-group-item" *ngFor="let option of options" (click)="toggleSelect(option, $event)">
+    <li class="list-group-item" *ngFor="let option of filteredOptions$ | async" (click)="toggleSelect(option, $event)">
       <label class="custom-control custom-checkbox mb-sm-0">
         <input type="checkbox" class="custom-control-input" [ngModel]="option.selected">
         <span class="custom-control-indicator"></span>
         <span>{{option.name}}</span>
       </label>
     </li>
+    <li class="list-group-item" *ngIf="!options.length">No items available</li>
   </ul>
 </div>
