@@ -290,6 +290,8 @@ export const getCustomerIds = createSelector(getCustomerState, customer.getIds);
 export const getSelectedCustomerId = createSelector(getCustomerState, customer.getSelectedId);
 export const getSelectedCustomer = createSelector(getCustomerState, customer.getSelected);
 export const getAllCustomers = createSelector(getCustomerState, customer.getAll);
+export const getCustomerSearchQuery = createSelector(getCustomerState, customer.getSearchQuery);
+
 export const getCustomerById = (customerId) => {
   return (state) => customer.getCustomerById(state.customer, customerId);
 };
