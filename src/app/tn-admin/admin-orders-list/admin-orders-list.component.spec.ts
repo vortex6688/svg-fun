@@ -39,9 +39,9 @@ describe('AdminOrdersListComponent', () => {
   const mockOrder: Order = {
     id: 1,
     user: 1,
-    subtotal: 10,
-    tax: 0.5,
-    total: 10.5,
+    subtotal: '10',
+    tax: '0.5',
+    total: '10.5',
     status: 1,
     licensee: {
       first_name: 'John',
@@ -57,7 +57,7 @@ describe('AdminOrdersListComponent', () => {
     payments: [
         {
             order: 128,
-            amount: 34.60,
+            amount: '34.60',
             provider: 0,
             status: 1,
             provider_data: '{ \"source\": {\"brand\": \"Visa\"} }',

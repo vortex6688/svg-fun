@@ -1,5 +1,5 @@
 import { User } from '../user';
-import { Order } from '../Orders';
+import { Order } from '../orders';
 
 export class Customer extends User {
   public orders?: Order[];
