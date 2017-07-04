@@ -6,7 +6,7 @@
     <button class="btn btn-danger col my-1"><icon-delete class="text-white icon icon-sm"></icon-delete> Delete</button>
   </div>
   <div class="card-block card-header">
-    <form [formGroup]="searchForm" novalidate>
+    <form [formGroup]="searchForm" novalidate autocomplete="off">
       <span class="row justify-content-between">
         <small><b class="col">SEARCH BY:</b></small>
         <small><a (click)="clearFilters()" class="col text-right">Clear filters</a></small>
@@ -26,7 +26,7 @@
     </form>
   </div>
   <div class="card-block">
-    <form [formGroup]="filterForm" novalidate>
+    <form [formGroup]="filterForm" novalidate autocomplete="off">
       <fieldset class="card-header">
         <ul class="list-unstyled m-0 small" formArrayName="visibility">
           <li class="my-1"><b>VISIBLE</b></li>

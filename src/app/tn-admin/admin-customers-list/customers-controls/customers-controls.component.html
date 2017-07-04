@@ -3,7 +3,7 @@
     <button class="btn btn-outline-success col my-1"><icon-create class="text-success icon icon-sm"></icon-create> New Person</button>
   </div>
   <div class="card-block card-header">
-    <form [formGroup]="searchForm" novalidate>
+    <form [formGroup]="searchForm" novalidate autocomplete="off">
       <span class="row justify-content-between">
         <small><b class="col">SEARCH BY:</b></small>
         <small><a class="col text-right" (click)="clearFilters()">Clear filters</a></small>
