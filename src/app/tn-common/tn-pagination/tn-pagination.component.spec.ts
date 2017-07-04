@@ -97,7 +97,7 @@ describe('TnPaginationComponent', () => {
 
     // First page
     component.updatePageItems();
-    let pageItems = [0, component.pageSize];
+    let pageItems = [1, component.pageSize];
     expect(component.pageItems).toEqual(pageItems);
     expect(emitSpy).toHaveBeenCalledWith(pageItems);
 
@@ -110,7 +110,7 @@ describe('TnPaginationComponent', () => {
     emitSpy.calls.reset();
     component.page = 2;
     component.updatePageItems();
-    pageItems = [component.pageSize, component.collectionSize];
+    pageItems = [component.pageSize + 1, component.collectionSize];
     expect(component.pageItems).toEqual(pageItems);
     expect(emitSpy).toHaveBeenCalledWith(pageItems);
   });
