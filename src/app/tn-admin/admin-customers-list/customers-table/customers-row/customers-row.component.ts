@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Customer } from '../../../../tn-common/customers/';
+import { AdminCustomerSingleEditComponent } from '../../../admin-customer-single-edit';
 
 @Component({
   selector: 'customers-row',

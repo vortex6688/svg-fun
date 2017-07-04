@@ -27,7 +27,12 @@
 <tr class="row border-0">
   <table class="table table-active no-borders col" [attr.id]='customer' [ngbCollapse]='isCollapsed'>
     <thead class="row">
-      <th class="col">Contact Info</th>
+      <th class="col">
+        Contact Info
+        <div>
+          <button class="btn btn-sm btn-info w-75" (click)="openStyleSingleEdit()"><icon-pencil class="text-white icon icon-sm"></icon-pencil> Edit</button>
+        </div> 
+      </th>
       <th class="col">Website</th>
       <th class="col">Source</th>
       <th class="col">Source ID</th>

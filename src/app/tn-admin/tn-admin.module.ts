@@ -37,6 +37,7 @@ import { AdminCustomersListComponent } from './admin-customers-list';
 import { CustomersTableComponent } from './admin-customers-list/customers-table';
 import { CustomersControlsComponent } from './admin-customers-list/customers-controls';
 import { CustomersRowComponent } from './admin-customers-list/customers-table/customers-row';
+import { AdminCustomerSingleEditComponent } from './admin-customer-single-edit';
 import { AdminStylesListComponent } from './admin-styles-list';
 import { AdminStyleSingleEditComponent } from './admin-style-single-edit';
 import { StylesTableComponent } from './admin-styles-list/styles-table';
@@ -109,6 +110,7 @@ export const routes: Routes = [
     CustomersTableComponent,
     CustomersRowComponent,
     CustomersControlsComponent,
+    AdminCustomerSingleEditComponent,
     AdminStylesListComponent,
     StylesTableComponent,
     StylesControlsComponent,
@@ -125,7 +127,8 @@ export const routes: Routes = [
     TnAdminStoreModule,
   ],
   entryComponents: [ LoginComponent, AdminOrderEditComponent,
-  AdminFamilySingleEditComponent, AdminFamilyBatchEditComponent, AdminStyleSingleEditComponent ],
+  AdminFamilySingleEditComponent, AdminFamilyBatchEditComponent, AdminStyleSingleEditComponent,
+  AdminCustomerSingleEditComponent ],
   providers: [AuthGuard]
 })
 export class TnAdminModule {}
