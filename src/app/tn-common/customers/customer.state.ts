@@ -3,8 +3,8 @@ import { Customer } from './customer.model';
 export interface CustomerSearch {
   name: string;
   email: string;
-  city: number[];
-  country: number[];
+  city: string;
+  country: string;
 }
 
 export interface CustomerState {
@@ -20,8 +20,8 @@ export const initialCustomerState: CustomerState = {
   selectedCustomerId: null,
   search: {
     name: '',
-    email: null,
-    city: [],
-    country: [],
+    email: '',
+    city: '',
+    country: '',
   },
 };

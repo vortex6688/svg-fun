@@ -3,7 +3,7 @@
     <button class="btn btn-success col"><icon-create class="text-white icon icon-sm"></icon-create> New Order</button>
   </div>
   <div class="card-block card-header">
-    <form [formGroup]="searchForm" novalidate>
+    <form [formGroup]="searchForm" novalidate autocomplete="off">
       <span class="row justify-content-between">
         <small><b class="col">SEARCH BY:</b></small>
         <small><a (click)="clearSearch()" class="col text-right">Clear all</a></small>
@@ -48,7 +48,7 @@
     </form>
   </div>
   <div class="card-block">
-    <form [formGroup]="filterForm" novalidate>
+    <form [formGroup]="filterForm" novalidate autocomplete="off">
       <span class="row justify-content-between">
         <b class="col text-primary">FILTER BY:</b>
         <span (click)="clearFilters()" class="col text-right text-info" style="cursor: pointer;"><small><b>Clear filters</b></small></span>

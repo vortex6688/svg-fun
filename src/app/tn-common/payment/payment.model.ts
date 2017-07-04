@@ -15,7 +15,7 @@ class Billing {
 export class Payment {
   public id?: number;
   public order: number;
-  public amount: number;
+  public amount: string;
   public provider: number;
   public provider_data?: string;
   public status: number;

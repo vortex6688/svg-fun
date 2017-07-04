@@ -3,31 +3,31 @@
     <button class="btn btn-outline-success col my-1"><icon-create class="text-success icon icon-sm"></icon-create> New Person</button>
   </div>
   <div class="card-block card-header">
-    <form novalidate>
+    <form [formGroup]="searchForm" novalidate autocomplete="off">
       <span class="row justify-content-between">
         <small><b class="col">SEARCH BY:</b></small>
-        <small><a class="col text-right">Clear filters</a></small>
+        <small><a class="col text-right" (click)="clearFilters()">Clear filters</a></small>
       </span>
       <div class="form-group">
         <label for="searchCustomerName">Name</label>
-        <input class="form-control" />
+        <input class="form-control" formControlName="name" />
       </div>
       <div class="form-group">
-        <label for="searchCustomerFoundry">Foundry</label>
-        <input class="form-control" />
+        <label for="searchCustomerFoundry">Email</label>
+        <input class="form-control" formControlName="email" />
       </div>
       <div class="form-group">
         <label for="searchCustomerName">City</label>
-        <input class="form-control" />
+        <input class="form-control" formControlName="city" />
       </div>
       <div class="form-group">
         <label for="searchCustomerFoundry">Country</label>
-        <input class="form-control" />
+        <input class="form-control" formControlName="country" />
       </div>
     </form>
   </div>
   <div class="card-block">
-    <form novalidate>
+    <!--<form novalidate>-->
       <span class="row justify-content-between">
         <b class="col text-primary">FILTER BY:</b>
         <span class="col text-right text-info" style="cursor: pointer;"><small><b>Clear filters</b></small></span>
@@ -62,6 +62,6 @@
           </li>
         </ul>
       </fieldset>
-    </form>
+    <!--</form>-->
   </div>
 </div>

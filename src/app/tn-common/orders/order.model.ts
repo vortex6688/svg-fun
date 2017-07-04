@@ -21,9 +21,9 @@ class Licensee {
 export class Order {
   public id?: number;
   public user: number | Customer;
-  public subtotal: number;
-  public tax: number;
-  public total: number;
+  public subtotal: string;
+  public tax: string;
+  public total: string;
   public status: number;
   public statusName?: string;
   public created: string;
