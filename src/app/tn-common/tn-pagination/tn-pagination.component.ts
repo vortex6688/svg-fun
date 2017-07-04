@@ -72,8 +72,9 @@ export class TnPaginationComponent extends NgbPagination implements OnInit, OnCh
   }
 
   public updatePageItems() {
-    const firstItem = (this.page - 1) * this.pageSize;
+    let firstItem = (this.page - 1) * this.pageSize;
     const lastItem = Math.min((firstItem + this.pageSize), this.collectionSize);
+    firstItem += +!!this.collectionSize;
     if (this.pageItems[0] !== firstItem || this.pageItems[1] !== lastItem) {
       this.pageItems = [firstItem, lastItem];
       this.pageItemsChanges.emit(this.pageItems);
