@@ -20,9 +20,10 @@ export class CustomersRowComponent implements OnInit, OnDestroy {
     this.collapseSubscription = this.collapseSubject.subscribe((collapse) => {
       this.isCollapsed = collapse;
     });
-  }
-
   public ngOnDestroy() {
     this.collapseSubscription.unsubscribe();
   }
+  }
 }
+
+

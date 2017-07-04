@@ -5,7 +5,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OrderByPipe } from '../../tn-common/pipes/';
-import { Style } from '../../tn-common/styles';
 
 describe('AdminCustomerSingleEditComponent', () => {
   let component: AdminCustomerSingleEditComponent;
