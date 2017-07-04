@@ -16,14 +16,19 @@ export class CustomersRowComponent implements OnInit, OnDestroy {
   public isCollapsed = true;
   private collapseSubscription;
 
+  constructor(private modalService: NgbModal) {}
+
+  public openCustomerSingleEdit() {
+    const customerModal = this.modalService.open(AdminCustomerSingleEditComponent, { windowClass: 'full-size'});
+    customerModal.componentInstance.customer = this.customer;
+  }
   public ngOnInit() {
     this.collapseSubscription = this.collapseSubject.subscribe((collapse) => {
       this.isCollapsed = collapse;
     });
+  }
+
   public ngOnDestroy() {
     this.collapseSubscription.unsubscribe();
   }
-  }
 }
-
-

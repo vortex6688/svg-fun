@@ -4,6 +4,7 @@ import { OrderByPipe } from '../../../tn-common/pipes/';
 import { CustomersRowComponent } from './customers-row';
 import { CustomersTableComponent } from './customers-table.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 describe('CustomersTableComponent', () => {
   let component: CustomersTableComponent;
@@ -15,7 +16,8 @@ describe('CustomersTableComponent', () => {
       declarations: [ CustomersRowComponent,
                       CustomersTableComponent,
                       OrderByPipe, ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ NgbModalStack ]
     })
     .compileComponents();
   }));
