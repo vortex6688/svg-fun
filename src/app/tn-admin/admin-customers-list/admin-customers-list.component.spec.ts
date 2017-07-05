@@ -152,8 +152,8 @@ describe('AdminCustomersListComponent', () => {
     const query = {
       name: 'serie name',
       email: 'mail',
-      city: 'town',
-      country: 'world',
+      city: ['town'],
+      country: ['world'],
     };
     spyOn(store, 'dispatch');
     component.searchCustomers(query);
@@ -211,12 +211,12 @@ describe('AdminCustomersListComponent', () => {
     });
 
     it('should filter customers by city', () => {
-      const city = 'town';
+      const city = ['town'];
       const searchQuery = {
         ...initialCustomerState.search,
         city,
       };
-      const expected = customerOrders.filter((customer) => customer.city.indexOf(city) !== -1);
+      const expected = customerOrders.filter((customer) => city.indexOf(customer.city) !== -1);
       store.dispatch({ type: CustomerActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredCustomers$.subscribe((customers) => {
         expect(customers).toEqual(expected);
@@ -224,12 +224,12 @@ describe('AdminCustomersListComponent', () => {
     });
 
     it('should filter customers by country', () => {
-      const country = 'us';
+      const country = ['us'];
       const searchQuery = {
         ...initialCustomerState.search,
         country,
       };
-      const expected = customerOrders.filter((customer) => customer.country.indexOf(country) !== -1);
+      const expected = customerOrders.filter((customer) => country.indexOf(customer.country) !== -1);
       store.dispatch({ type: CustomerActions.SEARCH_QUERY, payload: searchQuery });
       component.filteredCustomers$.subscribe((customers) => {
         expect(customers).toEqual(expected);

@@ -17,12 +17,12 @@
         <input class="form-control" formControlName="email" />
       </div>
       <div class="form-group">
-        <label for="searchCustomerName">City</label>
-        <input class="form-control" formControlName="city" />
+        <label for="searchCustomerCity">City</label>
+        <dropdown-input [options]="cityList" (optionsChange)="updateList($event, 'city')"></dropdown-input>
       </div>
       <div class="form-group">
-        <label for="searchCustomerFoundry">Country</label>
-        <input class="form-control" formControlName="country" />
+        <label for="searchCustomerCountry">Country</label>
+        <dropdown-input [options]="countryList" (optionsChange)="updateList($event, 'country')"></dropdown-input>
       </div>
     </form>
   </div>

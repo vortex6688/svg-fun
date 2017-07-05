@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
@@ -51,8 +51,14 @@ import { DropdownInputComponent } from './dropdown-input/dropdown-input.componen
 import { FileInputComponent } from './file-input/file-input.component';
 
 @NgModule({
-  imports:      [ CommonModule, FormsModule, HttpModule,
-                  RouterModule, NgbModule, Ng2Webstorage ],
+  imports:      [ CommonModule,
+                  FormsModule,
+                  ReactiveFormsModule,
+                  HttpModule,
+                  RouterModule,
+                  NgbModule,
+                  Ng2Webstorage,
+                ],
   providers:    [ AuthService,
                   TnApiHttpService.provider(),
                   OrderService,
