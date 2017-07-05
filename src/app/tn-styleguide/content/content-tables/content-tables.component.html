@@ -10,6 +10,8 @@
   <li><a [routerLink]="[]" fragment="examples">Examples</a></li>
   <li><a [routerLink]="[]" fragment="table-head-options">Table head options</a></li>
   <li><a [routerLink]="[]" fragment="sortable-table-head">Sortable table head</a></li>
+  <li><a [routerLink]="[]" fragment="table-with-expanding-part">Sortable table head</a></li>
+  <li><a [routerLink]="[]" fragment="table-with-expanding-part-and-checkbox">Sortable table head</a></li>
   <li><a [routerLink]="[]" fragment="striped-rows">Striped rows</a></li>
   <li><a [routerLink]="[]" fragment="bordered-table">Bordered table</a></li>
   <li><a [routerLink]="[]" fragment="active-table">Active Table</a></li>
@@ -338,6 +340,226 @@
     this.sortKey = sortSide + key;
   }
 }</code></pre></div>
+
+<h2 id="table-with-expanding-part">Table with an expanding / collapsing part</h2>
+
+<p>Use <code class="highlighter-rouge">[ngbCollapse]='isCollapsed'</code> to expand or collapse certain table areas.</p>
+<p>Clickable cell with a click event in it<code class="highlighter-rouge">(click)='isCollapsed = !isCollapsed'</code> will expand or collapce the area that matches given id <code class="highlighter-rouge">[attr.aria-controls]='demo'</code> and mark expanding area with <code class="highlighter-rouge">[attr.id]='demo'</code></p>
+
+<div class="bd-example" data-exmaple-id="">
+<table class="table">
+  <thead>
+    <tr class="row">
+      <th class="col">#</th>
+      <th class="col">First Name</th>
+      <th class="col">Last Name</th>
+      <th class="col">Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row">
+      <td class="col" [ngClass]="{'toggled': !isCollapsed }" style="cursor: pointer;"
+        (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]='!isCollapsed' 
+        [attr.aria-controls]='demo'>
+        <i>
+          <icon-right-arrow></icon-right-arrow>
+        </i>
+        #
+      </td>
+      <td class="col">First Name</td>
+      <td class="col">Last Name</td>
+      <td class="col">User</td>
+    </tr>
+    <tr class="row border-0">
+      <table class="table table-active no-borders col" [attr.id]='demo' [ngbCollapse]='isCollapsed'>
+        <thead class="row">
+          <th class="col">Number</th>
+          <th class="col">First Name</th>
+          <th class="col">Last Name</th>
+          <th class="col">User</th>
+        </thead>
+        <tbody class="row">
+          <td class="col">1</td>
+          <td class="col">Glen</td>
+          <td class="col">Johnson</td>
+          <td class="col">User</td>
+        </tbody>
+      </table>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><h4>HTML Code</h4><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;thead&gt;</span>
+    <span class="nt">&lt;tr <span class="na">class=</span><span class="s">"row"</span>&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>First Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Last Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/th&gt;</span>      
+      <span class="nt">&lt;th&gt;</span>Username<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/thead&gt;</span>
+  <span class="nt">&lt;tbody&gt;</span>
+    <span class="nt">&lt;tr <span class="na">class=</span><span class="s">"row"</span>&gt;</span>
+      <span class="nt">&lt;td <span class="na">class=</span><span class="s">"col"</span> <span class="na">[ngClass]=</span><span class="s">"{{ '{' }}'toggled': !isCollapsed }"</span> <span class="na">style=</span><span class="s">"cursor: pointer;"</span> <span class="na">(click)=</span><span class="s">'isCollapsed = !isCollapsed'</span> <span class="na">[attr.aria-expanded]=</span><span class="s">'isCollapsed'</span> <span class="na">[attr.aria-controls]=</span><span class="s">'demo'</span>&gt;</span>
+        <span class="nt">&lt;i&gt;</span><span class="nt">&lt;icon-right-arrow&gt;</span><span class="nt">&lt;/icon-right-arrow&gt;</span><span class="nt">&lt;/i&gt;</span>#
+      <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>First Name<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Last Name<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>User<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;tr <span class="na">class=</span><span class="s">"row border-0"</span>&gt;</span>
+      <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-active no-borders col"</span><span class="nt"> <span class="na">[attr.id]=</span><span class="s">'demo'</span> <span class="na">[ngbCollapse]=</span><span class="s">'isCollapsed'</span>&gt;</span>
+        <span class="nt">&lt;thead <span class="na">class=</span><span class="s">"row"</span>&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>First Name<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Last Name<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;/thead&gt;</span>
+        <span class="nt">&lt;tbody <span class="na">class=</span><span class="s">"row"</span>&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Glen<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Johnson<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>User<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tbody&gt;</span>
+      <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><h4>Component Code</h4>export class YourComponentNameComponent {{'{'}}
+  public isCollapsed = true;
+}</code></pre></div>
+
+
+
+
+
+<h2 id="table-with-expanding-part-and-checkbox">Table with an expanding / collapsing part and a select row checkbox</h2>
+
+<p>If you need to use a checkbox to select a table row/rows, you will also need to use a class<code class="highlighter-rouge">cell-checkbox-width</code> on a inner table cells to even out the columns.</p>
+
+<div class="bd-example" data-exmaple-id="">
+<table class="table">
+  <thead>
+    <tr class="row">
+      <th>
+        <label class="custom-control custom-checkbox checkbox-sm mb-0">
+          <input type="checkbox" class="custom-control-input" />
+          <span class="custom-control-indicator"></span>
+        </label>
+      </th>
+      <th class="col">#</th>
+      <th class="col">First Name</th>
+      <th class="col">Last Name</th>
+      <th class="col">Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row" [ngClass]="{'row-selected': isChecked}">
+      <td>
+        <label class="custom-control custom-checkbox checkbox-sm">
+          <input type="checkbox" class="custom-control-input" (click)='selectStyle()' />
+          <span class="custom-control-indicator"></span>
+        </label>
+      </td>
+      <td class="col" [ngClass]="{'toggled': !isCollapsed }" style="cursor: pointer;"
+        (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]='!isCollapsed' 
+        [attr.aria-controls]='demo'>
+        <i>
+          <icon-right-arrow></icon-right-arrow>
+        </i>
+        #
+      </td>
+      <td class="col">First Name</td>
+      <td class="col">Last Name</td>
+      <td class="col">User</td>
+    </tr>
+    <tr class="row border-0">
+      <table class="table table-active no-borders col" [attr.id]='demo' [ngbCollapse]='isCollapsed'>
+        <thead class="row">
+          <th class="col cell-checkbox-width"></th>
+          <th class="col">Number</th>
+          <th class="col">First Name</th>
+          <th class="col">Last Name</th>
+          <th class="col">User</th>
+        </thead>
+        <tbody class="row">
+          <td class="col cell-checkbox-width"></td>
+          <td class="col">1</td>
+          <td class="col">Glen</td>
+          <td class="col">Johnson</td>
+          <td class="col">User</td>
+        </tbody>
+      </table>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><h4>HTML Code</h4><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;thead&gt;</span>
+    <span class="nt">&lt;tr <span class="na">class=</span><span class="s">"row"</span>&gt;</span>
+      <span class="nt">&lt;th <span class="na">class=</span><span class="s">"col"</span>&gt;</span>
+        <span class="nt">&lt;label <span class="na">class=</span><span class="s">"custom-control custom-checkbox checkbox-sm mb-0"</span>&gt;</span>
+          <span class="nt">&lt;input <span class="na">class=</span><span class="s">"custom-control-input"</span> <span class="na">type=</span><span class="s">"text"</span> /&gt;</span>
+          <span class="nt">&lt;span <span class="na">class=</span><span class="s">"custom-control-indicator"</span>&gt;</span><span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>First Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Last Name<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/th&gt;</span>      
+      <span class="nt">&lt;th&gt;</span>Username<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/thead&gt;</span>
+  <span class="nt">&lt;tbody&gt;</span>
+    <span class="nt">&lt;tr <span class="na">class=</span><span class="s">"row"</span> <span class="na">[ngClass]=</span><span class="s">"{{ '{' }}'toggled': !isCollapsed }"</span>&gt;</span>
+      <span class="nt">&lt;td <span class="na">class=</span><span class="s">"col"</span>&gt;</span>
+        <span class="nt">&lt;label <span class="na">class=</span><span class="s">"custom-control custom-checkbox checkbox-sm mb-0"</span>&gt;</span>
+          <span class="nt">&lt;input <span class="na">class=</span><span class="s">"custom-control-input"</span> <span class="na">type=</span><span class="s">"text"</span> /&gt;</span>
+          <span class="nt">&lt;span <span class="na">class=</span><span class="s">"custom-control-indicator"</span>&gt;</span><span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td <span class="na">class=</span><span class="s">"col"</span> <span class="na">[ngClass]=</span><span class="s">"{{ '{' }}'toggled': !isCollapsed }"</span> <span class="na">style=</span><span class="s">"cursor: pointer;"</span> <span class="na">(click)=</span><span class="s">'isCollapsed = !isCollapsed'</span> <span class="na">[attr.aria-expanded]=</span><span class="s">'isCollapsed'</span> <span class="na">[attr.aria-controls]=</span><span class="s">'demo'</span>&gt;</span>
+        <span class="nt">&lt;i&gt;</span><span class="nt">&lt;icon-right-arrow&gt;</span><span class="nt">&lt;/icon-right-arrow&gt;</span><span class="nt">&lt;/i&gt;</span>#
+      <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>First Name<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>Last Name<span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;td&gt;</span>User<span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;tr <span class="na">class=</span><span class="s">"row border-0"</span>&gt;</span>
+      <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-active no-borders col"</span><span class="nt"> <span class="na">[attr.id]=</span><span class="s">'demo'</span> <span class="na">[ngbCollapse]=</span><span class="s">'isCollapsed'</span>&gt;</span>
+        <span class="nt">&lt;thead <span class="na">class=</span><span class="s">"row"</span>&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col cell-checkbox-width"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>First Name<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Last Name<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;th</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;/thead&gt;</span>
+        <span class="nt">&lt;tbody <span class="na">class=</span><span class="s">"row"</span>&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col cell-checkbox-width"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/td&gt;</span>        
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Glen<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>Johnson<span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>User<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/tbody&gt;</span>
+      <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><h4>Component Code</h4>export class YourComponentNameComponent {{'{'}}
+  public isCollapsed = true;
+  public isChecked = false;
+
+  public selectStyle() {{'{'}}
+    this.isChecked = !this.isChecked;
+  }
+}</code></pre></div>
+
+
 
 <h2 id="striped-rows">Striped rows</h2>
 

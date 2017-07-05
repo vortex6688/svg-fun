@@ -6,12 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content-tables.component.scss']
 })
 export class ContentTablesComponent {
+  public isChecked = false;
+  public isCollapsed = true;
+  public demo;
+
   public sortKey = '';
   public sortableTableData = [
     { no: 1, fName: 'Mark', lName: 'Otto', user: '@mdo' },
     { no: 2, fName: 'Jacob', lName: 'Thornton', user: '@fat' },
     { no: 3, fName: 'Larry', lName: 'the Bird', user: '@twitter' },
   ];
+
+  public selectStyle() {
+    this.isChecked = !this.isChecked;
+  }
 
   public sortBy(key) {
     const sortSide = this.sortKey.endsWith(key) && this.sortKey.startsWith('-') ? '+' : '-';
