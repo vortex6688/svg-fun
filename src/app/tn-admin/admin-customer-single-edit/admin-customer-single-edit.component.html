@@ -1,0 +1,315 @@
+<div class="d-flex justify-content-between modal-action-bar">
+  <span class="mx-2 ml-lg-5 small text-primary align-self-center">
+    You are editing this item. Click the "Save" button to commit your changes or click "Cancel" to remove changes and exit edit mode.
+  </span>
+  <div class="d-flex flex-xl-row flex-column text-right">
+    <button type="button" class="btn btn-info mr-xl-5" (click)="activeModal.close('Cross click')"><icon-close class="text-white icon icon-sm"></icon-close> Cancel</button>
+    <button class="btn btn-success mr-xl-5" type="button"><icon-check class="text-white icon icon-sm"></icon-check> Save</button>
+  </div>
+</div>
+
+<div class="mx-lg-7 mx-4">
+  <div class="modal-body">
+
+    <div class="row text-info mt-4">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">CUSTOMER INFORMATION</b>
+      <!-- flex-grow is set to 0 to allows hr element to freely expand and shrink without giving it a certain width -->
+      <hr class="col">
+    </div>
+
+    <form class="row mb-5">
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          NAME
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="Rania Mulligan">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          ADDRESS 1
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="762 Whitehall Lane">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="my-3">
+          ADDRESS 2
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="Suite F7">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          CITY
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="Fort Worth">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          STATE
+        </label>
+        <div style="width: 13rem;">
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+              <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+              <b>Texas</b>
+              <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  Texas
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  New York
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  California
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          ZIP
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="10112">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          COUNTRY
+        </label>
+        <div style="width: 13rem;">
+          <div ngbDropdown class="d-inline-block">
+            <button style="min-width: 13rem;" class="btn btn-secondary text-left" id="dropdownSingleOption" ngbDropdownToggle>
+              <!-- instead of the placeholder, text of the button should be replaced by the selected option -->
+              <b>United States</b>
+              <icon-select class="icon"></icon-select>
+            </button>
+            <ul class="dropdown-menu list-group-flush" aria-labelledby="dropdownSingleOption">
+              <li class="list-group-item pl-4 selected">
+                <!-- icon close shoul show when item is selected -->
+                <icon-close class="icon"></icon-close>
+                <span>
+                  United States
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  Russian Federation
+                </span>
+              </li>
+              <li class="list-group-item pl-4">
+                <span>
+                  China
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          COMPANY
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="Gadgetzan">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          PASSWORD
+        </label>
+        <div>
+          <button style="min-width: 8rem;" class="btn rounded btn-outline-danger ml-2" type="button">Reset Password</button>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 form-group">
+        <label class="ms-2 my-3">
+          TAX EXEMPT?
+        </label>
+        <div class="switch-checkbox">
+          <input class="switch-input" type="checkbox" id="tax-exampt" checked>
+          <label class="switch-paddle mb-0" for="tax-exampt">
+            <span class="switch-yes">Yes</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 form-group">
+        <label class="ms-2 my-3">
+          CAN INVOICE?
+        </label>
+        <div class="switch-checkbox">
+          <input class="switch-input" type="checkbox" id="can-invoice" checked>
+          <label class="switch-paddle mb-0" for="can-invoice">
+            <span class="switch-yes">Yes</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          IMPERSONATE
+        </label>
+        <div>
+          <button style="min-width: 8rem;" class="btn rounded btn-outline-info ml-2" type="button">Impersonate</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="row text-info">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">CONTACT INFO</b>
+      <hr class="col mr-2">
+    </div>
+
+    <form class="row mb-5">
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          EMAIL
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="mulliganr@gadgetzan.com">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          PHONE
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="414-354-2366 x101">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="my-3">
+          WEBSITE
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="mulligan.com">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          TWITTER
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="@milliganrania">
+        </div>
+      </div>
+    </form>
+
+    <div class="row text-info">
+      <b style="white-space: nowrap; flex-grow: 0;" class="col align-self-center">OTHER INFO</b>
+      <hr class="col mr-2">
+    </div>
+
+    <form class="row mb-5">
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          SOURCE
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="Source Text">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          SOURCE ID
+        </label>
+        <div>
+          <input type="text" style="width: 13rem; background: rgba(0, 0, 0, 0.1); border-color: rgba(0, 0, 0, 0.005);" class="form-control" value="Source ID Text">
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 form-group">
+        <label class="mx-2 my-3">
+          AMOUNT SPENT
+        </label>
+        <div>
+          <b class="mx-2">$1472.00</b>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Orders data is not properly imported, so there is no orders displayed -->
+<div class="mx-lg-6 mx-4">
+  <div class="modal-body">
+    <div class="row text-info pb-2">
+      <div class="d-flex col justify-content-start align-items-end">
+        <h5 style="margin-bottom: 0;">Orders (54)</h5>
+      </div>
+      <div class="d-flex col justify-content-end align-items-end text-right">
+        <div class="text-uppercase small">
+          <span style="cursor: pointer;" class="px-1" (click)="expandAll()">Expand all</span>
+          <span> | </span>
+          <span style="cursor: pointer;" class="px-1" (click)="collapseAll()">Collapse all</span>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-sortable">
+      <thead>
+        <tr class="row">
+          <th class="col sortable" (click)="sortBy('id')" [ngClass]="{'sort-asc': sortKey === '+id', 'sort-desc': sortKey === '-id'}">Order number</th>
+          <th class="col sortable" (click)="sortBy('licensee.last_name')" [ngClass]="{'sort-asc': sortKey === '+licensee.last_name', 'sort-desc': sortKey === '-licensee.last_name'}">Customer</th>
+          <th class="col sortable" (click)="sortBy('total')" [ngClass]="{'sort-asc': sortKey === '+total', 'sort-desc': sortKey === '-total'}">Amount</th>
+          <th class="col sortable" (click)="sortBy('created')"  [ngClass]="{'sort-asc': sortKey === '+created', 'sort-desc': sortKey === '-created'}">Date</th>
+          <th class="col sortable" (click)="sortBy('statusName')" [ngClass]="{'sort-asc': sortKey === '+statusName', 'sort-desc': sortKey === '-statusName'}">Status</th>
+          <th class="col">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mx-lg-6 mx-4">
+  <div class="modal-body">
+    <div class="row text-info pb-2">
+      <h5 class="col" style="margin-bottom: 0;">Projects (5)</h5>
+    </div>
+    <table class="table table-sortable">
+      <thead>
+        <tr class="row">
+          <th class="col sortable" (click)="sortBy('id')" [ngClass]="{'sort-asc': sortKey === '+id', 'sort-desc': sortKey === '-id'}">Project Name</th>
+          <th class="col sortable" (click)="sortBy('licensee.last_name')" [ngClass]="{'sort-asc': sortKey === '+licensee.last_name', 'sort-desc': sortKey === '-licensee.last_name'}">Families</th>
+          <th class="col sortable" (click)="sortBy('total')" [ngClass]="{'sort-asc': sortKey === '+total', 'sort-desc': sortKey === '-total'}">Style Count</th>
+          <th class="col sortable" (click)="sortBy('created')"  [ngClass]="{'sort-asc': sortKey === '+created', 'sort-desc': sortKey === '-created'}">Date Created</th>
+          <th class="col sortable" (click)="sortBy('statusName')" [ngClass]="{'sort-asc': sortKey === '+statusName', 'sort-desc': sortKey === '-statusName'}">URLs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row">
+          <td class="col">Manhattan Project</td>
+          <td class="col">Benton Sans, Dunbar Text</td>
+          <td class="col">12</td>
+          <td class="col">10/20/2016</td>
+          <td class="col">www.clickable-links.com</td>
+        </tr>
+        <tr class="row">
+          <td class="col">Manhattan Project</td>
+          <td class="col">Benton Sans, Dunbar Text</td>
+          <td class="col">12</td>
+          <td class="col">10/20/2016</td>
+          <td class="col">www.clickable-links.com</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

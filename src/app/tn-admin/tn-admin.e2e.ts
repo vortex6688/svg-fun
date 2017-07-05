@@ -435,7 +435,31 @@ describe('Admin', () => {
         it('should have a table with customers info', () => {
           expect(element(by.css('admin-customers-list customers-table')).isDisplayed()).toBeTruthy();
         });
+
+        describe('Opening single customer edit modal', () => {
+          beforeAll(() => {
+            const expandCustomerEditIcon = element(by.css('customers-row:first-child tr:first-child .col:first-child'));
+            expandCustomerEditIcon.click();
+            const customerSingleEditButton = element(by.css('.table-sortable tbody button'));
+            customerSingleEditButton.click();
+          });
+
+          it('single customer edit modal should be revealed after clicking the edit botton', () => {
+            expect(element(by.css('app-admin-customer-single-edit')).isDisplayed()).toBeTruthy();
+          });
+
+          it('single customer edit modal should have a cancel button that closes the modal', () => {
+            const closeButton = element(by.css('app-admin-customer-single-edit .modal-action-bar .btn-info'));
+            closeButton.getText().then((text) => {
+              expect(text).toEqual('Cancel');
+            });
+            closeButton.click().then(() => {
+              expect(element(by.css('app-admin-customer-single-edit')).isPresent()).toBeFalsy();
+            });
+          });
+        });
       });
+
       describe('Style page', () => {
         describe('Style list sorting', () => {
           beforeAll(() => {

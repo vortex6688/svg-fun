@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersRowComponent } from './customers-row.component';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 
 describe('CustomersRowComponent', () => {
   let component: CustomersRowComponent;
@@ -13,7 +14,8 @@ describe('CustomersRowComponent', () => {
     TestBed.configureTestingModule({
       imports: [ NgbModule ],
       declarations: [ CustomersRowComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [ NgbModalStack ]
     })
     .compileComponents();
   }));
