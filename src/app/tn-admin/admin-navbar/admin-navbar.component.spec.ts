@@ -88,7 +88,12 @@ describe('TnAdminNavbarComponent', () => {
 
   it('should call logout authAction on logout', () => {
     component.logout();
-
     expect(authActions.logout).toHaveBeenCalled();
+  });
+
+  it('should unsubscribe on destroy', () => {
+    spyOn(component.userSubscription, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.userSubscription.unsubscribe).toHaveBeenCalled();
   });
 });

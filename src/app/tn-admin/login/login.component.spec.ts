@@ -117,4 +117,10 @@ describe('LoginComponent', () => {
     expect(component.errorMessage).toEqual('An error happened!');
   });
 
+  it('should unsubscribe on destroy', () => {
+    spyOn(component.authStateSubscription, 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component.authStateSubscription.unsubscribe).toHaveBeenCalled();
+  });
+
 });
