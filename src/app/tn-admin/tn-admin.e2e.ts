@@ -270,7 +270,7 @@ describe('Admin', () => {
           beforeAll(() => {
             const expandOrderEditIcon = element(by.css('order-row:first-child tr:nth-child(1) .col:nth-child(1)'));
             expandOrderEditIcon.click();
-            const expandOrderEditButton = element(by.css('order-row .table body:first-child button'));
+            const expandOrderEditButton = element(by.css('order-row .table tbody button'));
             expandOrderEditButton.click();
           });
 
