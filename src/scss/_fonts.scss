@@ -1,0 +1,12 @@
+// Import Fonts
+
+$ui-font-path: "../fonts/";
+
+@font-face {
+    font-family: 'DroidSerif';
+    src:
+        url(#{$ui-font-path}DroidSerif.ttf) format('truetype'),
+        url(#{$ui-font-path}DroidSerif-Bold.ttf) format('truetype'),
+        url(#{$ui-font-path}DroidSerif-BoldItalic.ttf) format('truetype'),
+        url(#{$ui-font-path}DroidSerif-Italic.ttf) format('truetype');
+}

@@ -1,0 +1,102 @@
+// Base element styling goes here
+
+html {
+  font-size: 16px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #3B3B3B;
+  line-height: 1.8;
+	min-width: 360px; // let's assume there is no more phones with the resulution < 360px...
+}
+
+h1, h2, h3, h4 {
+	line-height: 1;
+	letter-spacing: -0.075rem;
+  font-family: "DroidSerif, serif";
+	font-weight: 400;
+	color: #107710;
+}
+
+h1 {
+	font-size: 3.6em;
+	margin: 1rem 0;
+}
+
+h2 {
+	font-size: 2.8em;
+	margin: 1rem 0;
+}
+
+h3 {
+	font-size: 1.6em;
+	margin: 0.5rem 0;
+}
+
+h4 {
+	font-size: 1.4em;
+	margin: 0.5rem 0;
+}
+
+// updated base styles
+
+ul, ol {
+  list-style-type: none;
+  margin: 0;
+	padding: 0;
+}
+
+p {
+ 	font-size: .8125rem;
+ 	color: #3b3b3b;
+	margin: 0.5rem 0;
+}
+
+a {
+	text-decoration: none;
+	color: #8a8a8a;
+}
+
+section {
+	margin: 2.5rem;
+}
+
+form {
+	margin: 1.75rem 0;
+}
+
+button {
+	padding: 0.75rem 1.25rem;
+	background: #107710;
+	color: #FFFFFF;
+	border: none;
+	font-size: 0.75rem;
+	outline: none;
+	cursor: pointer;
+}
+
+@media (max-width: $small-down) {
+
+	section {
+		margin: 1.25rem;
+	}
+	
+	form {
+		margin: 0;
+	}
+}
+
+@media (max-width: $extra-small-down) {
+
+	h2 {
+		font-size: 2em;
+	}
+
+	h3 {
+		font-size: 1.2em;
+	}
+}
