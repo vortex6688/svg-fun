@@ -5,11 +5,11 @@ import { FormsModule } from '@angular/forms';
 
 import { DatepickerComponent } from './datepicker.component';
 
-fdescribe('OrdersTableComponent', () => {
+describe('OrdersTableComponent', () => {
   let component: DatepickerComponent;
   let fixture: ComponentFixture<DatepickerComponent>;
   let elementRef: MockElementRef;
-  let contains = false;
+  const contains = false;
 
   class MockElementRef {
     public nativeElement = {

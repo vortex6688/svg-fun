@@ -32,6 +32,12 @@ export class DatepickerComponent {
     }
   }
 
+  public onKey(date) {
+    if (date.target.value.length === 2 || date.target.value.length === 5) {
+      date.target.value += '/';
+    }
+  }
+
   public updateDate(data) {
     if (!data) {
       this.dateUpdate.emit(null);
