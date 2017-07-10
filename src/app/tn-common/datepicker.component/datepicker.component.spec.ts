@@ -53,6 +53,38 @@ describe('OrdersTableComponent', () => {
     expect(component.dateUpdate.emit).toHaveBeenCalledWith(new Date(`${date.year}-${date.month}-${date.day}`));
   });
 
+  it('should add slashes to date input', () => {
+    const input = {
+      target: {
+        value: '12122012',
+        expected: '12/12/2012',
+      }
+    };
+    component.onKey(input);
+    expect(input.target.value).toEqual(input.target.expected);
+
+    input.target = {
+      value: '12101',
+      expected: '12/10/1',
+    };
+    component.onKey(input);
+    expect(input.target.value).toEqual(input.target.expected);
+
+    input.target = {
+      value: 'aba',
+      expected: '',
+    };
+    component.onKey(input);
+    expect(input.target.value).toEqual(input.target.expected);
+
+    input.target = {
+      value: '01/01/2001',
+      expected: '01/01/2001',
+    };
+    component.onKey(input);
+    expect(input.target.value).toEqual(input.target.expected);
+  });
+
   it('should close modal if click was outside', () => {
     const closeSpy = jasmine.createSpy('close');
     const event = {};

@@ -22,8 +22,12 @@ describe('ngb-date parsing and formatting', () => {
       expect(pf.parse('')).toBeNull();
     });
 
-    it('if values length is > 3', () => {
+    it('if length is > 10', () => {
       expect(pf.parse('07/02/2009/11')).toBeNull();
+    });
+
+    it('if values length is > 3', () => {
+      expect(pf.parse('07/02/29/1')).toBeNull();
     });
   });
 

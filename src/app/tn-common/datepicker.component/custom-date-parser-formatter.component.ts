@@ -3,7 +3,7 @@ import { NgbDateStruct,
          NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 function toInteger(value: any): number {
-    return parseInt(`${value}/`, 10);
+    return parseInt(`${value}`, 10);
 }
 function isNumber(value: any): boolean {
     return !isNaN(toInteger(value));

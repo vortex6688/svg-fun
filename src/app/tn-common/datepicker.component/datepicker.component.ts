@@ -32,9 +32,13 @@ export class DatepickerComponent {
     }
   }
 
-  public onKey(date) {
-    if (date.target.value.length === 2 || date.target.value.length === 5) {
-      date.target.value += '/';
+   public onKey(date) {
+    const value = date.target.value
+      .replace(/^(\d\d)(\d+)$/g, '$1/$2')
+      .replace(/^(\d\d\/\d\d)(\d+)$/g, '$1/$2')
+      .replace(/[^\d\/]/g, '');
+    if (date.target.value !== value) {
+      date.target.value = value;
     }
   }
 
