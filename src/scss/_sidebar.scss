@@ -1,0 +1,38 @@
+// Sidebar styling goes here 
+
+sidebar {
+  width: 16rem;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+	padding: 1.25rem 2.5rem;
+  color: #787878;
+	border-right: 1px solid #E7DFD7;
+	background: #F8F8F8;
+  text-align: center;
+
+  input {
+    width: 16rem;
+    padding: 0.75rem 0;
+    text-indent: 0.5rem;
+    outline: none;
+    background: #F5F0E7;
+    border: 1px solid #D7D0C0;
+    text-transform: lowercase;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    font-size: 1.25rem;
+    color: $light-brown;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e7dfd7;
+  }
+}

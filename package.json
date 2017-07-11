@@ -16,5 +16,8 @@
     "gulp": "^3.9.1",
     "gulp-imagemin": "^3.0.2",
     "gulp-sass": "^3.0.0"
+  },
+  "dependencies": {
+    "foundation-sites": "^6.4.1"
   }
 }

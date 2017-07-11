@@ -1,14 +1,4 @@
 
-// all the rounded elements are consistent and can be styled directly in the markup
-.round {
-  border-radius: 0.5rem;
-}
-
-// apply flex display on the element directly in the markup
-.flex {
-  display: flex;
-}
-
 // apply together with the .flex only
 .align-justify {
   justify-content: space-between;

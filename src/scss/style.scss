@@ -1,6 +1,19 @@
+@import 'settings';
+@import 'node_modules/foundation-sites/scss/foundation';
+
+@include foundation-flex-grid;
+@include foundation-flex-classes;
+@include foundation-typography;
+@include foundation-prototype-sizing;
+@include foundation-prototype-spacing;
+@include foundation-prototype-rounded;
+@include foundation-visibility-classes;
+@include foundation-prototype-position;
+
 @import 'utility';
 @import 'fonts';
 @import 'base';
 @import 'navbar';
+@import 'sidebar';
 @import 'main';
 @import 'footer';

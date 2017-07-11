@@ -3,10 +3,13 @@
 $ui-font-path: "../fonts/";
 
 @font-face {
-    font-family: 'DroidSerif';
+    font-family: 'Andika';
     src:
-        url(#{$ui-font-path}DroidSerif.ttf) format('truetype'),
-        url(#{$ui-font-path}DroidSerif-Bold.ttf) format('truetype'),
-        url(#{$ui-font-path}DroidSerif-BoldItalic.ttf) format('truetype'),
-        url(#{$ui-font-path}DroidSerif-Italic.ttf) format('truetype');
+        url(#{$ui-font-path}Andika.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Quando';
+    src:
+        url(#{$ui-font-path}Quando.ttf) format('truetype');
 }
