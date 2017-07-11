@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta name="keywords" content="advise Nyc, advicer NYC, NYC places, New York news" />
+	<meta name="description" content="advice NYC" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>New York City Facts And Stories</title>
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+	<sidebar class="height-100 flex-column position-fixed show-for-large">
+		<nav class="nav collapse-mobile">
+			<span onclick="toggleNav()" class="nav-mobile-trigger show-xs" style="cursor: pointer;">
+				<img src="images/nav-mobile-icon.svg" />
+			</span>
+			<a href="#">Homepage</a>
+			<a href="#">Photos</a>
+			<a href="#">About</a>
+			<a href="#">Links</a>
+			<a href="#">Contact</a>
+		</nav>
+
+		<form method="get" action="#" class="row">
+			<input class="radius" type="search" /><img style="position: absolute; right: 2.75rem; margin-top: 0.275rem;" src="images/icon-search.svg" />
+			<input style="display: none;" type="submit" />
+		</form>
+
+		<h4 class="margin-top-2">Login</h4>
+		<form method="get" action="#">
+			<input class="radius" type="text" name="login" id="login-text" />
+			<input class="radius" type="password" name="password" id="password-text" />
+			<input style="display: none;" type="submit" />
+		</form>
+		<h4 class="margin-top-2">Categories</h4>
+		<ul>
+			<li><a href="#">Cultural Arts</a></li>
+			<li><a href="#">Dinning</a></li>
+			<li><a href="#">Sightseeing</a></li>
+			<li><a href="#">Flea Market</a></li>
+			<li><a href="#">Shopping</a></li>
+		</ul>
+		<div class="margin-top-2">&copy; New York City Facts And Stories<br />by Vortex6688</div>
+	</sidebar>
+
+	<section class="main">
+		<h1>New York City Facts And Stories...</h1>
+		<h3>Did you know ...? Now you do ;)</h3>
+		<div class="row expanded margin-top-2 margin-bottom-2 front-images">
+			<img class="columns radius padding-left-0 width-100 height-100" src="images/nyc-main-1.jpg" />
+			<img class="columns radius padding-right-0 width-100 height-100" src="images/nyc-main-2.jpg" />
+		</div>
+
+		<h3>Welcome! Welcome! New York City Facts And Stories...</h3>
+		<div>
+			<p>This is Green Exposure, a free, fully standards-compliant CSS template designed by 
+			TEMPLATED. The photo used in this template is from Fotogrph. This free template is released under the Creative Commons Attribution</a> license, so you’re pretty much free 
+			to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :)</p>
+			<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum ipsum. Proin
+			imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in felis. Donec ut ante. In id eros.
+			Suspendisse lacus turpis, cursus egestas at sem.</p>
+		</div>
+		<div class="content">
+			<div class="post radius">
+				<h2><a href="#">Lorem ipsum sed aliquam</a></h2>
+				<div class="flex align-justify meta">
+					<span>February 10, 2013</span>
+					<span class="posted">Posted by <a href="#">Someone</a></span>
+				</div>
+				<div class="post-text">
+					<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, 
+					tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. 
+					Phasellus dapibus semper urna. Pellentesque ornare, orci in consectetuer hendrerit, urna elit 
+					eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis,
+					cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Suspendisse lacus turpis,
+					cursus egestas at sem. Sed lacus. Donec lectus. </p>
+				</div>
+				<button class="read-more radius">READ MORE</button>
+			</div>
+			<div class="post radius">
+				<h2 class="title"><a href="#">Consecteteur hendrerit </a></h2>
+				<div class="flex align-justify meta">
+					<span>February 10, 2013</span>
+					<span class="posted">Posted by <a href="#">Someone</a></span>
+				</div>
+				<div class="post-text">
+					<p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at,
+					varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus 
+					<a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc,
+					ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, 
+					cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Sed lacus. Donec lectus.
+					Nullam pretium nibh ut turpis. Nam bibendum. </p>
+				</div>
+				<button class="read-more radius">READ MORE</button>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		function toggleNav() {
+			document.querySelector(".nav").classList.toggle('collapse-mobile');
+		}
+	</script>
+</body>
+</html>
