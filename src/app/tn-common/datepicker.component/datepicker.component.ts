@@ -1,7 +1,8 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { NgbDatepickerConfig,
          NgbDatepickerI18n,
          NgbDateStruct,
+         NgbInputDatepicker,
          NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDatepickerNames } from './custom-datepicker-names.component';
 import { CustomDateParserFormatter } from './custom-date-parser-formatter.component';
@@ -17,12 +18,28 @@ import { CustomDateParserFormatter } from './custom-date-parser-formatter.compon
 
 export class DatepickerComponent {
   public model: NgbDateStruct;
-  public d;
+  @ViewChild('d') public d: NgbInputDatepicker;
   @Output() public dateUpdate = new EventEmitter<Date>();
 
-  constructor(config: NgbDatepickerConfig) {
+  constructor(config: NgbDatepickerConfig, private elementRef: ElementRef) {
     config.firstDayOfWeek = 7;
     config.navigation = 'arrows';
+  }
+
+  @HostListener('document:click', ['$event']) public onClick($event: MouseEvent) {
+    if (this.d.isOpen() && !this.elementRef.nativeElement.contains($event.target)) {
+      this.d.close();
+    }
+  }
+
+   public onKey(date) {
+    const value = date.target.value
+      .replace(/^(\d\d)(\d+)$/g, '$1/$2')
+      .replace(/^(\d\d\/\d\d)(\d+)$/g, '$1/$2')
+      .replace(/[^\d\/]/g, '');
+    if (date.target.value !== value) {
+      date.target.value = value;
+    }
   }
 
   public updateDate(data) {

@@ -1,8 +1,8 @@
 <form>
   <div class="form-group">
     <div class="input-group">
-      <input style="border-right: none;" class="form-control date-input" placeholder="mm/dd/yyyy" name="dp" [(ngModel)]="model" (ngModelChange)="updateDate($event)" ngbDatepicker #d="ngbDatepicker">
-      <div style="border-left: none;" class="input-group-addon" (click)="d.toggle()" >
+      <input (keyup)="onKey($event)" style="border-right: none;" class="form-control date-input" placeholder="mm/dd/yyyy" maxlength="10" name="dp" [(ngModel)]="model" (ngModelChange)="updateDate($event)" ngbDatepicker #d="ngbDatepicker">
+      <div style="border-left: none;" class="input-group-addon" (click)="d.toggle()">
         <img src="./assets/img/calendar-icon.svg" />
       </div>
     </div>

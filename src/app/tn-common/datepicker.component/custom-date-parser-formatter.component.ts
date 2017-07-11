@@ -28,7 +28,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     }
 
     public parse(value: string): NgbDateStruct {
-        if (!value) {
+        if (!value || value.length > 10 ) {
             return null;
         }
         const dateParts = value.trim().split('/').map(toInteger);
