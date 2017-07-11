@@ -22,7 +22,6 @@ ul, ol {
 p {
   font-size: 1.25rem;
 	color: $light-brown;
-	font-weight: 600;
 }
 
 a {
@@ -35,10 +34,6 @@ section {
   @include breakpoint(medium down) {
     margin: 1.25rem;
   }
-}
-
-form {
-	margin: 1.75rem 0;
 }
 
 button {
