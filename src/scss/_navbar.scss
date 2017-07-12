@@ -10,39 +10,24 @@
     font-size: $lead-font-size * 1.25;
   }
 
-  @media (max-width: $extra-small-down) {
-    flex-direction: column;
-
-    .nav-mobile-trigger {
-      &:hover {
-        background: none;
-      }
-    }
+  @include breakpoint(medium down) {
+	  background: #F8F8F8;
+    margin-top: -0.5rem;
+    transition: all 0.25s ease-out;
 
     &.collapse-mobile {
-      li {
-        height: 0;
-        opacity: 0;
-        transition: all 0.5s;
-      }
-    }
-
-    li {
-      margin: 0;
-      height: 2.25rem;
-      opacity: 1;
-      transition: all 0.5s ease-out;
-      
-      &.active {
-        background: $green;
-        border-radius: 0.5rem;
-      }
+      margin-top: -18rem;
+      transition: all 0.25s;
     }
 
     a {
-      display: flex;
-      color: #fff;
-      padding: 0.25rem 0.75rem;
+      font-size: $lead-font-size * 1.125;
     }
+  }
+}
+
+.nav-mobile-trigger {
+  img {
+    width: 2.125rem;
   }
 }

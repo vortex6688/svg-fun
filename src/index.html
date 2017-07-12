@@ -11,11 +11,33 @@
 
 <body>
 
-	<sidebar class="height-100 flex-column position-fixed show-for-large">
-		<nav class="nav collapse-mobile">
-			<span onclick="toggleNav()" class="nav-mobile-trigger show-xs" style="cursor: pointer;">
-				<img src="images/nav-mobile-icon.svg" />
-			</span>
+<!-- sidebar mobile -->
+	<div class="hide-for-large">
+		<sidebar style="z-index: 1000;" class="sidebar-mobile width-100 row position-fixed">
+			<div class="text-left column shrink padding-left-0">
+				<span onclick="toggleNav()" class="text-left nav-mobile-trigger" style="cursor: pointer;">
+					<img src="images/nav-mobile-icon.svg" />
+				</span>
+			</div>
+			<form method="get" action="#" class="text-right column padding-right-0" style="margin-right: 2.5rem;">
+				<input class="radius" type="search" /><img style="position: absolute; right: 3.75rem; margin-top: 0.1325rem;" src="images/icon-search.svg" />
+				<input style="display: none;" type="submit" />
+			</form>
+		</sidebar>
+
+		<nav class="nav collapse-mobile padding-left-1 position-fixed width-100">
+			<a href="#">Home</a>
+			<a href="#">Stories</a>
+			<a href="#">Facts</a>
+			<a href="#">Links</a>
+			<a href="#">Contact</a>
+		</nav>
+	</div>
+<!-- /sidebar mobile -->
+
+	<sidebar class="height-100 flex position-fixed show-for-large">
+
+		<nav class="nav">
 			<a href="#">Homepage</a>
 			<a href="#">Photos</a>
 			<a href="#">About</a>
@@ -23,18 +45,7 @@
 			<a href="#">Contact</a>
 		</nav>
 
-		<form method="get" action="#" class="row margin-top-2">
-			<input class="radius" type="search" /><img style="position: absolute; right: 2.75rem; margin-top: 0.275rem;" src="images/icon-search.svg" />
-			<input style="display: none;" type="submit" />
-		</form>
-
-		<h4 class="margin-top-2">Login</h4>
-		<form method="get" action="#">
-			<input class="radius margin-bottom-1" type="text" name="login" id="login-text" />
-			<input class="radius" type="password" name="password" id="password-text" />
-			<input style="display: none;" type="submit" />
-		</form>
-		<h4 class="margin-top-2">Categories</h4>
+		<h4 class="margin-top-3">Categories</h4>
 		<ul>
 			<li><a href="#">Cultural Arts</a></li>
 			<li><a href="#">Dinning</a></li>
@@ -42,14 +53,30 @@
 			<li><a href="#">Flea Market</a></li>
 			<li><a href="#">Shopping</a></li>
 		</ul>
+
+		<h4 class="margin-top-3">Login</h4>
+		<form method="get" action="#">
+			<input class="radius margin-bottom-1" type="text" name="login" id="login-text" />
+			<input class="radius" type="password" name="password" id="password-text" />
+			<input style="display: none;" type="submit" />
+		</form>
+
+		<form method="get" action="#" class="row margin-top-3">
+			<input class="radius" type="search" /><img style="position: absolute; right: 2.75rem; margin-top: 0.275rem;" src="images/icon-search.svg" />
+			<input style="display: none;" type="submit" />
+		</form>
 	</sidebar>
 
 	<section class="main">
 		<h1>New York City Facts And Stories...</h1>
 		<h3>Did you know ...? Now you do ;)</h3>
 		<div class="row expanded margin-top-2 margin-bottom-2 front-images">
-			<img class="columns radius padding-left-0 width-100 height-100" src="images/nyc-main-1.jpg" />
-			<img class="columns radius padding-right-0 width-100 height-100" src="images/nyc-main-2.jpg" />
+			<div class="column padding-left-0">
+				<img class="width-100" src="images/nyc-main-1.jpg" />
+			</div>
+			<div class="column padding-right-0">
+			  <img class="width-100" src="images/nyc-main-2.jpg" />
+			</div>
 		</div>
 
 		<h3>Welcome! Welcome! New York City Facts And Stories...</h3>

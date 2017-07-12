@@ -5,6 +5,13 @@
 
   @include breakpoint(medium down) {
     margin-left: 1.25rem;
+    margin-top: 5rem;
+  }
+
+  .front-images {
+    img {
+      border-radius: 0.5rem;
+    }
   }
 }
 
@@ -23,18 +30,5 @@
 
   .post a {
     color: $green;
-  }
-
-  @media (max-width: $small-down) {
-    width: auto;
-    margin: auto;
-
-    .post {
-      padding: 1.25rem;
-    }
-
-    .post-text {
-      margin: 1.25rem 0;
-    }
   }
 }

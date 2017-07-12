@@ -22,6 +22,10 @@ ul, ol {
 p {
   font-size: 1.25rem;
 	color: $light-brown;
+
+  @include breakpoint(medium down) {
+  font-size: 1.125rem;
+  }
 }
 
 a {

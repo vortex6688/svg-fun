@@ -13,16 +13,19 @@ sidebar {
 
   input {
     width: 16rem;
-    padding: 0.75rem 0;
+    padding: 0.625rem 0;
     text-indent: 0.5rem;
     outline: none;
     background: #F5F0E7;
     border: 1px solid #D7D0C0;
     text-transform: lowercase;
+    @include breakpoint(medium down) {
+      width: 14rem;
+    }
   }
 
   a {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: $light-brown;
 
     &:hover {
@@ -34,4 +37,11 @@ sidebar {
     padding: 0.5rem 0;
     border-bottom: 1px solid #e7dfd7;
   }
+}
+
+.sidebar-mobile {
+  top: 0;
+  left: 0;
+	padding: 1.25rem;
+  overflow: hidden;
 }
