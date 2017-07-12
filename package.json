@@ -1,5 +1,5 @@
 {
-  "name": "adviceNYC",
+  "name": "NewYork",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "usb777",
+  "author": "vortex",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.18.12",

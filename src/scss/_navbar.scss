@@ -12,8 +12,9 @@
 
   @include breakpoint(medium down) {
 	  background: #F8F8F8;
-    margin-top: -0.5rem;
+    margin-top: -1.5rem;
     transition: all 0.25s ease-out;
+    padding-left: 1.175rem;
 
     &.collapse-mobile {
       margin-top: -18rem;

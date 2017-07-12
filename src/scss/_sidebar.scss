@@ -13,7 +13,7 @@ sidebar {
 
   input {
     width: 16rem;
-    padding: 0.625rem 0;
+    padding: 0.5rem 0;
     text-indent: 0.5rem;
     outline: none;
     background: #F5F0E7;
@@ -42,6 +42,6 @@ sidebar {
 .sidebar-mobile {
   top: 0;
   left: 0;
-	padding: 1.25rem;
+	padding: 0.75rem 1.25rem 0.5rem;
   overflow: hidden;
 }
